@@ -1,2 +1,3 @@
-# LiteLib
-SQLite EF-like DbContext
+#LiteLib
+
+A cool little wrapper for SQLite based on Dapper
