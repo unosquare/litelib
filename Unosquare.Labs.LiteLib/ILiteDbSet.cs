@@ -85,6 +85,12 @@
         IEnumerable<T> Select(string whereText, object whereParams);
 
         /// <summary>
+        /// Selects all entities from the database.
+        /// </summary>
+        /// <returns></returns>
+        IEnumerable<T> SelectAll();
+
+        /// <summary>
         /// Performs a custom query. The command text and parameters are NOT automatically provided.
         /// Use the SelectDefinition property to start with command text.
         /// </summary>
@@ -133,6 +139,12 @@
         /// <param name="whereParams">The where parameters.</param>
         /// <returns></returns>
         Task<IEnumerable<T>> SelectAsync(string whereText, object whereParams);
+
+        /// <summary>
+        /// Selects all asynchronous.
+        /// </summary>
+        /// <returns></returns>
+        Task<IEnumerable<T>> SelectAllAsync();
 
         /// <summary>
         /// Provides an asynchronous counterpart to the Query method

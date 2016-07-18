@@ -447,6 +447,15 @@
         }
 
         /// <summary>
+        /// Selects all entities from the database.
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<T> SelectAll()
+        {
+            return Select("1 = 1", null);
+        }
+
+        /// <summary>
         /// Provides and asynchronous counterpart to the Select method
         /// </summary>
         /// <param name="whereText">The where text.</param>
@@ -460,7 +469,16 @@
         }
 
         /// <summary>
-        /// Selects a single entity from the databse given its row id.
+        /// Selects all asynchronous.
+        /// </summary>
+        /// <returns></returns>
+        public async Task<IEnumerable<T>> SelectAllAsync()
+        {
+            return await SelectAsync("1 = 1", null);
+        }
+
+        /// <summary>
+        /// Selects a single entity from the database given its row id.
         /// </summary>
         /// <param name="rowId">The row identifier.</param>
         /// <returns></returns>
