@@ -1,7 +1,7 @@
 language: csharp
 solution: Unosquare.Labs.LiteLib.sln
 install:
-  - nuget restore Unosquare.Labs.LiteLib.Lib.sln
+  - nuget restore Unosquare.Labs.LiteLib.sln
   - nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory testrunner
   - nuget install coveralls.net -Version 0.6.0 -OutputDirectory coveralls
   - sudo apt-get install gtk-sharp2
