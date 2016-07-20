@@ -16,6 +16,7 @@ install:
   - make
   - sudo make install
   - cd ../../unosquare/litelib
+  - ls ./testrunner
 script:
   - xbuild /p:Configuration=Release Unosquare.Labs.LiteLib.sln
   - export LD_LIBRARY_PATH=/usr/local/lib
