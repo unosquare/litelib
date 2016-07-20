@@ -21,6 +21,8 @@ Stuff that LiteLib *does not* cover:
 
 ##Installation
 
+[![NuGet version](https://badge.fury.io/nu/litelib.svg)](https://badge.fury.io/nu/litelib)
+
 You can install LiteLib via NuGet Package Manager as follows:
 <pre>
 PM> Install-Package LiteLib
