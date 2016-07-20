@@ -7,8 +7,8 @@ install:
   - sudo apt-get install gtk-sharp2
   - curl -sS https://api.nuget.org/packages/mono.cecil.0.9.6.3.nupkg > /tmp/mono.cecil.0.9.6.3.nupkg.zip
   - unzip /tmp/mono.cecil.0.9.6.3.nupkg.zip -d /tmp/cecil
-  - cp /tmp/cecil/lib/net40/Mono.Cecil.dll .
-  - cp /tmp/cecil/lib/net40/Mono.Cecil.dll /tmp/cecil/
+  - cp /tmp/cecil/lib/net45/Mono.Cecil.dll .
+  - cp /tmp/cecil/lib/net45/Mono.Cecil.dll /tmp/cecil/
   - git clone --depth=50 git://github.com/csMACnz/monocov.git ../../unosquare/monocov
   - cd ../../unosquare/monocov
   - cp /tmp/cecil/Mono.Cecil.dll .
@@ -19,7 +19,7 @@ install:
 script:
   - xbuild /p:Configuration=Release Unosquare.Labs.LiteLib.sln
   - export LD_LIBRARY_PATH=/usr/local/lib
-  - mono --debug ./testrunner/NUnit.ConsoleRunner.3.4.1/tools/nunit3-console.exe --process=Single ./Unosquare.Labs.LiteLib.Tests/bin/Release/Unosquare.Labs.LiteLib.Tests.dll
+  - mono --debug --profile=monocov:outfile=monocovCoverage.cov,+[Unosquare.Labs.LiteLib] ./testrunner/NUnit.ConsoleRunner.3.4.1/tools/nunit3-console.exe --process=Single ./Unosquare.Labs.LiteLib.Tests/bin/Release/Unosquare.Labs.LiteLib.Tests.dll
   - monocov --export-xml=monocovCoverage monocovCoverage.cov
   - REPO_COMMIT_AUTHOR=$(git show -s --pretty=format:"%cn")
   - REPO_COMMIT_AUTHOR_EMAIL=$(git show -s --pretty=format:"%ce")
