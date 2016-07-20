@@ -2,7 +2,7 @@ language: csharp
 solution: Unosquare.Labs.LiteLib.sln
 install:
   - nuget restore Unosquare.Labs.LiteLib.sln
-  - nuget install NUnit.Runners -Version 3.4.1 -OutputDirectory testrunner
+  - nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory testrunner
   - nuget install coveralls.net -Version 0.6.0 -OutputDirectory coveralls
   - sudo apt-get install gtk-sharp2
   - curl -sS https://api.nuget.org/packages/mono.cecil.0.9.6.3.nupkg > /tmp/mono.cecil.0.9.6.3.nupkg.zip
@@ -19,9 +19,9 @@ install:
 script:
   - xbuild /p:Configuration=Release Unosquare.Labs.LiteLib.sln
   - export LD_LIBRARY_PATH=/usr/local/lib
-  - mono --debug --profile=monocov:outfile=monocovCoverage.cov,+[Unosquare.Labs.LiteLib] ./testrunner/NUnit.ConsoleRunner.3.4.1/tools/nunit3-console.exe --process=Single ./Unosquare.Labs.LiteLib.Tests/bin/Release/Unosquare.Labs.LiteLib.Tests.dll
+  - mono --debug --profile=monocov:outfile=monocovCoverage.cov,+[Unosquare.Labs.LiteLib] ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe --process=Single ./Unosquare.Labs.LiteLib.Tests/bin/Release/Unosquare.Labs.LiteLib.Tests.dll
   - monocov --export-xml=monocovCoverage monocovCoverage.cov
   - REPO_COMMIT_AUTHOR=$(git show -s --pretty=format:"%cn")
   - REPO_COMMIT_AUTHOR_EMAIL=$(git show -s --pretty=format:"%ce")
   - REPO_COMMIT_MESSAGE=$(git show -s --pretty=format:"%s")
-  - mono ./coveralls/coveralls.net.0.6.0/csmacnz.Coveralls.exe --monocov -i ./monocovCoverage --repoToken 5dp40q5xVlix1ufEwqZEAwDEXXBt05LWm --commitId $TRAVIS_COMMIT --commitBranch $TRAVIS_BRANCH --commitAuthor "$REPO_COMMIT_AUTHOR" --commitEmail "$REPO_COMMIT_AUTHOR_EMAIL" --commitMessage "$REPO_COMMIT_MESSAGE" --jobId $TRAVIS_JOB_ID  --serviceName travis-ci  --useRelativePaths
+  - mono ./coveralls/coveralls.net.0.6.0/tools/csmacnz.Coveralls.exe --monocov -i ./monocovCoverage --repoToken 5dp40q5xVlix1ufEwqZEAwDEXXBt05LWm --commitId $TRAVIS_COMMIT --commitBranch $TRAVIS_BRANCH --commitAuthor "$REPO_COMMIT_AUTHOR" --commitEmail "$REPO_COMMIT_AUTHOR_EMAIL" --commitMessage "$REPO_COMMIT_MESSAGE" --jobId $TRAVIS_JOB_ID  --serviceName travis-ci  --useRelativePaths
