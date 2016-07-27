@@ -9,9 +9,9 @@ namespace Unosquare.Labs.LiteLib.Tests.Helpers
 {
     static class TestHelper
     {
-        public static string GetTempDb()
+        public static string GetTempDb(string name)
         {
-            var path = Path.Combine(Path.GetTempPath(), "temp.db");
+            var path = Path.Combine(Path.GetTempPath(), $"{name}.db");
 
             if (File.Exists(path))
                 File.Delete(path);
