@@ -152,6 +152,240 @@ namespace Unosquare.Labs.LiteLib.Tests
 
         }
 
+        [Test]
+        public void TestCountData()
+        {
+            var dataSource = new List<Order>();
 
+            for (var i = 0; i < 10; i++)
+            {
+                dataSource.Add(new Order { CustomerName = "John", ShipperCity = "Guadalajara", Amount = "4" });
+                dataSource.Add(new Order { CustomerName = "Peter", ShipperCity = "Leon", Amount = "6" });
+                dataSource.Add(new Order { CustomerName = "Margarita", ShipperCity = "Boston", Amount = "7" });
+            }
+            foreach (var item in dataSource)
+            {
+                _context.Orders.Insert(item);
+            }
+            var selectingData = _context.Orders.Select("CustomerName = @CustomerName", new { CustomerName = "Peter" });
+            Assert.AreEqual(10, selectingData.Count());
+        }
+
+        //Test OnBeforeInsert
+        [Test]
+        public void OnBeforeInsertTest()
+        {
+            var dataSource = new List<Order>();
+
+            for (var i = 0; i < 10; i++)
+            {
+                dataSource.Add(new Order { CustomerName = "John", ShipperCity = "Guadalajara", Amount = "4" });
+                dataSource.Add(new Order { CustomerName = "Peter", ShipperCity = "Leon", Amount = "6" });
+                dataSource.Add(new Order { CustomerName = "Margarita", ShipperCity = "Boston", Amount = "7" });
+            }
+
+             _context.Orders.OnBeforeInsert += (s, e) =>
+             {
+                 if (e.Entity.CustomerName == "Peter")
+                 {
+                     e.Entity.CustomerName = "Charles";
+                 }
+             };
+            
+             foreach (var item in dataSource)
+             {
+                 _context.Orders.Insert(item);
+             }
+
+            var updatedList = _context.Orders.Select("ShipperCity = @ShipperCity", new { ShipperCity = "Leon" });
+            foreach (var item in updatedList)
+            {
+                Assert.AreNotEqual("Peter", item.CustomerName);
+            }
+        }
+
+        // Test OnAfterInsert
+        [Test]
+        public void OnAfterInsert()
+        {
+            //Deleting default elements in the table
+            var incomingData = _context.Orders.SelectAll();
+            foreach (var item in incomingData)
+            {
+                _context.Orders.Delete(item);
+            }
+            //Begining with the Test
+            var dataSource = new List<Order>();
+
+            for (var i = 0; i < 10; i++)
+            {
+                dataSource.Add(new Order { CustomerName = "John", ShipperCity = "Guadalajara", Amount = "4" });
+                dataSource.Add(new Order { CustomerName = "Peter", ShipperCity = "Leon", Amount = "6" });
+                dataSource.Add(new Order { CustomerName = "Margarita", ShipperCity = "Boston", Amount = "7" });
+            }
+
+            _context.Orders.OnAfterInsert += (s, e) => 
+            {
+                if (e.Entity.CustomerName == "John" || e.Entity.CustomerName == "Peter")
+                {
+                    _context.Orders.Delete(e.Entity);
+                }
+            };
+
+            foreach (var item in dataSource)
+            {
+                _context.Orders.Insert(item);
+            }
+            var afterList = _context.Orders.SelectAll();
+            foreach (var item in afterList)
+            {
+                Assert.AreEqual("Margarita", item.CustomerName);
+            }
+
+            Assert.AreEqual(10, afterList.Count());
+        }
+
+        //Test OnBeforeUpdate
+        [Test]
+        public void OnBeforeUpdateTest()
+        {
+            var dataSource = new List<Order>();
+
+            for (var i = 0; i < 10; i++)
+            {
+                dataSource.Add(new Order { CustomerName = "John", ShipperCity = "Guadalajara", Amount = "4" });
+                dataSource.Add(new Order { CustomerName = "Peter", ShipperCity = "Leon", Amount = "6" });
+                dataSource.Add(new Order { CustomerName = "Margarita", ShipperCity = "Boston", Amount = "7" });
+            }
+
+            foreach (var item in dataSource)
+            {
+                _context.Orders.Insert(item);
+            }
+
+            _context.Orders.OnBeforeUpdate += (s, e) =>
+            {
+                if (e.Entity.ShipperCity == "Leon")
+                {
+                    e.Entity.ShipperCity = "Atlanta";
+                }
+            };
+
+            foreach (var item in _context.Orders.SelectAll())
+            {
+                _context.Orders.Update(item);
+            }
+
+            var updatedList = _context.Orders.Select("CustomerName = @CustomerName", new { CustomerName = "Peter" });
+            foreach (var item in updatedList)
+            {
+                Assert.AreEqual("Atlanta", item.ShipperCity);
+            }
+        }
+
+        //Test OnAfterUpdate
+        [Test]
+        public void OnAfterUpdateTest()
+        {
+            var dataSource = new List<Order>();
+
+            for (var i = 0; i < 10; i++)
+            {
+                dataSource.Add(new Order { CustomerName = "John", ShipperCity = "Guadalajara", Amount = "4" });
+                dataSource.Add(new Order { CustomerName = "Peter", ShipperCity = "Leon", Amount = "6" });
+                dataSource.Add(new Order { CustomerName = "Margarita", ShipperCity = "Boston", Amount = "7" });
+            }
+
+            foreach (var item in dataSource)
+            {
+                _context.Orders.Insert(item);
+            }
+
+            var newDataSource = new List<Order>();
+            _context.Orders.OnAfterUpdate += (s, e) => 
+            {
+                if (e.Entity.ShipperCity == "Guadalajara")
+                {
+                    newDataSource.Add(e.Entity);
+                }
+            };
+
+            foreach (var item in _context.Orders.SelectAll())
+            {
+                _context.Orders.Update(item);
+            }
+            Assert.AreEqual(10, newDataSource.Count());
+        }
+
+        //Test OnBeforeDelete
+        [Test]
+        public void OnBeforeDeleteTest()
+        {
+            var dataSource = new List<Order>();
+
+            for (var i = 0; i < 10; i++)
+            {
+                dataSource.Add(new Order { CustomerName = "John", ShipperCity = "Guadalajara", Amount = "4" });
+                dataSource.Add(new Order { CustomerName = "Peter", ShipperCity = "Leon", Amount = "6" });
+                dataSource.Add(new Order { CustomerName = "Margarita", ShipperCity = "Boston", Amount = "7" });
+            }
+
+            foreach (var item in dataSource)
+            {
+                _context.Orders.Insert(item);
+            }
+            var deletedList = new List<Order>();
+            _context.Orders.OnBeforeDelete += (s, e) => 
+            {
+                deletedList.Add(e.Entity);
+            };
+            foreach (var item in _context.Orders.SelectAll())
+            {
+                if (item.CustomerName =="John")
+                {
+                    _context.Orders.Delete(item);
+                }
+            }
+
+            Assert.AreEqual(10, deletedList.Count());
+        }
+
+        //Test OnAfterDelete
+        [Test]
+        public void OnAfterDeleteTest()
+        {
+            var dataSource = new List<Order>();
+
+            for (var i = 0; i < 10; i++)
+            {
+                dataSource.Add(new Order { CustomerName = "John", ShipperCity = "Guadalajara", Amount = "4" });
+                dataSource.Add(new Order { CustomerName = "Peter", ShipperCity = "Leon", Amount = "6" });
+                dataSource.Add(new Order { CustomerName = "Margarita", ShipperCity = "Boston", Amount = "7" });
+            }
+
+            foreach (var item in dataSource)
+            {
+                _context.Orders.Insert(item);
+            }
+
+            _context.Orders.OnAfterDelete += (s, e) =>
+            {
+                e.Entity.CustomerName = "Jessy";
+                _context.Orders.Insert(e.Entity);
+            };
+            foreach (var item in _context.Orders.SelectAll())
+            {
+                if (item.CustomerName == "Margarita")
+                {
+                    _context.Orders.Delete(item);
+                }
+            }
+            Console.Write(_context.Orders.Select("CustomerName = @CustomerName", new { CustomerName = "Jessy" }).Count());
+
+            foreach (var item in _context.Orders.Select("CustomerName = @CustomerName", new { CustomerName = "Jessy"}))
+            {
+                Assert.AreEqual("Jessy", item.CustomerName);
+            }
+        }
     }
 }
