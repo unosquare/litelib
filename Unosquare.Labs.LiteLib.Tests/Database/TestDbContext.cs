@@ -5,7 +5,7 @@ namespace Unosquare.Labs.LiteLib.Tests.Database
 {
     class TestDbContext : LiteDbContext
     {
-        public TestDbContext() : base(TestHelper.GetTempDb(), new NullLog())
+        public TestDbContext(string name) : base(TestHelper.GetTempDb(name ?? "empty"), new NullLog())
         {
         }
 
