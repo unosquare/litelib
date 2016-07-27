@@ -157,6 +157,7 @@ namespace Unosquare.Labs.LiteLib.Tests
             }
         }
 
+        //Test Count method
         [Test]
         public void TestCountData()
         {
@@ -410,6 +411,169 @@ namespace Unosquare.Labs.LiteLib.Tests
                 {
                     Assert.AreEqual("Jessy", item.CustomerName);
                 }
+            }
+        }
+
+        //Async Test Methods
+        [Test]
+        public async void AsyncTestSelectAll()
+        {
+            using (var context = new TestDbContext(nameof(AsyncTestSelectAll)))
+            {
+                foreach (var item in _sampleData)
+                {
+                    await context.Orders.InsertAsync(item);
+                }
+
+                var list = await context.Orders.SelectAllAsync();
+
+                Assert.AreEqual(_sampleData.Count(), list.Count(), "Same set");
+            }
+        }
+        //Test Async Delete Method
+        [Test]
+        public async void AsyncTestDeleteData()
+        {
+            using (var context = new TestDbContext(nameof(AsyncTestDeleteData)))
+            {
+                var loadData = new List<Order>();
+                for (var i = 0; i < 10; i++)
+                {
+                    loadData.Add(new Order { CustomerName = "John", ShipperCity = "Guadalajara", Amount = "4" });
+                    loadData.Add(new Order { CustomerName = "John", ShipperCity = "Leon", Amount = "6" });
+                    loadData.Add(new Order { CustomerName = "John", ShipperCity = "Boston", Amount = "7" });
+                }
+
+                foreach (var item in loadData)
+                {
+                    await context.Orders.InsertAsync(item);
+                }
+                var incomingData = context.Orders.SelectAll();
+                foreach (var item in incomingData)
+                {
+                    await context.Orders.DeleteAsync(item);
+                }
+
+                Assert.AreEqual(0, context.Orders.Count());
+            }
+        }
+
+        //Test Async Insert method
+        [Test]
+        public async void AsyncTestInsertData()
+        {
+            using (var _context = new TestDbContext(nameof(AsyncTestInsertData)))
+            {
+                while (_context.Orders.Count() != 0)
+                {
+                    var incomingData = _context.Orders.SelectAll();
+                    foreach (var item in incomingData)
+                    {
+                        await _context.Orders.DeleteAsync(item);
+                    }
+                }
+                var dataSource = new List<Order>();
+
+                for (var i = 0; i < 10; i++)
+                {
+                    dataSource.Add(new Order { CustomerName = "John", ShipperCity = "Guadalajara", Amount = "4" });
+                    dataSource.Add(new Order { CustomerName = "Peter", ShipperCity = "Leon", Amount = "6" });
+                    dataSource.Add(new Order { CustomerName = "Margarita", ShipperCity = "Boston", Amount = "7" });
+                }
+
+                foreach (var item in dataSource)
+                {
+                    await _context.Orders.InsertAsync(item);
+                }
+                var list = await  _context.Orders.SelectAllAsync();
+
+                Assert.AreEqual(dataSource.Count(), list.Count());
+            }
+
+       }
+
+        // Test Async Update method
+        [Test]
+        public async void AsyncTestUpdateData()
+        {
+            using (var _context = new TestDbContext(nameof(AsyncTestUpdateData)))
+            {
+                var dataSource = new List<Order>();
+
+                for (var i = 0; i < 10; i++)
+                {
+                    dataSource.Add(new Order { CustomerName = "John", ShipperCity = "Guadalajara", Amount = "4" });
+                    dataSource.Add(new Order { CustomerName = "Peter", ShipperCity = "Leon", Amount = "6" });
+                    dataSource.Add(new Order { CustomerName = "Margarita", ShipperCity = "Boston", Amount = "7" });
+                }
+
+                foreach (var item in dataSource)
+                {
+                    await _context.Orders.InsertAsync(item);
+                }
+
+                var list = await _context.Orders.SelectAsync("CustomerName = @CustomerName", new { CustomerName = "John" });
+                foreach (var item in list)
+                {
+                    item.ShipperCity = "Atlanta";
+                    await _context.Orders.UpdateAsync(item);
+                }
+                var updatedList =await _context.Orders.SelectAsync("ShipperCity = @ShipperCity", new { ShipperCity = "Atlanta" });
+                foreach (var item in updatedList)
+                {
+                    Assert.AreEqual("Atlanta", item.ShipperCity);
+                }
+            }
+        }
+
+        //Test Select method
+        [Test]
+        public async void AsyncTestSelectData()
+        {
+            using (var _context = new TestDbContext(nameof(AsyncTestSelectData)))
+            {
+                var dataSource = new List<Order>();
+
+                for (var i = 0; i < 10; i++)
+                {
+                    dataSource.Add(new Order { CustomerName = "John", ShipperCity = "Guadalajara", Amount = "4" });
+                    dataSource.Add(new Order { CustomerName = "Peter", ShipperCity = "Leon", Amount = "6" });
+                    dataSource.Add(new Order { CustomerName = "Margarita", ShipperCity = "Boston", Amount = "7" });
+                }
+                foreach (var item in dataSource)
+                {
+                    await _context.Orders.InsertAsync(item);
+                }
+                // Selecting Data By name
+                var selectingData = await _context.Orders.SelectAsync("CustomerName = @CustomerName", new { CustomerName = "Peter" });
+
+                foreach (var item in selectingData)
+                {
+                    Assert.AreEqual("Peter", item.CustomerName);
+                }
+            }
+        }
+
+        //Test Count method
+        [Test]
+        public async void AsyncTestCountData()
+        {
+            using (var _context = new TestDbContext(nameof(AsyncTestCountData)))
+            {
+                var dataSource = new List<Order>();
+
+                for (var i = 0; i < 10; i++)
+                {
+                    dataSource.Add(new Order { CustomerName = "John", ShipperCity = "Guadalajara", Amount = "4" });
+                    dataSource.Add(new Order { CustomerName = "Peter", ShipperCity = "Leon", Amount = "6" });
+                    dataSource.Add(new Order { CustomerName = "Margarita", ShipperCity = "Boston", Amount = "7" });
+                }
+                foreach (var item in dataSource)
+                {
+                    await _context.Orders.InsertAsync(item);
+                }
+                var selectingData = await _context.Orders.SelectAsync("CustomerName = @CustomerName", new { CustomerName = "Peter" });
+                Assert.AreEqual(10, selectingData.Count());
             }
         }
     }
