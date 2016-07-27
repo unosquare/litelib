@@ -65,7 +65,7 @@ namespace Unosquare.Labs.LiteLib.Tests
         [Test]
         public void TestInsertData()
         {
-            using (var _context = new TestDbContext(nameof(TestSelectAll)))
+            using (var _context = new TestDbContext(nameof(TestInsertData)))
             {
                 while (_context.Orders.Count() != 0)
                 {
@@ -99,7 +99,7 @@ namespace Unosquare.Labs.LiteLib.Tests
         [Test]
         public void TestUpdateData()
         {
-            using (var _context = new TestDbContext(nameof(TestSelectAll)))
+            using (var _context = new TestDbContext(nameof(TestUpdateData)))
             {
                 var dataSource = new List<Order>();
 
@@ -133,7 +133,7 @@ namespace Unosquare.Labs.LiteLib.Tests
         [Test]
         public void TestSelectData()
         {
-            using (var _context = new TestDbContext(nameof(TestSelectAll)))
+            using (var _context = new TestDbContext(nameof(TestSelectData)))
             {
                 var dataSource = new List<Order>();
 
@@ -160,7 +160,7 @@ namespace Unosquare.Labs.LiteLib.Tests
         [Test]
         public void TestCountData()
         {
-            using (var _context = new TestDbContext(nameof(TestSelectAll)))
+            using (var _context = new TestDbContext(nameof(TestCountData)))
             {
                 var dataSource = new List<Order>();
 
@@ -183,7 +183,7 @@ namespace Unosquare.Labs.LiteLib.Tests
         [Test]
         public void OnBeforeInsertTest()
         {
-            using (var _context = new TestDbContext(nameof(TestSelectAll)))
+            using (var _context = new TestDbContext(nameof(OnBeforeInsertTest)))
             {
                 var dataSource = new List<Order>();
 
@@ -219,7 +219,7 @@ namespace Unosquare.Labs.LiteLib.Tests
         [Test]
         public void OnAfterInsert()
         {
-            using (var _context = new TestDbContext(nameof(TestSelectAll)))
+            using (var _context = new TestDbContext(nameof(OnAfterInsert)))
             {
                 //Deleting default elements in the table
                 var incomingData = _context.Orders.SelectAll();
@@ -263,7 +263,7 @@ namespace Unosquare.Labs.LiteLib.Tests
         [Test]
         public void OnBeforeUpdateTest()
         {
-            using (var _context = new TestDbContext(nameof(TestSelectAll)))
+            using (var _context = new TestDbContext(nameof(OnBeforeUpdateTest)))
             {
                 var dataSource = new List<Order>();
 
@@ -304,7 +304,7 @@ namespace Unosquare.Labs.LiteLib.Tests
         [Test]
         public void OnAfterUpdateTest()
         {
-            using (var _context = new TestDbContext(nameof(TestSelectAll)))
+            using (var _context = new TestDbContext(nameof(OnAfterUpdateTest)))
             {
                 var dataSource = new List<Order>();
 
@@ -341,7 +341,7 @@ namespace Unosquare.Labs.LiteLib.Tests
         [Test]
         public void OnBeforeDeleteTest()
         {
-            using (var _context = new TestDbContext(nameof(TestSelectAll)))
+            using (var _context = new TestDbContext(nameof(OnBeforeDeleteTest)))
             {
                 var dataSource = new List<Order>();
 
@@ -377,7 +377,7 @@ namespace Unosquare.Labs.LiteLib.Tests
         [Test]
         public void OnAfterDeleteTest()
         {
-            using (var _context = new TestDbContext(nameof(TestSelectAll)))
+            using (var _context = new TestDbContext(nameof(OnAfterDeleteTest)))
             {
                 var dataSource = new List<Order>();
 
