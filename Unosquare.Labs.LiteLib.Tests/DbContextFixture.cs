@@ -11,25 +11,26 @@ namespace Unosquare.Labs.LiteLib.Tests
     [TestFixture]
     public class DbContextFixture
     {
-        private readonly Order[] _sampleData =
+        private readonly Order[] dataSource =
         {
-            new Order {UniqueId = "1"},
-            new Order {UniqueId = "2"},
+             new Order { CustomerName = "John", ShipperCity = "Guadalajara", Amount = "4" },
+             new Order { CustomerName = "Peter", ShipperCity = "Leon", Amount = "6" },
+             new Order { CustomerName = "Margarita", ShipperCity = "Boston", Amount = "7" }
         };
-        
+
         [Test]
         public void TestSelectAll()
         {
             using (var context = new TestDbContext(nameof(TestSelectAll)))
             {
-                foreach (var item in _sampleData)
+                foreach (var item in dataSource)
                 {
                     context.Orders.Insert(item);
                 }
 
                 var list = context.Orders.SelectAll();
 
-                Assert.AreEqual(_sampleData.Count(), list.Count(), "Same set");
+                Assert.AreEqual(dataSource.Count(), list.Count(), "Same set");
             }
         }
 
@@ -39,18 +40,15 @@ namespace Unosquare.Labs.LiteLib.Tests
         {
             using (var context = new TestDbContext(nameof(TestDeleteData)))
             {
-                var loadData = new List<Order>();
+
                 for (var i = 0; i < 10; i++)
                 {
-                    loadData.Add(new Order {CustomerName = "John", ShipperCity = "Guadalajara", Amount = "4"});
-                    loadData.Add(new Order {CustomerName = "John", ShipperCity = "Leon", Amount = "6"});
-                    loadData.Add(new Order {CustomerName = "John", ShipperCity = "Boston", Amount = "7"});
+                    foreach (var item in dataSource)
+                    {
+                        context.Orders.Insert(item);
+                    }
                 }
 
-                foreach (var item in loadData)
-                {
-                    context.Orders.Insert(item);
-                }
                 var incomingData = context.Orders.SelectAll();
                 foreach (var item in incomingData)
                 {
@@ -75,14 +73,6 @@ namespace Unosquare.Labs.LiteLib.Tests
                         _context.Orders.Delete(item);
                     }
                 }
-                var dataSource = new List<Order>();
-
-                for (var i = 0; i < 10; i++)
-                {
-                    dataSource.Add(new Order { CustomerName = "John", ShipperCity = "Guadalajara", Amount = "4" });
-                    dataSource.Add(new Order { CustomerName = "Peter", ShipperCity = "Leon", Amount = "6" });
-                    dataSource.Add(new Order { CustomerName = "Margarita", ShipperCity = "Boston", Amount = "7" });
-                }
 
                 foreach (var item in dataSource)
                 {
@@ -92,7 +82,7 @@ namespace Unosquare.Labs.LiteLib.Tests
 
                 Assert.AreEqual(dataSource.Count(), list.Count());
             }
-            
+
         }
 
         // Test Update method
@@ -101,15 +91,6 @@ namespace Unosquare.Labs.LiteLib.Tests
         {
             using (var _context = new TestDbContext(nameof(TestUpdateData)))
             {
-                var dataSource = new List<Order>();
-
-                for (var i = 0; i < 10; i++)
-                {
-                    dataSource.Add(new Order { CustomerName = "John", ShipperCity = "Guadalajara", Amount = "4" });
-                    dataSource.Add(new Order { CustomerName = "Peter", ShipperCity = "Leon", Amount = "6" });
-                    dataSource.Add(new Order { CustomerName = "Margarita", ShipperCity = "Boston", Amount = "7" });
-                }
-
                 foreach (var item in dataSource)
                 {
                     _context.Orders.Insert(item);
@@ -126,7 +107,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                 {
                     Assert.AreEqual("Atlanta", item.ShipperCity);
                 }
-            }            
+            }
         }
 
         //Test Select method
@@ -135,14 +116,6 @@ namespace Unosquare.Labs.LiteLib.Tests
         {
             using (var _context = new TestDbContext(nameof(TestSelectData)))
             {
-                var dataSource = new List<Order>();
-
-                for (var i = 0; i < 10; i++)
-                {
-                    dataSource.Add(new Order { CustomerName = "John", ShipperCity = "Guadalajara", Amount = "4" });
-                    dataSource.Add(new Order { CustomerName = "Peter", ShipperCity = "Leon", Amount = "6" });
-                    dataSource.Add(new Order { CustomerName = "Margarita", ShipperCity = "Boston", Amount = "7" });
-                }
                 foreach (var item in dataSource)
                 {
                     _context.Orders.Insert(item);
@@ -163,22 +136,62 @@ namespace Unosquare.Labs.LiteLib.Tests
         {
             using (var _context = new TestDbContext(nameof(TestCountData)))
             {
-                var dataSource = new List<Order>();
-
                 for (var i = 0; i < 10; i++)
                 {
-                    dataSource.Add(new Order { CustomerName = "John", ShipperCity = "Guadalajara", Amount = "4" });
-                    dataSource.Add(new Order { CustomerName = "Peter", ShipperCity = "Leon", Amount = "6" });
-                    dataSource.Add(new Order { CustomerName = "Margarita", ShipperCity = "Boston", Amount = "7" });
+                    foreach (var item in dataSource)
+                    {
+                        _context.Orders.Insert(item);
+                    }
                 }
-                foreach (var item in dataSource)
-                {
-                    _context.Orders.Insert(item);
-                }
-                var selectingData = _context.Orders.Select("CustomerName = @CustomerName", new { CustomerName = "Peter" });
+
+                var selectingData = _context.Orders.Select("CustomerName = @CustomerName", new { CustomerName = "Margarita" });
                 Assert.AreEqual(10, selectingData.Count());
             }
         }
+        //Test Single method
+        [Test]
+        public void TestSingleData()
+        {
+            using (var _cotext = new TestDbContext(nameof(TestSingleData)))
+            {
+                for (var i = 0; i < 10; i++)
+                {
+                    foreach (var item in dataSource)
+                    {
+                        _cotext.Orders.Insert(item);
+                    }
+                }
+                var singleSelect = _cotext.Orders.Single(3);
+                Assert.AreEqual("Margarita", singleSelect.CustomerName);
+
+
+            }
+        }
+
+        //Test Query method
+        [Test]
+        public void TestQueryData()
+        {
+            using (var _context = new TestDbContext(nameof(TestQueryData)))
+            {
+                for (var i = 0; i < 10; i++)
+                {
+                    foreach (var item in dataSource)
+                    {
+                        _context.Orders.Insert(item);
+                    }
+                }
+
+                var selectedData = _context.Orders.Query($"{_context.Orders.SelectDefinition} WHERE CustomerName = @CustomerName", new Order { CustomerName = "Margarita" });
+                foreach (var item in selectedData)
+                {
+                    Assert.IsTrue(item.CustomerName == "Margarita");
+                }
+
+
+            }
+        }
+        
 
         //Test OnBeforeInsert
         [Test]
@@ -186,15 +199,6 @@ namespace Unosquare.Labs.LiteLib.Tests
         {
             using (var _context = new TestDbContext(nameof(OnBeforeInsertTest)))
             {
-                var dataSource = new List<Order>();
-
-                for (var i = 0; i < 10; i++)
-                {
-                    dataSource.Add(new Order { CustomerName = "John", ShipperCity = "Guadalajara", Amount = "4" });
-                    dataSource.Add(new Order { CustomerName = "Peter", ShipperCity = "Leon", Amount = "6" });
-                    dataSource.Add(new Order { CustomerName = "Margarita", ShipperCity = "Boston", Amount = "7" });
-                }
-
                 _context.Orders.OnBeforeInsert += (s, e) =>
                 {
                     if (e.Entity.CustomerName == "Peter")
@@ -229,15 +233,6 @@ namespace Unosquare.Labs.LiteLib.Tests
                     _context.Orders.Delete(item);
                 }
                 //Begining with the Test
-                var dataSource = new List<Order>();
-
-                for (var i = 0; i < 10; i++)
-                {
-                    dataSource.Add(new Order { CustomerName = "John", ShipperCity = "Guadalajara", Amount = "4" });
-                    dataSource.Add(new Order { CustomerName = "Peter", ShipperCity = "Leon", Amount = "6" });
-                    dataSource.Add(new Order { CustomerName = "Margarita", ShipperCity = "Boston", Amount = "7" });
-                }
-
                 _context.Orders.OnAfterInsert += (s, e) =>
                 {
                     if (e.Entity.CustomerName == "John" || e.Entity.CustomerName == "Peter")
@@ -245,10 +240,12 @@ namespace Unosquare.Labs.LiteLib.Tests
                         _context.Orders.Delete(e.Entity);
                     }
                 };
-
-                foreach (var item in dataSource)
+                for (var i = 0; i < 10; i++)
                 {
-                    _context.Orders.Insert(item);
+                    foreach (var item in dataSource)
+                    {
+                        _context.Orders.Insert(item);
+                    }
                 }
                 var afterList = _context.Orders.SelectAll();
                 foreach (var item in afterList)
@@ -266,15 +263,6 @@ namespace Unosquare.Labs.LiteLib.Tests
         {
             using (var _context = new TestDbContext(nameof(OnBeforeUpdateTest)))
             {
-                var dataSource = new List<Order>();
-
-                for (var i = 0; i < 10; i++)
-                {
-                    dataSource.Add(new Order { CustomerName = "John", ShipperCity = "Guadalajara", Amount = "4" });
-                    dataSource.Add(new Order { CustomerName = "Peter", ShipperCity = "Leon", Amount = "6" });
-                    dataSource.Add(new Order { CustomerName = "Margarita", ShipperCity = "Boston", Amount = "7" });
-                }
-
                 foreach (var item in dataSource)
                 {
                     _context.Orders.Insert(item);
@@ -307,15 +295,6 @@ namespace Unosquare.Labs.LiteLib.Tests
         {
             using (var _context = new TestDbContext(nameof(OnAfterUpdateTest)))
             {
-                var dataSource = new List<Order>();
-
-                for (var i = 0; i < 10; i++)
-                {
-                    dataSource.Add(new Order { CustomerName = "John", ShipperCity = "Guadalajara", Amount = "4" });
-                    dataSource.Add(new Order { CustomerName = "Peter", ShipperCity = "Leon", Amount = "6" });
-                    dataSource.Add(new Order { CustomerName = "Margarita", ShipperCity = "Boston", Amount = "7" });
-                }
-
                 foreach (var item in dataSource)
                 {
                     _context.Orders.Insert(item);
@@ -330,9 +309,12 @@ namespace Unosquare.Labs.LiteLib.Tests
                     }
                 };
 
-                foreach (var item in _context.Orders.SelectAll())
+                for (var i = 0; i < 10; i++)
                 {
-                    _context.Orders.Update(item);
+                    foreach (var item in _context.Orders.SelectAll())
+                    {
+                        _context.Orders.Update(item);
+                    }
                 }
                 Assert.AreEqual(10, newDataSource.Count());
             }
@@ -344,18 +326,12 @@ namespace Unosquare.Labs.LiteLib.Tests
         {
             using (var _context = new TestDbContext(nameof(OnBeforeDeleteTest)))
             {
-                var dataSource = new List<Order>();
-
                 for (var i = 0; i < 10; i++)
                 {
-                    dataSource.Add(new Order { CustomerName = "John", ShipperCity = "Guadalajara", Amount = "4" });
-                    dataSource.Add(new Order { CustomerName = "Peter", ShipperCity = "Leon", Amount = "6" });
-                    dataSource.Add(new Order { CustomerName = "Margarita", ShipperCity = "Boston", Amount = "7" });
-                }
-
-                foreach (var item in dataSource)
-                {
-                    _context.Orders.Insert(item);
+                    foreach (var item in dataSource)
+                    {
+                        _context.Orders.Insert(item);
+                    }
                 }
                 var deletedList = new List<Order>();
                 _context.Orders.OnBeforeDelete += (s, e) =>
@@ -380,15 +356,6 @@ namespace Unosquare.Labs.LiteLib.Tests
         {
             using (var _context = new TestDbContext(nameof(OnAfterDeleteTest)))
             {
-                var dataSource = new List<Order>();
-
-                for (var i = 0; i < 10; i++)
-                {
-                    dataSource.Add(new Order { CustomerName = "John", ShipperCity = "Guadalajara", Amount = "4" });
-                    dataSource.Add(new Order { CustomerName = "Peter", ShipperCity = "Leon", Amount = "6" });
-                    dataSource.Add(new Order { CustomerName = "Margarita", ShipperCity = "Boston", Amount = "7" });
-                }
-
                 foreach (var item in dataSource)
                 {
                     _context.Orders.Insert(item);
@@ -415,19 +382,20 @@ namespace Unosquare.Labs.LiteLib.Tests
         }
 
         //Async Test Methods
+        //Async SelectAll
         [Test]
         public async void AsyncTestSelectAll()
         {
             using (var context = new TestDbContext(nameof(AsyncTestSelectAll)))
             {
-                foreach (var item in _sampleData)
+                foreach (var item in dataSource)
                 {
                     await context.Orders.InsertAsync(item);
                 }
 
                 var list = await context.Orders.SelectAllAsync();
 
-                Assert.AreEqual(_sampleData.Count(), list.Count(), "Same set");
+                Assert.AreEqual(dataSource.Count(), list.Count(), "Same set");
             }
         }
         //Test Async Delete Method
@@ -436,15 +404,7 @@ namespace Unosquare.Labs.LiteLib.Tests
         {
             using (var context = new TestDbContext(nameof(AsyncTestDeleteData)))
             {
-                var loadData = new List<Order>();
-                for (var i = 0; i < 10; i++)
-                {
-                    loadData.Add(new Order { CustomerName = "John", ShipperCity = "Guadalajara", Amount = "4" });
-                    loadData.Add(new Order { CustomerName = "John", ShipperCity = "Leon", Amount = "6" });
-                    loadData.Add(new Order { CustomerName = "John", ShipperCity = "Boston", Amount = "7" });
-                }
-
-                foreach (var item in loadData)
+               foreach (var item in dataSource)
                 {
                     await context.Orders.InsertAsync(item);
                 }
@@ -472,15 +432,6 @@ namespace Unosquare.Labs.LiteLib.Tests
                         await _context.Orders.DeleteAsync(item);
                     }
                 }
-                var dataSource = new List<Order>();
-
-                for (var i = 0; i < 10; i++)
-                {
-                    dataSource.Add(new Order { CustomerName = "John", ShipperCity = "Guadalajara", Amount = "4" });
-                    dataSource.Add(new Order { CustomerName = "Peter", ShipperCity = "Leon", Amount = "6" });
-                    dataSource.Add(new Order { CustomerName = "Margarita", ShipperCity = "Boston", Amount = "7" });
-                }
-
                 foreach (var item in dataSource)
                 {
                     await _context.Orders.InsertAsync(item);
@@ -498,15 +449,6 @@ namespace Unosquare.Labs.LiteLib.Tests
         {
             using (var _context = new TestDbContext(nameof(AsyncTestUpdateData)))
             {
-                var dataSource = new List<Order>();
-
-                for (var i = 0; i < 10; i++)
-                {
-                    dataSource.Add(new Order { CustomerName = "John", ShipperCity = "Guadalajara", Amount = "4" });
-                    dataSource.Add(new Order { CustomerName = "Peter", ShipperCity = "Leon", Amount = "6" });
-                    dataSource.Add(new Order { CustomerName = "Margarita", ShipperCity = "Boston", Amount = "7" });
-                }
-
                 foreach (var item in dataSource)
                 {
                     await _context.Orders.InsertAsync(item);
@@ -526,20 +468,12 @@ namespace Unosquare.Labs.LiteLib.Tests
             }
         }
 
-        //Test Select method
+        //Test Async Select method
         [Test]
         public async void AsyncTestSelectData()
         {
             using (var _context = new TestDbContext(nameof(AsyncTestSelectData)))
             {
-                var dataSource = new List<Order>();
-
-                for (var i = 0; i < 10; i++)
-                {
-                    dataSource.Add(new Order { CustomerName = "John", ShipperCity = "Guadalajara", Amount = "4" });
-                    dataSource.Add(new Order { CustomerName = "Peter", ShipperCity = "Leon", Amount = "6" });
-                    dataSource.Add(new Order { CustomerName = "Margarita", ShipperCity = "Boston", Amount = "7" });
-                }
                 foreach (var item in dataSource)
                 {
                     await _context.Orders.InsertAsync(item);
@@ -554,26 +488,63 @@ namespace Unosquare.Labs.LiteLib.Tests
             }
         }
 
-        //Test Count method
+        //Test Async Count method
         [Test]
         public async void AsyncTestCountData()
         {
             using (var _context = new TestDbContext(nameof(AsyncTestCountData)))
             {
-                var dataSource = new List<Order>();
-
                 for (var i = 0; i < 10; i++)
                 {
-                    dataSource.Add(new Order { CustomerName = "John", ShipperCity = "Guadalajara", Amount = "4" });
-                    dataSource.Add(new Order { CustomerName = "Peter", ShipperCity = "Leon", Amount = "6" });
-                    dataSource.Add(new Order { CustomerName = "Margarita", ShipperCity = "Boston", Amount = "7" });
+                    foreach (var item in dataSource)
+                    {
+                        await _context.Orders.InsertAsync(item);
+                    }
                 }
-                foreach (var item in dataSource)
-                {
-                    await _context.Orders.InsertAsync(item);
-                }
+
                 var selectingData = await _context.Orders.SelectAsync("CustomerName = @CustomerName", new { CustomerName = "Peter" });
                 Assert.AreEqual(10, selectingData.Count());
+            }
+        }
+
+        //Test Async Single method
+        [Test]
+        public async void AsyncTestSingleData()
+        {
+            using (var _cotext = new TestDbContext(nameof(AsyncTestSingleData)))
+            {
+                for (var i = 0; i < 10; i++)
+                {
+                    foreach (var item in dataSource)
+                    {
+                        await _cotext.Orders.InsertAsync(item);
+                    }
+                }
+                var singleSelect = await _cotext.Orders.SingleAsync(3);
+                Assert.AreEqual("Margarita", singleSelect.CustomerName);
+            }
+        }
+        //Test Async Query method
+        [Test]
+        public async void AsyncTestQueryData()
+        {
+            using (var _context = new TestDbContext(nameof(AsyncTestQueryData)))
+            {
+                for (var i = 0; i < 10; i++)
+                {
+                    foreach (var item in dataSource)
+                    {
+                        await _context.Orders.InsertAsync(item);
+                    }
+                }
+
+                var selectedData = await _context.Orders.QueryAsync($"{_context.Orders.SelectDefinition} WHERE CustomerName = @CustomerName", new Order { CustomerName = "John" });
+                foreach (var item in selectedData)
+                {
+                    Assert.IsTrue(item.CustomerName == "John");
+                }
+
+
             }
         }
     }
