@@ -9,9 +9,15 @@ using System.Data.SQLite;
 
 namespace Unosquare.Labs.LiteLib.Tests
 {
+    /// <summary>
+    /// A TestFixture to test the included methods in LiteDbSet
+    /// </summary>
     [TestFixture]
     public class DbContextFixture
     {
+        /// <summary>
+        /// The data source for all Test
+        /// </summary>
         private readonly Order[] dataSource =
         {
              new Order { CustomerName = "John", ShipperCity = "Guadalajara", Amount = 4 },
@@ -19,6 +25,9 @@ namespace Unosquare.Labs.LiteLib.Tests
              new Order { CustomerName = "Margarita", ShipperCity = "Boston", Amount = 7}
         };
 
+        /// <summary>
+        /// Tests the select all.
+        /// </summary>
         [Test]
         public void TestSelectAll()
         {
@@ -30,12 +39,14 @@ namespace Unosquare.Labs.LiteLib.Tests
                 }
 
                 var list = context.Orders.SelectAll();
-
                 Assert.AreEqual(dataSource.Count(), list.Count(), "Same set");
             }
         }
 
-        //Test Delete Method
+
+        /// <summary>
+        /// Tests the delete data.
+        /// </summary>
         [Test]
         public void TestDeleteData()
         {
@@ -55,12 +66,13 @@ namespace Unosquare.Labs.LiteLib.Tests
                 {
                     context.Orders.Delete(item);
                 }
-
                 Assert.AreEqual(0, context.Orders.Count());
             }
         }
 
-        //Test Insert method
+        /// <summary>
+        /// Tests the insert data.
+        /// </summary>
         [Test]
         public void TestInsertData()
         {
@@ -79,14 +91,17 @@ namespace Unosquare.Labs.LiteLib.Tests
                 {
                     _context.Orders.Insert(item);
                 }
-                var list = _context.Orders.SelectAll();
 
+                var list = _context.Orders.SelectAll();
                 Assert.AreEqual(dataSource.Count(), list.Count());
             }
 
         }
 
-        // Test Update method
+
+        /// <summary>
+        /// Tests the update data.
+        /// </summary>
         [Test]
         public void TestUpdateData()
         {
@@ -103,6 +118,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                     item.ShipperCity = "Atlanta";
                     _context.Orders.Update(item);
                 }
+
                 var updatedList = _context.Orders.Select("ShipperCity = @ShipperCity", new { ShipperCity = "Atlanta" });
                 foreach (var item in updatedList)
                 {
@@ -111,7 +127,10 @@ namespace Unosquare.Labs.LiteLib.Tests
             }
         }
 
-        //Test Select method
+
+        /// <summary>
+        /// Tests the select data.
+        /// </summary>
         [Test]
         public void TestSelectData()
         {
@@ -121,9 +140,8 @@ namespace Unosquare.Labs.LiteLib.Tests
                 {
                     _context.Orders.Insert(item);
                 }
-                // Selecting Data By name
-                var selectingData = _context.Orders.Select("CustomerName = @CustomerName", new { CustomerName = "Peter" });
 
+                var selectingData = _context.Orders.Select("CustomerName = @CustomerName", new { CustomerName = "Peter" });
                 foreach (var item in selectingData)
                 {
                     Assert.AreEqual("Peter", item.CustomerName);
@@ -131,7 +149,10 @@ namespace Unosquare.Labs.LiteLib.Tests
             }
         }
 
-        //Test Count method
+
+        /// <summary>
+        /// Tests the count data.
+        /// </summary>
         [Test]
         public void TestCountData()
         {
@@ -149,7 +170,10 @@ namespace Unosquare.Labs.LiteLib.Tests
                 Assert.AreEqual(10, selectingData.Count());
             }
         }
-        //Test Single method
+
+        /// <summary>
+        /// Tests the single data.
+        /// </summary>
         [Test]
         public void TestSingleData()
         {
@@ -164,14 +188,15 @@ namespace Unosquare.Labs.LiteLib.Tests
                         _cotext.Orders.Insert(item);
                     }
                 }
+
                 var singleSelect = _cotext.Orders.Single(3);
                 Assert.AreEqual("Margarita", singleSelect.CustomerName);
-
-
             }
         }
 
-        //Test Query method
+        /// <summary>
+        /// Tests the query data.
+        /// </summary>
         [Test]
         public void TestQueryData()
         {
@@ -192,13 +217,12 @@ namespace Unosquare.Labs.LiteLib.Tests
                 {
                     Assert.IsTrue(item.CustomerName == "Margarita");
                 }
-
-
             }
         }
 
-
-        //Test OnBeforeInsert
+        /// <summary>
+        /// Called when [before insert test].
+        /// </summary>
         [Test]
         public void OnBeforeInsertTest()
         {
@@ -225,19 +249,14 @@ namespace Unosquare.Labs.LiteLib.Tests
             }
         }
 
-        // Test OnAfterInsert
+        /// <summary>
+        /// Called when [after insert].
+        /// </summary>
         [Test]
         public void OnAfterInsert()
         {
             using (var _context = new TestDbContext(nameof(OnAfterInsert)))
             {
-                //Deleting default elements in the table
-                var incomingData = _context.Orders.SelectAll();
-                foreach (var item in incomingData)
-                {
-                    _context.Orders.Delete(item);
-                }
-                //Begining with the Test
                 _context.Orders.OnAfterInsert += (s, e) =>
                 {
                     if (e.Entity.CustomerName == "John" || e.Entity.CustomerName == "Peter")
@@ -245,6 +264,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                         _context.Orders.Delete(e.Entity);
                     }
                 };
+
                 for (var i = 0; i < 10; i++)
                 {
                     foreach (var item in dataSource)
@@ -252,17 +272,19 @@ namespace Unosquare.Labs.LiteLib.Tests
                         _context.Orders.Insert(item);
                     }
                 }
+
                 var afterList = _context.Orders.SelectAll();
                 foreach (var item in afterList)
                 {
                     Assert.AreEqual("Margarita", item.CustomerName);
                 }
-
                 Assert.AreEqual(10, afterList.Count());
             }
         }
 
-        //Test OnBeforeUpdate
+        /// <summary>
+        /// Called when [before update test].
+        /// </summary>
         [Test]
         public void OnBeforeUpdateTest()
         {
@@ -294,7 +316,9 @@ namespace Unosquare.Labs.LiteLib.Tests
             }
         }
 
-        //Test OnAfterUpdate
+        /// <summary>
+        /// Called when [after update test].
+        /// </summary>
         [Test]
         public void OnAfterUpdateTest()
         {
@@ -321,11 +345,14 @@ namespace Unosquare.Labs.LiteLib.Tests
                         _context.Orders.Update(item);
                     }
                 }
+
                 Assert.AreEqual(10, newDataSource.Count());
             }
         }
 
-        //Test OnBeforeDelete
+        /// <summary>
+        /// Called when [before delete test].
+        /// </summary>
         [Test]
         public void OnBeforeDeleteTest()
         {
@@ -338,11 +365,13 @@ namespace Unosquare.Labs.LiteLib.Tests
                         _context.Orders.Insert(item);
                     }
                 }
+
                 var deletedList = new List<Order>();
                 _context.Orders.OnBeforeDelete += (s, e) =>
                 {
                     deletedList.Add(e.Entity);
                 };
+
                 foreach (var item in _context.Orders.SelectAll())
                 {
                     if (item.CustomerName == "John")
@@ -371,6 +400,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                     e.Entity.CustomerName = "Jessy";
                     _context.Orders.Insert(e.Entity);
                 };
+
                 foreach (var item in _context.Orders.SelectAll())
                 {
                     if (item.CustomerName == "Margarita")
@@ -386,8 +416,9 @@ namespace Unosquare.Labs.LiteLib.Tests
             }
         }
 
-        //Async Test Methods
-        //Async SelectAll
+        /// <summary>
+        /// Asynchronouses the test select all.
+        /// </summary>
         [Test]
         public async void AsyncTestSelectAll()
         {
@@ -399,11 +430,13 @@ namespace Unosquare.Labs.LiteLib.Tests
                 }
 
                 var list = await context.Orders.SelectAllAsync();
-
                 Assert.AreEqual(dataSource.Count(), list.Count(), "Same set");
             }
         }
-        //Test Async Delete Method
+
+        /// <summary>
+        /// Asynchronouses the test delete data.
+        /// </summary>
         [Test]
         public async void AsyncTestDeleteData()
         {
@@ -413,17 +446,19 @@ namespace Unosquare.Labs.LiteLib.Tests
                 {
                     await context.Orders.InsertAsync(item);
                 }
+
                 var incomingData = context.Orders.SelectAll();
                 foreach (var item in incomingData)
                 {
                     await context.Orders.DeleteAsync(item);
                 }
-
                 Assert.AreEqual(0, context.Orders.Count());
             }
         }
 
-        //Test Async Insert method
+        /// <summary>
+        /// Asynchronouses the test insert data.
+        /// </summary>
         [Test]
         public async void AsyncTestInsertData()
         {
@@ -437,18 +472,20 @@ namespace Unosquare.Labs.LiteLib.Tests
                         await _context.Orders.DeleteAsync(item);
                     }
                 }
+
                 foreach (var item in dataSource)
                 {
                     await _context.Orders.InsertAsync(item);
                 }
                 var list = await _context.Orders.SelectAllAsync();
-
                 Assert.AreEqual(dataSource.Count(), list.Count());
             }
 
         }
 
-        // Test Async Update method
+        /// <summary>
+        /// Asynchronouses the test update data.
+        /// </summary>
         [Test]
         public async void AsyncTestUpdateData()
         {
@@ -465,6 +502,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                     item.ShipperCity = "Atlanta";
                     await _context.Orders.UpdateAsync(item);
                 }
+
                 var updatedList = await _context.Orders.SelectAsync("ShipperCity = @ShipperCity", new { ShipperCity = "Atlanta" });
                 foreach (var item in updatedList)
                 {
@@ -473,7 +511,9 @@ namespace Unosquare.Labs.LiteLib.Tests
             }
         }
 
-        //Test Async Select method
+        /// <summary>
+        /// Asynchronouses the test select data.
+        /// </summary>
         [Test]
         public async void AsyncTestSelectData()
         {
@@ -493,7 +533,9 @@ namespace Unosquare.Labs.LiteLib.Tests
             }
         }
 
-        //Test Async Count method
+        /// <summary>
+        /// Asynchronouses the test count data.
+        /// </summary>
         [Test]
         public async void AsyncTestCountData()
         {
@@ -512,7 +554,9 @@ namespace Unosquare.Labs.LiteLib.Tests
             }
         }
 
-        //Test Async Single method
+        /// <summary>
+        /// Asynchronouses the test single data.
+        /// </summary>
         [Test]
         public async void AsyncTestSingleData()
         {
@@ -529,7 +573,10 @@ namespace Unosquare.Labs.LiteLib.Tests
                 Assert.AreEqual("Margarita", singleSelect.CustomerName);
             }
         }
-        //Test Async Query method
+
+        /// <summary>
+        /// Asynchronouses the test query data.
+        /// </summary>
         [Test]
         public async void AsyncTestQueryData()
         {
@@ -548,40 +595,39 @@ namespace Unosquare.Labs.LiteLib.Tests
                 {
                     Assert.IsTrue(item.CustomerName == "John");
                 }
-
-
             }
         }
 
-        // DataAnnotations
-        //Test UniqueId
+        /// <summary>
+        /// Tests the entity unique.
+        /// </summary>
         [Test]
         public void TestEntityUnique()
         {
             using (var _context = new TestDbContext(nameof(TestEntityUnique)))
             {
-                for (var i = 0; i<3 ;i++)
+                for (var i = 0; i < 3; i++)
                 {
                     var id = 1 + i;
                     dataSource[i].UniqueId = id.ToString();
                     _context.Orders.Insert(dataSource[i]);
                 }
-
                 Assert.Throws<SQLiteException>(delegate ()
                 {
-                    var newOrder = new Order {CustomerName = "John", Amount = 2, ShipperCity = "Atlanta", UniqueId = "1" };
+                    var newOrder = new Order { CustomerName = "John", Amount = 2, ShipperCity = "Atlanta", UniqueId = "1" };
                     _context.Orders.Insert(newOrder);
-                });   
-            }  
+                });
+            }
         }
 
-        //String Length Exception
+        /// <summary>
+        /// Tests the string lengt.
+        /// </summary>
         [Test]
         public void TestStringLengt()
         {
             using (var _context = new TestDbContext(nameof(TestStringLengt)))
             {
-
                 Assert.Throws<SQLiteException>(delegate ()
                 {
                     var newOrder = new Order { CustomerName = "John", Amount = 2, ShipperCity = "StringStringStringStringStringStringStringString" };
@@ -589,8 +635,6 @@ namespace Unosquare.Labs.LiteLib.Tests
                     Console.Write(_context.Orders.Count());
                 });
             }
-
-
-        }        
-    }   
+        }
+    }
 }
