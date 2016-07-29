@@ -219,11 +219,19 @@
                         {
                             stringLength = stringLengthAttribute.MaximumLength;
                         }
-                    }
+                    }                    
 
                     isNullable = (Attribute.GetCustomAttribute(property, typeof(RequiredAttribute)) as RequiredAttribute == null);
                     nullStatement = isNullable ? "NULL" : "NOT NULL";
-                    createBuilder.AppendLine($"    [{property.Name}] NVARCHAR({stringLength}) {nullStatement},");
+                    if (stringLength != 4096)
+                    {
+                        var checkLength = $"length({property.Name})<={stringLength}";
+                        createBuilder.AppendLine($"    [{property.Name}] NVARCHAR({stringLength}) {nullStatement} CHECK({checkLength}),");
+                    }
+                    else
+                    {
+                        createBuilder.AppendLine($"    [{property.Name}] NVARCHAR({stringLength}) {nullStatement},");
+                    }
 
                 }
                 else if (propertyType.IsValueType)
