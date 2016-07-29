@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using Unosquare.Labs.LiteLib.Tests.Database;
+using System.Data.SQLite;
 
 namespace Unosquare.Labs.LiteLib.Tests
 {
@@ -13,9 +14,9 @@ namespace Unosquare.Labs.LiteLib.Tests
     {
         private readonly Order[] dataSource =
         {
-             new Order { CustomerName = "John", ShipperCity = "Guadalajara", Amount = "4" },
-             new Order { CustomerName = "Peter", ShipperCity = "Leon", Amount = "6" },
-             new Order { CustomerName = "Margarita", ShipperCity = "Boston", Amount = "7" }
+             new Order { CustomerName = "John", ShipperCity = "Guadalajara", Amount = 4 },
+             new Order { CustomerName = "Peter", ShipperCity = "Leon", Amount = 6 },
+             new Order { CustomerName = "Margarita", ShipperCity = "Boston", Amount = 7}
         };
 
         [Test]
@@ -154,10 +155,12 @@ namespace Unosquare.Labs.LiteLib.Tests
         {
             using (var _cotext = new TestDbContext(nameof(TestSingleData)))
             {
+                var k = 0;
                 for (var i = 0; i < 10; i++)
                 {
                     foreach (var item in dataSource)
                     {
+                        item.UniqueId = (k++).ToString();
                         _cotext.Orders.Insert(item);
                     }
                 }
@@ -174,10 +177,12 @@ namespace Unosquare.Labs.LiteLib.Tests
         {
             using (var _context = new TestDbContext(nameof(TestQueryData)))
             {
+                var k = 0;
                 for (var i = 0; i < 10; i++)
                 {
                     foreach (var item in dataSource)
                     {
+                        item.UniqueId = (k++).ToString();
                         _context.Orders.Insert(item);
                     }
                 }
@@ -191,7 +196,7 @@ namespace Unosquare.Labs.LiteLib.Tests
 
             }
         }
-        
+
 
         //Test OnBeforeInsert
         [Test]
@@ -404,7 +409,7 @@ namespace Unosquare.Labs.LiteLib.Tests
         {
             using (var context = new TestDbContext(nameof(AsyncTestDeleteData)))
             {
-               foreach (var item in dataSource)
+                foreach (var item in dataSource)
                 {
                     await context.Orders.InsertAsync(item);
                 }
@@ -436,12 +441,12 @@ namespace Unosquare.Labs.LiteLib.Tests
                 {
                     await _context.Orders.InsertAsync(item);
                 }
-                var list = await  _context.Orders.SelectAllAsync();
+                var list = await _context.Orders.SelectAllAsync();
 
                 Assert.AreEqual(dataSource.Count(), list.Count());
             }
 
-       }
+        }
 
         // Test Async Update method
         [Test]
@@ -460,7 +465,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                     item.ShipperCity = "Atlanta";
                     await _context.Orders.UpdateAsync(item);
                 }
-                var updatedList =await _context.Orders.SelectAsync("ShipperCity = @ShipperCity", new { ShipperCity = "Atlanta" });
+                var updatedList = await _context.Orders.SelectAsync("ShipperCity = @ShipperCity", new { ShipperCity = "Atlanta" });
                 foreach (var item in updatedList)
                 {
                     Assert.AreEqual("Atlanta", item.ShipperCity);
@@ -547,5 +552,45 @@ namespace Unosquare.Labs.LiteLib.Tests
 
             }
         }
-    }
+
+        // DataAnnotations
+        //Test UniqueId
+        [Test]
+        public void TestEntityUnique()
+        {
+            using (var _context = new TestDbContext(nameof(TestEntityUnique)))
+            {
+                for (var i = 0; i<3 ;i++)
+                {
+                    var id = 1 + i;
+                    dataSource[i].UniqueId = id.ToString();
+                    _context.Orders.Insert(dataSource[i]);
+                }
+
+                Assert.Throws<SQLiteException>(delegate ()
+                {
+                    var newOrder = new Order {CustomerName = "John", Amount = 2, ShipperCity = "Atlanta", UniqueId = "1" };
+                    _context.Orders.Insert(newOrder);
+                });   
+            }  
+        }
+
+        //String Length Exception
+        [Test]
+        public void TestStringLengt()
+        {
+            using (var _context = new TestDbContext(nameof(TestStringLengt)))
+            {
+
+                Assert.Throws<SQLiteException>(delegate ()
+                {
+                    var newOrder = new Order { CustomerName = "John", Amount = 2, ShipperCity = "StringStringStringStringStringStringStringString" };
+                    _context.Orders.Insert(newOrder);
+                    Console.Write(_context.Orders.Count());
+                });
+            }
+
+
+        }        
+    }   
 }
