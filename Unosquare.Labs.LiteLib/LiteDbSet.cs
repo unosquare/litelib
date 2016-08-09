@@ -447,7 +447,7 @@
         /// <param name="whereText">The where text.</param>
         /// <param name="whereParams">The where parameters.</param>
         /// <returns></returns>
-        public IEnumerable<T> Select(string whereText, object whereParams)
+        public IEnumerable<T> Select(string whereText, object whereParams = null)
         {
             var commandText = $"{SelectDefinition} WHERE {whereText}";
             LogSqlCommand(commandText, whereParams);
