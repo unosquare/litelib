@@ -16,7 +16,6 @@
         /// <param name="entity">The entity.</param>
         /// <param name="dbSet">The database set.</param>
         public EntityEventArgs(T entity, ILiteDbSet<T> dbSet)
-            : base()
         {
             DbSet = dbSet;
             Entity = entity;

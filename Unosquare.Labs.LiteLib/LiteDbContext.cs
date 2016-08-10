@@ -47,7 +47,7 @@
         /// </summary>
         /// <param name="databaseFilePath">The database file path.</param>
         /// <param name="logger">The logger.</param>
-        public LiteDbContext(string databaseFilePath, ILog logger)
+        protected LiteDbContext(string databaseFilePath, ILog logger)
         {
             Logger = logger ?? new NullLog();
             ContextType = GetType();
@@ -84,7 +84,7 @@
         /// </summary>
         private void LoadEntitySets()
         {
-            PropertyInfo[] contextDbSetProperties = null;
+            PropertyInfo[] contextDbSetProperties;
             if (PropertyInfoCache.ContainsKey(ContextType))
             {
                 contextDbSetProperties = PropertyInfoCache[ContextType];
@@ -95,18 +95,20 @@
                     .Where(p => p.PropertyType.IsGenericType && p.PropertyType.GetGenericTypeDefinition() == GenericLiteDbSetType).ToArray();
                 PropertyInfoCache[ContextType] = contextDbSetProperties;
             }
-
-
+            
             foreach (var entitySetProp in contextDbSetProperties)
             {
                 var entitySetType = entitySetProp.PropertyType.GetGenericArguments()[0];
                 var currentValue = entitySetProp.GetValue(this) as ILiteDbSet;
+
                 if (currentValue == null)
                 {
-                    var instanceType = GenericLiteDbSetType.MakeGenericType(new Type[] { entitySetType });
+                    var instanceType = GenericLiteDbSetType.MakeGenericType(entitySetType);
                     currentValue = Activator.CreateInstance(instanceType) as ILiteDbSet;
                     entitySetProp.SetValue(this, currentValue);
                 }
+
+                if (currentValue == null) continue;
 
                 currentValue.Context = this;
                 currentValue.EntityType = entitySetType;
@@ -129,21 +131,21 @@
 
             using (var tran = m_Connection.BeginTransaction())
             {
-                var createResult = m_Connection.Execute(ddlBuilder.ToString());
+                m_Connection.Execute(ddlBuilder.ToString());
                 tran.Commit();
                 OnDatabaseCreated(this, EventArgs.Empty);
             }
         }
 
         /// <summary>
-        /// Vaccuums the database asynchronously.
+        /// Vacuums the database asynchronously.
         /// </summary>
         /// <returns></returns>
         public async Task VaccuumDatabaseAsync()
         {
-            Logger.DebugFormat($"DB VACUUM command executing.");
+            Logger.DebugFormat("DB VACUUM command executing.");
             await Connection.ExecuteAsync("VACCUUM");
-            Logger.DebugFormat($"DB VACUUM command finished.");
+            Logger.DebugFormat("DB VACUUM command finished.");
         }
 
         #endregion
@@ -153,7 +155,7 @@
         /// <summary>
         /// Gets the underlying SQLite connection.
         /// </summary>
-        public SQLiteConnection Connection { get { return m_Connection; } }
+        public SQLiteConnection Connection => m_Connection;
 
         /// <summary>
         /// Gets the logger this instance was initialized with.
@@ -168,16 +170,13 @@
         /// <summary>
         /// Gets all instances of Lite DB contexts that are instantiated and not disposed.
         /// </summary>
-        public static ReadOnlyCollection<LiteDbContext> Instances
-        {
-            get { return new ReadOnlyCollection<LiteDbContext>(m_Intances.Values.ToList()); }
-        }
+        public static ReadOnlyCollection<LiteDbContext> Instances => new ReadOnlyCollection<LiteDbContext>(m_Intances.Values.ToList());
 
         #endregion
 
         #region IDisposable Support
 
-        private bool IsDisposing = false; // To detect redundant calls
+        private bool _isDisposing; // To detect redundant calls
 
         /// <summary>
         /// Releases unmanaged and - optionally - managed resources.
@@ -185,7 +184,7 @@
         /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
         void Dispose(bool disposing)
         {
-            if (!IsDisposing)
+            if (!_isDisposing)
             {
                 if (disposing)
                 {
@@ -197,7 +196,7 @@
                     Logger.DebugFormat($"Disposed {ContextType.Name}. {m_Intances.Count} context instances.");
                 }
 
-                IsDisposing = true;
+                _isDisposing = true;
             }
         }
 

@@ -30,18 +30,17 @@
 
         private static readonly Dictionary<Type, string> TypeMappings = new Dictionary<Type, string>
         {
-            { typeof(Int16), IntegerAffinity },
-            { typeof(Int32), IntegerAffinity },
-            { typeof(Int64), IntegerAffinity },
-            { typeof(UInt16), IntegerAffinity },
-            { typeof(UInt32), IntegerAffinity },
-            { typeof(UInt64), IntegerAffinity },
-            { typeof(byte), IntegerAffinity },
-            { typeof(char), IntegerAffinity },
-
-            { typeof(Decimal), NumericAffinity },
-            { typeof(Boolean), NumericAffinity },
-            { typeof(DateTime), DateTimeAffinity },
+            {typeof (Int16), IntegerAffinity},
+            {typeof (Int32), IntegerAffinity},
+            {typeof (Int64), IntegerAffinity},
+            {typeof (UInt16), IntegerAffinity},
+            {typeof (UInt32), IntegerAffinity},
+            {typeof (UInt64), IntegerAffinity},
+            {typeof (byte), IntegerAffinity},
+            {typeof (char), IntegerAffinity},
+            {typeof (Decimal), NumericAffinity},
+            {typeof (Boolean), NumericAffinity},
+            {typeof (DateTime), DateTimeAffinity},
         };
 
         private class DefinitionCacheItem
@@ -54,7 +53,8 @@
             public string DeleteDefinition { get; set; }
         }
 
-        private static ConcurrentDictionary<Type, DefinitionCacheItem> DefinitionCache = new ConcurrentDictionary<Type, DefinitionCacheItem>();
+        private static readonly ConcurrentDictionary<Type, DefinitionCacheItem> DefinitionCache =
+            new ConcurrentDictionary<Type, DefinitionCacheItem>();
 
         #endregion
 
@@ -64,22 +64,27 @@
         /// Occurs when [on before insert].
         /// </summary>
         public event EventHandler<EntityEventArgs<T>> OnBeforeInsert = (s, e) => { };
+
         /// <summary>
         /// Occurs when [on after insert].
         /// </summary>
         public event EventHandler<EntityEventArgs<T>> OnAfterInsert = (s, e) => { };
+
         /// <summary>
         /// Occurs when [on before update].
         /// </summary>
         public event EventHandler<EntityEventArgs<T>> OnBeforeUpdate = (s, e) => { };
+
         /// <summary>
         /// Occurs when [on after update].
         /// </summary>
         public event EventHandler<EntityEventArgs<T>> OnAfterUpdate = (s, e) => { };
+
         /// <summary>
         /// Occurs when [on before delete].
         /// </summary>
         public event EventHandler<EntityEventArgs<T>> OnBeforeDelete = (s, e) => { };
+
         /// <summary>
         /// Occurs when [on after delete].
         /// </summary>
@@ -94,30 +99,37 @@
         /// Gets the select command definition.
         /// </summary>
         public string SelectDefinition { get; protected set; }
+
         /// <summary>
         /// Gets the insert command definition.
         /// </summary>
         public string InsertDefinition { get; protected set; }
+
         /// <summary>
         /// Gets the update command definition.
         /// </summary>
         public string UpdateDefinition { get; protected set; }
+
         /// <summary>
         /// Gets the delete command definition.
         /// </summary>
         public string DeleteDefinition { get; protected set; }
+
         /// <summary>
         /// Gets the table definition.
         /// </summary>
         public string TableDefinition { get; protected set; }
+
         /// <summary>
         /// Gets the name of the data-backing table.
         /// </summary>
         public string TableName { get; protected set; }
+
         /// <summary>
         /// Gets or sets the parent set context.
         /// </summary>
         public LiteDbContext Context { get; set; }
+
         /// <summary>
         /// Gets or sets the type of the entity.
         /// </summary>
@@ -162,12 +174,12 @@
             var indexBuilder = new List<string>();
 
             var publicInstanceFlags = BindingFlags.Instance | BindingFlags.Public;
-            var properties = typeof(T).GetProperties(publicInstanceFlags);
+            var properties = typeof (T).GetProperties(publicInstanceFlags);
             var propertyNames = new List<string>();
 
             // Start off with the table name
             var tableName = nameof(T);
-            var tableAttribute = Attribute.GetCustomAttribute(typeof(T), typeof(TableAttribute)) as TableAttribute;
+            var tableAttribute = Attribute.GetCustomAttribute(typeof (T), typeof (TableAttribute)) as TableAttribute;
             if (tableAttribute != null)
                 tableName = tableAttribute.Name;
 
@@ -182,51 +194,64 @@
                 if (property.CanWrite == false)
                     continue;
 
-                { // Skip if not mapped
-                    var notMappedAttribute = Attribute.GetCustomAttribute(property, typeof(NotMappedAttribute)) as NotMappedAttribute;
+                {
+                    // Skip if not mapped
+                    var notMappedAttribute =
+                        Attribute.GetCustomAttribute(property, typeof (NotMappedAttribute)) as NotMappedAttribute;
                     if (notMappedAttribute != null)
                         continue;
                 }
 
-                { // Add to indexes if indexed attribute is ON
-                    var indexedAttribute = Attribute.GetCustomAttribute(property, typeof(LiteIndexAttribute)) as LiteIndexAttribute;
+                {
+                    // Add to indexes if indexed attribute is ON
+                    var indexedAttribute =
+                        Attribute.GetCustomAttribute(property, typeof (LiteIndexAttribute)) as LiteIndexAttribute;
                     if (indexedAttribute != null)
                     {
-                        indexBuilder.Add($"CREATE INDEX IF NOT EXISTS [IX_{tableName}_{property.Name}] ON [{tableName}] ([{property.Name}]);");
+                        indexBuilder.Add(
+                            $"CREATE INDEX IF NOT EXISTS [IX_{tableName}_{property.Name}] ON [{tableName}] ([{property.Name}]);");
                     }
                 }
 
-                { // Add to unique indexes if indexed attribute is ON
-                    var uniqueIndexAttribute = Attribute.GetCustomAttribute(property, typeof(LiteUniqueAttribute)) as LiteUniqueAttribute;
+                {
+                    // Add to unique indexes if indexed attribute is ON
+                    var uniqueIndexAttribute =
+                        Attribute.GetCustomAttribute(property, typeof (LiteUniqueAttribute)) as LiteUniqueAttribute;
                     if (uniqueIndexAttribute != null)
                     {
-                        indexBuilder.Add($"CREATE UNIQUE INDEX IF NOT EXISTS [IX_{tableName}_{property.Name}] ON [{tableName}] ([{property.Name}]);");
+                        indexBuilder.Add(
+                            $"CREATE UNIQUE INDEX IF NOT EXISTS [IX_{tableName}_{property.Name}] ON [{tableName}] ([{property.Name}]);");
                     }
                 }
 
                 propertyNames.Add(property.Name);
                 var propertyType = property.PropertyType;
-                var isNullable = propertyType.IsGenericType && propertyType.GetGenericTypeDefinition() == typeof(Nullable<>);
+                var isNullable = propertyType.IsGenericType &&
+                                 propertyType.GetGenericTypeDefinition() == typeof (Nullable<>);
                 if (isNullable) propertyType = Nullable.GetUnderlyingType(propertyType);
                 var nullStatement = isNullable ? "NULL" : "NOT NULL";
 
-                if (propertyType == typeof(string))
+                if (propertyType == typeof (string))
                 {
                     var stringLength = 4096;
                     {
-                        var stringLengthAttribute = Attribute.GetCustomAttribute(property, typeof(StringLengthAttribute)) as StringLengthAttribute;
+                        var stringLengthAttribute =
+                            Attribute.GetCustomAttribute(property, typeof (StringLengthAttribute)) as
+                                StringLengthAttribute;
                         if (stringLengthAttribute != null)
                         {
                             stringLength = stringLengthAttribute.MaximumLength;
                         }
-                    }                    
+                    }
 
-                    isNullable = (Attribute.GetCustomAttribute(property, typeof(RequiredAttribute)) as RequiredAttribute == null);
+                    isNullable =
+                        (Attribute.GetCustomAttribute(property, typeof (RequiredAttribute)) as RequiredAttribute == null);
                     nullStatement = isNullable ? "NULL" : "NOT NULL";
                     if (stringLength != 4096)
                     {
                         var checkLength = $"length({property.Name})<={stringLength}";
-                        createBuilder.AppendLine($"    [{property.Name}] NVARCHAR({stringLength}) {nullStatement} CHECK({checkLength}),");
+                        createBuilder.AppendLine(
+                            $"    [{property.Name}] NVARCHAR({stringLength}) {nullStatement} CHECK({checkLength}),");
                     }
                     else
                     {
@@ -245,7 +270,7 @@
                         createBuilder.AppendLine($"    [{property.Name}] TEXT {nullStatement},");
                     }
                 }
-                else if (propertyType == typeof(byte[]))
+                else if (propertyType == typeof (byte[]))
                 {
                     createBuilder.AppendLine($"    [{property.Name}] BLOB {nullStatement},");
                 }
@@ -269,9 +294,12 @@
             TableName = tableName;
             TableDefinition = createBuilder.ToString();
             SelectDefinition = $"SELECT [{nameof(ILiteModel.RowId)}], {escapedColumnNames} FROM [{tableName}]";
-            InsertDefinition = $"INSERT INTO [{tableName}] ({escapedColumnNames}) VALUES ({parameterColumnNames}); SELECT last_insert_rowid();";
-            UpdateDefinition = $"UPDATE [{tableName}] SET {keyValueColumnNames}  WHERE [{nameof(ILiteModel.RowId)}] = @{nameof(ILiteModel.RowId)}";
-            DeleteDefinition = $"DELETE FROM [{tableName}] WHERE [{nameof(ILiteModel.RowId)}] = @{nameof(ILiteModel.RowId)}";
+            InsertDefinition =
+                $"INSERT INTO [{tableName}] ({escapedColumnNames}) VALUES ({parameterColumnNames}); SELECT last_insert_rowid();";
+            UpdateDefinition =
+                $"UPDATE [{tableName}] SET {keyValueColumnNames}  WHERE [{nameof(ILiteModel.RowId)}] = @{nameof(ILiteModel.RowId)}";
+            DeleteDefinition =
+                $"DELETE FROM [{tableName}] WHERE [{nameof(ILiteModel.RowId)}] = @{nameof(ILiteModel.RowId)}";
 
             DefinitionCache[dbSetType] = new DefinitionCacheItem
             {
@@ -292,8 +320,7 @@
         private void LogSqlCommand(string command, object arguments)
         {
             if (Debugger.IsAttached == false) return;
-            if (Context == null) return;
-            if (Context.Logger == null) return;
+            if (Context?.Logger == null) return;
 
             //var task = Task.Factory.StartNew(() => {
             var argumentsText = new StringBuilder();
@@ -305,13 +332,20 @@
                 var props = arguments.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public);
                 foreach (var prop in props)
                 {
-                    if (prop.CanRead)
+                    if (!prop.CanRead) continue;
+                    object propValue = null;
+
+                    try
                     {
-                        object propValue = null;
-                        try { propValue = prop.GetValue(arguments); } catch { }
-                        argumentsText.AppendLine($"    \"{prop.Name}\": \"{propValue ?? ""}\"");
+                        propValue = prop.GetValue(arguments);
                     }
+                    catch
+                    {
+                        // ignored
+                    }
+                    argumentsText.AppendLine($"    \"{prop.Name}\": \"{propValue ?? ""}\"");
                 }
+
                 argumentsText.AppendLine("  }");
             }
 
@@ -349,7 +383,8 @@
 
             LogSqlCommand(InsertDefinition, entity);
             var result = await Context.Connection.QueryAsync<long>(InsertDefinition, entity);
-            if (result.Count() >= 1)
+
+            if (result.Any())
             {
                 entity.RowId = result.First();
                 OnAfterInsert(this, args);
@@ -460,7 +495,7 @@
         /// <returns></returns>
         public IEnumerable<T> SelectAll()
         {
-            return Select("1 = 1", null);
+            return Select("1 = 1");
         }
 
         /// <summary>
@@ -492,7 +527,9 @@
         /// <returns></returns>
         public T Single(long rowId)
         {
-            return Select($"[{nameof(ILiteModel.RowId)}] = @{nameof(ILiteModel.RowId)}", new { RowId = rowId }).FirstOrDefault();
+            return
+                Select($"[{nameof(ILiteModel.RowId)}] = @{nameof(ILiteModel.RowId)}", new {RowId = rowId})
+                    .FirstOrDefault();
         }
 
         /// <summary>
@@ -502,7 +539,8 @@
         /// <returns></returns>
         public async Task<T> SingleAsync(long rowId)
         {
-            var result = await SelectAsync($"[{nameof(ILiteModel.RowId)}] = @{nameof(ILiteModel.RowId)}", new { RowId = rowId });
+            var result =
+                await SelectAsync($"[{nameof(ILiteModel.RowId)}] = @{nameof(ILiteModel.RowId)}", new {RowId = rowId});
             return result.FirstOrDefault();
         }
 
