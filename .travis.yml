@@ -19,9 +19,9 @@ install:
   - make
   - sudo make install
   - cd ../../unosquare/litelib
-  - cp ./Unosquare.Labs.LiteLib.Tests/bin/Release/x86/SQLite.Interop.dll .
 script:
   - xbuild /p:Configuration=Release Unosquare.Labs.LiteLib.sln
+  - cp ./Unosquare.Labs.LiteLib.Tests/bin/Release/x86/SQLite.Interop.dll .
   - export LD_LIBRARY_PATH=/usr/local/lib
   - mono --debug --profile=monocov:outfile=monocovCoverage.cov,+[Unosquare.Labs.LiteLib] ./testrunner/NUnit.ConsoleRunner.3.4.1/tools/nunit3-console.exe --process=Single ./Unosquare.Labs.LiteLib.Tests/bin/Release/Unosquare.Labs.LiteLib.Tests.dll
   - monocov --export-xml=monocovCoverage monocovCoverage.cov
