@@ -1,5 +1,8 @@
 language: csharp
 solution: Unosquare.Labs.LiteLib.sln
+mono:
+  - latest
+  - 4.2.1
 install:
   - nuget restore Unosquare.Labs.LiteLib.sln
   - nuget install NUnit.Runners -Version 3.4.1 -OutputDirectory testrunner
