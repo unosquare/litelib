@@ -8,6 +8,7 @@ install:
   - nuget install NUnit.Runners -Version 3.4.1 -OutputDirectory testrunner
   - nuget install coveralls.net -Version 0.6.0 -OutputDirectory coveralls
   - sudo apt-get install gtk-sharp2
+  - sudo apt-get install sqlite
   - curl -sS https://api.nuget.org/packages/mono.cecil.0.9.6.3.nupkg > /tmp/mono.cecil.0.9.6.3.nupkg.zip
   - unzip /tmp/mono.cecil.0.9.6.3.nupkg.zip -d /tmp/cecil
   - cp /tmp/cecil/lib/net45/Mono.Cecil.dll .
