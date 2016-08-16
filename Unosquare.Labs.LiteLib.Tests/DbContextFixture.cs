@@ -1,7 +1,11 @@
 ﻿using NUnit.Framework;
 using System;
 using System.Collections.Generic;
-using System.Data.SQLite;
+#if MONO
+    using Mono.Data.Sqlite;
+#else
+    using System.Data.SQLite;
+#endif
 using System.Linq;
 using Unosquare.Labs.LiteLib.Tests.Database;
 
@@ -485,7 +489,7 @@ namespace Unosquare.Labs.LiteLib.Tests
         }
 
         /// <summary>
-        /// Asynchronouses the test update data.
+        /// Asynchronous the test update data.
         /// </summary>
         [Test]
         public async void AsyncTestUpdateData()
@@ -514,7 +518,7 @@ namespace Unosquare.Labs.LiteLib.Tests
         }
 
         /// <summary>
-        /// Asynchronouses the test select data.
+        /// Asynchronous the test select data.
         /// </summary>
         [Test]
         public async void AsyncTestSelectData()
@@ -621,6 +625,19 @@ namespace Unosquare.Labs.LiteLib.Tests
                     context.Orders.Insert(_dataSource[i]);
                 }
 
+#if MONO
+                Assert.Throws<SqliteException>(delegate()
+                {
+                    var newOrder = new Order
+                    {
+                        CustomerName = "John",
+                        Amount = 2,
+                        ShipperCity = "Atlanta",
+                        UniqueId = "1"
+                    };
+                    context.Orders.Insert(newOrder);
+                });
+#else
                 Assert.Throws<SQLiteException>(delegate()
                 {
                     var newOrder = new Order
@@ -632,6 +649,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                     };
                     context.Orders.Insert(newOrder);
                 });
+#endif
             }
         }
 
@@ -643,6 +661,19 @@ namespace Unosquare.Labs.LiteLib.Tests
         {
             using (var context = new TestDbContext(nameof(TestStringLengt)))
             {
+#if MONO
+                Assert.Throws<SqliteException>(delegate()
+                {
+                    var newOrder = new Order
+                    {
+                        CustomerName = "John",
+                        Amount = 2,
+                        ShipperCity = "StringStringStringStringStringStringStringString"
+                    };
+                    context.Orders.Insert(newOrder);
+                    Console.Write(context.Orders.Count());
+                });
+#else
                 Assert.Throws<SQLiteException>(delegate()
                 {
                     var newOrder = new Order
@@ -654,6 +685,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                     context.Orders.Insert(newOrder);
                     Console.Write(context.Orders.Count());
                 });
+#endif
             }
         }
     }
