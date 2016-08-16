@@ -1,5 +1,6 @@
 ﻿namespace Unosquare.Labs.LiteLib
 {
+    using Dapper;
     using System.Data;
     using Log;
     using System;
@@ -137,10 +138,7 @@
 
             using (var tran = Connection.BeginTransaction())
             {
-                var command = Connection.CreateCommand();
-                command.CommandText = ddlBuilder.ToString();
-                command.ExecuteNonQuery();
-
+                Connection.Execute(ddlBuilder.ToString());
                 tran.Commit();
                 OnDatabaseCreated(this, EventArgs.Empty);
             }
@@ -152,16 +150,9 @@
         /// <returns></returns>
         public async Task VaccuumDatabaseAsync()
         {
-            await Task.Factory.StartNew(() =>
-            {
-                Logger.DebugFormat("DB VACUUM command executing.");
-
-                var command = Connection.CreateCommand();
-                command.CommandText = "VACCUUM";
-                command.ExecuteNonQuery();
-                Logger.DebugFormat("DB VACUUM command finished.");
-            });
-
+            Logger.DebugFormat("DB VACUUM command executing.");
+            await Connection.ExecuteAsync("VACCUUM");
+            Logger.DebugFormat("DB VACUUM command finished.");
         }
 
 #endregion
