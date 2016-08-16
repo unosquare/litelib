@@ -537,7 +537,7 @@ namespace Unosquare.Labs.LiteLib.Tests
         }
 
         /// <summary>
-        /// Asynchronouses the test count data.
+        /// Asynchronous the test count data.
         /// </summary>
         [Test]
         public async void AsyncTestCountData()

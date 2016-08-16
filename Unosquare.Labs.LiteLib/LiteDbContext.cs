@@ -1,12 +1,16 @@
 ﻿namespace Unosquare.Labs.LiteLib
 {
-    using Dapper;
+    using System.Data;
     using Log;
     using System;
     using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+#if MONO
+    using Mono.Data.Sqlite;
+#else
     using System.Data.SQLite;
+#endif
     using System.IO;
     using System.Linq;
     using System.Reflection;
@@ -19,28 +23,26 @@
     /// <seealso cref="System.IDisposable" />
     public abstract class LiteDbContext : IDisposable
     {
+#region Private Declarations 
 
-        #region Private Declarations 
-
-        private SQLiteConnection m_Connection;
         private readonly Dictionary<string, ILiteDbSet> EntitySets = new Dictionary<string, ILiteDbSet>();
         private readonly Type ContextType = null;
         static private readonly ConcurrentDictionary<Guid, LiteDbContext> m_Intances = new ConcurrentDictionary<Guid, LiteDbContext>();
         static private readonly ConcurrentDictionary<Type, PropertyInfo[]> PropertyInfoCache = new ConcurrentDictionary<Type, PropertyInfo[]>();
         static private readonly Type GenericLiteDbSetType = typeof(LiteDbSet<>);
 
-        #endregion
+#endregion
 
-        #region Events
+#region Events
 
         /// <summary>
         /// Occurs when [on database created].
         /// </summary>
         public event EventHandler OnDatabaseCreated = (s, e) => { };
 
-        #endregion
+#endregion
 
-        #region Constructor
+#region Constructor
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LiteDbContext" /> class.
@@ -55,14 +57,18 @@
 
             databaseFilePath = Path.GetFullPath(databaseFilePath);
             var databaseExists = File.Exists(databaseFilePath);
+#if MONO
+            Connection = new SqliteConnection($"URI=file:{databaseFilePath}");
+#else
             var builder = new SQLiteConnectionStringBuilder
             {
                 DataSource = databaseFilePath,
                 DateTimeKind = DateTimeKind.Utc
             };
 
-            m_Connection = new SQLiteConnection(builder.ToString());
-            m_Connection.Open();
+            Connection = new SQLiteConnection(builder.ToString());
+#endif
+            Connection.Open();
 
             if (databaseExists == false)
             {
@@ -75,9 +81,9 @@
             m_Intances[UniqueId] = this;
         }
 
-        #endregion
+#endregion
 
-        #region Methods
+#region Methods
 
         /// <summary>
         /// Loads the entity sets registered as vitual public properties of the derived class.
@@ -129,9 +135,12 @@
                 ddlBuilder.AppendLine(entitySet.Value.TableDefinition);
             }
 
-            using (var tran = m_Connection.BeginTransaction())
+            using (var tran = Connection.BeginTransaction())
             {
-                m_Connection.Execute(ddlBuilder.ToString());
+                var command = Connection.CreateCommand();
+                command.CommandText = ddlBuilder.ToString();
+                command.ExecuteNonQuery();
+
                 tran.Commit();
                 OnDatabaseCreated(this, EventArgs.Empty);
             }
@@ -143,19 +152,26 @@
         /// <returns></returns>
         public async Task VaccuumDatabaseAsync()
         {
-            Logger.DebugFormat("DB VACUUM command executing.");
-            await Connection.ExecuteAsync("VACCUUM");
-            Logger.DebugFormat("DB VACUUM command finished.");
+            await Task.Factory.StartNew(() =>
+            {
+                Logger.DebugFormat("DB VACUUM command executing.");
+
+                var command = Connection.CreateCommand();
+                command.CommandText = "VACCUUM";
+                command.ExecuteNonQuery();
+                Logger.DebugFormat("DB VACUUM command finished.");
+            });
+
         }
 
-        #endregion
+#endregion
 
-        #region Properties
+#region Properties
 
         /// <summary>
         /// Gets the underlying SQLite connection.
         /// </summary>
-        public SQLiteConnection Connection => m_Connection;
+        public IDbConnection Connection { get; private set; }
 
         /// <summary>
         /// Gets the logger this instance was initialized with.
@@ -172,9 +188,9 @@
         /// </summary>
         public static ReadOnlyCollection<LiteDbContext> Instances => new ReadOnlyCollection<LiteDbContext>(m_Intances.Values.ToList());
 
-        #endregion
+#endregion
 
-        #region IDisposable Support
+#region IDisposable Support
 
         private bool _isDisposing; // To detect redundant calls
 
@@ -190,9 +206,9 @@
                 {
                     LiteDbContext removed = null;
                     m_Intances.TryRemove(this.UniqueId, out removed);
-                    m_Connection.Close();
-                    m_Connection.Dispose();
-                    m_Connection = null;
+                    Connection.Close();
+                    Connection.Dispose();
+                    Connection = null;
                     Logger.DebugFormat($"Disposed {ContextType.Name}. {m_Intances.Count} context instances.");
                 }
 
@@ -208,7 +224,7 @@
             
             Dispose(true);
         }
-        #endregion
+#endregion
 
     }
 }
