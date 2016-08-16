@@ -10,15 +10,20 @@ EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Mono|Any CPU = Mono|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{61110638-2D09-4B02-A543-AE32D182C0CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{61110638-2D09-4B02-A543-AE32D182C0CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61110638-2D09-4B02-A543-AE32D182C0CE}.Mono|Any CPU.ActiveCfg = Mono|Any CPU
+		{61110638-2D09-4B02-A543-AE32D182C0CE}.Mono|Any CPU.Build.0 = Mono|Any CPU
 		{61110638-2D09-4B02-A543-AE32D182C0CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{61110638-2D09-4B02-A543-AE32D182C0CE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{35CA62F7-7CC8-4086-BE8B-1195D48F3232}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{35CA62F7-7CC8-4086-BE8B-1195D48F3232}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35CA62F7-7CC8-4086-BE8B-1195D48F3232}.Mono|Any CPU.ActiveCfg = Mono|Any CPU
+		{35CA62F7-7CC8-4086-BE8B-1195D48F3232}.Mono|Any CPU.Build.0 = Mono|Any CPU
 		{35CA62F7-7CC8-4086-BE8B-1195D48F3232}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{35CA62F7-7CC8-4086-BE8B-1195D48F3232}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection

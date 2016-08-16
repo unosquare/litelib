@@ -274,11 +274,14 @@
                 {
                     createBuilder.AppendLine($"    [{property.Name}] BLOB {nullStatement},");
                 }
-
             }
 
             //trim out the extra comma
+#if MONO
+            createBuilder.Remove(createBuilder.Length - 2, 2);
+#else
             createBuilder.Remove(createBuilder.Length - 3, 3);
+#endif
             createBuilder.AppendLine();
             createBuilder.AppendLine($");");
 
@@ -593,6 +596,6 @@
             return await Context.Connection.QueryAsync<T>(commandText, commandParams);
         }
 
-        #endregion
+#endregion
     }
 }
