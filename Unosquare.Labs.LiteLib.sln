@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unosquare.Labs.LiteLib", "Unosquare.Labs.LiteLib\Unosquare.Labs.LiteLib.csproj", "{61110638-2D09-4B02-A543-AE32D182C0CE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unosquare.Labs.LiteLib", "src\Unosquare.Labs.LiteLib\Unosquare.Labs.LiteLib.csproj", "{61110638-2D09-4B02-A543-AE32D182C0CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unosquare.Labs.LiteLib.Tests", "Unosquare.Labs.LiteLib.Tests\Unosquare.Labs.LiteLib.Tests.csproj", "{35CA62F7-7CC8-4086-BE8B-1195D48F3232}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unosquare.Labs.LiteLib.Tests", "test\Unosquare.Labs.LiteLib.Tests\Unosquare.Labs.LiteLib.Tests.csproj", "{35CA62F7-7CC8-4086-BE8B-1195D48F3232}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

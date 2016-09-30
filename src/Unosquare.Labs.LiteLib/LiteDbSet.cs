@@ -179,7 +179,7 @@
 
             // Start off with the table name
             var tableName = nameof(T);
-            var tableAttribute = Attribute.GetCustomAttribute(typeof (T), typeof (TableAttribute)) as TableAttribute;
+            var tableAttribute = typeof(T).GetTypeInfo().GetCustomAttribute< TableAttribute>();
             if (tableAttribute != null)
                 tableName = tableAttribute.Name;
 
@@ -196,16 +196,14 @@
 
                 {
                     // Skip if not mapped
-                    var notMappedAttribute =
-                        Attribute.GetCustomAttribute(property, typeof (NotMappedAttribute)) as NotMappedAttribute;
+                    var notMappedAttribute = property.GetCustomAttribute< NotMappedAttribute >();
                     if (notMappedAttribute != null)
                         continue;
                 }
 
                 {
                     // Add to indexes if indexed attribute is ON
-                    var indexedAttribute =
-                        Attribute.GetCustomAttribute(property, typeof (LiteIndexAttribute)) as LiteIndexAttribute;
+                    var indexedAttribute = property.GetCustomAttribute<LiteIndexAttribute>();
                     if (indexedAttribute != null)
                     {
                         indexBuilder.Add(
@@ -215,8 +213,8 @@
 
                 {
                     // Add to unique indexes if indexed attribute is ON
-                    var uniqueIndexAttribute =
-                        Attribute.GetCustomAttribute(property, typeof (LiteUniqueAttribute)) as LiteUniqueAttribute;
+                    var uniqueIndexAttribute = property.GetCustomAttribute<LiteUniqueAttribute>();
+
                     if (uniqueIndexAttribute != null)
                     {
                         indexBuilder.Add(
@@ -226,7 +224,7 @@
 
                 propertyNames.Add(property.Name);
                 var propertyType = property.PropertyType;
-                var isNullable = propertyType.IsGenericType &&
+                var isNullable = propertyType.GetTypeInfo().IsGenericType &&
                                  propertyType.GetGenericTypeDefinition() == typeof (Nullable<>);
                 if (isNullable) propertyType = Nullable.GetUnderlyingType(propertyType);
                 var nullStatement = isNullable ? "NULL" : "NOT NULL";
@@ -235,17 +233,16 @@
                 {
                     var stringLength = 4096;
                     {
-                        var stringLengthAttribute =
-                            Attribute.GetCustomAttribute(property, typeof (StringLengthAttribute)) as
-                                StringLengthAttribute;
+                        var stringLengthAttribute = property.GetCustomAttribute<StringLengthAttribute>();
+
                         if (stringLengthAttribute != null)
                         {
                             stringLength = stringLengthAttribute.MaximumLength;
                         }
                     }
 
-                    isNullable =
-                        (Attribute.GetCustomAttribute(property, typeof (RequiredAttribute)) as RequiredAttribute == null);
+                    isNullable = property.GetCustomAttribute<RequiredAttribute>() == null;
+
                     nullStatement = isNullable ? "NULL" : "NOT NULL";
                     if (stringLength != 4096)
                     {
@@ -259,7 +256,7 @@
                     }
 
                 }
-                else if (propertyType.IsValueType)
+                else if (propertyType.GetTypeInfo().IsValueType)
                 {
                     if (TypeMappings.ContainsKey(propertyType))
                     {

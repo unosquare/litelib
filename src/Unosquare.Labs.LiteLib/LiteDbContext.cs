@@ -10,7 +10,7 @@
 #if MONO
     using Mono.Data.Sqlite;
 #else
-    using System.Data.SQLite;
+    using Microsoft.Data.Sqlite;
 #endif
     using System.IO;
     using System.Linq;
@@ -61,13 +61,13 @@
 #if MONO
             Connection = new SqliteConnection($"URI=file:{databaseFilePath}");
 #else
-            var builder = new SQLiteConnectionStringBuilder
+            var builder = new SqliteConnectionStringBuilder
             {
                 DataSource = databaseFilePath,
-                DateTimeKind = DateTimeKind.Utc
+                //DateTimeKind = DateTimeKind.Utc
             };
 
-            Connection = new SQLiteConnection(builder.ToString());
+            Connection = new SqliteConnection(builder.ToString());
 #endif
             Connection.Open();
 
@@ -99,7 +99,7 @@
             else
             {
                 contextDbSetProperties = GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.PropertyType.IsGenericType && p.PropertyType.GetGenericTypeDefinition() == GenericLiteDbSetType).ToArray();
+                    .Where(p => p.PropertyType.GetTypeInfo().IsGenericType && p.PropertyType.GetGenericTypeDefinition() == GenericLiteDbSetType).ToArray();
                 PropertyInfoCache[ContextType] = contextDbSetProperties;
             }
             

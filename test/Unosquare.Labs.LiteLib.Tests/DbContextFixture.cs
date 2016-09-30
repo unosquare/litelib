@@ -4,9 +4,10 @@ using System.Collections.Generic;
 #if MONO
     using Mono.Data.Sqlite;
 #else
-    using System.Data.SQLite;
+    using Microsoft.Data.Sqlite;
 #endif
 using System.Linq;
+using System.Threading.Tasks;
 using Unosquare.Labs.LiteLib.Tests.Database;
 
 namespace Unosquare.Labs.LiteLib.Tests
@@ -422,10 +423,10 @@ namespace Unosquare.Labs.LiteLib.Tests
         }
 
         /// <summary>
-        /// Asynchronouses the test select all.
+        /// Asynchronous the test select all.
         /// </summary>
         [Test]
-        public async void AsyncTestSelectAll()
+        public async Task AsyncTestSelectAll()
         {
             using (var context = new TestDbContext(nameof(AsyncTestSelectAll)))
             {
@@ -440,10 +441,10 @@ namespace Unosquare.Labs.LiteLib.Tests
         }
 
         /// <summary>
-        /// Asynchronouses the test delete data.
+        /// Asynchronous the test delete data.
         /// </summary>
         [Test]
-        public async void AsyncTestDeleteData()
+        public async Task AsyncTestDeleteData()
         {
             using (var context = new TestDbContext(nameof(AsyncTestDeleteData)))
             {
@@ -462,10 +463,10 @@ namespace Unosquare.Labs.LiteLib.Tests
         }
 
         /// <summary>
-        /// Asynchronouses the test insert data.
+        /// Asynchronous the test insert data.
         /// </summary>
         [Test]
-        public async void AsyncTestInsertData()
+        public async Task AsyncTestInsertData()
         {
             using (var context = new TestDbContext(nameof(AsyncTestInsertData)))
             {
@@ -492,7 +493,7 @@ namespace Unosquare.Labs.LiteLib.Tests
         /// Asynchronous the test update data.
         /// </summary>
         [Test]
-        public async void AsyncTestUpdateData()
+        public async Task AsyncTestUpdateData()
         {
             using (var context = new TestDbContext(nameof(AsyncTestUpdateData)))
             {
@@ -521,7 +522,7 @@ namespace Unosquare.Labs.LiteLib.Tests
         /// Asynchronous the test select data.
         /// </summary>
         [Test]
-        public async void AsyncTestSelectData()
+        public async Task AsyncTestSelectData()
         {
             using (var context = new TestDbContext(nameof(AsyncTestSelectData)))
             {
@@ -544,7 +545,7 @@ namespace Unosquare.Labs.LiteLib.Tests
         /// Asynchronous the test count data.
         /// </summary>
         [Test]
-        public async void AsyncTestCountData()
+        public async Task AsyncTestCountData()
         {
             using (var context = new TestDbContext(nameof(AsyncTestCountData)))
             {
@@ -566,7 +567,7 @@ namespace Unosquare.Labs.LiteLib.Tests
         /// Asynchronous the test single data.
         /// </summary>
         [Test]
-        public async void AsyncTestSingleData()
+        public async Task AsyncTestSingleData()
         {
             using (var cotext = new TestDbContext(nameof(AsyncTestSingleData)))
             {
@@ -586,7 +587,7 @@ namespace Unosquare.Labs.LiteLib.Tests
         /// Asynchronous the test query data.
         /// </summary>
         [Test]
-        public async void AsyncTestQueryData()
+        public async Task AsyncTestQueryData()
         {
             using (var context = new TestDbContext(nameof(AsyncTestQueryData)))
             {
@@ -625,7 +626,6 @@ namespace Unosquare.Labs.LiteLib.Tests
                     context.Orders.Insert(_dataSource[i]);
                 }
 
-#if MONO
                 Assert.Throws<SqliteException>(delegate()
                 {
                     var newOrder = new Order
@@ -637,19 +637,6 @@ namespace Unosquare.Labs.LiteLib.Tests
                     };
                     context.Orders.Insert(newOrder);
                 });
-#else
-                Assert.Throws<SQLiteException>(delegate()
-                {
-                    var newOrder = new Order
-                    {
-                        CustomerName = "John",
-                        Amount = 2,
-                        ShipperCity = "Atlanta",
-                        UniqueId = "1"
-                    };
-                    context.Orders.Insert(newOrder);
-                });
-#endif
             }
         }
 
@@ -661,7 +648,6 @@ namespace Unosquare.Labs.LiteLib.Tests
         {
             using (var context = new TestDbContext(nameof(TestStringLengt)))
             {
-#if MONO
                 Assert.Throws<SqliteException>(delegate()
                 {
                     var newOrder = new Order
@@ -673,19 +659,6 @@ namespace Unosquare.Labs.LiteLib.Tests
                     context.Orders.Insert(newOrder);
                     Console.Write(context.Orders.Count());
                 });
-#else
-                Assert.Throws<SQLiteException>(delegate()
-                {
-                    var newOrder = new Order
-                    {
-                        CustomerName = "John",
-                        Amount = 2,
-                        ShipperCity = "StringStringStringStringStringStringStringString"
-                    };
-                    context.Orders.Insert(newOrder);
-                    Console.Write(context.Orders.Count());
-                });
-#endif
             }
         }
     }

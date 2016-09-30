@@ -78,7 +78,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Unosquare.Labs.LiteLib\Unosquare.Labs.LiteLib.csproj">
+    <ProjectReference Include="..\..\src\Unosquare.Labs.LiteLib\Unosquare.Labs.LiteLib.csproj">
       <Project>{61110638-2d09-4b02-a543-ae32d182c0ce}</Project>
       <Name>Unosquare.Labs.LiteLib</Name>
     </ProjectReference>
