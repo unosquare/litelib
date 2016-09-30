@@ -274,11 +274,8 @@
             }
 
             //trim out the extra comma
-#if MONO
-            createBuilder.Remove(createBuilder.Length - 2, 2);
-#else
-            createBuilder.Remove(createBuilder.Length - 3, 3);
-#endif
+            createBuilder.Remove(createBuilder.Length - System.Environment.NewLine.Length - 1, System.Environment.NewLine.Length + 1);
+            
             createBuilder.AppendLine();
             createBuilder.AppendLine($");");
 
@@ -293,6 +290,7 @@
 
             TableName = tableName;
             TableDefinition = createBuilder.ToString();
+            
             SelectDefinition = $"SELECT [{nameof(ILiteModel.RowId)}], {escapedColumnNames} FROM [{tableName}]";
             InsertDefinition =
                 $"INSERT INTO [{tableName}] ({escapedColumnNames}) VALUES ({parameterColumnNames}); SELECT last_insert_rowid();";
