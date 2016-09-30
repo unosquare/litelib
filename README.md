@@ -6,7 +6,9 @@
 
 _A cool little wrapper for SQLite based on Dapper from Unosquare Labs -- It's also free and MIT-licensed_
 
-*:star:Please star this project if you find it useful!* LiteLib is a library that helps you get the job done quickly and easily by defining POCO classes and turns those classes into SQLite-mapped tables. You define a database context and LiteLib will automatically create the necessary SQLite tables for your context. You will then be able to easily query, insert, update or delete records from the database tables via the database context you just defined. LiteLib is not intended to be a replacement for Entity Framework, but rather a lighter alternative that saves you the work of creating tables, managing connection intances, logging SQL commands, and still allows you to use Dapper-style querying. So, if you like Entity Framework, but you prefer the speed of Dapper, and you are using SQLite for your project, then we hope you'll love LiteLib!
+*:star:Please star this project if you find it useful!* 
+
+LiteLib is a library that helps you get the job done quickly and easily by defining POCO classes and turns those classes into SQLite-mapped tables. You define a database context and LiteLib will automatically create the necessary SQLite tables for your context. You will then be able to easily query, insert, update or delete records from the database tables via the database context you just defined. LiteLib is not intended to be a replacement for Entity Framework, but rather a lighter alternative that saves you the work of creating tables, managing connection intances, logging SQL commands, and still allows you to use Dapper-style querying. So, if you like Entity Framework, but you prefer the speed of Dapper, and you are using SQLite for your project, then we hope you'll love LiteLib!
 
 Stuff that LiteLib *does very well*:
 - Creates your database files and tables that map to classes and properties of your objects.
