@@ -4,6 +4,8 @@ mono:
   - latest
   - 4.2.1
 install:
+  - rm src/Unosquare.Labs.LiteLib/project.json
+  - rm test/Unosquare.Labs.LiteLib.Tests/project.json
   - nuget restore Unosquare.Labs.LiteLib.sln
   - nuget install NUnit.Runners -Version 3.4.1 -OutputDirectory testrunner
   - nuget install coveralls.net -Version 0.6.0 -OutputDirectory coveralls
@@ -20,8 +22,6 @@ install:
   - make
   - sudo make install
   - cd ../../unosquare/litelib
-  - rm src/Unosquare.Labs.LiteLib/project.json
-  - rm test/Unosquare.Labs.LiteLib.Tests/project.json
 script:
   - xbuild /p:Configuration=Mono Unosquare.Labs.LiteLib.sln
   - cp ./Unosquare.Labs.LiteLib.Tests/bin/Mono/x64/SQLite.Interop.dll ./testrunner/NUnit.ConsoleRunner.3.4.1/tools/
