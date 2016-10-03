@@ -20,6 +20,8 @@ install:
   - make
   - sudo make install
   - cd ../../unosquare/litelib
+  - rm src/Unosquare.Labs.LiteLib/project.json
+  - rm test/Unosquare.Labs.LiteLib.Tests/project.json
 script:
   - xbuild /p:Configuration=Mono Unosquare.Labs.LiteLib.sln
   - cp ./Unosquare.Labs.LiteLib.Tests/bin/Mono/x64/SQLite.Interop.dll ./testrunner/NUnit.ConsoleRunner.3.4.1/tools/
