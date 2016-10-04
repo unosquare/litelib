@@ -24,7 +24,7 @@ script:
   - xbuild /p:Configuration=Mono Unosquare.Labs.LiteLib.sln
   - cp ./test/Unosquare.Labs.LiteLib.Tests/bin/Mono/x64/SQLite.Interop.dll ./testrunner/NUnit.ConsoleRunner.3.4.1/tools/
   - export LD_LIBRARY_PATH=/usr/local/lib
-  - mono --debug --profile=monocov:outfile=monocovCoverage.cov,+[Unosquare.Labs.LiteLib] ./testrunner/NUnit.ConsoleRunner.3.4.1/tools/nunit3-console.exe --process=Single ./Unosquare.Labs.LiteLib.Tests/bin/Mono/Unosquare.Labs.LiteLib.Tests.dll
+  - mono --debug --profile=monocov:outfile=monocovCoverage.cov,+[Unosquare.Labs.LiteLib] ./testrunner/NUnit.ConsoleRunner.3.4.1/tools/nunit3-console.exe --process=Single ./test/Unosquare.Labs.LiteLib.Tests/bin/Mono/Unosquare.Labs.LiteLib.Tests.dll
   - monocov --export-xml=monocovCoverage monocovCoverage.cov
   - REPO_COMMIT_AUTHOR=$(git show -s --pretty=format:"%cn")
   - REPO_COMMIT_AUTHOR_EMAIL=$(git show -s --pretty=format:"%ce")
