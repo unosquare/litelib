@@ -41,7 +41,7 @@ We designed LiteLib to be extremely easy to use. There are 3 steps you need to f
 
 ##Example
 
-Create your model class. Use the `Table` attribute you specify the name of the table you want to map your model to. Also note we inherit from `LiteModel`. If you wish to crete a unique index on a column, use the `LiteUnique` attribute on a property. If you wish to index a column, then simply use the `LiteIndex` attribute. Please note properties with complex datatypes will not be mapped to the database.
+Create your model class. Use the `Table` attribute you specify the name of the table you want to map your model to. Also note we inherit from `LiteModel`. If you wish to create a unique index on a column, use the `LiteUnique` attribute on a property. If you wish to index a column, then simply use the `LiteIndex` attribute. Please note properties with complex datatypes will not be mapped to the database.
 
 ```cs
 namespace Models
