@@ -103,6 +103,6 @@ using (var db = new AppDbContext)
 }
 ```
 
-At this point it should be easy for you to see that you can esily extend your data access logic via extension methods or by extending the `LitDbSet<>` class anbd exposing it as a property in your database context class.
+At this point it should be easy for you to see that you can esily extend your data access logic via extension methods or by extending the `LiteDbSet<>` class anbd exposing it as a property in your database context class.
 
 That's it! Happy coding!
