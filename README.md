@@ -19,7 +19,7 @@ Stuff that LiteLib *does very well*:
 
 Stuff that LiteLib *does not* cover:
 - Migrations of any kind. You'll have to drop and recreate the DB file if your schema changes or migrate it manually
-- Navigation properties or relationships. You'll have to implement and ensure consistency of data relations manually -- which BTW, it not hard at all and lets you write faster, lighter code.
+- Navigation properties or relationships. You'll have to implement and ensure consistency of data relations manually -- which BTW, it's not hard at all and lets you write faster, lighter code.
 - Automatic transactions or changesets. You'll have to `BeginTransaction` and `Commit` manually. The Data context class you define simply exposes the underlying Dapper connection.
 
 ##Installation
@@ -36,12 +36,12 @@ PM> Install-Package LiteLib
 We designed LiteLib to be extremely easy to use. There are 3 steps you need to follow.
 
 1. Create your model classes. All model classes must extend from `LiteModel`. There are a few class and property attributes that LiteLib understands. See the examples below.
-2. Create your context class. It must extend `LiteDbContext`, and it must expose 
+2. Create your context class. It must extend `LiteDbContext`, and it must expose your `LiteDbSet` classes
 3. Use your context class. Example provided in the following section.
 
 ##Example
 
-Create your model class. Use the `Table` attribute you specify the name of the table you want to map your model to. Also note we inherit from `LiteModel`. If you wish to create a unique index on a column, use the `LiteUnique` attribute on a property. If you wish to index a column, then simply use the `LiteIndex` attribute. Please note properties with complex datatypes will not be mapped to the database.
+Create your model class. Use the `Table` attribute to specify the name of the table you want to map your model to. Also note we inherit from `LiteModel`. If you wish to create a unique index on a column, use the `LiteUnique` attribute on a property. If you wish to index a column, then simply use the `LiteIndex` attribute. Please note properties with complex datatypes will not be mapped to the database.
 
 ```cs
 namespace Models
@@ -72,7 +72,7 @@ namespace Models
 }
 ```
 
-Next, create your database context class. Extend `LiteDbContext` and expose any number of tables via properties of the generica type `LiteDbSet<>`. A context should always be disposable so the recommendation is to query your database inside a `using` block of statements.
+Next, create your database context class. Extend `LiteDbContext` and expose any number of tables via properties of the generic type `LiteDbSet<>`. A context should always be disposable so the recommendation is to query your database inside a `using` block of statements.
 
 ```cs
 namespace Models
@@ -103,6 +103,6 @@ using (var db = new AppDbContext)
 }
 ```
 
-At this point it should be easy for you to see that you can esily extend your data access logic via extension methods or by extending the `LiteDbSet<>` class anbd exposing it as a property in your database context class.
+At this point it should be easy for you to see that you can esily extend your data access logic via extension methods or by extending the `LiteDbSet<>` class and exposing it as a property in your database context class.
 
 That's it! Happy coding!
