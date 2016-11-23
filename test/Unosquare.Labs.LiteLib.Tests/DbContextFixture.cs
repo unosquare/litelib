@@ -260,31 +260,32 @@ namespace Unosquare.Labs.LiteLib.Tests
         [Test]
         public void OnAfterInsert()
         {
-            using (var context = new TestDbContext(nameof(OnAfterInsert)))
+            var context = new TestDbContext(nameof(OnAfterInsert));
+
+            context.Orders.OnAfterInsert += (s, e) =>
             {
-                context.Orders.OnAfterInsert += (s, e) =>
+                if (e.Entity.CustomerName == "John" || e.Entity.CustomerName == "Peter")
                 {
-                    if (e.Entity.CustomerName == "John" || e.Entity.CustomerName == "Peter")
-                    {
-                        context.Orders.Delete(e.Entity);
-                    }
-                };
-
-                for (var i = 0; i < 10; i++)
-                {
-                    foreach (var item in _dataSource)
-                    {
-                        context.Orders.Insert(item);
-                    }
+                    context.Orders.Delete(e.Entity);
                 }
+            };
 
-                var afterList = context.Orders.SelectAll();
-                foreach (var item in afterList)
+            for (var i = 0; i < 10; i++)
+            {
+                foreach (var item in _dataSource)
                 {
-                    Assert.AreEqual("Margarita", item.CustomerName);
+                    context.Orders.Insert(item);
                 }
-                Assert.AreEqual(10, afterList.Count());
             }
+
+            var afterList = context.Orders.SelectAll().ToList();
+
+            foreach (var item in afterList)
+            {
+                Assert.AreEqual("Margarita", item.CustomerName);
+            }
+
+            Assert.AreEqual(10, afterList.Count());
         }
 
         /// <summary>
@@ -393,32 +394,30 @@ namespace Unosquare.Labs.LiteLib.Tests
         [Test]
         public void OnAfterDeleteTest()
         {
-            using (var context = new TestDbContext(nameof(OnAfterDeleteTest)))
+            var context = new TestDbContext(nameof(OnAfterDeleteTest));
+            foreach (var item in _dataSource)
             {
-                foreach (var item in _dataSource)
-                {
-                    context.Orders.Insert(item);
-                }
+                context.Orders.Insert(item);
+            }
 
-                context.Orders.OnAfterDelete += (s, e) =>
-                {
-                    e.Entity.CustomerName = "Jessy";
-                    context.Orders.Insert(e.Entity);
-                };
+            context.Orders.OnAfterDelete += (s, e) =>
+            {
+                e.Entity.CustomerName = "Jessy";
+                context.Orders.Insert(e.Entity);
+            };
 
-                foreach (var item in context.Orders.SelectAll())
+            foreach (var item in context.Orders.SelectAll())
+            {
+                if (item.CustomerName == "Margarita")
                 {
-                    if (item.CustomerName == "Margarita")
-                    {
-                        context.Orders.Delete(item);
-                    }
+                    context.Orders.Delete(item);
                 }
+            }
 
-                foreach (var item in context.Orders.Select("CustomerName = @CustomerName", new {CustomerName = "Jessy"})
-                    )
-                {
-                    Assert.AreEqual("Jessy", item.CustomerName);
-                }
+            foreach (var item in context.Orders.Select("CustomerName = @CustomerName", new {CustomerName = "Jessy"})
+            )
+            {
+                Assert.AreEqual("Jessy", item.CustomerName);
             }
         }
 
@@ -626,7 +625,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                     context.Orders.Insert(_dataSource[i]);
                 }
 
-                Assert.Throws<SqliteException>(delegate()
+                Assert.Throws<SqliteException>(delegate
                 {
                     var newOrder = new Order
                     {
@@ -648,7 +647,7 @@ namespace Unosquare.Labs.LiteLib.Tests
         {
             using (var context = new TestDbContext(nameof(TestStringLengt)))
             {
-                Assert.Throws<SqliteException>(delegate()
+                Assert.Throws<SqliteException>(delegate
                 {
                     var newOrder = new Order
                     {

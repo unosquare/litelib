@@ -16,32 +16,11 @@
     /// Represents a ILiteDbSet implementation 
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    /// <seealso cref="Unosquare.Labs.LiteLib.ILiteDbSet{T}" />
+    /// <seealso cref="LiteLib.ILiteDbSet{T}" />
     public class LiteDbSet<T> : ILiteDbSet<T>
         where T : ILiteModel, new()
     {
-
         #region Private Declarations
-
-        private const string IntegerAffinity = "INTEGER";
-        private const string NumericAffinity = "NUMERIC";
-        private const string TextAffinity = "TEXT";
-        private const string DateTimeAffinity = "DATETIME";
-
-        private static readonly Dictionary<Type, string> TypeMappings = new Dictionary<Type, string>
-        {
-            {typeof (Int16), IntegerAffinity},
-            {typeof (Int32), IntegerAffinity},
-            {typeof (Int64), IntegerAffinity},
-            {typeof (UInt16), IntegerAffinity},
-            {typeof (UInt32), IntegerAffinity},
-            {typeof (UInt64), IntegerAffinity},
-            {typeof (byte), IntegerAffinity},
-            {typeof (char), IntegerAffinity},
-            {typeof (Decimal), NumericAffinity},
-            {typeof (Boolean), NumericAffinity},
-            {typeof (DateTime), DateTimeAffinity},
-        };
 
         private class DefinitionCacheItem
         {
@@ -196,7 +175,7 @@
 
                 {
                     // Skip if not mapped
-                    var notMappedAttribute = property.GetCustomAttribute< NotMappedAttribute >();
+                    var notMappedAttribute = property.GetCustomAttribute<NotMappedAttribute>();
                     if (notMappedAttribute != null)
                         continue;
                 }
@@ -225,11 +204,11 @@
                 propertyNames.Add(property.Name);
                 var propertyType = property.PropertyType;
                 var isNullable = propertyType.GetTypeInfo().IsGenericType &&
-                                 propertyType.GetGenericTypeDefinition() == typeof (Nullable<>);
+                                 propertyType.GetGenericTypeDefinition() == typeof(Nullable<>);
                 if (isNullable) propertyType = Nullable.GetUnderlyingType(propertyType);
                 var nullStatement = isNullable ? "NULL" : "NOT NULL";
 
-                if (propertyType == typeof (string))
+                if (propertyType == typeof(string))
                 {
                     var stringLength = 4096;
                     {
@@ -258,26 +237,20 @@
                 }
                 else if (propertyType.GetTypeInfo().IsValueType)
                 {
-                    if (TypeMappings.ContainsKey(propertyType))
-                    {
-                        createBuilder.AppendLine($"    [{property.Name}] {TypeMappings[propertyType]} {nullStatement},");
-                    }
-                    else
-                    {
-                        createBuilder.AppendLine($"    [{property.Name}] TEXT {nullStatement},");
-                    }
+                    createBuilder.AppendLine(
+                        $"    [{property.Name}] {propertyType.GetTypeMapping()} {nullStatement},");
                 }
-                else if (propertyType == typeof (byte[]))
+                else if (propertyType == typeof(byte[]))
                 {
                     createBuilder.AppendLine($"    [{property.Name}] BLOB {nullStatement},");
                 }
             }
 
             //trim out the extra comma
-            createBuilder.Remove(createBuilder.Length - System.Environment.NewLine.Length - 1, System.Environment.NewLine.Length + 1);
+            createBuilder.Remove(createBuilder.Length - Environment.NewLine.Length - 1, Environment.NewLine.Length + 1);
             
             createBuilder.AppendLine();
-            createBuilder.AppendLine($");");
+            createBuilder.AppendLine(");");
 
             foreach (var indexDdl in indexBuilder)
             {
@@ -516,6 +489,17 @@
         public async Task<IEnumerable<T>> SelectAllAsync()
         {
             return await SelectAsync("1 = 1", null);
+        }
+        
+        /// <summary>
+        /// Firsts the or default.
+        /// </summary>
+        /// <param name="fieldName">Name of the field.</param>
+        /// <param name="fieldValue">The field value.</param>
+        /// <returns></returns>
+        public T FirstOrDefault(string fieldName, object fieldValue)
+        {
+            return Select($"[{fieldName}] = @FieldValue", new { FieldValue = fieldValue }).FirstOrDefault();
         }
 
         /// <summary>

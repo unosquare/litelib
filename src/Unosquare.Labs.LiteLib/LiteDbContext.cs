@@ -7,16 +7,16 @@
     using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
-#if MONO
-    using Mono.Data.Sqlite;
-#else
-    using Microsoft.Data.Sqlite;
-#endif
     using System.IO;
     using System.Linq;
     using System.Reflection;
     using System.Text;
     using System.Threading.Tasks;
+#if MONO
+    using Mono.Data.Sqlite;
+#else
+    using Microsoft.Data.Sqlite;
+#endif
 
     /// <summary>
     /// A base class containing all the functionality to perform data operations on Entity Sets
@@ -26,11 +26,11 @@
     {
 #region Private Declarations 
 
-        private readonly Dictionary<string, ILiteDbSet> EntitySets = new Dictionary<string, ILiteDbSet>();
-        private readonly Type ContextType = null;
-        static private readonly ConcurrentDictionary<Guid, LiteDbContext> m_Intances = new ConcurrentDictionary<Guid, LiteDbContext>();
-        static private readonly ConcurrentDictionary<Type, PropertyInfo[]> PropertyInfoCache = new ConcurrentDictionary<Type, PropertyInfo[]>();
-        static private readonly Type GenericLiteDbSetType = typeof(LiteDbSet<>);
+        private readonly Dictionary<string, ILiteDbSet> _entitySets = new Dictionary<string, ILiteDbSet>();
+        private readonly Type _contextType;
+        private static readonly ConcurrentDictionary<Guid, LiteDbContext> Intances = new ConcurrentDictionary<Guid, LiteDbContext>();
+        private static readonly ConcurrentDictionary<Type, PropertyInfo[]> PropertyInfoCache = new ConcurrentDictionary<Type, PropertyInfo[]>();
+        private static readonly Type GenericLiteDbSetType = typeof(LiteDbSet<>);
 
 #endregion
 
@@ -53,7 +53,7 @@
         protected LiteDbContext(string databaseFilePath, ILog logger)
         {
             Logger = logger ?? new NullLog();
-            ContextType = GetType();
+            _contextType = GetType();
             LoadEntitySets();
 
             databaseFilePath = Path.GetFullPath(databaseFilePath);
@@ -79,7 +79,7 @@
             }
 
             UniqueId = Guid.NewGuid();
-            m_Intances[UniqueId] = this;
+            Intances[UniqueId] = this;
         }
 
 #endregion
@@ -87,20 +87,20 @@
 #region Methods
 
         /// <summary>
-        /// Loads the entity sets registered as vitual public properties of the derived class.
+        /// Loads the entity sets registered as virtual public properties of the derived class.
         /// </summary>
         private void LoadEntitySets()
         {
             PropertyInfo[] contextDbSetProperties;
-            if (PropertyInfoCache.ContainsKey(ContextType))
+            if (PropertyInfoCache.ContainsKey(_contextType))
             {
-                contextDbSetProperties = PropertyInfoCache[ContextType];
+                contextDbSetProperties = PropertyInfoCache[_contextType];
             }
             else
             {
                 contextDbSetProperties = GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.PropertyType.GetTypeInfo().IsGenericType && p.PropertyType.GetGenericTypeDefinition() == GenericLiteDbSetType).ToArray();
-                PropertyInfoCache[ContextType] = contextDbSetProperties;
+                PropertyInfoCache[_contextType] = contextDbSetProperties;
             }
             
             foreach (var entitySetProp in contextDbSetProperties)
@@ -119,10 +119,10 @@
 
                 currentValue.Context = this;
                 currentValue.EntityType = entitySetType;
-                EntitySets[entitySetProp.Name] = currentValue;
+                _entitySets[entitySetProp.Name] = currentValue;
             }
 
-            Logger.DebugFormat($"Context intance {ContextType.Name} - {EntitySets.Count} entity sets. {Instances.Count} context intances.");
+            Logger.DebugFormat($"Context instance {_contextType.Name} - {_entitySets.Count} entity sets. {Instances.Count} context instances.");
         }
 
         /// <summary>
@@ -131,7 +131,7 @@
         private void CreateDatabase()
         {
             var ddlBuilder = new StringBuilder();
-            foreach (var entitySet in EntitySets)
+            foreach (var entitySet in _entitySets)
             {
                 ddlBuilder.AppendLine(entitySet.Value.TableDefinition);
             }
@@ -177,7 +177,7 @@
         /// <summary>
         /// Gets all instances of Lite DB contexts that are instantiated and not disposed.
         /// </summary>
-        public static ReadOnlyCollection<LiteDbContext> Instances => new ReadOnlyCollection<LiteDbContext>(m_Intances.Values.ToList());
+        public static ReadOnlyCollection<LiteDbContext> Instances => new ReadOnlyCollection<LiteDbContext>(Intances.Values.ToList());
 
 #endregion
 
@@ -195,12 +195,12 @@
             {
                 if (disposing)
                 {
-                    LiteDbContext removed = null;
-                    m_Intances.TryRemove(this.UniqueId, out removed);
+                    LiteDbContext removed;
+                    Intances.TryRemove(this.UniqueId, out removed);
                     Connection.Close();
                     Connection.Dispose();
                     Connection = null;
-                    Logger.DebugFormat($"Disposed {ContextType.Name}. {m_Intances.Count} context instances.");
+                    Logger.DebugFormat($"Disposed {_contextType.Name}. {Intances.Count} context instances.");
                 }
 
                 _isDisposing = true;

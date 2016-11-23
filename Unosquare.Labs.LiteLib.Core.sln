@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{2F87B6CD-6691-4FBF-A8C9-6BD7C907F639}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Unosquare.Labs.LiteLib", "src\Unosquare.Labs.LiteLib\Unosquare.Labs.LiteLib.xproj", "{76B8EFC5-EDEF-4E31-9E78-164E8687B1AB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{F9A26418-7A21-4ED7-8238-10CADAA3F2F0}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Unosquare.Labs.LiteLib.Tests", "test\Unosquare.Labs.LiteLib.Tests\Unosquare.Labs.LiteLib.Tests.xproj", "{C91F303C-DFF3-4260-8A66-0EBEF53F69F5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Folder", "Solution Folder", "{283A6432-7C09-440C-92D8-9692EDCA9E01}"
+	ProjectSection(SolutionItems) = preProject
+		.travis.yml = .travis.yml
+		appveyor.yml = appveyor.yml
+		global.json = global.json
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{76B8EFC5-EDEF-4E31-9E78-164E8687B1AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76B8EFC5-EDEF-4E31-9E78-164E8687B1AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76B8EFC5-EDEF-4E31-9E78-164E8687B1AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76B8EFC5-EDEF-4E31-9E78-164E8687B1AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C91F303C-DFF3-4260-8A66-0EBEF53F69F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C91F303C-DFF3-4260-8A66-0EBEF53F69F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C91F303C-DFF3-4260-8A66-0EBEF53F69F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C91F303C-DFF3-4260-8A66-0EBEF53F69F5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{76B8EFC5-EDEF-4E31-9E78-164E8687B1AB} = {2F87B6CD-6691-4FBF-A8C9-6BD7C907F639}
+		{C91F303C-DFF3-4260-8A66-0EBEF53F69F5} = {F9A26418-7A21-4ED7-8238-10CADAA3F2F0}
+	EndGlobalSection
+EndGlobal

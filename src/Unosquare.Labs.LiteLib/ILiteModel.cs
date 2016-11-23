@@ -32,10 +32,6 @@
     /// <seealso cref="System.Attribute" />
     public class LiteIndexAttribute : Attribute
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="LiteIndexAttribute"/> class.
-        /// </summary>
-        public LiteIndexAttribute() { }
     }
 
     /// <summary>
@@ -44,9 +40,5 @@
     /// <seealso cref="System.Attribute" />
     public class LiteUniqueAttribute : Attribute
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="LiteIndexAttribute" /> class.
-        /// </summary>
-        public LiteUniqueAttribute() { }
     }
 }
