@@ -96,7 +96,7 @@ namespace Models
 Finally, use your database context class. For example, to query your database by username asynchronously you can just do the following:
 
 ```cs
-using (var db = new AppDbContext)
+using (var db = new AppDbContext())
 {
   var accounts = await db.ClientAccounts.SelectAsync(
       $"{nameof(ClientAccount.Username)} = @{nameof(ClientAccount.Username)}", 
