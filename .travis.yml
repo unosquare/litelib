@@ -11,7 +11,7 @@ os:
 install:
   - nuget restore Unosquare.Labs.LiteLib.sln
   - nuget install NUnit.Runners -Version 3.4.1 -OutputDirectory testrunner
-  - sudo apt-get install sqlite
+  - if [[ $TRAVIS_OS_NAME == "linux" ]]; then sudo apt-get install sqlite; fi
 script:
   - xbuild /p:Configuration=Mono Unosquare.Labs.LiteLib.sln
   - export LD_LIBRARY_PATH=/usr/local/lib
