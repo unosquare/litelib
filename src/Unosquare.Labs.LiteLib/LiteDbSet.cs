@@ -154,12 +154,12 @@
             var indexBuilder = new List<string>();
 
             var publicInstanceFlags = BindingFlags.Instance | BindingFlags.Public;
-            var properties = typeof (T).GetProperties(publicInstanceFlags);
+            var properties = typeof(T).GetProperties(publicInstanceFlags);
             var propertyNames = new List<string>();
 
             // Start off with the table name
             var tableName = nameof(T);
-            var tableAttribute = typeof(T).GetTypeInfo().GetCustomAttribute< TableAttribute>();
+            var tableAttribute = typeof(T).GetTypeInfo().GetCustomAttribute<TableAttribute>();
             if (tableAttribute != null)
                 tableName = tableAttribute.Name;
 
@@ -202,7 +202,7 @@
                     }
                 }
 
-                propertyNames.Add(property.Name);
+                var isValidProperty = false;
                 var propertyType = property.PropertyType;
                 var isNullable = propertyType.GetTypeInfo().IsGenericType &&
                                  propertyType.GetGenericTypeDefinition() == typeof(Nullable<>);
@@ -211,6 +211,8 @@
 
                 if (propertyType == typeof(string))
                 {
+                    isValidProperty = true;
+
                     var stringLength = 4096;
                     {
                         var stringLengthAttribute = property.GetCustomAttribute<StringLengthAttribute>();
@@ -238,18 +240,26 @@
                 }
                 else if (propertyType.GetTypeInfo().IsValueType)
                 {
+                    isValidProperty = true;
                     createBuilder.AppendLine(
                         $"    [{property.Name}] {propertyType.GetTypeMapping()} {nullStatement},");
                 }
                 else if (propertyType == typeof(byte[]))
                 {
+                    isValidProperty = true;
                     createBuilder.AppendLine($"    [{property.Name}] BLOB {nullStatement},");
                 }
+
+                if (isValidProperty)
+                {
+                    propertyNames.Add(property.Name);
+                }
+
             }
 
             //trim out the extra comma
             createBuilder.Remove(createBuilder.Length - Environment.NewLine.Length - 1, Environment.NewLine.Length + 1);
-            
+
             createBuilder.AppendLine();
             createBuilder.AppendLine(");");
 
@@ -264,7 +274,7 @@
 
             TableName = tableName;
             TableDefinition = createBuilder.ToString();
-            
+
             SelectDefinition = $"SELECT [{nameof(ILiteModel.RowId)}], {escapedColumnNames} FROM [{tableName}]";
             InsertDefinition =
                 $"INSERT INTO [{tableName}] ({escapedColumnNames}) VALUES ({parameterColumnNames}); SELECT last_insert_rowid();";
@@ -462,7 +472,7 @@
         {
             return await SelectAsync("1 = 1", null);
         }
-        
+
         /// <summary>
         /// Firsts the or default.
         /// </summary>
@@ -482,7 +492,7 @@
         public T Single(long rowId)
         {
             return
-                Select($"[{nameof(ILiteModel.RowId)}] = @{nameof(ILiteModel.RowId)}", new {RowId = rowId})
+                Select($"[{nameof(ILiteModel.RowId)}] = @{nameof(ILiteModel.RowId)}", new { RowId = rowId })
                     .FirstOrDefault();
         }
 
@@ -494,7 +504,7 @@
         public async Task<T> SingleAsync(long rowId)
         {
             var result =
-                await SelectAsync($"[{nameof(ILiteModel.RowId)}] = @{nameof(ILiteModel.RowId)}", new {RowId = rowId});
+                await SelectAsync($"[{nameof(ILiteModel.RowId)}] = @{nameof(ILiteModel.RowId)}", new { RowId = rowId });
             return result.FirstOrDefault();
         }
 
@@ -545,6 +555,6 @@
             return await Context.Connection.QueryAsync<T>(commandText, commandParams);
         }
 
-#endregion
+        #endregion
     }
 }

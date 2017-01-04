@@ -18,5 +18,7 @@ namespace Unosquare.Labs.LiteLib.Tests.Database
         public bool IsShipped { get; set; }
         public int Amount { get; set; }
         public string ShippedDate { get; set; }
+
+        public ComplexDetail ComplexDetail { get; set; }
     }
 }

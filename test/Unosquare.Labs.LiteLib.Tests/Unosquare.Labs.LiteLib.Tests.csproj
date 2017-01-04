@@ -62,6 +62,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Database\ComplexDetail.cs" />
     <Compile Include="Database\Order.cs" />
     <Compile Include="DbContextFixture.cs" />
     <Compile Include="Database\TestDbContext.cs" />
