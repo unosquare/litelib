@@ -2,7 +2,6 @@
 {
     using Dapper;
     using System.Data;
-    using Log;
     using System;
     using System.Collections.Concurrent;
     using System.Collections.Generic;
@@ -12,6 +11,7 @@
     using System.Reflection;
     using System.Text;
     using System.Threading.Tasks;
+    using Swan;
 #if MONO
     using Mono.Data.Sqlite;
 #else
@@ -49,10 +49,8 @@
         /// Initializes a new instance of the <see cref="LiteDbContext" /> class.
         /// </summary>
         /// <param name="databaseFilePath">The database file path.</param>
-        /// <param name="logger">The logger.</param>
-        protected LiteDbContext(string databaseFilePath, ILog logger)
+        protected LiteDbContext(string databaseFilePath)
         {
-            Logger = logger ?? new NullLog();
             _contextType = GetType();
             LoadEntitySets();
 
@@ -73,9 +71,9 @@
 
             if (databaseExists == false)
             {
-                Logger.DebugFormat("DB file does not exist. Creating.");
+                "DB file does not exist. Creating.".Debug();
                 CreateDatabase();
-                Logger.DebugFormat($"DB file created: '{databaseFilePath}'");
+                $"DB file created: '{databaseFilePath}'".Debug();
             }
 
             UniqueId = Guid.NewGuid();
@@ -122,7 +120,7 @@
                 _entitySets[entitySetProp.Name] = currentValue;
             }
 
-            Logger.DebugFormat($"Context instance {_contextType.Name} - {_entitySets.Count} entity sets. {Instances.Count} context instances.");
+            $"Context instance {_contextType.Name} - {_entitySets.Count} entity sets. {Instances.Count} context instances.".Debug();
         }
 
         /// <summary>
@@ -150,9 +148,9 @@
         /// <returns></returns>
         public async Task VaccuumDatabaseAsync()
         {
-            Logger.DebugFormat("DB VACUUM command executing.");
+            "DB VACUUM command executing.".Debug();
             await Connection.ExecuteAsync("VACCUUM");
-            Logger.DebugFormat("DB VACUUM command finished.");
+            "DB VACUUM command finished.".Debug();
         }
 
 #endregion
@@ -163,12 +161,7 @@
         /// Gets the underlying SQLite connection.
         /// </summary>
         public IDbConnection Connection { get; private set; }
-
-        /// <summary>
-        /// Gets the logger this instance was initialized with.
-        /// </summary>
-        public ILog Logger { get; protected set; }
-
+        
         /// <summary>
         /// Gets the unique identifier of this context.
         /// </summary>
@@ -200,7 +193,7 @@
                     Connection.Close();
                     Connection.Dispose();
                     Connection = null;
-                    Logger.DebugFormat($"Disposed {_contextType.Name}. {Intances.Count} context instances.");
+                    $"Disposed {_contextType.Name}. {Intances.Count} context instances.".Debug();
                 }
 
                 _isDisposing = true;

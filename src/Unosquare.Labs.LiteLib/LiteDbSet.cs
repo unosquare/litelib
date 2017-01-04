@@ -1,6 +1,7 @@
 ﻿namespace Unosquare.Labs.LiteLib
 {
     using Dapper;
+    using Swan;
     using System;
     using System.Collections.Concurrent;
     using System.Collections.Generic;
@@ -290,38 +291,9 @@
         /// <param name="arguments">The arguments.</param>
         private void LogSqlCommand(string command, object arguments)
         {
-            if (Debugger.IsAttached == false) return;
-            if (Context?.Logger == null) return;
-
-            //var task = Task.Factory.StartNew(() => {
-            var argumentsText = new StringBuilder();
-
-            if (arguments != null)
-            {
-                argumentsText.AppendLine();
-                argumentsText.AppendLine("  {");
-                var props = arguments.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public);
-                foreach (var prop in props)
-                {
-                    if (!prop.CanRead) continue;
-                    object propValue = null;
-
-                    try
-                    {
-                        propValue = prop.GetValue(arguments);
-                    }
-                    catch
-                    {
-                        // ignored
-                    }
-                    argumentsText.AppendLine($"    \"{prop.Name}\": \"{propValue ?? ""}\"");
-                }
-
-                argumentsText.AppendLine("  }");
-            }
-
-            Context.Logger.DebugFormat($"> {command}{argumentsText}");
-            //});
+            if (Debugger.IsAttached == false || Terminal.IsConsolePresent == false) return;
+            
+            $"> {command}{arguments.Stringify()}".Debug();
         }
 
         /// <summary>
@@ -555,7 +527,6 @@
         /// <param name="commandText">The command text.</param>
         /// <param name="commandParams">The command parameters.</param>
         /// <returns></returns>
-        /// <exception cref="System.NotImplementedException"></exception>
         public IEnumerable<T> Query(string commandText, object commandParams)
         {
             LogSqlCommand(commandText, commandParams);
@@ -568,7 +539,6 @@
         /// <param name="commandText">The command text.</param>
         /// <param name="commandParams">The command parameters.</param>
         /// <returns></returns>
-        /// <exception cref="System.NotImplementedException"></exception>
         public async Task<IEnumerable<T>> QueryAsync(string commandText, object commandParams)
         {
             LogSqlCommand(commandText, commandParams);
