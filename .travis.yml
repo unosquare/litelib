@@ -9,10 +9,10 @@ os:
   - linux
   - osx
 install:
+  - if [[ $TRAVIS_OS_NAME == "linux" ]]; then sudo nuget update -self; fi
   - nuget restore Unosquare.Labs.LiteLib.sln
   - nuget install NUnit.Runners -Version 3.4.1 -OutputDirectory testrunner
   - if [[ $TRAVIS_OS_NAME == "linux" ]]; then sudo apt-get install sqlite; fi
 script:
   - xbuild /p:Configuration=Mono Unosquare.Labs.LiteLib.sln
-  - export LD_LIBRARY_PATH=/usr/local/lib
   - mono ./testrunner/NUnit.ConsoleRunner.3.4.1/tools/nunit3-console.exe --process=Single ./test/Unosquare.Labs.LiteLib.Tests/bin/Mono/Unosquare.Labs.LiteLib.Tests.dll
