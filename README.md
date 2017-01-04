@@ -1,5 +1,6 @@
  [![Analytics](https://ga-beacon.appspot.com/UA-8535255-2/unosquare/litelib/)](https://github.com/igrigorik/ga-beacon)
  [![Build Status](https://travis-ci.org/unosquare/litelib.svg?branch=master)](https://travis-ci.org/unosquare/litelib)
+ [![Build status](https://ci.appveyor.com/api/projects/status/iwk94ol34b7y5411?svg=true)](https://ci.appveyor.com/project/geoperez/litelib)
  [![Coverage Status](https://coveralls.io/repos/github/unosquare/litelib/badge.svg?branch=master)](https://coveralls.io/github/unosquare/litelib?branch=master)
 
 <img src="https://raw.githubusercontent.com/unosquare/litelib/master/litelib-logo.png" alt="LiteLib Logo" />
@@ -23,11 +24,10 @@ Stuff that LiteLib *does not* cover:
 - Navigation properties or relationships. You'll have to implement and ensure consistency of data relations manually -- which BTW, it's not hard at all and lets you write faster, lighter code.
 - Automatic transactions or changesets. You'll have to `BeginTransaction` and `Commit` manually. The Data context class you define simply exposes the underlying Dapper connection.
 
-##Installation
-
-[![NuGet version](https://badge.fury.io/nu/litelib.svg)](https://badge.fury.io/nu/litelib)
+##Installation [![NuGet version](https://badge.fury.io/nu/litelib.svg)](https://badge.fury.io/nu/litelib)
 
 You can install LiteLib via NuGet Package Manager as follows:
+
 <pre>
 PM> Install-Package LiteLib
 </pre>
@@ -83,9 +83,9 @@ namespace Models
     public class AppDbContext : LiteDbContext
     {
         public AppDbContext()
-            : base("mydbfile.db", null)
+            : base("mydbfile.db")
         {
-            // map this context to the database file mydbfile.db and don't use any logging capabilities.
+            // map this context to the database file mydbfile.db
         }
         
         public virtual LiteDbSet<ClientAccount> ClientAccounts { get; set; }
