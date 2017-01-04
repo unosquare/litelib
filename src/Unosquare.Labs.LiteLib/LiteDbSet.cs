@@ -302,8 +302,8 @@
         private void LogSqlCommand(string command, object arguments)
         {
             if (Debugger.IsAttached == false || Terminal.IsConsolePresent == false) return;
-            
-            $"> {command}{arguments.Stringify()}".Debug();
+
+            $"> {command}{arguments.Stringify()}".Debug(nameof(LiteDbContext));
         }
 
         /// <summary>

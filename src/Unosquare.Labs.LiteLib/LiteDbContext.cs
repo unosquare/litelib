@@ -71,9 +71,9 @@
 
             if (databaseExists == false)
             {
-                "DB file does not exist. Creating.".Debug();
+                "DB file does not exist. Creating.".Debug(nameof(LiteDbContext));
                 CreateDatabase();
-                $"DB file created: '{databaseFilePath}'".Debug();
+                $"DB file created: '{databaseFilePath}'".Debug(nameof(LiteDbContext));
             }
 
             UniqueId = Guid.NewGuid();
@@ -120,7 +120,7 @@
                 _entitySets[entitySetProp.Name] = currentValue;
             }
 
-            $"Context instance {_contextType.Name} - {_entitySets.Count} entity sets. {Instances.Count} context instances.".Debug();
+            $"Context instance {_contextType.Name} - {_entitySets.Count} entity sets. {Instances.Count} context instances.".Debug(nameof(LiteDbContext));
         }
 
         /// <summary>
@@ -148,9 +148,9 @@
         /// <returns></returns>
         public async Task VaccuumDatabaseAsync()
         {
-            "DB VACUUM command executing.".Debug();
+            "DB VACUUM command executing.".Debug(nameof(LiteDbContext));
             await Connection.ExecuteAsync("VACCUUM");
-            "DB VACUUM command finished.".Debug();
+            "DB VACUUM command finished.".Debug(nameof(LiteDbContext));
         }
 
 #endregion
