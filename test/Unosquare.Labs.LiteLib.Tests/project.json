@@ -5,7 +5,7 @@
   },
   "dependencies": {
     "dotnet-test-nunit": "3.4.0-beta-1",
-    "Microsoft.Data.SQLite": "1.0.0",
+    "Microsoft.Data.Sqlite": "1.1.0",
     "NUnit": "3.5.0",
     "Unosquare.Labs.LiteLib": { "target": "project" }
   },
@@ -15,6 +15,12 @@
       "imports": "dnxcore50",
       "dependencies": {
         "Microsoft.NETCore.App": "1.1.0"
+      }
+    },
+    "netstandard1.6": {
+      "imports": [ "dnxcore50", "netcoreapp1.1" ],
+      "dependencies": {
+        "NETStandard.Library": "1.6.1"
       }
     },
     "net452": {}
