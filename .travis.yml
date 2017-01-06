@@ -9,7 +9,6 @@ os:
   - linux
   - osx
 install:
-  - if [[ $TRAVIS_OS_NAME == "linux" ]]; then nuget update -self; fi
   - nuget restore Unosquare.Labs.LiteLib.sln
   - nuget install NUnit.Runners -Version 3.4.1 -OutputDirectory testrunner
   - if [[ $TRAVIS_OS_NAME == "linux" ]]; then sudo apt-get install sqlite; fi
