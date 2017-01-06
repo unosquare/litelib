@@ -1,5 +1,5 @@
 {
-  "version": "0.9.5-*",
+  "version": "0.9.7-*",
   "title": "LiteLib",
   "description": "A cool little wrapper for SQLite based on Dapper.",
   "buildOptions": {
@@ -9,7 +9,7 @@
   "dependencies": {
     "Dapper": "1.50.2",
     "Microsoft.Data.Sqlite": "1.1.0",
-    "Unosquare.Swan": "0.9.15"
+    "Unosquare.Swan": "0.9.18"
   },
 
   "frameworks": {
