@@ -2,9 +2,6 @@ language: csharp
 solution: Unosquare.Labs.LiteLib.sln
 notifications:
   slack: unolabs:cbusXPH6pBwZ35rVDzi4k4ve
-mono:
-  - latest
-  - 4.2.1
 os:
   - linux
   - osx
