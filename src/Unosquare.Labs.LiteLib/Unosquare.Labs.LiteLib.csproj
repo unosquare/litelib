@@ -64,8 +64,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="Unosquare.Swan, Version=0.9.14.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Unosquare.Swan.0.9.14\lib\net452\Unosquare.Swan.dll</HintPath>
+    <Reference Include="Unosquare.Swan, Version=0.10.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Unosquare.Swan.0.10.2\lib\net452\Unosquare.Swan.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
