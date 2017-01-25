@@ -149,7 +149,7 @@
         public async Task VaccuumDatabaseAsync()
         {
             "DB VACUUM command executing.".Debug(nameof(LiteDbContext));
-            await Connection.ExecuteAsync("VACCUUM");
+            await Connection.ExecuteAsync("VACUUM");
             "DB VACUUM command finished.".Debug(nameof(LiteDbContext));
         }
 
