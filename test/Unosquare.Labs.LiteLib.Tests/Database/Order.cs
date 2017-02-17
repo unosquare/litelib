@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Unosquare.Labs.LiteLib.Tests.Database
 {
-    class Order : LiteModel
+    internal class Order : LiteModel
     {
         [LiteUnique]
         public string UniqueId { get; set; }

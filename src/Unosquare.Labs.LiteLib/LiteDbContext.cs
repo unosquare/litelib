@@ -12,6 +12,7 @@
     using System.Text;
     using System.Threading.Tasks;
     using Swan;
+    using Swan.Reflection;
 #if MONO
     using Mono.Data.Sqlite;
 #else
@@ -29,7 +30,7 @@
         private readonly Dictionary<string, ILiteDbSet> _entitySets = new Dictionary<string, ILiteDbSet>();
         private readonly Type _contextType;
         private static readonly ConcurrentDictionary<Guid, LiteDbContext> Intances = new ConcurrentDictionary<Guid, LiteDbContext>();
-        private static readonly ConcurrentDictionary<Type, PropertyInfo[]> PropertyInfoCache = new ConcurrentDictionary<Type, PropertyInfo[]>();
+        private static readonly PropertyTypeCache PropertyInfoCache = new PropertyTypeCache();
         private static readonly Type GenericLiteDbSetType = typeof(LiteDbSet<>);
 
 #endregion
@@ -89,17 +90,14 @@
         /// </summary>
         private void LoadEntitySets()
         {
-            PropertyInfo[] contextDbSetProperties;
-            if (PropertyInfoCache.ContainsKey(_contextType))
+            var contextDbSetProperties = PropertyInfoCache.Retrieve(GetType(), () =>
             {
-                contextDbSetProperties = PropertyInfoCache[_contextType];
-            }
-            else
-            {
-                contextDbSetProperties = GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.PropertyType.GetTypeInfo().IsGenericType && p.PropertyType.GetGenericTypeDefinition() == GenericLiteDbSetType).ToArray();
-                PropertyInfoCache[_contextType] = contextDbSetProperties;
-            }
+                return GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance)
+                    .Where(
+                        p =>
+                            p.PropertyType.GetTypeInfo().IsGenericType &&
+                            p.PropertyType.GetGenericTypeDefinition() == GenericLiteDbSetType);
+            });
             
             foreach (var entitySetProp in contextDbSetProperties)
             {
@@ -153,9 +151,41 @@
             "DB VACUUM command finished.".Debug(nameof(LiteDbContext));
         }
 
-#endregion
+        /// <summary>
+        /// Returns a non-generic ILiteDbSet instance for access to entities of the given type in the context and the underlying store.
+        /// </summary>
+        /// <param name="entityType">Type of the entity.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        public ILiteDbSet Set(Type entityType)
+        {
+            var set = _entitySets.Values.FirstOrDefault(x => x.GetType().GetTypeInfo().GetGenericArguments().Any(z => z == entityType));
 
-#region Properties
+            if (set == null)
+                throw new ArgumentOutOfRangeException();
+
+            return set;
+        }
+
+        /// <summary>
+        /// Returns a ILiteDbSet instance for access to entities of the given type in the context and the underlying store.
+        /// </summary>
+        /// <typeparam name="TEntity">Entity type</typeparam>
+        /// <returns></returns>
+        public ILiteDbSet Set<TEntity>()
+        {
+            return Set(typeof(TEntity));
+        }
+
+        /// <summary>
+        /// Gets the set names.
+        /// </summary>
+        /// <returns></returns>
+        public string[] GetSetNames() => _entitySets.Keys.ToArray();
+
+        #endregion
+
+        #region Properties
 
         /// <summary>
         /// Gets the underlying SQLite connection.

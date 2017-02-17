@@ -660,5 +660,22 @@ namespace Unosquare.Labs.LiteLib.Tests
                 });
             }
         }
+
+        [Test]
+        public void TestSets()
+        {
+            using (var context = new TestDbContext(nameof(TestSets)))
+            {
+                var names = context.GetSetNames();
+                Assert.IsNotNull(names);
+                Assert.AreEqual(names, new[] {nameof(context.Orders), nameof(context.Warehouses)});
+
+                var orders = context.Set<Order>();
+                var ordersByName = context.Set(typeof(Order));
+
+                Assert.AreEqual(context.Orders, orders);
+                Assert.AreEqual(context.Orders, ordersByName);
+            }
+        }
     }
 }
