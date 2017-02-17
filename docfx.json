@@ -18,17 +18,18 @@
         "dest": "api"
       },
       {
-        "files": [ "*.md", "toc.yml" ]
+        "files": [ "*.md" ]
       }
     ],
     "resource": [
       {
-        "files": [ ]
+        "files": [ "litelib-log.png" ]
       }
     ],
     "globalMetadata": {
-      "_appTitle": "Unosquare SWAN",
-      "_enableSearch": true
+      "_appTitle": "Unosquare LiteLib",
+      "_enableSearch": true,
+      "_appLogoPath": "litelib-log.png"
     },
     "dest": "_site"
   }
