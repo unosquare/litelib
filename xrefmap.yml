@@ -1,0 +1,1118 @@
+### YamlMime:XRefMap
+sorted: true
+references:
+- uid: Unosquare.Labs.LiteLib
+  name: Unosquare.Labs.LiteLib
+  href: api/Unosquare.Labs.LiteLib.html
+  commentId: N:Unosquare.Labs.LiteLib
+  fullName: Unosquare.Labs.LiteLib
+  nameWithType: Unosquare.Labs.LiteLib
+- uid: Unosquare.Labs.LiteLib.EntityEventArgs`1
+  name: EntityEventArgs<T>
+  href: api/Unosquare.Labs.LiteLib.EntityEventArgs-1.html
+  commentId: T:Unosquare.Labs.LiteLib.EntityEventArgs`1
+  name.vb: EntityEventArgs(Of T)
+  fullName: Unosquare.Labs.LiteLib.EntityEventArgs<T>
+  fullName.vb: Unosquare.Labs.LiteLib.EntityEventArgs(Of T)
+  nameWithType: EntityEventArgs<T>
+  nameWithType.vb: EntityEventArgs(Of T)
+- uid: Unosquare.Labs.LiteLib.EntityEventArgs`1.#ctor(`0,Unosquare.Labs.LiteLib.ILiteDbSet{`0})
+  name: EntityEventArgs(T, ILiteDbSet<T>)
+  href: api/Unosquare.Labs.LiteLib.EntityEventArgs-1.html#Unosquare_Labs_LiteLib_EntityEventArgs_1__ctor__0_Unosquare_Labs_LiteLib_ILiteDbSet__0__
+  commentId: M:Unosquare.Labs.LiteLib.EntityEventArgs`1.#ctor(`0,Unosquare.Labs.LiteLib.ILiteDbSet{`0})
+  name.vb: EntityEventArgs(T, ILiteDbSet(Of T))
+  fullName: Unosquare.Labs.LiteLib.EntityEventArgs<T>.EntityEventArgs(T, Unosquare.Labs.LiteLib.ILiteDbSet<T>)
+  fullName.vb: Unosquare.Labs.LiteLib.EntityEventArgs(Of T).EntityEventArgs(T, Unosquare.Labs.LiteLib.ILiteDbSet(Of T))
+  nameWithType: EntityEventArgs<T>.EntityEventArgs(T, ILiteDbSet<T>)
+  nameWithType.vb: EntityEventArgs(Of T).EntityEventArgs(T, ILiteDbSet(Of T))
+- uid: Unosquare.Labs.LiteLib.EntityEventArgs`1.#ctor*
+  name: EntityEventArgs
+  href: api/Unosquare.Labs.LiteLib.EntityEventArgs-1.html#Unosquare_Labs_LiteLib_EntityEventArgs_1__ctor_
+  commentId: Overload:Unosquare.Labs.LiteLib.EntityEventArgs`1.#ctor
+  fullName: Unosquare.Labs.LiteLib.EntityEventArgs<T>.EntityEventArgs
+  fullName.vb: Unosquare.Labs.LiteLib.EntityEventArgs(Of T).EntityEventArgs
+  nameWithType: EntityEventArgs<T>.EntityEventArgs
+  nameWithType.vb: EntityEventArgs(Of T).EntityEventArgs
+- uid: Unosquare.Labs.LiteLib.EntityEventArgs`1.Cancel
+  name: Cancel
+  href: api/Unosquare.Labs.LiteLib.EntityEventArgs-1.html#Unosquare_Labs_LiteLib_EntityEventArgs_1_Cancel
+  commentId: P:Unosquare.Labs.LiteLib.EntityEventArgs`1.Cancel
+  fullName: Unosquare.Labs.LiteLib.EntityEventArgs<T>.Cancel
+  fullName.vb: Unosquare.Labs.LiteLib.EntityEventArgs(Of T).Cancel
+  nameWithType: EntityEventArgs<T>.Cancel
+  nameWithType.vb: EntityEventArgs(Of T).Cancel
+- uid: Unosquare.Labs.LiteLib.EntityEventArgs`1.Cancel*
+  name: Cancel
+  href: api/Unosquare.Labs.LiteLib.EntityEventArgs-1.html#Unosquare_Labs_LiteLib_EntityEventArgs_1_Cancel_
+  commentId: Overload:Unosquare.Labs.LiteLib.EntityEventArgs`1.Cancel
+  fullName: Unosquare.Labs.LiteLib.EntityEventArgs<T>.Cancel
+  fullName.vb: Unosquare.Labs.LiteLib.EntityEventArgs(Of T).Cancel
+  nameWithType: EntityEventArgs<T>.Cancel
+  nameWithType.vb: EntityEventArgs(Of T).Cancel
+- uid: Unosquare.Labs.LiteLib.EntityEventArgs`1.DbSet
+  name: DbSet
+  href: api/Unosquare.Labs.LiteLib.EntityEventArgs-1.html#Unosquare_Labs_LiteLib_EntityEventArgs_1_DbSet
+  commentId: P:Unosquare.Labs.LiteLib.EntityEventArgs`1.DbSet
+  fullName: Unosquare.Labs.LiteLib.EntityEventArgs<T>.DbSet
+  fullName.vb: Unosquare.Labs.LiteLib.EntityEventArgs(Of T).DbSet
+  nameWithType: EntityEventArgs<T>.DbSet
+  nameWithType.vb: EntityEventArgs(Of T).DbSet
+- uid: Unosquare.Labs.LiteLib.EntityEventArgs`1.DbSet*
+  name: DbSet
+  href: api/Unosquare.Labs.LiteLib.EntityEventArgs-1.html#Unosquare_Labs_LiteLib_EntityEventArgs_1_DbSet_
+  commentId: Overload:Unosquare.Labs.LiteLib.EntityEventArgs`1.DbSet
+  fullName: Unosquare.Labs.LiteLib.EntityEventArgs<T>.DbSet
+  fullName.vb: Unosquare.Labs.LiteLib.EntityEventArgs(Of T).DbSet
+  nameWithType: EntityEventArgs<T>.DbSet
+  nameWithType.vb: EntityEventArgs(Of T).DbSet
+- uid: Unosquare.Labs.LiteLib.EntityEventArgs`1.Entity
+  name: Entity
+  href: api/Unosquare.Labs.LiteLib.EntityEventArgs-1.html#Unosquare_Labs_LiteLib_EntityEventArgs_1_Entity
+  commentId: P:Unosquare.Labs.LiteLib.EntityEventArgs`1.Entity
+  fullName: Unosquare.Labs.LiteLib.EntityEventArgs<T>.Entity
+  fullName.vb: Unosquare.Labs.LiteLib.EntityEventArgs(Of T).Entity
+  nameWithType: EntityEventArgs<T>.Entity
+  nameWithType.vb: EntityEventArgs(Of T).Entity
+- uid: Unosquare.Labs.LiteLib.EntityEventArgs`1.Entity*
+  name: Entity
+  href: api/Unosquare.Labs.LiteLib.EntityEventArgs-1.html#Unosquare_Labs_LiteLib_EntityEventArgs_1_Entity_
+  commentId: Overload:Unosquare.Labs.LiteLib.EntityEventArgs`1.Entity
+  fullName: Unosquare.Labs.LiteLib.EntityEventArgs<T>.Entity
+  fullName.vb: Unosquare.Labs.LiteLib.EntityEventArgs(Of T).Entity
+  nameWithType: EntityEventArgs<T>.Entity
+  nameWithType.vb: EntityEventArgs(Of T).Entity
+- uid: Unosquare.Labs.LiteLib.Extensions
+  name: Extensions
+  href: api/Unosquare.Labs.LiteLib.Extensions.html
+  commentId: T:Unosquare.Labs.LiteLib.Extensions
+  fullName: Unosquare.Labs.LiteLib.Extensions
+  nameWithType: Extensions
+- uid: Unosquare.Labs.LiteLib.Extensions.GetTypeMapping(System.Type)
+  name: GetTypeMapping(Type)
+  href: api/Unosquare.Labs.LiteLib.Extensions.html#Unosquare_Labs_LiteLib_Extensions_GetTypeMapping_System_Type_
+  commentId: M:Unosquare.Labs.LiteLib.Extensions.GetTypeMapping(System.Type)
+  fullName: Unosquare.Labs.LiteLib.Extensions.GetTypeMapping(System.Type)
+  nameWithType: Extensions.GetTypeMapping(Type)
+- uid: Unosquare.Labs.LiteLib.Extensions.GetTypeMapping*
+  name: GetTypeMapping
+  href: api/Unosquare.Labs.LiteLib.Extensions.html#Unosquare_Labs_LiteLib_Extensions_GetTypeMapping_
+  commentId: Overload:Unosquare.Labs.LiteLib.Extensions.GetTypeMapping
+  fullName: Unosquare.Labs.LiteLib.Extensions.GetTypeMapping
+  nameWithType: Extensions.GetTypeMapping
+- uid: Unosquare.Labs.LiteLib.Extensions.ToSQLiteUtcDate(System.DateTime)
+  name: ToSQLiteUtcDate(DateTime)
+  href: api/Unosquare.Labs.LiteLib.Extensions.html#Unosquare_Labs_LiteLib_Extensions_ToSQLiteUtcDate_System_DateTime_
+  commentId: M:Unosquare.Labs.LiteLib.Extensions.ToSQLiteUtcDate(System.DateTime)
+  fullName: Unosquare.Labs.LiteLib.Extensions.ToSQLiteUtcDate(System.DateTime)
+  nameWithType: Extensions.ToSQLiteUtcDate(DateTime)
+- uid: Unosquare.Labs.LiteLib.Extensions.ToSQLiteUtcDate*
+  name: ToSQLiteUtcDate
+  href: api/Unosquare.Labs.LiteLib.Extensions.html#Unosquare_Labs_LiteLib_Extensions_ToSQLiteUtcDate_
+  commentId: Overload:Unosquare.Labs.LiteLib.Extensions.ToSQLiteUtcDate
+  fullName: Unosquare.Labs.LiteLib.Extensions.ToSQLiteUtcDate
+  nameWithType: Extensions.ToSQLiteUtcDate
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet
+  name: ILiteDbSet
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet.html
+  commentId: T:Unosquare.Labs.LiteLib.ILiteDbSet
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet
+  nameWithType: ILiteDbSet
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet.Context
+  name: Context
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet.html#Unosquare_Labs_LiteLib_ILiteDbSet_Context
+  commentId: P:Unosquare.Labs.LiteLib.ILiteDbSet.Context
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet.Context
+  nameWithType: ILiteDbSet.Context
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet.Context*
+  name: Context
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet.html#Unosquare_Labs_LiteLib_ILiteDbSet_Context_
+  commentId: Overload:Unosquare.Labs.LiteLib.ILiteDbSet.Context
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet.Context
+  nameWithType: ILiteDbSet.Context
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet.DeleteDefinition
+  name: DeleteDefinition
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet.html#Unosquare_Labs_LiteLib_ILiteDbSet_DeleteDefinition
+  commentId: P:Unosquare.Labs.LiteLib.ILiteDbSet.DeleteDefinition
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet.DeleteDefinition
+  nameWithType: ILiteDbSet.DeleteDefinition
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet.DeleteDefinition*
+  name: DeleteDefinition
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet.html#Unosquare_Labs_LiteLib_ILiteDbSet_DeleteDefinition_
+  commentId: Overload:Unosquare.Labs.LiteLib.ILiteDbSet.DeleteDefinition
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet.DeleteDefinition
+  nameWithType: ILiteDbSet.DeleteDefinition
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet.EntityType
+  name: EntityType
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet.html#Unosquare_Labs_LiteLib_ILiteDbSet_EntityType
+  commentId: P:Unosquare.Labs.LiteLib.ILiteDbSet.EntityType
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet.EntityType
+  nameWithType: ILiteDbSet.EntityType
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet.EntityType*
+  name: EntityType
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet.html#Unosquare_Labs_LiteLib_ILiteDbSet_EntityType_
+  commentId: Overload:Unosquare.Labs.LiteLib.ILiteDbSet.EntityType
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet.EntityType
+  nameWithType: ILiteDbSet.EntityType
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet.InsertDefinition
+  name: InsertDefinition
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet.html#Unosquare_Labs_LiteLib_ILiteDbSet_InsertDefinition
+  commentId: P:Unosquare.Labs.LiteLib.ILiteDbSet.InsertDefinition
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet.InsertDefinition
+  nameWithType: ILiteDbSet.InsertDefinition
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet.InsertDefinition*
+  name: InsertDefinition
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet.html#Unosquare_Labs_LiteLib_ILiteDbSet_InsertDefinition_
+  commentId: Overload:Unosquare.Labs.LiteLib.ILiteDbSet.InsertDefinition
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet.InsertDefinition
+  nameWithType: ILiteDbSet.InsertDefinition
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet.SelectDefinition
+  name: SelectDefinition
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet.html#Unosquare_Labs_LiteLib_ILiteDbSet_SelectDefinition
+  commentId: P:Unosquare.Labs.LiteLib.ILiteDbSet.SelectDefinition
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet.SelectDefinition
+  nameWithType: ILiteDbSet.SelectDefinition
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet.SelectDefinition*
+  name: SelectDefinition
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet.html#Unosquare_Labs_LiteLib_ILiteDbSet_SelectDefinition_
+  commentId: Overload:Unosquare.Labs.LiteLib.ILiteDbSet.SelectDefinition
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet.SelectDefinition
+  nameWithType: ILiteDbSet.SelectDefinition
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet.TableDefinition
+  name: TableDefinition
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet.html#Unosquare_Labs_LiteLib_ILiteDbSet_TableDefinition
+  commentId: P:Unosquare.Labs.LiteLib.ILiteDbSet.TableDefinition
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet.TableDefinition
+  nameWithType: ILiteDbSet.TableDefinition
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet.TableDefinition*
+  name: TableDefinition
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet.html#Unosquare_Labs_LiteLib_ILiteDbSet_TableDefinition_
+  commentId: Overload:Unosquare.Labs.LiteLib.ILiteDbSet.TableDefinition
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet.TableDefinition
+  nameWithType: ILiteDbSet.TableDefinition
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet.TableName
+  name: TableName
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet.html#Unosquare_Labs_LiteLib_ILiteDbSet_TableName
+  commentId: P:Unosquare.Labs.LiteLib.ILiteDbSet.TableName
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet.TableName
+  nameWithType: ILiteDbSet.TableName
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet.TableName*
+  name: TableName
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet.html#Unosquare_Labs_LiteLib_ILiteDbSet_TableName_
+  commentId: Overload:Unosquare.Labs.LiteLib.ILiteDbSet.TableName
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet.TableName
+  nameWithType: ILiteDbSet.TableName
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet.UpdateDefinition
+  name: UpdateDefinition
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet.html#Unosquare_Labs_LiteLib_ILiteDbSet_UpdateDefinition
+  commentId: P:Unosquare.Labs.LiteLib.ILiteDbSet.UpdateDefinition
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet.UpdateDefinition
+  nameWithType: ILiteDbSet.UpdateDefinition
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet.UpdateDefinition*
+  name: UpdateDefinition
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet.html#Unosquare_Labs_LiteLib_ILiteDbSet_UpdateDefinition_
+  commentId: Overload:Unosquare.Labs.LiteLib.ILiteDbSet.UpdateDefinition
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet.UpdateDefinition
+  nameWithType: ILiteDbSet.UpdateDefinition
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet`1
+  name: ILiteDbSet<T>
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html
+  commentId: T:Unosquare.Labs.LiteLib.ILiteDbSet`1
+  name.vb: ILiteDbSet(Of T)
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>
+  fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T)
+  nameWithType: ILiteDbSet<T>
+  nameWithType.vb: ILiteDbSet(Of T)
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet`1.Count
+  name: Count()
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_Count
+  commentId: M:Unosquare.Labs.LiteLib.ILiteDbSet`1.Count
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.Count()
+  fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).Count()
+  nameWithType: ILiteDbSet<T>.Count()
+  nameWithType.vb: ILiteDbSet(Of T).Count()
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet`1.Count*
+  name: Count
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_Count_
+  commentId: Overload:Unosquare.Labs.LiteLib.ILiteDbSet`1.Count
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.Count
+  fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).Count
+  nameWithType: ILiteDbSet<T>.Count
+  nameWithType.vb: ILiteDbSet(Of T).Count
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet`1.CountAsync
+  name: CountAsync()
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_CountAsync
+  commentId: M:Unosquare.Labs.LiteLib.ILiteDbSet`1.CountAsync
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.CountAsync()
+  fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).CountAsync()
+  nameWithType: ILiteDbSet<T>.CountAsync()
+  nameWithType.vb: ILiteDbSet(Of T).CountAsync()
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet`1.CountAsync*
+  name: CountAsync
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_CountAsync_
+  commentId: Overload:Unosquare.Labs.LiteLib.ILiteDbSet`1.CountAsync
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.CountAsync
+  fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).CountAsync
+  nameWithType: ILiteDbSet<T>.CountAsync
+  nameWithType.vb: ILiteDbSet(Of T).CountAsync
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet`1.Delete(`0)
+  name: Delete(T)
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_Delete__0_
+  commentId: M:Unosquare.Labs.LiteLib.ILiteDbSet`1.Delete(`0)
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.Delete(T)
+  fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).Delete(T)
+  nameWithType: ILiteDbSet<T>.Delete(T)
+  nameWithType.vb: ILiteDbSet(Of T).Delete(T)
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet`1.Delete*
+  name: Delete
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_Delete_
+  commentId: Overload:Unosquare.Labs.LiteLib.ILiteDbSet`1.Delete
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.Delete
+  fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).Delete
+  nameWithType: ILiteDbSet<T>.Delete
+  nameWithType.vb: ILiteDbSet(Of T).Delete
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet`1.DeleteAsync(`0)
+  name: DeleteAsync(T)
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_DeleteAsync__0_
+  commentId: M:Unosquare.Labs.LiteLib.ILiteDbSet`1.DeleteAsync(`0)
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.DeleteAsync(T)
+  fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).DeleteAsync(T)
+  nameWithType: ILiteDbSet<T>.DeleteAsync(T)
+  nameWithType.vb: ILiteDbSet(Of T).DeleteAsync(T)
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet`1.DeleteAsync*
+  name: DeleteAsync
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_DeleteAsync_
+  commentId: Overload:Unosquare.Labs.LiteLib.ILiteDbSet`1.DeleteAsync
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.DeleteAsync
+  fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).DeleteAsync
+  nameWithType: ILiteDbSet<T>.DeleteAsync
+  nameWithType.vb: ILiteDbSet(Of T).DeleteAsync
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet`1.Insert(`0)
+  name: Insert(T)
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_Insert__0_
+  commentId: M:Unosquare.Labs.LiteLib.ILiteDbSet`1.Insert(`0)
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.Insert(T)
+  fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).Insert(T)
+  nameWithType: ILiteDbSet<T>.Insert(T)
+  nameWithType.vb: ILiteDbSet(Of T).Insert(T)
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet`1.Insert*
+  name: Insert
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_Insert_
+  commentId: Overload:Unosquare.Labs.LiteLib.ILiteDbSet`1.Insert
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.Insert
+  fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).Insert
+  nameWithType: ILiteDbSet<T>.Insert
+  nameWithType.vb: ILiteDbSet(Of T).Insert
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet`1.InsertAsync(`0)
+  name: InsertAsync(T)
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_InsertAsync__0_
+  commentId: M:Unosquare.Labs.LiteLib.ILiteDbSet`1.InsertAsync(`0)
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.InsertAsync(T)
+  fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).InsertAsync(T)
+  nameWithType: ILiteDbSet<T>.InsertAsync(T)
+  nameWithType.vb: ILiteDbSet(Of T).InsertAsync(T)
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet`1.InsertAsync*
+  name: InsertAsync
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_InsertAsync_
+  commentId: Overload:Unosquare.Labs.LiteLib.ILiteDbSet`1.InsertAsync
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.InsertAsync
+  fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).InsertAsync
+  nameWithType: ILiteDbSet<T>.InsertAsync
+  nameWithType.vb: ILiteDbSet(Of T).InsertAsync
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet`1.Query(System.String,System.Object)
+  name: Query(String, Object)
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_Query_System_String_System_Object_
+  commentId: M:Unosquare.Labs.LiteLib.ILiteDbSet`1.Query(System.String,System.Object)
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.Query(System.String, System.Object)
+  fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).Query(System.String, System.Object)
+  nameWithType: ILiteDbSet<T>.Query(String, Object)
+  nameWithType.vb: ILiteDbSet(Of T).Query(String, Object)
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet`1.Query*
+  name: Query
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_Query_
+  commentId: Overload:Unosquare.Labs.LiteLib.ILiteDbSet`1.Query
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.Query
+  fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).Query
+  nameWithType: ILiteDbSet<T>.Query
+  nameWithType.vb: ILiteDbSet(Of T).Query
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet`1.QueryAsync(System.String,System.Object)
+  name: QueryAsync(String, Object)
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_QueryAsync_System_String_System_Object_
+  commentId: M:Unosquare.Labs.LiteLib.ILiteDbSet`1.QueryAsync(System.String,System.Object)
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.QueryAsync(System.String, System.Object)
+  fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).QueryAsync(System.String, System.Object)
+  nameWithType: ILiteDbSet<T>.QueryAsync(String, Object)
+  nameWithType.vb: ILiteDbSet(Of T).QueryAsync(String, Object)
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet`1.QueryAsync*
+  name: QueryAsync
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_QueryAsync_
+  commentId: Overload:Unosquare.Labs.LiteLib.ILiteDbSet`1.QueryAsync
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.QueryAsync
+  fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).QueryAsync
+  nameWithType: ILiteDbSet<T>.QueryAsync
+  nameWithType.vb: ILiteDbSet(Of T).QueryAsync
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet`1.Select(System.String,System.Object)
+  name: Select(String, Object)
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_Select_System_String_System_Object_
+  commentId: M:Unosquare.Labs.LiteLib.ILiteDbSet`1.Select(System.String,System.Object)
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.Select(System.String, System.Object)
+  fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).Select(System.String, System.Object)
+  nameWithType: ILiteDbSet<T>.Select(String, Object)
+  nameWithType.vb: ILiteDbSet(Of T).Select(String, Object)
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet`1.Select*
+  name: Select
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_Select_
+  commentId: Overload:Unosquare.Labs.LiteLib.ILiteDbSet`1.Select
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.Select
+  fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).Select
+  nameWithType: ILiteDbSet<T>.Select
+  nameWithType.vb: ILiteDbSet(Of T).Select
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet`1.SelectAll
+  name: SelectAll()
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_SelectAll
+  commentId: M:Unosquare.Labs.LiteLib.ILiteDbSet`1.SelectAll
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.SelectAll()
+  fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).SelectAll()
+  nameWithType: ILiteDbSet<T>.SelectAll()
+  nameWithType.vb: ILiteDbSet(Of T).SelectAll()
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet`1.SelectAll*
+  name: SelectAll
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_SelectAll_
+  commentId: Overload:Unosquare.Labs.LiteLib.ILiteDbSet`1.SelectAll
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.SelectAll
+  fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).SelectAll
+  nameWithType: ILiteDbSet<T>.SelectAll
+  nameWithType.vb: ILiteDbSet(Of T).SelectAll
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet`1.SelectAllAsync
+  name: SelectAllAsync()
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_SelectAllAsync
+  commentId: M:Unosquare.Labs.LiteLib.ILiteDbSet`1.SelectAllAsync
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.SelectAllAsync()
+  fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).SelectAllAsync()
+  nameWithType: ILiteDbSet<T>.SelectAllAsync()
+  nameWithType.vb: ILiteDbSet(Of T).SelectAllAsync()
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet`1.SelectAllAsync*
+  name: SelectAllAsync
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_SelectAllAsync_
+  commentId: Overload:Unosquare.Labs.LiteLib.ILiteDbSet`1.SelectAllAsync
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.SelectAllAsync
+  fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).SelectAllAsync
+  nameWithType: ILiteDbSet<T>.SelectAllAsync
+  nameWithType.vb: ILiteDbSet(Of T).SelectAllAsync
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet`1.SelectAsync(System.String,System.Object)
+  name: SelectAsync(String, Object)
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_SelectAsync_System_String_System_Object_
+  commentId: M:Unosquare.Labs.LiteLib.ILiteDbSet`1.SelectAsync(System.String,System.Object)
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.SelectAsync(System.String, System.Object)
+  fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).SelectAsync(System.String, System.Object)
+  nameWithType: ILiteDbSet<T>.SelectAsync(String, Object)
+  nameWithType.vb: ILiteDbSet(Of T).SelectAsync(String, Object)
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet`1.SelectAsync*
+  name: SelectAsync
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_SelectAsync_
+  commentId: Overload:Unosquare.Labs.LiteLib.ILiteDbSet`1.SelectAsync
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.SelectAsync
+  fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).SelectAsync
+  nameWithType: ILiteDbSet<T>.SelectAsync
+  nameWithType.vb: ILiteDbSet(Of T).SelectAsync
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet`1.Single(System.Int64)
+  name: Single(Int64)
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_Single_System_Int64_
+  commentId: M:Unosquare.Labs.LiteLib.ILiteDbSet`1.Single(System.Int64)
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.Single(System.Int64)
+  fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).Single(System.Int64)
+  nameWithType: ILiteDbSet<T>.Single(Int64)
+  nameWithType.vb: ILiteDbSet(Of T).Single(Int64)
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet`1.Single*
+  name: Single
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_Single_
+  commentId: Overload:Unosquare.Labs.LiteLib.ILiteDbSet`1.Single
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.Single
+  fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).Single
+  nameWithType: ILiteDbSet<T>.Single
+  nameWithType.vb: ILiteDbSet(Of T).Single
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet`1.SingleAsync(System.Int64)
+  name: SingleAsync(Int64)
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_SingleAsync_System_Int64_
+  commentId: M:Unosquare.Labs.LiteLib.ILiteDbSet`1.SingleAsync(System.Int64)
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.SingleAsync(System.Int64)
+  fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).SingleAsync(System.Int64)
+  nameWithType: ILiteDbSet<T>.SingleAsync(Int64)
+  nameWithType.vb: ILiteDbSet(Of T).SingleAsync(Int64)
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet`1.SingleAsync*
+  name: SingleAsync
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_SingleAsync_
+  commentId: Overload:Unosquare.Labs.LiteLib.ILiteDbSet`1.SingleAsync
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.SingleAsync
+  fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).SingleAsync
+  nameWithType: ILiteDbSet<T>.SingleAsync
+  nameWithType.vb: ILiteDbSet(Of T).SingleAsync
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet`1.Update(`0)
+  name: Update(T)
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_Update__0_
+  commentId: M:Unosquare.Labs.LiteLib.ILiteDbSet`1.Update(`0)
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.Update(T)
+  fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).Update(T)
+  nameWithType: ILiteDbSet<T>.Update(T)
+  nameWithType.vb: ILiteDbSet(Of T).Update(T)
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet`1.Update*
+  name: Update
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_Update_
+  commentId: Overload:Unosquare.Labs.LiteLib.ILiteDbSet`1.Update
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.Update
+  fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).Update
+  nameWithType: ILiteDbSet<T>.Update
+  nameWithType.vb: ILiteDbSet(Of T).Update
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet`1.UpdateAsync(`0)
+  name: UpdateAsync(T)
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_UpdateAsync__0_
+  commentId: M:Unosquare.Labs.LiteLib.ILiteDbSet`1.UpdateAsync(`0)
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.UpdateAsync(T)
+  fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).UpdateAsync(T)
+  nameWithType: ILiteDbSet<T>.UpdateAsync(T)
+  nameWithType.vb: ILiteDbSet(Of T).UpdateAsync(T)
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet`1.UpdateAsync*
+  name: UpdateAsync
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_UpdateAsync_
+  commentId: Overload:Unosquare.Labs.LiteLib.ILiteDbSet`1.UpdateAsync
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.UpdateAsync
+  fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).UpdateAsync
+  nameWithType: ILiteDbSet<T>.UpdateAsync
+  nameWithType.vb: ILiteDbSet(Of T).UpdateAsync
+- uid: Unosquare.Labs.LiteLib.ILiteModel
+  name: ILiteModel
+  href: api/Unosquare.Labs.LiteLib.ILiteModel.html
+  commentId: T:Unosquare.Labs.LiteLib.ILiteModel
+  fullName: Unosquare.Labs.LiteLib.ILiteModel
+  nameWithType: ILiteModel
+- uid: Unosquare.Labs.LiteLib.ILiteModel.RowId
+  name: RowId
+  href: api/Unosquare.Labs.LiteLib.ILiteModel.html#Unosquare_Labs_LiteLib_ILiteModel_RowId
+  commentId: P:Unosquare.Labs.LiteLib.ILiteModel.RowId
+  fullName: Unosquare.Labs.LiteLib.ILiteModel.RowId
+  nameWithType: ILiteModel.RowId
+- uid: Unosquare.Labs.LiteLib.ILiteModel.RowId*
+  name: RowId
+  href: api/Unosquare.Labs.LiteLib.ILiteModel.html#Unosquare_Labs_LiteLib_ILiteModel_RowId_
+  commentId: Overload:Unosquare.Labs.LiteLib.ILiteModel.RowId
+  fullName: Unosquare.Labs.LiteLib.ILiteModel.RowId
+  nameWithType: ILiteModel.RowId
+- uid: Unosquare.Labs.LiteLib.LiteDbContext
+  name: LiteDbContext
+  href: api/Unosquare.Labs.LiteLib.LiteDbContext.html
+  commentId: T:Unosquare.Labs.LiteLib.LiteDbContext
+  fullName: Unosquare.Labs.LiteLib.LiteDbContext
+  nameWithType: LiteDbContext
+- uid: Unosquare.Labs.LiteLib.LiteDbContext.#ctor(System.String)
+  name: LiteDbContext(String)
+  href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext__ctor_System_String_
+  commentId: M:Unosquare.Labs.LiteLib.LiteDbContext.#ctor(System.String)
+  fullName: Unosquare.Labs.LiteLib.LiteDbContext.LiteDbContext(System.String)
+  nameWithType: LiteDbContext.LiteDbContext(String)
+- uid: Unosquare.Labs.LiteLib.LiteDbContext.#ctor*
+  name: LiteDbContext
+  href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext__ctor_
+  commentId: Overload:Unosquare.Labs.LiteLib.LiteDbContext.#ctor
+  fullName: Unosquare.Labs.LiteLib.LiteDbContext.LiteDbContext
+  nameWithType: LiteDbContext.LiteDbContext
+- uid: Unosquare.Labs.LiteLib.LiteDbContext.Connection
+  name: Connection
+  href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_Connection
+  commentId: P:Unosquare.Labs.LiteLib.LiteDbContext.Connection
+  fullName: Unosquare.Labs.LiteLib.LiteDbContext.Connection
+  nameWithType: LiteDbContext.Connection
+- uid: Unosquare.Labs.LiteLib.LiteDbContext.Connection*
+  name: Connection
+  href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_Connection_
+  commentId: Overload:Unosquare.Labs.LiteLib.LiteDbContext.Connection
+  fullName: Unosquare.Labs.LiteLib.LiteDbContext.Connection
+  nameWithType: LiteDbContext.Connection
+- uid: Unosquare.Labs.LiteLib.LiteDbContext.Dispose
+  name: Dispose()
+  href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_Dispose
+  commentId: M:Unosquare.Labs.LiteLib.LiteDbContext.Dispose
+  fullName: Unosquare.Labs.LiteLib.LiteDbContext.Dispose()
+  nameWithType: LiteDbContext.Dispose()
+- uid: Unosquare.Labs.LiteLib.LiteDbContext.Dispose*
+  name: Dispose
+  href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_Dispose_
+  commentId: Overload:Unosquare.Labs.LiteLib.LiteDbContext.Dispose
+  fullName: Unosquare.Labs.LiteLib.LiteDbContext.Dispose
+  nameWithType: LiteDbContext.Dispose
+- uid: Unosquare.Labs.LiteLib.LiteDbContext.GetSetNames
+  name: GetSetNames()
+  href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_GetSetNames
+  commentId: M:Unosquare.Labs.LiteLib.LiteDbContext.GetSetNames
+  fullName: Unosquare.Labs.LiteLib.LiteDbContext.GetSetNames()
+  nameWithType: LiteDbContext.GetSetNames()
+- uid: Unosquare.Labs.LiteLib.LiteDbContext.GetSetNames*
+  name: GetSetNames
+  href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_GetSetNames_
+  commentId: Overload:Unosquare.Labs.LiteLib.LiteDbContext.GetSetNames
+  fullName: Unosquare.Labs.LiteLib.LiteDbContext.GetSetNames
+  nameWithType: LiteDbContext.GetSetNames
+- uid: Unosquare.Labs.LiteLib.LiteDbContext.Instances
+  name: Instances
+  href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_Instances
+  commentId: P:Unosquare.Labs.LiteLib.LiteDbContext.Instances
+  fullName: Unosquare.Labs.LiteLib.LiteDbContext.Instances
+  nameWithType: LiteDbContext.Instances
+- uid: Unosquare.Labs.LiteLib.LiteDbContext.Instances*
+  name: Instances
+  href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_Instances_
+  commentId: Overload:Unosquare.Labs.LiteLib.LiteDbContext.Instances
+  fullName: Unosquare.Labs.LiteLib.LiteDbContext.Instances
+  nameWithType: LiteDbContext.Instances
+- uid: Unosquare.Labs.LiteLib.LiteDbContext.OnDatabaseCreated
+  name: OnDatabaseCreated
+  href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_OnDatabaseCreated
+  commentId: E:Unosquare.Labs.LiteLib.LiteDbContext.OnDatabaseCreated
+  fullName: Unosquare.Labs.LiteLib.LiteDbContext.OnDatabaseCreated
+  nameWithType: LiteDbContext.OnDatabaseCreated
+- uid: Unosquare.Labs.LiteLib.LiteDbContext.Set(System.Type)
+  name: Set(Type)
+  href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_Set_System_Type_
+  commentId: M:Unosquare.Labs.LiteLib.LiteDbContext.Set(System.Type)
+  fullName: Unosquare.Labs.LiteLib.LiteDbContext.Set(System.Type)
+  nameWithType: LiteDbContext.Set(Type)
+- uid: Unosquare.Labs.LiteLib.LiteDbContext.Set*
+  name: Set
+  href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_Set_
+  commentId: Overload:Unosquare.Labs.LiteLib.LiteDbContext.Set
+  fullName: Unosquare.Labs.LiteLib.LiteDbContext.Set
+  nameWithType: LiteDbContext.Set
+- uid: Unosquare.Labs.LiteLib.LiteDbContext.Set``1
+  name: Set<TEntity>()
+  href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_Set__1
+  commentId: M:Unosquare.Labs.LiteLib.LiteDbContext.Set``1
+  name.vb: Set(Of TEntity)()
+  fullName: Unosquare.Labs.LiteLib.LiteDbContext.Set<TEntity>()
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbContext.Set(Of TEntity)()
+  nameWithType: LiteDbContext.Set<TEntity>()
+  nameWithType.vb: LiteDbContext.Set(Of TEntity)()
+- uid: Unosquare.Labs.LiteLib.LiteDbContext.UniqueId
+  name: UniqueId
+  href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_UniqueId
+  commentId: P:Unosquare.Labs.LiteLib.LiteDbContext.UniqueId
+  fullName: Unosquare.Labs.LiteLib.LiteDbContext.UniqueId
+  nameWithType: LiteDbContext.UniqueId
+- uid: Unosquare.Labs.LiteLib.LiteDbContext.UniqueId*
+  name: UniqueId
+  href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_UniqueId_
+  commentId: Overload:Unosquare.Labs.LiteLib.LiteDbContext.UniqueId
+  fullName: Unosquare.Labs.LiteLib.LiteDbContext.UniqueId
+  nameWithType: LiteDbContext.UniqueId
+- uid: Unosquare.Labs.LiteLib.LiteDbContext.VaccuumDatabaseAsync
+  name: VaccuumDatabaseAsync()
+  href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_VaccuumDatabaseAsync
+  commentId: M:Unosquare.Labs.LiteLib.LiteDbContext.VaccuumDatabaseAsync
+  fullName: Unosquare.Labs.LiteLib.LiteDbContext.VaccuumDatabaseAsync()
+  nameWithType: LiteDbContext.VaccuumDatabaseAsync()
+- uid: Unosquare.Labs.LiteLib.LiteDbContext.VaccuumDatabaseAsync*
+  name: VaccuumDatabaseAsync
+  href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_VaccuumDatabaseAsync_
+  commentId: Overload:Unosquare.Labs.LiteLib.LiteDbContext.VaccuumDatabaseAsync
+  fullName: Unosquare.Labs.LiteLib.LiteDbContext.VaccuumDatabaseAsync
+  nameWithType: LiteDbContext.VaccuumDatabaseAsync
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1
+  name: LiteDbSet<T>
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html
+  commentId: T:Unosquare.Labs.LiteLib.LiteDbSet`1
+  name.vb: LiteDbSet(Of T)
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T)
+  nameWithType: LiteDbSet<T>
+  nameWithType.vb: LiteDbSet(Of T)
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.#ctor
+  name: LiteDbSet()
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1__ctor
+  commentId: M:Unosquare.Labs.LiteLib.LiteDbSet`1.#ctor
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.LiteDbSet()
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).LiteDbSet()
+  nameWithType: LiteDbSet<T>.LiteDbSet()
+  nameWithType.vb: LiteDbSet(Of T).LiteDbSet()
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.#ctor*
+  name: LiteDbSet
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1__ctor_
+  commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.#ctor
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.LiteDbSet
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).LiteDbSet
+  nameWithType: LiteDbSet<T>.LiteDbSet
+  nameWithType.vb: LiteDbSet(Of T).LiteDbSet
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.Context
+  name: Context
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_Context
+  commentId: P:Unosquare.Labs.LiteLib.LiteDbSet`1.Context
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.Context
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).Context
+  nameWithType: LiteDbSet<T>.Context
+  nameWithType.vb: LiteDbSet(Of T).Context
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.Context*
+  name: Context
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_Context_
+  commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.Context
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.Context
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).Context
+  nameWithType: LiteDbSet<T>.Context
+  nameWithType.vb: LiteDbSet(Of T).Context
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.Count
+  name: Count()
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_Count
+  commentId: M:Unosquare.Labs.LiteLib.LiteDbSet`1.Count
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.Count()
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).Count()
+  nameWithType: LiteDbSet<T>.Count()
+  nameWithType.vb: LiteDbSet(Of T).Count()
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.Count*
+  name: Count
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_Count_
+  commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.Count
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.Count
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).Count
+  nameWithType: LiteDbSet<T>.Count
+  nameWithType.vb: LiteDbSet(Of T).Count
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.CountAsync
+  name: CountAsync()
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_CountAsync
+  commentId: M:Unosquare.Labs.LiteLib.LiteDbSet`1.CountAsync
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.CountAsync()
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).CountAsync()
+  nameWithType: LiteDbSet<T>.CountAsync()
+  nameWithType.vb: LiteDbSet(Of T).CountAsync()
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.CountAsync*
+  name: CountAsync
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_CountAsync_
+  commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.CountAsync
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.CountAsync
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).CountAsync
+  nameWithType: LiteDbSet<T>.CountAsync
+  nameWithType.vb: LiteDbSet(Of T).CountAsync
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.Delete(`0)
+  name: Delete(T)
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_Delete__0_
+  commentId: M:Unosquare.Labs.LiteLib.LiteDbSet`1.Delete(`0)
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.Delete(T)
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).Delete(T)
+  nameWithType: LiteDbSet<T>.Delete(T)
+  nameWithType.vb: LiteDbSet(Of T).Delete(T)
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.Delete*
+  name: Delete
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_Delete_
+  commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.Delete
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.Delete
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).Delete
+  nameWithType: LiteDbSet<T>.Delete
+  nameWithType.vb: LiteDbSet(Of T).Delete
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.DeleteAsync(`0)
+  name: DeleteAsync(T)
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_DeleteAsync__0_
+  commentId: M:Unosquare.Labs.LiteLib.LiteDbSet`1.DeleteAsync(`0)
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.DeleteAsync(T)
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).DeleteAsync(T)
+  nameWithType: LiteDbSet<T>.DeleteAsync(T)
+  nameWithType.vb: LiteDbSet(Of T).DeleteAsync(T)
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.DeleteAsync*
+  name: DeleteAsync
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_DeleteAsync_
+  commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.DeleteAsync
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.DeleteAsync
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).DeleteAsync
+  nameWithType: LiteDbSet<T>.DeleteAsync
+  nameWithType.vb: LiteDbSet(Of T).DeleteAsync
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.DeleteDefinition
+  name: DeleteDefinition
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_DeleteDefinition
+  commentId: P:Unosquare.Labs.LiteLib.LiteDbSet`1.DeleteDefinition
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.DeleteDefinition
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).DeleteDefinition
+  nameWithType: LiteDbSet<T>.DeleteDefinition
+  nameWithType.vb: LiteDbSet(Of T).DeleteDefinition
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.DeleteDefinition*
+  name: DeleteDefinition
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_DeleteDefinition_
+  commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.DeleteDefinition
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.DeleteDefinition
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).DeleteDefinition
+  nameWithType: LiteDbSet<T>.DeleteDefinition
+  nameWithType.vb: LiteDbSet(Of T).DeleteDefinition
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.EntityType
+  name: EntityType
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_EntityType
+  commentId: P:Unosquare.Labs.LiteLib.LiteDbSet`1.EntityType
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.EntityType
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).EntityType
+  nameWithType: LiteDbSet<T>.EntityType
+  nameWithType.vb: LiteDbSet(Of T).EntityType
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.EntityType*
+  name: EntityType
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_EntityType_
+  commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.EntityType
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.EntityType
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).EntityType
+  nameWithType: LiteDbSet<T>.EntityType
+  nameWithType.vb: LiteDbSet(Of T).EntityType
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.FirstOrDefault(System.String,System.Object)
+  name: FirstOrDefault(String, Object)
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_FirstOrDefault_System_String_System_Object_
+  commentId: M:Unosquare.Labs.LiteLib.LiteDbSet`1.FirstOrDefault(System.String,System.Object)
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.FirstOrDefault(System.String, System.Object)
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).FirstOrDefault(System.String, System.Object)
+  nameWithType: LiteDbSet<T>.FirstOrDefault(String, Object)
+  nameWithType.vb: LiteDbSet(Of T).FirstOrDefault(String, Object)
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.FirstOrDefault*
+  name: FirstOrDefault
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_FirstOrDefault_
+  commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.FirstOrDefault
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.FirstOrDefault
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).FirstOrDefault
+  nameWithType: LiteDbSet<T>.FirstOrDefault
+  nameWithType.vb: LiteDbSet(Of T).FirstOrDefault
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.Insert(`0)
+  name: Insert(T)
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_Insert__0_
+  commentId: M:Unosquare.Labs.LiteLib.LiteDbSet`1.Insert(`0)
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.Insert(T)
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).Insert(T)
+  nameWithType: LiteDbSet<T>.Insert(T)
+  nameWithType.vb: LiteDbSet(Of T).Insert(T)
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.Insert*
+  name: Insert
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_Insert_
+  commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.Insert
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.Insert
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).Insert
+  nameWithType: LiteDbSet<T>.Insert
+  nameWithType.vb: LiteDbSet(Of T).Insert
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.InsertAsync(`0)
+  name: InsertAsync(T)
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_InsertAsync__0_
+  commentId: M:Unosquare.Labs.LiteLib.LiteDbSet`1.InsertAsync(`0)
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.InsertAsync(T)
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).InsertAsync(T)
+  nameWithType: LiteDbSet<T>.InsertAsync(T)
+  nameWithType.vb: LiteDbSet(Of T).InsertAsync(T)
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.InsertAsync*
+  name: InsertAsync
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_InsertAsync_
+  commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.InsertAsync
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.InsertAsync
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).InsertAsync
+  nameWithType: LiteDbSet<T>.InsertAsync
+  nameWithType.vb: LiteDbSet(Of T).InsertAsync
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.InsertDefinition
+  name: InsertDefinition
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_InsertDefinition
+  commentId: P:Unosquare.Labs.LiteLib.LiteDbSet`1.InsertDefinition
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.InsertDefinition
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).InsertDefinition
+  nameWithType: LiteDbSet<T>.InsertDefinition
+  nameWithType.vb: LiteDbSet(Of T).InsertDefinition
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.InsertDefinition*
+  name: InsertDefinition
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_InsertDefinition_
+  commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.InsertDefinition
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.InsertDefinition
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).InsertDefinition
+  nameWithType: LiteDbSet<T>.InsertDefinition
+  nameWithType.vb: LiteDbSet(Of T).InsertDefinition
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.OnAfterDelete
+  name: OnAfterDelete
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_OnAfterDelete
+  commentId: E:Unosquare.Labs.LiteLib.LiteDbSet`1.OnAfterDelete
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.OnAfterDelete
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).OnAfterDelete
+  nameWithType: LiteDbSet<T>.OnAfterDelete
+  nameWithType.vb: LiteDbSet(Of T).OnAfterDelete
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.OnAfterInsert
+  name: OnAfterInsert
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_OnAfterInsert
+  commentId: E:Unosquare.Labs.LiteLib.LiteDbSet`1.OnAfterInsert
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.OnAfterInsert
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).OnAfterInsert
+  nameWithType: LiteDbSet<T>.OnAfterInsert
+  nameWithType.vb: LiteDbSet(Of T).OnAfterInsert
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.OnAfterUpdate
+  name: OnAfterUpdate
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_OnAfterUpdate
+  commentId: E:Unosquare.Labs.LiteLib.LiteDbSet`1.OnAfterUpdate
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.OnAfterUpdate
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).OnAfterUpdate
+  nameWithType: LiteDbSet<T>.OnAfterUpdate
+  nameWithType.vb: LiteDbSet(Of T).OnAfterUpdate
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.OnBeforeDelete
+  name: OnBeforeDelete
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_OnBeforeDelete
+  commentId: E:Unosquare.Labs.LiteLib.LiteDbSet`1.OnBeforeDelete
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.OnBeforeDelete
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).OnBeforeDelete
+  nameWithType: LiteDbSet<T>.OnBeforeDelete
+  nameWithType.vb: LiteDbSet(Of T).OnBeforeDelete
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.OnBeforeInsert
+  name: OnBeforeInsert
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_OnBeforeInsert
+  commentId: E:Unosquare.Labs.LiteLib.LiteDbSet`1.OnBeforeInsert
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.OnBeforeInsert
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).OnBeforeInsert
+  nameWithType: LiteDbSet<T>.OnBeforeInsert
+  nameWithType.vb: LiteDbSet(Of T).OnBeforeInsert
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.OnBeforeUpdate
+  name: OnBeforeUpdate
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_OnBeforeUpdate
+  commentId: E:Unosquare.Labs.LiteLib.LiteDbSet`1.OnBeforeUpdate
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.OnBeforeUpdate
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).OnBeforeUpdate
+  nameWithType: LiteDbSet<T>.OnBeforeUpdate
+  nameWithType.vb: LiteDbSet(Of T).OnBeforeUpdate
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.Query(System.String,System.Object)
+  name: Query(String, Object)
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_Query_System_String_System_Object_
+  commentId: M:Unosquare.Labs.LiteLib.LiteDbSet`1.Query(System.String,System.Object)
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.Query(System.String, System.Object)
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).Query(System.String, System.Object)
+  nameWithType: LiteDbSet<T>.Query(String, Object)
+  nameWithType.vb: LiteDbSet(Of T).Query(String, Object)
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.Query*
+  name: Query
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_Query_
+  commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.Query
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.Query
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).Query
+  nameWithType: LiteDbSet<T>.Query
+  nameWithType.vb: LiteDbSet(Of T).Query
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.QueryAsync(System.String,System.Object)
+  name: QueryAsync(String, Object)
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_QueryAsync_System_String_System_Object_
+  commentId: M:Unosquare.Labs.LiteLib.LiteDbSet`1.QueryAsync(System.String,System.Object)
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.QueryAsync(System.String, System.Object)
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).QueryAsync(System.String, System.Object)
+  nameWithType: LiteDbSet<T>.QueryAsync(String, Object)
+  nameWithType.vb: LiteDbSet(Of T).QueryAsync(String, Object)
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.QueryAsync*
+  name: QueryAsync
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_QueryAsync_
+  commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.QueryAsync
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.QueryAsync
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).QueryAsync
+  nameWithType: LiteDbSet<T>.QueryAsync
+  nameWithType.vb: LiteDbSet(Of T).QueryAsync
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.Select(System.String,System.Object)
+  name: Select(String, Object)
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_Select_System_String_System_Object_
+  commentId: M:Unosquare.Labs.LiteLib.LiteDbSet`1.Select(System.String,System.Object)
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.Select(System.String, System.Object)
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).Select(System.String, System.Object)
+  nameWithType: LiteDbSet<T>.Select(String, Object)
+  nameWithType.vb: LiteDbSet(Of T).Select(String, Object)
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.Select*
+  name: Select
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_Select_
+  commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.Select
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.Select
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).Select
+  nameWithType: LiteDbSet<T>.Select
+  nameWithType.vb: LiteDbSet(Of T).Select
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.SelectAll
+  name: SelectAll()
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_SelectAll
+  commentId: M:Unosquare.Labs.LiteLib.LiteDbSet`1.SelectAll
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.SelectAll()
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).SelectAll()
+  nameWithType: LiteDbSet<T>.SelectAll()
+  nameWithType.vb: LiteDbSet(Of T).SelectAll()
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.SelectAll*
+  name: SelectAll
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_SelectAll_
+  commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.SelectAll
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.SelectAll
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).SelectAll
+  nameWithType: LiteDbSet<T>.SelectAll
+  nameWithType.vb: LiteDbSet(Of T).SelectAll
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.SelectAllAsync
+  name: SelectAllAsync()
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_SelectAllAsync
+  commentId: M:Unosquare.Labs.LiteLib.LiteDbSet`1.SelectAllAsync
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.SelectAllAsync()
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).SelectAllAsync()
+  nameWithType: LiteDbSet<T>.SelectAllAsync()
+  nameWithType.vb: LiteDbSet(Of T).SelectAllAsync()
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.SelectAllAsync*
+  name: SelectAllAsync
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_SelectAllAsync_
+  commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.SelectAllAsync
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.SelectAllAsync
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).SelectAllAsync
+  nameWithType: LiteDbSet<T>.SelectAllAsync
+  nameWithType.vb: LiteDbSet(Of T).SelectAllAsync
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.SelectAsync(System.String,System.Object)
+  name: SelectAsync(String, Object)
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_SelectAsync_System_String_System_Object_
+  commentId: M:Unosquare.Labs.LiteLib.LiteDbSet`1.SelectAsync(System.String,System.Object)
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.SelectAsync(System.String, System.Object)
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).SelectAsync(System.String, System.Object)
+  nameWithType: LiteDbSet<T>.SelectAsync(String, Object)
+  nameWithType.vb: LiteDbSet(Of T).SelectAsync(String, Object)
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.SelectAsync*
+  name: SelectAsync
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_SelectAsync_
+  commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.SelectAsync
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.SelectAsync
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).SelectAsync
+  nameWithType: LiteDbSet<T>.SelectAsync
+  nameWithType.vb: LiteDbSet(Of T).SelectAsync
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.SelectDefinition
+  name: SelectDefinition
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_SelectDefinition
+  commentId: P:Unosquare.Labs.LiteLib.LiteDbSet`1.SelectDefinition
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.SelectDefinition
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).SelectDefinition
+  nameWithType: LiteDbSet<T>.SelectDefinition
+  nameWithType.vb: LiteDbSet(Of T).SelectDefinition
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.SelectDefinition*
+  name: SelectDefinition
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_SelectDefinition_
+  commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.SelectDefinition
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.SelectDefinition
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).SelectDefinition
+  nameWithType: LiteDbSet<T>.SelectDefinition
+  nameWithType.vb: LiteDbSet(Of T).SelectDefinition
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.Single(System.Int64)
+  name: Single(Int64)
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_Single_System_Int64_
+  commentId: M:Unosquare.Labs.LiteLib.LiteDbSet`1.Single(System.Int64)
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.Single(System.Int64)
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).Single(System.Int64)
+  nameWithType: LiteDbSet<T>.Single(Int64)
+  nameWithType.vb: LiteDbSet(Of T).Single(Int64)
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.Single*
+  name: Single
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_Single_
+  commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.Single
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.Single
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).Single
+  nameWithType: LiteDbSet<T>.Single
+  nameWithType.vb: LiteDbSet(Of T).Single
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.SingleAsync(System.Int64)
+  name: SingleAsync(Int64)
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_SingleAsync_System_Int64_
+  commentId: M:Unosquare.Labs.LiteLib.LiteDbSet`1.SingleAsync(System.Int64)
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.SingleAsync(System.Int64)
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).SingleAsync(System.Int64)
+  nameWithType: LiteDbSet<T>.SingleAsync(Int64)
+  nameWithType.vb: LiteDbSet(Of T).SingleAsync(Int64)
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.SingleAsync*
+  name: SingleAsync
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_SingleAsync_
+  commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.SingleAsync
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.SingleAsync
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).SingleAsync
+  nameWithType: LiteDbSet<T>.SingleAsync
+  nameWithType.vb: LiteDbSet(Of T).SingleAsync
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.TableDefinition
+  name: TableDefinition
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_TableDefinition
+  commentId: P:Unosquare.Labs.LiteLib.LiteDbSet`1.TableDefinition
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.TableDefinition
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).TableDefinition
+  nameWithType: LiteDbSet<T>.TableDefinition
+  nameWithType.vb: LiteDbSet(Of T).TableDefinition
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.TableDefinition*
+  name: TableDefinition
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_TableDefinition_
+  commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.TableDefinition
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.TableDefinition
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).TableDefinition
+  nameWithType: LiteDbSet<T>.TableDefinition
+  nameWithType.vb: LiteDbSet(Of T).TableDefinition
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.TableName
+  name: TableName
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_TableName
+  commentId: P:Unosquare.Labs.LiteLib.LiteDbSet`1.TableName
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.TableName
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).TableName
+  nameWithType: LiteDbSet<T>.TableName
+  nameWithType.vb: LiteDbSet(Of T).TableName
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.TableName*
+  name: TableName
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_TableName_
+  commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.TableName
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.TableName
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).TableName
+  nameWithType: LiteDbSet<T>.TableName
+  nameWithType.vb: LiteDbSet(Of T).TableName
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.Update(`0)
+  name: Update(T)
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_Update__0_
+  commentId: M:Unosquare.Labs.LiteLib.LiteDbSet`1.Update(`0)
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.Update(T)
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).Update(T)
+  nameWithType: LiteDbSet<T>.Update(T)
+  nameWithType.vb: LiteDbSet(Of T).Update(T)
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.Update*
+  name: Update
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_Update_
+  commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.Update
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.Update
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).Update
+  nameWithType: LiteDbSet<T>.Update
+  nameWithType.vb: LiteDbSet(Of T).Update
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.UpdateAsync(`0)
+  name: UpdateAsync(T)
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_UpdateAsync__0_
+  commentId: M:Unosquare.Labs.LiteLib.LiteDbSet`1.UpdateAsync(`0)
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.UpdateAsync(T)
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).UpdateAsync(T)
+  nameWithType: LiteDbSet<T>.UpdateAsync(T)
+  nameWithType.vb: LiteDbSet(Of T).UpdateAsync(T)
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.UpdateAsync*
+  name: UpdateAsync
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_UpdateAsync_
+  commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.UpdateAsync
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.UpdateAsync
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).UpdateAsync
+  nameWithType: LiteDbSet<T>.UpdateAsync
+  nameWithType.vb: LiteDbSet(Of T).UpdateAsync
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.UpdateDefinition
+  name: UpdateDefinition
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_UpdateDefinition
+  commentId: P:Unosquare.Labs.LiteLib.LiteDbSet`1.UpdateDefinition
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.UpdateDefinition
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).UpdateDefinition
+  nameWithType: LiteDbSet<T>.UpdateDefinition
+  nameWithType.vb: LiteDbSet(Of T).UpdateDefinition
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.UpdateDefinition*
+  name: UpdateDefinition
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_UpdateDefinition_
+  commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.UpdateDefinition
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.UpdateDefinition
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).UpdateDefinition
+  nameWithType: LiteDbSet<T>.UpdateDefinition
+  nameWithType.vb: LiteDbSet(Of T).UpdateDefinition
+- uid: Unosquare.Labs.LiteLib.LiteIndexAttribute
+  name: LiteIndexAttribute
+  href: api/Unosquare.Labs.LiteLib.LiteIndexAttribute.html
+  commentId: T:Unosquare.Labs.LiteLib.LiteIndexAttribute
+  fullName: Unosquare.Labs.LiteLib.LiteIndexAttribute
+  nameWithType: LiteIndexAttribute
+- uid: Unosquare.Labs.LiteLib.LiteModel
+  name: LiteModel
+  href: api/Unosquare.Labs.LiteLib.LiteModel.html
+  commentId: T:Unosquare.Labs.LiteLib.LiteModel
+  fullName: Unosquare.Labs.LiteLib.LiteModel
+  nameWithType: LiteModel
+- uid: Unosquare.Labs.LiteLib.LiteModel.RowId
+  name: RowId
+  href: api/Unosquare.Labs.LiteLib.LiteModel.html#Unosquare_Labs_LiteLib_LiteModel_RowId
+  commentId: P:Unosquare.Labs.LiteLib.LiteModel.RowId
+  fullName: Unosquare.Labs.LiteLib.LiteModel.RowId
+  nameWithType: LiteModel.RowId
+- uid: Unosquare.Labs.LiteLib.LiteModel.RowId*
+  name: RowId
+  href: api/Unosquare.Labs.LiteLib.LiteModel.html#Unosquare_Labs_LiteLib_LiteModel_RowId_
+  commentId: Overload:Unosquare.Labs.LiteLib.LiteModel.RowId
+  fullName: Unosquare.Labs.LiteLib.LiteModel.RowId
+  nameWithType: LiteModel.RowId
+- uid: Unosquare.Labs.LiteLib.LiteUniqueAttribute
+  name: LiteUniqueAttribute
+  href: api/Unosquare.Labs.LiteLib.LiteUniqueAttribute.html
+  commentId: T:Unosquare.Labs.LiteLib.LiteUniqueAttribute
+  fullName: Unosquare.Labs.LiteLib.LiteUniqueAttribute
+  nameWithType: LiteUniqueAttribute
