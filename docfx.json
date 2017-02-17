@@ -23,13 +23,13 @@
     ],
     "resource": [
       {
-        "files": [ "litelib-log.png" ]
+        "files": [ "litelib-logo.png" ]
       }
     ],
     "globalMetadata": {
       "_appTitle": "Unosquare LiteLib",
       "_enableSearch": true,
-      "_appLogoPath": "litelib-log.png"
+      "_appLogoPath": "litelib-logo.png"
     },
     "dest": "_site"
   }
