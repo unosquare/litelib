@@ -19,6 +19,12 @@ environment:
 init:
 - ps: $Env:LABEL = "CI" + $Env:APPVEYOR_BUILD_NUMBER.PadLeft(5, "0")
 before_build:
+- ps: |
+        if(-Not $env:APPVEYOR_PULL_REQUEST_TITLE)
+        {
+            git checkout $env:APPVEYOR_REPO_BRANCH -q
+            cinst docfx -y
+        }
 - appveyor-retry dotnet restore -v Minimal
 - mkdir tools
 - nuget install OpenCover -Version 4.6.519 -OutputDirectory tools
