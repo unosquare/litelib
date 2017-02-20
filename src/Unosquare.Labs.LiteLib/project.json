@@ -1,5 +1,5 @@
 {
-  "version": "0.10.0-*",
+  "version": "0.11.0-*",
   "title": "LiteLib",
   "description": "A cool little wrapper for SQLite based on Dapper.",
   "buildOptions": {

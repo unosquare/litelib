@@ -21,6 +21,8 @@
     public class LiteDbSet<T> : ILiteDbSet<T>
         where T : ILiteModel, new()
     {
+        private const BindingFlags PublicInstanceFlags = BindingFlags.Instance | BindingFlags.Public;
+
         #region Private Declarations
 
         private class DefinitionCacheItem
@@ -31,6 +33,7 @@
             public string InsertDefinition { get; set; }
             public string UpdateDefinition { get; set; }
             public string DeleteDefinition { get; set; }
+            public string[] PropertyNames { get; set; }
         }
 
         private static readonly ConcurrentDictionary<Type, DefinitionCacheItem> DefinitionCache =
@@ -115,6 +118,11 @@
         /// </summary>
         public Type EntityType { get; set; }
 
+        /// <summary>
+        /// Gets or sets the property names.
+        /// </summary>
+        public string[] PropertyNames { get; set; }
+
         #endregion
 
         #region Constructor
@@ -138,6 +146,7 @@
         private void LoadDefinitions()
         {
             var dbSetType = GetType();
+
             if (DefinitionCache.ContainsKey(dbSetType))
             {
                 var cache = DefinitionCache[dbSetType];
@@ -147,18 +156,19 @@
                 InsertDefinition = cache.InsertDefinition;
                 UpdateDefinition = cache.UpdateDefinition;
                 DeleteDefinition = cache.DeleteDefinition;
+                PropertyNames = cache.PropertyNames;
+
                 return;
             }
 
             var createBuilder = new StringBuilder();
             var indexBuilder = new List<string>();
-
-            var publicInstanceFlags = BindingFlags.Instance | BindingFlags.Public;
-            var properties = typeof(T).GetProperties(publicInstanceFlags);
+            
+            var properties = typeof(T).GetProperties(PublicInstanceFlags);
             var propertyNames = new List<string>();
 
             // Start off with the table name
-            var tableName = nameof(T);
+            var tableName = typeof(T).Name;
             var tableAttribute = typeof(T).GetTypeInfo().GetCustomAttribute<TableAttribute>();
             if (tableAttribute != null)
                 tableName = tableAttribute.Name;
@@ -168,10 +178,7 @@
 
             foreach (var property in properties)
             {
-                if (property.Name == nameof(ILiteModel.RowId))
-                    continue;
-
-                if (property.CanWrite == false)
+                if (property.Name == nameof(ILiteModel.RowId) || property.CanWrite == false)
                     continue;
 
                 {
@@ -254,8 +261,10 @@
                 {
                     propertyNames.Add(property.Name);
                 }
-
             }
+
+            if (propertyNames.Any() == false)
+                throw new Exception("Invalid DbSet, you need at least one property to bind");
 
             //trim out the extra comma
             createBuilder.Remove(createBuilder.Length - Environment.NewLine.Length - 1, Environment.NewLine.Length + 1);
@@ -274,6 +283,7 @@
 
             TableName = tableName;
             TableDefinition = createBuilder.ToString();
+            PropertyNames = propertyNames.ToArray();
 
             SelectDefinition = $"SELECT [{nameof(ILiteModel.RowId)}], {escapedColumnNames} FROM [{tableName}]";
             InsertDefinition =
@@ -290,7 +300,8 @@
                 SelectDefinition = SelectDefinition,
                 InsertDefinition = InsertDefinition,
                 UpdateDefinition = UpdateDefinition,
-                DeleteDefinition = DeleteDefinition
+                DeleteDefinition = DeleteDefinition,
+                PropertyNames = PropertyNames
             };
         }
 
@@ -324,6 +335,25 @@
         }
 
         /// <summary>
+        /// Inserts the specified entities.
+        /// </summary>
+        /// <param name="entities">The entities.</param>
+        public void InsertRange(IEnumerable<T> entities)
+        {
+            var escapedColumnNames = string.Join(", ", PropertyNames.Select(p => $"[{p}]").ToArray());
+            var command = $"INSERT INTO [{TableName}] ({escapedColumnNames})";
+            var select = new List<string>();
+            var baseTypeProperties = typeof(T).GetTypeInfo().GetProperties().Where(x => PropertyNames.Contains(x.Name));
+
+            foreach (var entity in entities)
+                select.Add("SELECT " + string.Join(", ", baseTypeProperties.Select(p => $"'{p.GetValue(entity)}'").ToArray()));
+
+            command += string.Join("UNION ALL ", select);
+
+            Context.Connection.ExecuteScalar(command);
+        }
+
+        /// <summary>
         /// Provides and asynchronous counterpart to the Insert method
         /// </summary>
         /// <param name="entity">The entity.</param>
@@ -337,14 +367,11 @@
             LogSqlCommand(InsertDefinition, entity);
             var result = await Context.Connection.QueryAsync<long>(InsertDefinition, entity);
 
-            if (result.Any())
-            {
-                entity.RowId = result.First();
-                OnAfterInsert(this, args);
-                return 1;
-            }
+            if (result.Any() == false) return 0;
 
-            return 0;
+            entity.RowId = result.First();
+            OnAfterInsert(this, args);
+            return 1;
         }
 
         /// <summary>
