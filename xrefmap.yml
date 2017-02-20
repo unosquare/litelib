@@ -814,6 +814,23 @@ references:
   fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).InsertDefinition
   nameWithType: LiteDbSet<T>.InsertDefinition
   nameWithType.vb: LiteDbSet(Of T).InsertDefinition
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.InsertRange(System.Collections.Generic.IEnumerable{`0})
+  name: InsertRange(IEnumerable<T>)
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_InsertRange_System_Collections_Generic_IEnumerable__0__
+  commentId: M:Unosquare.Labs.LiteLib.LiteDbSet`1.InsertRange(System.Collections.Generic.IEnumerable{`0})
+  name.vb: InsertRange(IEnumerable(Of T))
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.InsertRange(System.Collections.Generic.IEnumerable<T>)
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).InsertRange(System.Collections.Generic.IEnumerable(Of T))
+  nameWithType: LiteDbSet<T>.InsertRange(IEnumerable<T>)
+  nameWithType.vb: LiteDbSet(Of T).InsertRange(IEnumerable(Of T))
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.InsertRange*
+  name: InsertRange
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_InsertRange_
+  commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.InsertRange
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.InsertRange
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).InsertRange
+  nameWithType: LiteDbSet<T>.InsertRange
+  nameWithType.vb: LiteDbSet(Of T).InsertRange
 - uid: Unosquare.Labs.LiteLib.LiteDbSet`1.OnAfterDelete
   name: OnAfterDelete
   href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_OnAfterDelete
@@ -862,6 +879,22 @@ references:
   fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).OnBeforeUpdate
   nameWithType: LiteDbSet<T>.OnBeforeUpdate
   nameWithType.vb: LiteDbSet(Of T).OnBeforeUpdate
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.PropertyNames
+  name: PropertyNames
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_PropertyNames
+  commentId: P:Unosquare.Labs.LiteLib.LiteDbSet`1.PropertyNames
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.PropertyNames
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).PropertyNames
+  nameWithType: LiteDbSet<T>.PropertyNames
+  nameWithType.vb: LiteDbSet(Of T).PropertyNames
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.PropertyNames*
+  name: PropertyNames
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_PropertyNames_
+  commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.PropertyNames
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.PropertyNames
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).PropertyNames
+  nameWithType: LiteDbSet<T>.PropertyNames
+  nameWithType.vb: LiteDbSet(Of T).PropertyNames
 - uid: Unosquare.Labs.LiteLib.LiteDbSet`1.Query(System.String,System.Object)
   name: Query(String, Object)
   href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_Query_System_String_System_Object_
