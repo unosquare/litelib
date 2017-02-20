@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="Database\ComplexDetail.cs" />
     <Compile Include="Database\Order.cs" />
+    <Compile Include="Database\Warehouse.cs" />
     <Compile Include="DbContextFixture.cs" />
     <Compile Include="Database\TestDbContext.cs" />
     <Compile Include="Helpers\TestHelper.cs" />
