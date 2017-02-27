@@ -318,38 +318,6 @@ references:
   fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).InsertAsync
   nameWithType: ILiteDbSet<T>.InsertAsync
   nameWithType.vb: ILiteDbSet(Of T).InsertAsync
-- uid: Unosquare.Labs.LiteLib.ILiteDbSet`1.Query(System.String,System.Object)
-  name: Query(String, Object)
-  href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_Query_System_String_System_Object_
-  commentId: M:Unosquare.Labs.LiteLib.ILiteDbSet`1.Query(System.String,System.Object)
-  fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.Query(System.String, System.Object)
-  fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).Query(System.String, System.Object)
-  nameWithType: ILiteDbSet<T>.Query(String, Object)
-  nameWithType.vb: ILiteDbSet(Of T).Query(String, Object)
-- uid: Unosquare.Labs.LiteLib.ILiteDbSet`1.Query*
-  name: Query
-  href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_Query_
-  commentId: Overload:Unosquare.Labs.LiteLib.ILiteDbSet`1.Query
-  fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.Query
-  fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).Query
-  nameWithType: ILiteDbSet<T>.Query
-  nameWithType.vb: ILiteDbSet(Of T).Query
-- uid: Unosquare.Labs.LiteLib.ILiteDbSet`1.QueryAsync(System.String,System.Object)
-  name: QueryAsync(String, Object)
-  href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_QueryAsync_System_String_System_Object_
-  commentId: M:Unosquare.Labs.LiteLib.ILiteDbSet`1.QueryAsync(System.String,System.Object)
-  fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.QueryAsync(System.String, System.Object)
-  fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).QueryAsync(System.String, System.Object)
-  nameWithType: ILiteDbSet<T>.QueryAsync(String, Object)
-  nameWithType.vb: ILiteDbSet(Of T).QueryAsync(String, Object)
-- uid: Unosquare.Labs.LiteLib.ILiteDbSet`1.QueryAsync*
-  name: QueryAsync
-  href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_QueryAsync_
-  commentId: Overload:Unosquare.Labs.LiteLib.ILiteDbSet`1.QueryAsync
-  fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.QueryAsync
-  fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).QueryAsync
-  nameWithType: ILiteDbSet<T>.QueryAsync
-  nameWithType.vb: ILiteDbSet(Of T).QueryAsync
 - uid: Unosquare.Labs.LiteLib.ILiteDbSet`1.Select(System.String,System.Object)
   name: Select(String, Object)
   href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_Select_System_String_System_Object_
@@ -502,12 +470,12 @@ references:
   commentId: T:Unosquare.Labs.LiteLib.LiteDbContext
   fullName: Unosquare.Labs.LiteLib.LiteDbContext
   nameWithType: LiteDbContext
-- uid: Unosquare.Labs.LiteLib.LiteDbContext.#ctor(System.String)
-  name: LiteDbContext(String)
-  href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext__ctor_System_String_
-  commentId: M:Unosquare.Labs.LiteLib.LiteDbContext.#ctor(System.String)
-  fullName: Unosquare.Labs.LiteLib.LiteDbContext.LiteDbContext(System.String)
-  nameWithType: LiteDbContext.LiteDbContext(String)
+- uid: Unosquare.Labs.LiteLib.LiteDbContext.#ctor(System.String,System.Boolean)
+  name: LiteDbContext(String, Boolean)
+  href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext__ctor_System_String_System_Boolean_
+  commentId: M:Unosquare.Labs.LiteLib.LiteDbContext.#ctor(System.String,System.Boolean)
+  fullName: Unosquare.Labs.LiteLib.LiteDbContext.LiteDbContext(System.String, System.Boolean)
+  nameWithType: LiteDbContext.LiteDbContext(String, Boolean)
 - uid: Unosquare.Labs.LiteLib.LiteDbContext.#ctor*
   name: LiteDbContext
   href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext__ctor_
@@ -526,6 +494,30 @@ references:
   commentId: Overload:Unosquare.Labs.LiteLib.LiteDbContext.Connection
   fullName: Unosquare.Labs.LiteLib.LiteDbContext.Connection
   nameWithType: LiteDbContext.Connection
+- uid: Unosquare.Labs.LiteLib.LiteDbContext.Delete(System.Object)
+  name: Delete(Object)
+  href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_Delete_System_Object_
+  commentId: M:Unosquare.Labs.LiteLib.LiteDbContext.Delete(System.Object)
+  fullName: Unosquare.Labs.LiteLib.LiteDbContext.Delete(System.Object)
+  nameWithType: LiteDbContext.Delete(Object)
+- uid: Unosquare.Labs.LiteLib.LiteDbContext.Delete*
+  name: Delete
+  href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_Delete_
+  commentId: Overload:Unosquare.Labs.LiteLib.LiteDbContext.Delete
+  fullName: Unosquare.Labs.LiteLib.LiteDbContext.Delete
+  nameWithType: LiteDbContext.Delete
+- uid: Unosquare.Labs.LiteLib.LiteDbContext.DeleteAsync(System.Object)
+  name: DeleteAsync(Object)
+  href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_DeleteAsync_System_Object_
+  commentId: M:Unosquare.Labs.LiteLib.LiteDbContext.DeleteAsync(System.Object)
+  fullName: Unosquare.Labs.LiteLib.LiteDbContext.DeleteAsync(System.Object)
+  nameWithType: LiteDbContext.DeleteAsync(Object)
+- uid: Unosquare.Labs.LiteLib.LiteDbContext.DeleteAsync*
+  name: DeleteAsync
+  href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_DeleteAsync_
+  commentId: Overload:Unosquare.Labs.LiteLib.LiteDbContext.DeleteAsync
+  fullName: Unosquare.Labs.LiteLib.LiteDbContext.DeleteAsync
+  nameWithType: LiteDbContext.DeleteAsync
 - uid: Unosquare.Labs.LiteLib.LiteDbContext.Dispose
   name: Dispose()
   href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_Dispose
@@ -538,6 +530,18 @@ references:
   commentId: Overload:Unosquare.Labs.LiteLib.LiteDbContext.Dispose
   fullName: Unosquare.Labs.LiteLib.LiteDbContext.Dispose
   nameWithType: LiteDbContext.Dispose
+- uid: Unosquare.Labs.LiteLib.LiteDbContext.EnabledLog
+  name: EnabledLog
+  href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_EnabledLog
+  commentId: P:Unosquare.Labs.LiteLib.LiteDbContext.EnabledLog
+  fullName: Unosquare.Labs.LiteLib.LiteDbContext.EnabledLog
+  nameWithType: LiteDbContext.EnabledLog
+- uid: Unosquare.Labs.LiteLib.LiteDbContext.EnabledLog*
+  name: EnabledLog
+  href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_EnabledLog_
+  commentId: Overload:Unosquare.Labs.LiteLib.LiteDbContext.EnabledLog
+  fullName: Unosquare.Labs.LiteLib.LiteDbContext.EnabledLog
+  nameWithType: LiteDbContext.EnabledLog
 - uid: Unosquare.Labs.LiteLib.LiteDbContext.GetSetNames
   name: GetSetNames()
   href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_GetSetNames
@@ -550,6 +554,30 @@ references:
   commentId: Overload:Unosquare.Labs.LiteLib.LiteDbContext.GetSetNames
   fullName: Unosquare.Labs.LiteLib.LiteDbContext.GetSetNames
   nameWithType: LiteDbContext.GetSetNames
+- uid: Unosquare.Labs.LiteLib.LiteDbContext.Insert(System.Object)
+  name: Insert(Object)
+  href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_Insert_System_Object_
+  commentId: M:Unosquare.Labs.LiteLib.LiteDbContext.Insert(System.Object)
+  fullName: Unosquare.Labs.LiteLib.LiteDbContext.Insert(System.Object)
+  nameWithType: LiteDbContext.Insert(Object)
+- uid: Unosquare.Labs.LiteLib.LiteDbContext.Insert*
+  name: Insert
+  href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_Insert_
+  commentId: Overload:Unosquare.Labs.LiteLib.LiteDbContext.Insert
+  fullName: Unosquare.Labs.LiteLib.LiteDbContext.Insert
+  nameWithType: LiteDbContext.Insert
+- uid: Unosquare.Labs.LiteLib.LiteDbContext.InsertAsync(System.Object)
+  name: InsertAsync(Object)
+  href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_InsertAsync_System_Object_
+  commentId: M:Unosquare.Labs.LiteLib.LiteDbContext.InsertAsync(System.Object)
+  fullName: Unosquare.Labs.LiteLib.LiteDbContext.InsertAsync(System.Object)
+  nameWithType: LiteDbContext.InsertAsync(Object)
+- uid: Unosquare.Labs.LiteLib.LiteDbContext.InsertAsync*
+  name: InsertAsync
+  href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_InsertAsync_
+  commentId: Overload:Unosquare.Labs.LiteLib.LiteDbContext.InsertAsync
+  fullName: Unosquare.Labs.LiteLib.LiteDbContext.InsertAsync
+  nameWithType: LiteDbContext.InsertAsync
 - uid: Unosquare.Labs.LiteLib.LiteDbContext.Instances
   name: Instances
   href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_Instances
@@ -568,6 +596,66 @@ references:
   commentId: E:Unosquare.Labs.LiteLib.LiteDbContext.OnDatabaseCreated
   fullName: Unosquare.Labs.LiteLib.LiteDbContext.OnDatabaseCreated
   nameWithType: LiteDbContext.OnDatabaseCreated
+- uid: Unosquare.Labs.LiteLib.LiteDbContext.Query*
+  name: Query
+  href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_Query_
+  commentId: Overload:Unosquare.Labs.LiteLib.LiteDbContext.Query
+  fullName: Unosquare.Labs.LiteLib.LiteDbContext.Query
+  nameWithType: LiteDbContext.Query
+- uid: Unosquare.Labs.LiteLib.LiteDbContext.Query``1(System.String,System.Object)
+  name: Query<TEntity>(String, Object)
+  href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_Query__1_System_String_System_Object_
+  commentId: M:Unosquare.Labs.LiteLib.LiteDbContext.Query``1(System.String,System.Object)
+  name.vb: Query(Of TEntity)(String, Object)
+  fullName: Unosquare.Labs.LiteLib.LiteDbContext.Query<TEntity>(System.String, System.Object)
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbContext.Query(Of TEntity)(System.String, System.Object)
+  nameWithType: LiteDbContext.Query<TEntity>(String, Object)
+  nameWithType.vb: LiteDbContext.Query(Of TEntity)(String, Object)
+- uid: Unosquare.Labs.LiteLib.LiteDbContext.QueryAsync*
+  name: QueryAsync
+  href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_QueryAsync_
+  commentId: Overload:Unosquare.Labs.LiteLib.LiteDbContext.QueryAsync
+  fullName: Unosquare.Labs.LiteLib.LiteDbContext.QueryAsync
+  nameWithType: LiteDbContext.QueryAsync
+- uid: Unosquare.Labs.LiteLib.LiteDbContext.QueryAsync``1(System.String,System.Object)
+  name: QueryAsync<TEntity>(String, Object)
+  href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_QueryAsync__1_System_String_System_Object_
+  commentId: M:Unosquare.Labs.LiteLib.LiteDbContext.QueryAsync``1(System.String,System.Object)
+  name.vb: QueryAsync(Of TEntity)(String, Object)
+  fullName: Unosquare.Labs.LiteLib.LiteDbContext.QueryAsync<TEntity>(System.String, System.Object)
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbContext.QueryAsync(Of TEntity)(System.String, System.Object)
+  nameWithType: LiteDbContext.QueryAsync<TEntity>(String, Object)
+  nameWithType.vb: LiteDbContext.QueryAsync(Of TEntity)(String, Object)
+- uid: Unosquare.Labs.LiteLib.LiteDbContext.Select*
+  name: Select
+  href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_Select_
+  commentId: Overload:Unosquare.Labs.LiteLib.LiteDbContext.Select
+  fullName: Unosquare.Labs.LiteLib.LiteDbContext.Select
+  nameWithType: LiteDbContext.Select
+- uid: Unosquare.Labs.LiteLib.LiteDbContext.Select``1(Unosquare.Labs.LiteLib.ILiteDbSet,System.String,System.Object)
+  name: Select<TEntity>(ILiteDbSet, String, Object)
+  href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_Select__1_Unosquare_Labs_LiteLib_ILiteDbSet_System_String_System_Object_
+  commentId: M:Unosquare.Labs.LiteLib.LiteDbContext.Select``1(Unosquare.Labs.LiteLib.ILiteDbSet,System.String,System.Object)
+  name.vb: Select(Of TEntity)(ILiteDbSet, String, Object)
+  fullName: Unosquare.Labs.LiteLib.LiteDbContext.Select<TEntity>(Unosquare.Labs.LiteLib.ILiteDbSet, System.String, System.Object)
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbContext.Select(Of TEntity)(Unosquare.Labs.LiteLib.ILiteDbSet, System.String, System.Object)
+  nameWithType: LiteDbContext.Select<TEntity>(ILiteDbSet, String, Object)
+  nameWithType.vb: LiteDbContext.Select(Of TEntity)(ILiteDbSet, String, Object)
+- uid: Unosquare.Labs.LiteLib.LiteDbContext.SelectAsync*
+  name: SelectAsync
+  href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_SelectAsync_
+  commentId: Overload:Unosquare.Labs.LiteLib.LiteDbContext.SelectAsync
+  fullName: Unosquare.Labs.LiteLib.LiteDbContext.SelectAsync
+  nameWithType: LiteDbContext.SelectAsync
+- uid: Unosquare.Labs.LiteLib.LiteDbContext.SelectAsync``1(Unosquare.Labs.LiteLib.ILiteDbSet,System.String,System.Object)
+  name: SelectAsync<TEntity>(ILiteDbSet, String, Object)
+  href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_SelectAsync__1_Unosquare_Labs_LiteLib_ILiteDbSet_System_String_System_Object_
+  commentId: M:Unosquare.Labs.LiteLib.LiteDbContext.SelectAsync``1(Unosquare.Labs.LiteLib.ILiteDbSet,System.String,System.Object)
+  name.vb: SelectAsync(Of TEntity)(ILiteDbSet, String, Object)
+  fullName: Unosquare.Labs.LiteLib.LiteDbContext.SelectAsync<TEntity>(Unosquare.Labs.LiteLib.ILiteDbSet, System.String, System.Object)
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbContext.SelectAsync(Of TEntity)(Unosquare.Labs.LiteLib.ILiteDbSet, System.String, System.Object)
+  nameWithType: LiteDbContext.SelectAsync<TEntity>(ILiteDbSet, String, Object)
+  nameWithType.vb: LiteDbContext.SelectAsync(Of TEntity)(ILiteDbSet, String, Object)
 - uid: Unosquare.Labs.LiteLib.LiteDbContext.Set(System.Type)
   name: Set(Type)
   href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_Set_System_Type_
@@ -601,6 +689,30 @@ references:
   commentId: Overload:Unosquare.Labs.LiteLib.LiteDbContext.UniqueId
   fullName: Unosquare.Labs.LiteLib.LiteDbContext.UniqueId
   nameWithType: LiteDbContext.UniqueId
+- uid: Unosquare.Labs.LiteLib.LiteDbContext.Update(System.Object)
+  name: Update(Object)
+  href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_Update_System_Object_
+  commentId: M:Unosquare.Labs.LiteLib.LiteDbContext.Update(System.Object)
+  fullName: Unosquare.Labs.LiteLib.LiteDbContext.Update(System.Object)
+  nameWithType: LiteDbContext.Update(Object)
+- uid: Unosquare.Labs.LiteLib.LiteDbContext.Update*
+  name: Update
+  href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_Update_
+  commentId: Overload:Unosquare.Labs.LiteLib.LiteDbContext.Update
+  fullName: Unosquare.Labs.LiteLib.LiteDbContext.Update
+  nameWithType: LiteDbContext.Update
+- uid: Unosquare.Labs.LiteLib.LiteDbContext.UpdateAsync(System.Object)
+  name: UpdateAsync(Object)
+  href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_UpdateAsync_System_Object_
+  commentId: M:Unosquare.Labs.LiteLib.LiteDbContext.UpdateAsync(System.Object)
+  fullName: Unosquare.Labs.LiteLib.LiteDbContext.UpdateAsync(System.Object)
+  nameWithType: LiteDbContext.UpdateAsync(Object)
+- uid: Unosquare.Labs.LiteLib.LiteDbContext.UpdateAsync*
+  name: UpdateAsync
+  href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_UpdateAsync_
+  commentId: Overload:Unosquare.Labs.LiteLib.LiteDbContext.UpdateAsync
+  fullName: Unosquare.Labs.LiteLib.LiteDbContext.UpdateAsync
+  nameWithType: LiteDbContext.UpdateAsync
 - uid: Unosquare.Labs.LiteLib.LiteDbContext.VaccuumDatabaseAsync
   name: VaccuumDatabaseAsync()
   href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_VaccuumDatabaseAsync
@@ -895,38 +1007,6 @@ references:
   fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).PropertyNames
   nameWithType: LiteDbSet<T>.PropertyNames
   nameWithType.vb: LiteDbSet(Of T).PropertyNames
-- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.Query(System.String,System.Object)
-  name: Query(String, Object)
-  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_Query_System_String_System_Object_
-  commentId: M:Unosquare.Labs.LiteLib.LiteDbSet`1.Query(System.String,System.Object)
-  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.Query(System.String, System.Object)
-  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).Query(System.String, System.Object)
-  nameWithType: LiteDbSet<T>.Query(String, Object)
-  nameWithType.vb: LiteDbSet(Of T).Query(String, Object)
-- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.Query*
-  name: Query
-  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_Query_
-  commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.Query
-  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.Query
-  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).Query
-  nameWithType: LiteDbSet<T>.Query
-  nameWithType.vb: LiteDbSet(Of T).Query
-- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.QueryAsync(System.String,System.Object)
-  name: QueryAsync(String, Object)
-  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_QueryAsync_System_String_System_Object_
-  commentId: M:Unosquare.Labs.LiteLib.LiteDbSet`1.QueryAsync(System.String,System.Object)
-  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.QueryAsync(System.String, System.Object)
-  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).QueryAsync(System.String, System.Object)
-  nameWithType: LiteDbSet<T>.QueryAsync(String, Object)
-  nameWithType.vb: LiteDbSet(Of T).QueryAsync(String, Object)
-- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.QueryAsync*
-  name: QueryAsync
-  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_QueryAsync_
-  commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.QueryAsync
-  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.QueryAsync
-  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).QueryAsync
-  nameWithType: LiteDbSet<T>.QueryAsync
-  nameWithType.vb: LiteDbSet(Of T).QueryAsync
 - uid: Unosquare.Labs.LiteLib.LiteDbSet`1.Select(System.String,System.Object)
   name: Select(String, Object)
   href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_Select_System_String_System_Object_

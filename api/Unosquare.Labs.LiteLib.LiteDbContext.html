@@ -122,13 +122,13 @@
               
               
               <a id="Unosquare_Labs_LiteLib_LiteDbContext__ctor_" data-uid="Unosquare.Labs.LiteLib.LiteDbContext.#ctor*"></a>
-              <h4 id="Unosquare_Labs_LiteLib_LiteDbContext__ctor_System_String_" data-uid="Unosquare.Labs.LiteLib.LiteDbContext.#ctor(System.String)">LiteDbContext(String)</h4>
+              <h4 id="Unosquare_Labs_LiteLib_LiteDbContext__ctor_System_String_System_Boolean_" data-uid="Unosquare.Labs.LiteLib.LiteDbContext.#ctor(System.String,System.Boolean)">LiteDbContext(String, Boolean)</h4>
               <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Unosquare.Labs.LiteLib.LiteDbContext.html">LiteDbContext</a> class.</p>
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">protected LiteDbContext(string databaseFilePath)</code></pre>
+                <pre><code class="lang-csharp hljs">protected LiteDbContext(string databaseFilePath, bool enabledLog = true)</code></pre>
               </div>
               <h5 class="parameters">Parameters</h5>
               <table class="table table-bordered table-striped table-condensed">
@@ -144,6 +144,12 @@
                     <td><span class="xref">System.String</span></td>
                     <td><span class="parametername">databaseFilePath</span></td>
                     <td><p>The database file path.</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Boolean</span></td>
+                    <td><span class="parametername">enabledLog</span></td>
+                    <td><p>if set to <code>true</code> [enabled log].</p>
 </td>
                   </tr>
                 </tbody>
@@ -172,6 +178,32 @@
                 <tbody>
                   <tr>
                     <td><span class="xref">IDbConnection</span></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="Unosquare_Labs_LiteLib_LiteDbContext_EnabledLog_" data-uid="Unosquare.Labs.LiteLib.LiteDbContext.EnabledLog*"></a>
+              <h4 id="Unosquare_Labs_LiteLib_LiteDbContext_EnabledLog" data-uid="Unosquare.Labs.LiteLib.LiteDbContext.EnabledLog">EnabledLog</h4>
+              <div class="markdown level1 summary"><p>Gets or sets a value indicating whether [enabled log].</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public bool EnabledLog { get; set; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Boolean</span></td>
                     <td></td>
                   </tr>
                 </tbody>
@@ -232,6 +264,94 @@
               </h3>
               
               
+              <a id="Unosquare_Labs_LiteLib_LiteDbContext_Delete_" data-uid="Unosquare.Labs.LiteLib.LiteDbContext.Delete*"></a>
+              <h4 id="Unosquare_Labs_LiteLib_LiteDbContext_Delete_System_Object_" data-uid="Unosquare.Labs.LiteLib.LiteDbContext.Delete(System.Object)">Delete(Object)</h4>
+              <div class="markdown level1 summary"><p>Deletes the specified entity without triggering events.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public int Delete(object entity)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Object</span></td>
+                    <td><span class="parametername">entity</span></td>
+                    <td><p>The entity.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="Unosquare_Labs_LiteLib_LiteDbContext_DeleteAsync_" data-uid="Unosquare.Labs.LiteLib.LiteDbContext.DeleteAsync*"></a>
+              <h4 id="Unosquare_Labs_LiteLib_LiteDbContext_DeleteAsync_System_Object_" data-uid="Unosquare.Labs.LiteLib.LiteDbContext.DeleteAsync(System.Object)">DeleteAsync(Object)</h4>
+              <div class="markdown level1 summary"><p>Deletes the asynchronous without triggering events.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public Task&lt;int&gt; DeleteAsync(object entity)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Object</span></td>
+                    <td><span class="parametername">entity</span></td>
+                    <td><p>The entity.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
               <a id="Unosquare_Labs_LiteLib_LiteDbContext_Dispose_" data-uid="Unosquare.Labs.LiteLib.LiteDbContext.Dispose*"></a>
               <h4 id="Unosquare_Labs_LiteLib_LiteDbContext_Dispose" data-uid="Unosquare.Labs.LiteLib.LiteDbContext.Dispose">Dispose()</h4>
               <div class="markdown level1 summary"><p>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</p>
@@ -266,6 +386,386 @@
                   <tr>
                     <td><span class="xref">System.String</span>[]</td>
                     <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="Unosquare_Labs_LiteLib_LiteDbContext_Insert_" data-uid="Unosquare.Labs.LiteLib.LiteDbContext.Insert*"></a>
+              <h4 id="Unosquare_Labs_LiteLib_LiteDbContext_Insert_System_Object_" data-uid="Unosquare.Labs.LiteLib.LiteDbContext.Insert(System.Object)">Insert(Object)</h4>
+              <div class="markdown level1 summary"><p>Inserts the specified entity without triggering events.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public int Insert(object entity)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Object</span></td>
+                    <td><span class="parametername">entity</span></td>
+                    <td><p>The entity.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="exceptions">Exceptions</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+                    <td><p>entity - The object type must be registered as ILiteDbSet</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="Unosquare_Labs_LiteLib_LiteDbContext_InsertAsync_" data-uid="Unosquare.Labs.LiteLib.LiteDbContext.InsertAsync*"></a>
+              <h4 id="Unosquare_Labs_LiteLib_LiteDbContext_InsertAsync_System_Object_" data-uid="Unosquare.Labs.LiteLib.LiteDbContext.InsertAsync(System.Object)">InsertAsync(Object)</h4>
+              <div class="markdown level1 summary"><p>Inserts the asynchronous without triggering events.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public Task&lt;int&gt; InsertAsync(object entity)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Object</span></td>
+                    <td><span class="parametername">entity</span></td>
+                    <td><p>The entity.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="Unosquare_Labs_LiteLib_LiteDbContext_Query_" data-uid="Unosquare.Labs.LiteLib.LiteDbContext.Query*"></a>
+              <h4 id="Unosquare_Labs_LiteLib_LiteDbContext_Query__1_System_String_System_Object_" data-uid="Unosquare.Labs.LiteLib.LiteDbContext.Query``1(System.String,System.Object)">Query&lt;TEntity&gt;(String, Object)</h4>
+              <div class="markdown level1 summary"><p>Queries the specified set.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public IEnumerable&lt;TEntity&gt; Query&lt;TEntity&gt;(string commandText, object whereParams = null)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.String</span></td>
+                    <td><span class="parametername">commandText</span></td>
+                    <td><p>The command text.</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Object</span></td>
+                    <td><span class="parametername">whereParams</span></td>
+                    <td><p>The where parameters.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;TEntity&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="typeParameters">Type Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="parametername">TEntity</span></td>
+                    <td><p>The type of the entity.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="Unosquare_Labs_LiteLib_LiteDbContext_QueryAsync_" data-uid="Unosquare.Labs.LiteLib.LiteDbContext.QueryAsync*"></a>
+              <h4 id="Unosquare_Labs_LiteLib_LiteDbContext_QueryAsync__1_System_String_System_Object_" data-uid="Unosquare.Labs.LiteLib.LiteDbContext.QueryAsync``1(System.String,System.Object)">QueryAsync&lt;TEntity&gt;(String, Object)</h4>
+              <div class="markdown level1 summary"><p>Queries the asynchronous.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public Task&lt;IEnumerable&lt;TEntity&gt;&gt; QueryAsync&lt;TEntity&gt;(string commandText, object whereParams = null)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.String</span></td>
+                    <td><span class="parametername">commandText</span></td>
+                    <td><p>The command text.</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Object</span></td>
+                    <td><span class="parametername">whereParams</span></td>
+                    <td><p>The where parameters.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">System.Collections.Generic.IEnumerable</span>&lt;TEntity&gt;&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="typeParameters">Type Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="parametername">TEntity</span></td>
+                    <td><p>The type of the entity.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="Unosquare_Labs_LiteLib_LiteDbContext_Select_" data-uid="Unosquare.Labs.LiteLib.LiteDbContext.Select*"></a>
+              <h4 id="Unosquare_Labs_LiteLib_LiteDbContext_Select__1_Unosquare_Labs_LiteLib_ILiteDbSet_System_String_System_Object_" data-uid="Unosquare.Labs.LiteLib.LiteDbContext.Select``1(Unosquare.Labs.LiteLib.ILiteDbSet,System.String,System.Object)">Select&lt;TEntity&gt;(ILiteDbSet, String, Object)</h4>
+              <div class="markdown level1 summary"><p>Selects the specified set.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public IEnumerable&lt;TEntity&gt; Select&lt;TEntity&gt;(ILiteDbSet set, string whereText, object whereParams = null)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="Unosquare.Labs.LiteLib.ILiteDbSet.html">ILiteDbSet</a></td>
+                    <td><span class="parametername">set</span></td>
+                    <td><p>The set.</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.String</span></td>
+                    <td><span class="parametername">whereText</span></td>
+                    <td><p>The where text.</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Object</span></td>
+                    <td><span class="parametername">whereParams</span></td>
+                    <td><p>The where parameters.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;TEntity&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="typeParameters">Type Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="parametername">TEntity</span></td>
+                    <td><p>The type of the entity.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="Unosquare_Labs_LiteLib_LiteDbContext_SelectAsync_" data-uid="Unosquare.Labs.LiteLib.LiteDbContext.SelectAsync*"></a>
+              <h4 id="Unosquare_Labs_LiteLib_LiteDbContext_SelectAsync__1_Unosquare_Labs_LiteLib_ILiteDbSet_System_String_System_Object_" data-uid="Unosquare.Labs.LiteLib.LiteDbContext.SelectAsync``1(Unosquare.Labs.LiteLib.ILiteDbSet,System.String,System.Object)">SelectAsync&lt;TEntity&gt;(ILiteDbSet, String, Object)</h4>
+              <div class="markdown level1 summary"><p>Selects the asynchronous.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public Task&lt;IEnumerable&lt;TEntity&gt;&gt; SelectAsync&lt;TEntity&gt;(ILiteDbSet set, string whereText, object whereParams = null)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="Unosquare.Labs.LiteLib.ILiteDbSet.html">ILiteDbSet</a></td>
+                    <td><span class="parametername">set</span></td>
+                    <td><p>The set.</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.String</span></td>
+                    <td><span class="parametername">whereText</span></td>
+                    <td><p>The where text.</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Object</span></td>
+                    <td><span class="parametername">whereParams</span></td>
+                    <td><p>The where parameters.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">System.Collections.Generic.IEnumerable</span>&lt;TEntity&gt;&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="typeParameters">Type Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="parametername">TEntity</span></td>
+                    <td><p>The type of the entity.</p>
+</td>
                   </tr>
                 </tbody>
               </table>
@@ -367,6 +867,94 @@
                     <td><span class="parametername">TEntity</span></td>
                     <td><p>Entity type</p>
 </td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="Unosquare_Labs_LiteLib_LiteDbContext_Update_" data-uid="Unosquare.Labs.LiteLib.LiteDbContext.Update*"></a>
+              <h4 id="Unosquare_Labs_LiteLib_LiteDbContext_Update_System_Object_" data-uid="Unosquare.Labs.LiteLib.LiteDbContext.Update(System.Object)">Update(Object)</h4>
+              <div class="markdown level1 summary"><p>Updates the specified entity without triggering events.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public int Update(object entity)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Object</span></td>
+                    <td><span class="parametername">entity</span></td>
+                    <td><p>The entity.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="Unosquare_Labs_LiteLib_LiteDbContext_UpdateAsync_" data-uid="Unosquare.Labs.LiteLib.LiteDbContext.UpdateAsync*"></a>
+              <h4 id="Unosquare_Labs_LiteLib_LiteDbContext_UpdateAsync_System_Object_" data-uid="Unosquare.Labs.LiteLib.LiteDbContext.UpdateAsync(System.Object)">UpdateAsync(Object)</h4>
+              <div class="markdown level1 summary"><p>Updates the asynchronous without triggering events.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public Task&lt;int&gt; UpdateAsync(object entity)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Object</span></td>
+                    <td><span class="parametername">entity</span></td>
+                    <td><p>The entity.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+                    <td></td>
                   </tr>
                 </tbody>
               </table>
