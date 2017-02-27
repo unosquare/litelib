@@ -1,6 +1,7 @@
 ﻿namespace Unosquare.Labs.LiteLib
 {
     using Dapper;
+    using System.Diagnostics;
     using System.Data;
     using System;
     using System.Collections.Concurrent;
@@ -42,16 +43,18 @@
         /// </summary>
         public event EventHandler OnDatabaseCreated = (s, e) => { };
 
-#endregion
+        #endregion
 
-#region Constructor
+        #region Constructor
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LiteDbContext" /> class.
         /// </summary>
         /// <param name="databaseFilePath">The database file path.</param>
-        protected LiteDbContext(string databaseFilePath)
+        /// <param name="enabledLog">if set to <c>true</c> [enabled log].</param>
+        protected LiteDbContext(string databaseFilePath, bool enabledLog = true)
         {
+            EnabledLog = enabledLog;
             _contextType = GetType();
             LoadEntitySets();
 
@@ -81,9 +84,23 @@
             Intances[UniqueId] = this;
         }
 
-#endregion
+        #endregion
 
-#region Methods
+        #region Methods
+
+        /// <summary>
+        /// Logs the SQL command being executed and its arguments.
+        /// </summary>
+        /// <param name="command">The command.</param>
+        /// <param name="arguments">The arguments.</param>
+        internal void LogSqlCommand(string command, object arguments)
+        {
+            if (EnabledLog == false) return;
+
+            if (Debugger.IsAttached == false || Terminal.IsConsolePresent == false) return;
+
+            $"> {command}{arguments.Stringify()}".Debug(nameof(LiteDbContext));
+        }
 
         /// <summary>
         /// Loads the entity sets registered as virtual public properties of the derived class.
@@ -162,7 +179,7 @@
             var set = _entitySets.Values.FirstOrDefault(x => x.GetType().GetTypeInfo().GetGenericArguments().Any(z => z == entityType));
 
             if (set == null)
-                throw new ArgumentOutOfRangeException();
+                throw new ArgumentOutOfRangeException(nameof(entityType));
 
             return set;
         }
@@ -183,6 +200,145 @@
         /// <returns></returns>
         public string[] GetSetNames() => _entitySets.Keys.ToArray();
 
+        /// <summary>
+        /// Selects the specified set.
+        /// </summary>
+        /// <typeparam name="TEntity">The type of the entity.</typeparam>
+        /// <param name="set">The set.</param>
+        /// <param name="whereText">The where text.</param>
+        /// <param name="whereParams">The where parameters.</param>
+        /// <returns></returns>
+        public IEnumerable<TEntity> Select<TEntity>(ILiteDbSet set, string whereText, object whereParams = null)
+        {
+            return Query<TEntity>($"{set.SelectDefinition} WHERE {whereText}", whereParams);
+        }
+        
+        /// <summary>
+        /// Selects the asynchronous.
+        /// </summary>
+        /// <typeparam name="TEntity">The type of the entity.</typeparam>
+        /// <param name="set">The set.</param>
+        /// <param name="whereText">The where text.</param>
+        /// <param name="whereParams">The where parameters.</param>
+        /// <returns></returns>
+        public async Task<IEnumerable<TEntity>> SelectAsync<TEntity>(ILiteDbSet set, string whereText, object whereParams = null)
+        {
+            return await QueryAsync<TEntity>($"{set.SelectDefinition} WHERE {whereText}", whereParams);
+        }
+
+        /// <summary>
+        /// Queries the specified set.
+        /// </summary>
+        /// <typeparam name="TEntity">The type of the entity.</typeparam>
+        /// <param name="commandText">The command text.</param>
+        /// <param name="whereParams">The where parameters.</param>
+        /// <returns></returns>
+        public IEnumerable<TEntity> Query<TEntity>(string commandText, object whereParams = null)
+        {
+            LogSqlCommand(commandText, whereParams);
+            return Connection.Query<TEntity>(commandText, whereParams);
+        }
+
+        /// <summary>
+        /// Queries the asynchronous.
+        /// </summary>
+        /// <typeparam name="TEntity">The type of the entity.</typeparam>
+        /// <param name="commandText">The command text.</param>
+        /// <param name="whereParams">The where parameters.</param>
+        /// <returns></returns>
+        public async Task<IEnumerable<TEntity>> QueryAsync<TEntity>(string commandText, object whereParams = null)
+        {
+            LogSqlCommand(commandText, whereParams);
+            return await Connection.QueryAsync<TEntity>(commandText, whereParams);
+        }
+
+        /// <summary>
+        /// Inserts the specified entity without triggering events.
+        /// </summary>
+        /// <param name="entity">The entity.</param>
+        /// <returns></returns>
+        /// <exception cref="System.ArgumentOutOfRangeException">entity - The object type must be registered as ILiteDbSet</exception>
+        public int Insert(object entity)
+        {
+            var set = Set(entity.GetType());
+
+            LogSqlCommand(set.InsertDefinition, entity);
+
+            return Connection.Query<int>(set.InsertDefinition, entity).FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Inserts the asynchronous without triggering events.
+        /// </summary>
+        /// <param name="entity">The entity.</param>
+        /// <returns></returns>
+        public async Task<int> InsertAsync(object entity)
+        {
+            var set = Set(entity.GetType());
+
+            LogSqlCommand(set.InsertDefinition, entity);
+
+            var result = await Connection.QueryAsync<int>(set.InsertDefinition, entity);
+
+            return result.Any() ? 1 : 0;
+        }
+
+        /// <summary>
+        /// Deletes the specified entity without triggering events.
+        /// </summary>
+        /// <param name="entity">The entity.</param>
+        /// <returns></returns>
+        public int Delete(object entity)
+        {
+            var set = Set(entity.GetType());
+
+            LogSqlCommand(set.DeleteDefinition, entity);
+
+            return Connection.Execute(set.DeleteDefinition, entity);
+        }
+
+        /// <summary>
+        /// Deletes the asynchronous without triggering events.
+        /// </summary>
+        /// <param name="entity">The entity.</param>
+        /// <returns></returns>
+        public async Task<int> DeleteAsync(object entity)
+        {
+            var set = Set(entity.GetType());
+
+            LogSqlCommand(set.DeleteDefinition, entity);
+
+            return await Connection.ExecuteAsync(set.DeleteDefinition, entity);
+        }
+
+        /// <summary>
+        /// Updates the specified entity without triggering events.
+        /// </summary>
+        /// <param name="entity">The entity.</param>
+        /// <returns></returns>
+        public int Update(object entity)
+        {
+            var set = Set(entity.GetType());
+
+            LogSqlCommand(set.UpdateDefinition, entity);
+
+            return Connection.Execute(set.UpdateDefinition, entity);
+        }
+
+        /// <summary>
+        /// Updates the asynchronous without triggering events.
+        /// </summary>
+        /// <param name="entity">The entity.</param>
+        /// <returns></returns>
+        public async Task<int> UpdateAsync(object entity)
+        {
+            var set = Set(entity.GetType());
+
+            LogSqlCommand(set.UpdateDefinition, entity);
+
+            return await Connection.ExecuteAsync(set.UpdateDefinition, entity);
+        }
+
         #endregion
 
         #region Properties
@@ -196,6 +352,11 @@
         /// Gets the unique identifier of this context.
         /// </summary>
         public Guid UniqueId { get; protected set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether [enabled log].
+        /// </summary>
+        public bool EnabledLog { get; set; }
 
         /// <summary>
         /// Gets all instances of Lite DB contexts that are instantiated and not disposed.

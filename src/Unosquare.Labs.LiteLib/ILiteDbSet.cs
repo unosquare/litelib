@@ -89,16 +89,7 @@
         /// </summary>
         /// <returns></returns>
         IEnumerable<T> SelectAll();
-
-        /// <summary>
-        /// Performs a custom query. The command text and parameters are NOT automatically provided.
-        /// Use the SelectDefinition property to start with command text.
-        /// </summary>
-        /// <param name="commandText">The command text.</param>
-        /// <param name="commandParams">The command parameters.</param>
-        /// <returns></returns>
-        IEnumerable<T> Query(string commandText, object commandParams);
-
+        
         /// <summary>
         /// Selects a single entity from the databse given its row id.
         /// </summary>
@@ -145,15 +136,7 @@
         /// </summary>
         /// <returns></returns>
         Task<IEnumerable<T>> SelectAllAsync();
-
-        /// <summary>
-        /// Provides an asynchronous counterpart to the Query method
-        /// </summary>
-        /// <param name="commandText">The command text.</param>
-        /// <param name="commandParams">The command parameters.</param>
-        /// <returns></returns>
-        Task<IEnumerable<T>> QueryAsync(string commandText, object commandParams);
-
+        
         /// <summary>
         /// Provides and asynchronous counterpart to the Single method
         /// </summary>

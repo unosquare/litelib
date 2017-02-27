@@ -1,14 +1,14 @@
 ﻿using NUnit.Framework;
-using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Unosquare.Labs.LiteLib.Tests.Database;
+using Unosquare.Labs.LiteLib.Tests.Helpers;
 #if MONO
     using Mono.Data.Sqlite;
 #else
 using Microsoft.Data.Sqlite;
 #endif
-using System.Linq;
-using System.Threading.Tasks;
-using Unosquare.Labs.LiteLib.Tests.Database;
 
 namespace Unosquare.Labs.LiteLib.Tests
 {
@@ -16,20 +16,14 @@ namespace Unosquare.Labs.LiteLib.Tests
     {
         static void Main(string[] args)
         {
-            using (var context = new TestDbContext(nameof(Program)))
+            using (var context = new TestDbContext("MasterTest"))
             {
-                while (context.Orders.Count() != 0)
+                foreach (var item in TestHelper.DataSource)
                 {
-                    var incomingData = context.Orders.SelectAll();
-                    foreach (var item in incomingData)
-                    {
-                        context.Orders.Delete(item);
-                    }
+                    context.Insert(item);
                 }
 
-                context.Orders.InsertRange(DbContextFixture.DataSource);
-                var list = context.Orders.SelectAll();
-                Assert.AreEqual(DbContextFixture.DataSource.Length, list.Count());
+                Assert.Greater(0, context.Orders.Count(), "Has data");
             }
         }
     }
@@ -41,25 +35,6 @@ namespace Unosquare.Labs.LiteLib.Tests
     public class DbContextFixture
     {
         /// <summary>
-        /// The data source for all Test
-        /// </summary>
-        internal static readonly Order[] DataSource =
-        {
-            new Order { UniqueId = "1", CustomerName = "John", ShipperCity = "Guadalajara", Amount = 4, IsShipped = true, ShippedDate = DateTime.UtcNow },
-            new Order { UniqueId = "2", CustomerName = "Peter", ShipperCity = "Leon", Amount = 6},
-            new Order { UniqueId = "3", CustomerName = "Margarita", ShipperCity = "Boston", Amount = 7, IsShipped = true, ShippedDate = DateTime.UtcNow },
-            new Order { UniqueId = "4", CustomerName = "John", ShipperCity = "Guadalajara", Amount = 4},
-            new Order { UniqueId = "5", CustomerName = "Peter", ShipperCity = "Leon", Amount = 6},
-            new Order { UniqueId = "6", CustomerName = "Margarita", ShipperCity = "Boston", Amount = 7},
-            new Order { UniqueId = "7", CustomerName = "John", ShipperCity = "Guadalajara", Amount = 4},
-            new Order { UniqueId = "8", CustomerName = "Peter", ShipperCity = "Leon", Amount = 6},
-            new Order { UniqueId = "9", CustomerName = "Margarita", ShipperCity = "Boston", Amount = 7},
-            new Order { UniqueId = "10", CustomerName = "John", ShipperCity = "Guadalajara", Amount = 4},
-            new Order { UniqueId = "11", CustomerName = "Peter", ShipperCity = "Leon", Amount = 6},
-            new Order { UniqueId = "12", CustomerName = "Margarita", ShipperCity = "Boston", Amount = 7}
-        };
-
-        /// <summary>
         /// Tests the select all.
         /// </summary>
         [Test]
@@ -67,13 +42,13 @@ namespace Unosquare.Labs.LiteLib.Tests
         {
             using (var context = new TestDbContext(nameof(TestSelectAll)))
             {
-                foreach (var item in DataSource)
+                foreach (var item in TestHelper.DataSource)
                 {
                     context.Orders.Insert(item);
                 }
 
                 var list = context.Orders.SelectAll();
-                Assert.AreEqual(DataSource.Length, list.Count(), "Same set");
+                Assert.AreEqual(TestHelper.DataSource.Length, list.Count(), "Same set");
             }
         }
 
@@ -85,7 +60,7 @@ namespace Unosquare.Labs.LiteLib.Tests
         {
             using (var context = new TestDbContext(nameof(TestDeleteData)))
             {
-                foreach (var item in DataSource)
+                foreach (var item in TestHelper.DataSource)
                 {
                     context.Orders.Insert(item);
                 }
@@ -107,13 +82,13 @@ namespace Unosquare.Labs.LiteLib.Tests
         {
             using (var context = new TestDbContext(nameof(TestInsertData)))
             {
-                foreach (var item in DataSource)
+                foreach (var item in TestHelper.DataSource)
                 {
                     context.Orders.Insert(item);
                 }
 
                 var list = context.Orders.SelectAll();
-                Assert.AreEqual(DataSource.Length, list.Count());
+                Assert.AreEqual(TestHelper.DataSource.Length, list.Count());
             }
         }
 
@@ -126,7 +101,7 @@ namespace Unosquare.Labs.LiteLib.Tests
         {
             using (var context = new TestDbContext(nameof(TestUpdateData)))
             {
-                foreach (var item in DataSource)
+                foreach (var item in TestHelper.DataSource)
                 {
                     context.Orders.Insert(item);
                 }
@@ -155,7 +130,7 @@ namespace Unosquare.Labs.LiteLib.Tests
         {
             using (var context = new TestDbContext(nameof(TestSelectData)))
             {
-                foreach (var item in DataSource)
+                foreach (var item in TestHelper.DataSource)
                 {
                     context.Orders.Insert(item);
                 }
@@ -177,7 +152,7 @@ namespace Unosquare.Labs.LiteLib.Tests
         {
             using (var context = new TestDbContext(nameof(TestCountData)))
             {
-                foreach (var item in DataSource)
+                foreach (var item in TestHelper.DataSource)
                 {
                     context.Orders.Insert(item);
                 }
@@ -199,7 +174,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                 var k = 0;
                 for (var i = 0; i < 10; i++)
                 {
-                    foreach (var item in DataSource)
+                    foreach (var item in TestHelper.DataSource)
                     {
                         item.UniqueId = (k++).ToString();
                         cotext.Orders.Insert(item);
@@ -222,7 +197,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                 var k = 0;
                 for (var i = 0; i < 10; i++)
                 {
-                    foreach (var item in DataSource)
+                    foreach (var item in TestHelper.DataSource)
                     {
                         item.UniqueId = (k++).ToString();
                         context.Orders.Insert(item);
@@ -230,8 +205,9 @@ namespace Unosquare.Labs.LiteLib.Tests
                 }
 
                 var selectedData =
-                    context.Orders.Query($"{context.Orders.SelectDefinition} WHERE CustomerName = @CustomerName",
+                    context.Query<Order>($"{context.Orders.SelectDefinition} WHERE CustomerName = @CustomerName",
                         new Order { CustomerName = "Margarita" });
+
                 foreach (var item in selectedData)
                 {
                     Assert.IsTrue(item.CustomerName == "Margarita");
@@ -255,7 +231,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                     }
                 };
 
-                foreach (var item in DataSource)
+                foreach (var item in TestHelper.DataSource)
                 {
                     context.Orders.Insert(item);
                 }
@@ -284,7 +260,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                 }
             };
 
-            foreach (var item in DataSource)
+            foreach (var item in TestHelper.DataSource)
             {
                 context.Orders.Insert(item);
             }
@@ -307,7 +283,7 @@ namespace Unosquare.Labs.LiteLib.Tests
         {
             using (var context = new TestDbContext(nameof(OnBeforeUpdateTest)))
             {
-                foreach (var item in DataSource)
+                foreach (var item in TestHelper.DataSource)
                 {
                     context.Orders.Insert(item);
                 }
@@ -341,17 +317,17 @@ namespace Unosquare.Labs.LiteLib.Tests
         {
             using (var context = new TestDbContext(nameof(OnAfterUpdateTest)))
             {
-                foreach (var item in DataSource)
+                foreach (var item in TestHelper.DataSource)
                 {
                     context.Orders.Insert(item);
                 }
 
-                var newDataSource = new List<Order>();
+                var dataSource = new List<Order>();
                 context.Orders.OnAfterUpdate += (s, e) =>
                 {
                     if (e.Entity.ShipperCity == "Guadalajara")
                     {
-                        newDataSource.Add(e.Entity);
+                        dataSource.Add(e.Entity);
                     }
                 };
 
@@ -363,7 +339,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                     }
                 }
 
-                Assert.AreEqual(40, newDataSource.Count());
+                Assert.AreEqual(40, dataSource.Count());
             }
         }
 
@@ -375,7 +351,7 @@ namespace Unosquare.Labs.LiteLib.Tests
         {
             using (var context = new TestDbContext(nameof(OnBeforeDeleteTest)))
             {
-                foreach (var item in DataSource)
+                foreach (var item in TestHelper.DataSource)
                 {
                     context.Orders.Insert(item);
                 }
@@ -403,7 +379,7 @@ namespace Unosquare.Labs.LiteLib.Tests
         public void OnAfterDeleteTest()
         {
             var context = new TestDbContext(nameof(OnAfterDeleteTest));
-            foreach (var item in DataSource)
+            foreach (var item in TestHelper.DataSource)
             {
                 context.Orders.Insert(item);
             }
@@ -437,13 +413,13 @@ namespace Unosquare.Labs.LiteLib.Tests
         {
             using (var context = new TestDbContext(nameof(AsyncTestSelectAll)))
             {
-                foreach (var item in DataSource)
+                foreach (var item in TestHelper.DataSource)
                 {
                     await context.Orders.InsertAsync(item);
                 }
 
                 var list = await context.Orders.SelectAllAsync();
-                Assert.AreEqual(DataSource.Count(), list.Count(), "Same set");
+                Assert.AreEqual(TestHelper.DataSource.Count(), list.Count(), "Same set");
             }
         }
 
@@ -455,7 +431,7 @@ namespace Unosquare.Labs.LiteLib.Tests
         {
             using (var context = new TestDbContext(nameof(AsyncTestDeleteData)))
             {
-                foreach (var item in DataSource)
+                foreach (var item in TestHelper.DataSource)
                 {
                     await context.Orders.InsertAsync(item);
                 }
@@ -486,12 +462,12 @@ namespace Unosquare.Labs.LiteLib.Tests
                     }
                 }
 
-                foreach (var item in DataSource)
+                foreach (var item in TestHelper.DataSource)
                 {
                     await context.Orders.InsertAsync(item);
                 }
                 var list = await context.Orders.SelectAllAsync();
-                Assert.AreEqual(DataSource.Count(), list.Count());
+                Assert.AreEqual(TestHelper.DataSource.Count(), list.Count());
             }
 
         }
@@ -504,7 +480,7 @@ namespace Unosquare.Labs.LiteLib.Tests
         {
             using (var context = new TestDbContext(nameof(AsyncTestUpdateData)))
             {
-                foreach (var item in DataSource)
+                foreach (var item in TestHelper.DataSource)
                 {
                     await context.Orders.InsertAsync(item);
                 }
@@ -533,7 +509,7 @@ namespace Unosquare.Labs.LiteLib.Tests
         {
             using (var context = new TestDbContext(nameof(AsyncTestSelectData)))
             {
-                foreach (var item in DataSource)
+                foreach (var item in TestHelper.DataSource)
                 {
                     await context.Orders.InsertAsync(item);
                 }
@@ -556,7 +532,7 @@ namespace Unosquare.Labs.LiteLib.Tests
         {
             using (var context = new TestDbContext(nameof(AsyncTestCountData)))
             {
-                foreach (var item in DataSource)
+                foreach (var item in TestHelper.DataSource)
                 {
                     await context.Orders.InsertAsync(item);
                 }
@@ -576,7 +552,7 @@ namespace Unosquare.Labs.LiteLib.Tests
         {
             using (var cotext = new TestDbContext(nameof(AsyncTestSingleData)))
             {
-                foreach (var item in DataSource)
+                foreach (var item in TestHelper.DataSource)
                 {
                     await cotext.Orders.InsertAsync(item);
                 }
@@ -594,14 +570,14 @@ namespace Unosquare.Labs.LiteLib.Tests
         {
             using (var context = new TestDbContext(nameof(AsyncTestQueryData)))
             {
-                foreach (var item in DataSource)
+                foreach (var item in TestHelper.DataSource)
                 {
                     await context.Orders.InsertAsync(item);
                 }
 
                 var selectedData =
                     await
-                        context.Orders.QueryAsync(
+                        context.QueryAsync<Order>(
                             $"{context.Orders.SelectDefinition} WHERE CustomerName = @CustomerName",
                             new Order { CustomerName = "John" });
 
@@ -620,7 +596,7 @@ namespace Unosquare.Labs.LiteLib.Tests
         {
             using (var context = new TestDbContext(nameof(TestEntityUnique)))
             {
-                foreach (var item in DataSource)
+                foreach (var item in TestHelper.DataSource)
                 {
                     context.Orders.Insert(item);
                 }
@@ -681,9 +657,41 @@ namespace Unosquare.Labs.LiteLib.Tests
         {
             using (var context = new TestDbContext(nameof(TestInsertRangeData)))
             {
-                context.Orders.InsertRange(DataSource);
+                context.Orders.InsertRange(TestHelper.DataSource);
                 var list = context.Orders.SelectAll();
-                Assert.AreEqual(DataSource.Length, list.Count());
+                Assert.AreEqual(TestHelper.DataSource.Length, list.Count());
+            }
+        }
+
+        [Test]
+        public void TestSelectFromSetname()
+        {
+            using (var context = new TestDbContext(nameof(TestSets)))
+            {
+                foreach (var item in TestHelper.DataSource)
+                {
+                    context.Orders.Insert(item);
+                }
+
+                var orders = context.Set<Order>();
+
+                var data = context.Select<Order>(orders, "1=1");
+                Assert.IsNotNull(data);
+                Assert.AreEqual(context.Orders.SelectAll().First().RowId, data.First().RowId, "Same first object");
+            }
+        }
+
+        [Test]
+        public void TestInsertFromSetname()
+        {
+            using (var context = new TestDbContext(nameof(TestInsertFromSetname)))
+            {
+                foreach (var item in TestHelper.DataSource)
+                {
+                    context.Insert(item);
+                }
+                
+                Assert.AreEqual(TestHelper.DataSource.Length, context.Orders.Count(), "Has data");
             }
         }
     }

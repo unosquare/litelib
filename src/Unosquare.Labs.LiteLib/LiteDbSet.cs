@@ -1,13 +1,11 @@
 ﻿namespace Unosquare.Labs.LiteLib
 {
     using Dapper;
-    using Swan;
     using System;
     using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Diagnostics;
     using System.Linq;
     using System.Reflection;
     using System.Text;
@@ -304,19 +302,7 @@
                 PropertyNames = PropertyNames
             };
         }
-
-        /// <summary>
-        /// Logs the SQL command being executed and its arguments.
-        /// </summary>
-        /// <param name="command">The command.</param>
-        /// <param name="arguments">The arguments.</param>
-        private void LogSqlCommand(string command, object arguments)
-        {
-            if (Debugger.IsAttached == false || Terminal.IsConsolePresent == false) return;
-
-            $"> {command}{arguments.Stringify()}".Debug(nameof(LiteDbContext));
-        }
-
+        
         /// <summary>
         /// Inserts the specified entity.
         /// </summary>
@@ -328,7 +314,7 @@
             OnBeforeInsert(this, args);
             if (args.Cancel) return 0;
 
-            LogSqlCommand(InsertDefinition, entity);
+            Context.LogSqlCommand(InsertDefinition, entity);
             entity.RowId = Context.Connection.Query<long>(InsertDefinition, entity).FirstOrDefault();
             OnAfterInsert(this, args);
             return 1;
@@ -342,13 +328,12 @@
         {
             var escapedColumnNames = string.Join(", ", PropertyNames.Select(p => $"[{p}]").ToArray());
             var command = $"INSERT INTO [{TableName}] ({escapedColumnNames})";
-            var select = new List<string>();
-            var baseTypeProperties = typeof(T).GetTypeInfo().GetProperties().Where(x => PropertyNames.Contains(x.Name));
+            var baseTypeProperties =
+                typeof(T).GetTypeInfo().GetProperties().Where(x => PropertyNames.Contains(x.Name)).ToArray();
 
-            foreach (var entity in entities)
-                select.Add("SELECT " + string.Join(", ", baseTypeProperties.Select(p => $"'{p.GetValue(entity)}'").ToArray()));
-
-            command += string.Join("UNION ALL ", select);
+            command += string.Join("UNION ALL ",
+                entities.Select(
+                    entity => "SELECT " + string.Join(", ", baseTypeProperties.Select(p => $"'{p.GetValue(entity)}'"))));
 
             Context.Connection.ExecuteScalar(command);
         }
@@ -364,7 +349,7 @@
             OnBeforeInsert(this, args);
             if (args.Cancel) return 0;
 
-            LogSqlCommand(InsertDefinition, entity);
+            Context.LogSqlCommand(InsertDefinition, entity);
             var result = await Context.Connection.QueryAsync<long>(InsertDefinition, entity);
 
             if (result.Any() == false) return 0;
@@ -389,7 +374,7 @@
             OnBeforeDelete(this, args);
             if (args.Cancel) return 0;
 
-            LogSqlCommand(DeleteDefinition, entity);
+            Context.LogSqlCommand(DeleteDefinition, entity);
             var affected = Context.Connection.Execute(DeleteDefinition, entity);
             entity.RowId = default(long);
             OnAfterDelete(this, args);
@@ -411,7 +396,7 @@
             OnBeforeDelete(this, args);
             if (args.Cancel) return 0;
 
-            LogSqlCommand(DeleteDefinition, entity);
+            Context.LogSqlCommand(DeleteDefinition, entity);
             var affected = await Context.Connection.ExecuteAsync(DeleteDefinition, entity);
             entity.RowId = default(long);
             OnAfterDelete(this, args);
@@ -431,7 +416,7 @@
             OnBeforeUpdate(this, args);
             if (args.Cancel) return 0;
 
-            LogSqlCommand(UpdateDefinition, entity);
+            Context.LogSqlCommand(UpdateDefinition, entity);
             var affected = Context.Connection.Execute(UpdateDefinition, entity);
             OnAfterUpdate(this, args);
             return affected;
@@ -448,7 +433,7 @@
             OnBeforeUpdate(this, args);
             if (args.Cancel) return 0;
 
-            LogSqlCommand(UpdateDefinition, entity);
+            Context.LogSqlCommand(UpdateDefinition, entity);
             var affected = await Context.Connection.ExecuteAsync(UpdateDefinition, entity);
 
             OnAfterUpdate(this, args);
@@ -464,9 +449,7 @@
         /// <returns></returns>
         public IEnumerable<T> Select(string whereText, object whereParams = null)
         {
-            var commandText = $"{SelectDefinition} WHERE {whereText}";
-            LogSqlCommand(commandText, whereParams);
-            return Context.Connection.Query<T>(commandText, whereParams);
+            return Context.Select<T>(this, whereText, whereParams);
         }
 
         /// <summary>
@@ -486,9 +469,7 @@
         /// <returns></returns>
         public async Task<IEnumerable<T>> SelectAsync(string whereText, object whereParams)
         {
-            var commandText = $"{SelectDefinition} WHERE {whereText}";
-            LogSqlCommand(commandText, whereParams);
-            return await Context.Connection.QueryAsync<T>(commandText, whereParams);
+            return await Context.SelectAsync<T>(this, whereText, whereParams);
         }
 
         /// <summary>
@@ -542,7 +523,7 @@
         public int Count()
         {
             var commandText = $"SELECT COUNT(*) FROM [{TableName}]";
-            LogSqlCommand(commandText, null);
+            Context.LogSqlCommand(commandText, null);
             return Context.Connection.ExecuteScalar<int>(commandText);
         }
 
@@ -553,35 +534,10 @@
         public async Task<int> CountAsync()
         {
             var commandText = $"SELECT COUNT(*) FROM [{TableName}]";
-            LogSqlCommand(commandText, null);
+            Context.LogSqlCommand(commandText, null);
             return await Context.Connection.ExecuteScalarAsync<int>(commandText);
         }
-
-        /// <summary>
-        /// Performs a custom query. The command text and parameters are NOT automatically provided.
-        /// Use the SelectDefinition property to start with command text.
-        /// </summary>
-        /// <param name="commandText">The command text.</param>
-        /// <param name="commandParams">The command parameters.</param>
-        /// <returns></returns>
-        public IEnumerable<T> Query(string commandText, object commandParams)
-        {
-            LogSqlCommand(commandText, commandParams);
-            return Context.Connection.Query<T>(commandText, commandParams);
-        }
-
-        /// <summary>
-        /// Provides an asynchronous counterpart to the Query method
-        /// </summary>
-        /// <param name="commandText">The command text.</param>
-        /// <param name="commandParams">The command parameters.</param>
-        /// <returns></returns>
-        public async Task<IEnumerable<T>> QueryAsync(string commandText, object commandParams)
-        {
-            LogSqlCommand(commandText, commandParams);
-            return await Context.Connection.QueryAsync<T>(commandText, commandParams);
-        }
-
+        
         #endregion
     }
 }
