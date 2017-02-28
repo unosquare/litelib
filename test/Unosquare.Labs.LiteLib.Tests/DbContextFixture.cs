@@ -82,13 +82,10 @@ namespace Unosquare.Labs.LiteLib.Tests
         {
             using (var context = new TestDbContext(nameof(TestInsertData)))
             {
-                foreach (var item in TestHelper.DataSource)
-                {
-                    context.Orders.Insert(item);
-                }
-
-                var list = context.Orders.SelectAll();
-                Assert.AreEqual(TestHelper.DataSource.Length, list.Count());
+                var entity = TestHelper.DataSource.First();
+                context.Orders.Insert(entity);
+                
+                Assert.AreNotEqual(0, entity.RowId, "Has a RowId value");
             }
         }
 
