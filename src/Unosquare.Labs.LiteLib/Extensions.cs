@@ -37,6 +37,7 @@
         {
             return TypeMappings.ContainsKey(propertyType) ? TypeMappings[propertyType] : TextAffinity;
         }
+
         /// <summary>
         /// Transform a DateTime to a SQLite UTC date.
         /// </summary>

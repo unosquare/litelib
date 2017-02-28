@@ -467,7 +467,7 @@
         /// <param name="whereText">The where text.</param>
         /// <param name="whereParams">The where parameters.</param>
         /// <returns></returns>
-        public async Task<IEnumerable<T>> SelectAsync(string whereText, object whereParams)
+        public async Task<IEnumerable<T>> SelectAsync(string whereText, object whereParams = null)
         {
             return await Context.SelectAsync<T>(this, whereText, whereParams);
         }
