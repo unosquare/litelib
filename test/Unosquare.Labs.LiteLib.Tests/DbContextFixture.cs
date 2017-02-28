@@ -106,14 +106,14 @@ namespace Unosquare.Labs.LiteLib.Tests
                     context.Orders.Insert(item);
                 }
 
-                var list = context.Orders.Select("CustomerName = @CustomerName", new { CustomerName = "John" });
+                var list = context.Orders.Select("CustomerName = @CustomerName", new {CustomerName = "John"});
                 foreach (var item in list)
                 {
                     item.ShipperCity = "Atlanta";
                     context.Orders.Update(item);
                 }
 
-                var updatedList = context.Orders.Select("ShipperCity = @ShipperCity", new { ShipperCity = "Atlanta" });
+                var updatedList = context.Orders.Select("ShipperCity = @ShipperCity", new {ShipperCity = "Atlanta"});
                 foreach (var item in updatedList)
                 {
                     Assert.AreEqual("Atlanta", item.ShipperCity);
@@ -135,7 +135,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                     context.Orders.Insert(item);
                 }
 
-                var selectingData = context.Orders.Select("CustomerName = @CustomerName", new { CustomerName = "Peter" });
+                var selectingData = context.Orders.Select("CustomerName = @CustomerName", new {CustomerName = "Peter"});
                 foreach (var item in selectingData)
                 {
                     Assert.AreEqual("Peter", item.CustomerName);
@@ -158,7 +158,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                 }
 
                 var selectingData = context.Orders.Select("CustomerName = @CustomerName",
-                    new { CustomerName = "Margarita" });
+                    new {CustomerName = "Margarita"});
                 Assert.AreEqual(4, selectingData.Count());
             }
         }
@@ -206,7 +206,7 @@ namespace Unosquare.Labs.LiteLib.Tests
 
                 var selectedData =
                     context.Query<Order>($"{context.Orders.SelectDefinition} WHERE CustomerName = @CustomerName",
-                        new Order { CustomerName = "Margarita" });
+                        new Order {CustomerName = "Margarita"});
 
                 foreach (var item in selectedData)
                 {
@@ -236,7 +236,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                     context.Orders.Insert(item);
                 }
 
-                var updatedList = context.Orders.Select("ShipperCity = @ShipperCity", new { ShipperCity = "Leon" });
+                var updatedList = context.Orders.Select("ShipperCity = @ShipperCity", new {ShipperCity = "Leon"});
                 foreach (var item in updatedList)
                 {
                     Assert.AreNotEqual("Peter", item.CustomerName);
@@ -301,7 +301,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                     context.Orders.Update(item);
                 }
 
-                var updatedList = context.Orders.Select("CustomerName = @CustomerName", new { CustomerName = "Peter" });
+                var updatedList = context.Orders.Select("CustomerName = @CustomerName", new {CustomerName = "Peter"});
                 foreach (var item in updatedList)
                 {
                     Assert.AreEqual("Atlanta", item.ShipperCity);
@@ -398,7 +398,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                 }
             }
 
-            foreach (var item in context.Orders.Select("CustomerName = @CustomerName", new { CustomerName = "Jessy" })
+            foreach (var item in context.Orders.Select("CustomerName = @CustomerName", new {CustomerName = "Jessy"})
             )
             {
                 Assert.AreEqual("Jessy", item.CustomerName);
@@ -485,7 +485,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                     await context.Orders.InsertAsync(item);
                 }
 
-                var list = await context.Orders.SelectAsync("CustomerName = @CustomerName", new { CustomerName = "John" });
+                var list = await context.Orders.SelectAsync("CustomerName = @CustomerName", new {CustomerName = "John"});
                 foreach (var item in list)
                 {
                     item.ShipperCity = "Atlanta";
@@ -493,7 +493,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                 }
 
                 var updatedList =
-                    await context.Orders.SelectAsync("ShipperCity = @ShipperCity", new { ShipperCity = "Atlanta" });
+                    await context.Orders.SelectAsync("ShipperCity = @ShipperCity", new {ShipperCity = "Atlanta"});
                 foreach (var item in updatedList)
                 {
                     Assert.AreEqual("Atlanta", item.ShipperCity);
@@ -515,7 +515,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                 }
                 // Selecting Data By name
                 var selectingData =
-                    await context.Orders.SelectAsync("CustomerName = @CustomerName", new { CustomerName = "Peter" });
+                    await context.Orders.SelectAsync("CustomerName = @CustomerName", new {CustomerName = "Peter"});
 
                 foreach (var item in selectingData)
                 {
@@ -538,7 +538,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                 }
 
                 var selectingData =
-                    await context.Orders.SelectAsync("CustomerName = @CustomerName", new { CustomerName = "Peter" });
+                    await context.Orders.SelectAsync("CustomerName = @CustomerName", new {CustomerName = "Peter"});
 
                 Assert.AreEqual(4, selectingData.Count());
             }
@@ -579,7 +579,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                     await
                         context.QueryAsync<Order>(
                             $"{context.Orders.SelectDefinition} WHERE CustomerName = @CustomerName",
-                            new Order { CustomerName = "John" });
+                            new Order {CustomerName = "John"});
 
                 foreach (var item in selectedData)
                 {
@@ -642,7 +642,7 @@ namespace Unosquare.Labs.LiteLib.Tests
             {
                 var names = context.GetSetNames();
                 Assert.IsNotNull(names);
-                Assert.AreEqual(names, new[] { nameof(context.Orders), nameof(context.Warehouses) });
+                Assert.AreEqual(names, new[] {nameof(context.Orders), nameof(context.Warehouses)});
 
                 var orders = context.Set<Order>();
                 var ordersByName = context.Set(typeof(Order));
@@ -690,8 +690,25 @@ namespace Unosquare.Labs.LiteLib.Tests
                 {
                     context.Insert(item);
                 }
-                
+
                 Assert.AreEqual(TestHelper.DataSource.Length, context.Orders.Count(), "Has data");
+            }
+        }
+
+        [Test]
+        public void TestEntityEventArgs()
+        {
+            using (var context = new TestDbContext(nameof(TestInsertFromSetname)))
+            {
+                EntityEventArgs<Order> eventOrder = null;
+                var entity = TestHelper.DataSource.First();
+                context.Orders.OnAfterInsert += (s, e) => eventOrder = e;
+                context.Orders.Insert(entity);
+
+                Assert.IsNotNull(eventOrder);
+                Assert.IsFalse(eventOrder.Cancel);
+                Assert.AreEqual(context.Orders, eventOrder.DbSet, "Same DbSet");
+                Assert.AreEqual(entity.RowId, eventOrder.Entity.RowId, "Same Entity Row");
             }
         }
     }
