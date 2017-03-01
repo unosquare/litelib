@@ -351,5 +351,21 @@ namespace Unosquare.Labs.LiteLib.Tests
                 Assert.AreEqual(0, context.Orders.Count(), "Has data");
             }
         }
+
+        [Test]
+        public void TestFirstOrDefault()
+        {
+            using (var context = new TestDbContext(nameof(TestFirstOrDefault)))
+            {
+                foreach (var item in TestHelper.DataSource)
+                {
+                    context.Insert(item);
+                }
+
+                var order = context.Orders.FirstOrDefault(nameof(Order.CustomerName), "Peter");
+
+                Assert.IsNotNull(order);
+            }
+        }
     }
 }

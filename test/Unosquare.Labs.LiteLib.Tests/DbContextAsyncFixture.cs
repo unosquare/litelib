@@ -146,9 +146,9 @@ namespace Unosquare.Labs.LiteLib.Tests
                 }
 
                 var selectingData =
-                    await context.Orders.SelectAsync("CustomerName = @CustomerName", new { CustomerName = "Peter" });
+                    await context.Orders.CountAsync();
 
-                Assert.AreEqual(4, selectingData.Count());
+                Assert.AreEqual(12, selectingData);
             }
         }
 
