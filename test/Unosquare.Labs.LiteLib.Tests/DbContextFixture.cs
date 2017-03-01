@@ -213,379 +213,6 @@ namespace Unosquare.Labs.LiteLib.Tests
         }
 
         /// <summary>
-        /// Called when [before insert test].
-        /// </summary>
-        [Test]
-        public void OnBeforeInsertTest()
-        {
-            using (var context = new TestDbContext(nameof(OnBeforeInsertTest)))
-            {
-                context.Orders.OnBeforeInsert += (s, e) =>
-                {
-                    if (e.Entity.CustomerName == "Peter")
-                    {
-                        e.Entity.CustomerName = "Charles";
-                    }
-                };
-
-                foreach (var item in TestHelper.DataSource)
-                {
-                    context.Orders.Insert(item);
-                }
-
-                var updatedList = context.Orders.Select("ShipperCity = @ShipperCity", new {ShipperCity = "Leon"});
-                foreach (var item in updatedList)
-                {
-                    Assert.AreNotEqual("Peter", item.CustomerName);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Called when [after insert].
-        /// </summary>
-        [Test]
-        public void OnAfterInsert()
-        {
-            var context = new TestDbContext(nameof(OnAfterInsert));
-
-            context.Orders.OnAfterInsert += (s, e) =>
-            {
-                if (e.Entity.CustomerName == "John" || e.Entity.CustomerName == "Peter")
-                {
-                    context.Orders.Delete(e.Entity);
-                }
-            };
-
-            foreach (var item in TestHelper.DataSource)
-            {
-                context.Orders.Insert(item);
-            }
-
-            var afterList = context.Orders.SelectAll().ToList();
-
-            foreach (var item in afterList)
-            {
-                Assert.AreEqual("Margarita", item.CustomerName);
-            }
-
-            Assert.AreEqual(4, afterList.Count());
-        }
-
-        /// <summary>
-        /// Called when [before update test].
-        /// </summary>
-        [Test]
-        public void OnBeforeUpdateTest()
-        {
-            using (var context = new TestDbContext(nameof(OnBeforeUpdateTest)))
-            {
-                foreach (var item in TestHelper.DataSource)
-                {
-                    context.Orders.Insert(item);
-                }
-
-                context.Orders.OnBeforeUpdate += (s, e) =>
-                {
-                    if (e.Entity.ShipperCity == "Leon")
-                    {
-                        e.Entity.ShipperCity = "Atlanta";
-                    }
-                };
-
-                foreach (var item in context.Orders.SelectAll())
-                {
-                    context.Orders.Update(item);
-                }
-
-                var updatedList = context.Orders.Select("CustomerName = @CustomerName", new {CustomerName = "Peter"});
-                foreach (var item in updatedList)
-                {
-                    Assert.AreEqual("Atlanta", item.ShipperCity);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Called when [after update test].
-        /// </summary>
-        [Test]
-        public void OnAfterUpdateTest()
-        {
-            using (var context = new TestDbContext(nameof(OnAfterUpdateTest)))
-            {
-                foreach (var item in TestHelper.DataSource)
-                {
-                    context.Orders.Insert(item);
-                }
-
-                var dataSource = new List<Order>();
-                context.Orders.OnAfterUpdate += (s, e) =>
-                {
-                    if (e.Entity.ShipperCity == "Guadalajara")
-                    {
-                        dataSource.Add(e.Entity);
-                    }
-                };
-
-                for (var i = 0; i < 10; i++)
-                {
-                    foreach (var item in context.Orders.SelectAll())
-                    {
-                        context.Orders.Update(item);
-                    }
-                }
-
-                Assert.AreEqual(40, dataSource.Count());
-            }
-        }
-
-        /// <summary>
-        /// Called when [before delete test].
-        /// </summary>
-        [Test]
-        public void OnBeforeDeleteTest()
-        {
-            using (var context = new TestDbContext(nameof(OnBeforeDeleteTest)))
-            {
-                foreach (var item in TestHelper.DataSource)
-                {
-                    context.Orders.Insert(item);
-                }
-
-                var deletedList = new List<Order>();
-                context.Orders.OnBeforeDelete += (s, e) =>
-                {
-                    deletedList.Add(e.Entity);
-                };
-
-                foreach (var item in context.Orders.SelectAll())
-                {
-                    if (item.CustomerName == "John")
-                    {
-                        context.Orders.Delete(item);
-                    }
-                }
-
-                Assert.AreEqual(4, deletedList.Count());
-            }
-        }
-
-        //Test OnAfterDelete
-        [Test]
-        public void OnAfterDeleteTest()
-        {
-            var context = new TestDbContext(nameof(OnAfterDeleteTest));
-            foreach (var item in TestHelper.DataSource)
-            {
-                context.Orders.Insert(item);
-            }
-
-            context.Orders.OnAfterDelete += (s, e) =>
-            {
-                e.Entity.CustomerName = "Jessy";
-                context.Orders.Insert(e.Entity);
-            };
-
-            foreach (var item in context.Orders.SelectAll())
-            {
-                if (item.CustomerName == "Margarita")
-                {
-                    context.Orders.Delete(item);
-                }
-            }
-
-            foreach (var item in context.Orders.Select("CustomerName = @CustomerName", new {CustomerName = "Jessy"})
-            )
-            {
-                Assert.AreEqual("Jessy", item.CustomerName);
-            }
-        }
-
-        /// <summary>
-        /// Asynchronous the test select all.
-        /// </summary>
-        [Test]
-        public async Task AsyncTestSelectAll()
-        {
-            using (var context = new TestDbContext(nameof(AsyncTestSelectAll)))
-            {
-                foreach (var item in TestHelper.DataSource)
-                {
-                    await context.Orders.InsertAsync(item);
-                }
-
-                var list = await context.Orders.SelectAllAsync();
-                Assert.AreEqual(TestHelper.DataSource.Count(), list.Count(), "Same set");
-            }
-        }
-
-        /// <summary>
-        /// Asynchronous the test delete data.
-        /// </summary>
-        [Test]
-        public async Task AsyncTestDeleteData()
-        {
-            using (var context = new TestDbContext(nameof(AsyncTestDeleteData)))
-            {
-                foreach (var item in TestHelper.DataSource)
-                {
-                    await context.Orders.InsertAsync(item);
-                }
-
-                var incomingData = context.Orders.SelectAll();
-                foreach (var item in incomingData)
-                {
-                    await context.Orders.DeleteAsync(item);
-                }
-                Assert.AreEqual(0, context.Orders.Count());
-            }
-        }
-
-        /// <summary>
-        /// Asynchronous the test insert data.
-        /// </summary>
-        [Test]
-        public async Task AsyncTestInsertData()
-        {
-            using (var context = new TestDbContext(nameof(AsyncTestInsertData)))
-            {
-                while (context.Orders.Count() != 0)
-                {
-                    var incomingData = context.Orders.SelectAll();
-                    foreach (var item in incomingData)
-                    {
-                        await context.Orders.DeleteAsync(item);
-                    }
-                }
-
-                foreach (var item in TestHelper.DataSource)
-                {
-                    await context.Orders.InsertAsync(item);
-                }
-                var list = await context.Orders.SelectAllAsync();
-                Assert.AreEqual(TestHelper.DataSource.Count(), list.Count());
-            }
-
-        }
-
-        /// <summary>
-        /// Asynchronous the test update data.
-        /// </summary>
-        [Test]
-        public async Task AsyncTestUpdateData()
-        {
-            using (var context = new TestDbContext(nameof(AsyncTestUpdateData)))
-            {
-                foreach (var item in TestHelper.DataSource)
-                {
-                    await context.Orders.InsertAsync(item);
-                }
-
-                var list = await context.Orders.SelectAsync("CustomerName = @CustomerName", new {CustomerName = "John"});
-                foreach (var item in list)
-                {
-                    item.ShipperCity = "Atlanta";
-                    await context.Orders.UpdateAsync(item);
-                }
-
-                var updatedList =
-                    await context.Orders.SelectAsync("ShipperCity = @ShipperCity", new {ShipperCity = "Atlanta"});
-                foreach (var item in updatedList)
-                {
-                    Assert.AreEqual("Atlanta", item.ShipperCity);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Asynchronous the test select data.
-        /// </summary>
-        [Test]
-        public async Task AsyncTestSelectData()
-        {
-            using (var context = new TestDbContext(nameof(AsyncTestSelectData)))
-            {
-                foreach (var item in TestHelper.DataSource)
-                {
-                    await context.Orders.InsertAsync(item);
-                }
-                // Selecting Data By name
-                var selectingData =
-                    await context.Orders.SelectAsync("CustomerName = @CustomerName", new {CustomerName = "Peter"});
-
-                foreach (var item in selectingData)
-                {
-                    Assert.AreEqual("Peter", item.CustomerName);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Asynchronous the test count data.
-        /// </summary>
-        [Test]
-        public async Task AsyncTestCountData()
-        {
-            using (var context = new TestDbContext(nameof(AsyncTestCountData)))
-            {
-                foreach (var item in TestHelper.DataSource)
-                {
-                    await context.Orders.InsertAsync(item);
-                }
-
-                var selectingData =
-                    await context.Orders.SelectAsync("CustomerName = @CustomerName", new {CustomerName = "Peter"});
-
-                Assert.AreEqual(4, selectingData.Count());
-            }
-        }
-
-        /// <summary>
-        /// Asynchronous the test single data.
-        /// </summary>
-        [Test]
-        public async Task AsyncTestSingleData()
-        {
-            using (var cotext = new TestDbContext(nameof(AsyncTestSingleData)))
-            {
-                foreach (var item in TestHelper.DataSource)
-                {
-                    await cotext.Orders.InsertAsync(item);
-                }
-
-                var singleSelect = await cotext.Orders.SingleAsync(3);
-                Assert.AreEqual("Margarita", singleSelect.CustomerName);
-            }
-        }
-
-        /// <summary>
-        /// Asynchronous the test query data.
-        /// </summary>
-        [Test]
-        public async Task AsyncTestQueryData()
-        {
-            using (var context = new TestDbContext(nameof(AsyncTestQueryData)))
-            {
-                foreach (var item in TestHelper.DataSource)
-                {
-                    await context.Orders.InsertAsync(item);
-                }
-
-                var selectedData =
-                    await
-                        context.QueryAsync<Order>(
-                            $"{context.Orders.SelectDefinition} WHERE CustomerName = @CustomerName",
-                            new Order {CustomerName = "John"});
-
-                foreach (var item in selectedData)
-                {
-                    Assert.IsTrue(item.CustomerName == "John");
-                }
-            }
-        }
-
-        /// <summary>
         /// Tests the entity unique.
         /// </summary>
         [Test]
@@ -679,6 +306,18 @@ namespace Unosquare.Labs.LiteLib.Tests
         }
 
         [Test]
+        public void TestInvalidSetname()
+        {
+            Assert.Throws(typeof(System.ArgumentOutOfRangeException), () =>
+            {
+                using (var context = new TestDbContext(nameof(TestInvalidSetname)))
+                {
+                    context.Set<Program>();
+                }
+            });
+        }
+
+        [Test]
         public void TestInsertFromSetname()
         {
             using (var context = new TestDbContext(nameof(TestInsertFromSetname)))
@@ -691,21 +330,25 @@ namespace Unosquare.Labs.LiteLib.Tests
                 Assert.AreEqual(TestHelper.DataSource.Length, context.Orders.Count(), "Has data");
             }
         }
-
+        
         [Test]
-        public void TestEntityEventArgs()
+        public void TestDeleteFromSetname()
         {
-            using (var context = new TestDbContext(nameof(TestInsertFromSetname)))
+            using (var context = new TestDbContext(nameof(TestDeleteFromSetname)))
             {
-                EntityEventArgs<Order> eventOrder = null;
-                var entity = TestHelper.DataSource.First();
-                context.Orders.OnAfterInsert += (s, e) => eventOrder = e;
-                context.Orders.Insert(entity);
+                foreach (var item in TestHelper.DataSource)
+                {
+                    context.Insert(item);
+                }
 
-                Assert.IsNotNull(eventOrder);
-                Assert.IsFalse(eventOrder.Cancel);
-                Assert.AreEqual(context.Orders, eventOrder.DbSet, "Same DbSet");
-                Assert.AreEqual(entity.RowId, eventOrder.Entity.RowId, "Same Entity Row");
+                Assert.AreEqual(TestHelper.DataSource.Length, context.Orders.Count(), "Has data");
+
+                foreach (var item in TestHelper.DataSource)
+                {
+                    context.Delete(item);
+                }
+
+                Assert.AreEqual(0, context.Orders.Count(), "Has data");
             }
         }
     }
