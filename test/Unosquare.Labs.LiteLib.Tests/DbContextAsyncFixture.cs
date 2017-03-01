@@ -230,5 +230,25 @@ namespace Unosquare.Labs.LiteLib.Tests
                 Assert.AreEqual(0, context.Orders.Count(), "Has data");
             }
         }
+
+        [Test]
+        public async Task AsyncUpdateFromSetname()
+        {
+            using (var context = new TestDbContext(nameof(AsyncUpdateFromSetname)))
+            {
+                foreach (var item in TestHelper.DataSource)
+                {
+                    await context.InsertAsync(item);
+                }
+
+                foreach (var item in TestHelper.DataSource)
+                {
+                    item.ShipperCity = "Atlanta";
+                    await context.UpdateAsync(item);
+                }
+                var updatedItems = await context.Orders.SelectAsync("ShipperCity = @ShipperCity", new { ShipperCity = "Atlanta" });
+                Assert.AreEqual(TestHelper.DataSource.Length, updatedItems.Count());
+            }
+        }
     }
 }

@@ -367,5 +367,25 @@ namespace Unosquare.Labs.LiteLib.Tests
                 Assert.IsNotNull(order);
             }
         }
+
+        [Test]
+        public void UpdateFromSetname()
+        {
+            using (var context = new TestDbContext(nameof(UpdateFromSetname)))
+            {
+                foreach (var item in TestHelper.DataSource)
+                {
+                    context.Insert(item);
+                }
+
+                foreach (var item in TestHelper.DataSource)
+                {
+                    item.ShipperCity = "Atlanta";
+                    context.Update(item);
+                }
+                var updatedItems = context.Orders.Select("ShipperCity = @ShipperCity", new { ShipperCity = "Atlanta" });
+                Assert.AreEqual(TestHelper.DataSource.Length, updatedItems.Count());
+            }
+        }
     }
 }
