@@ -1,7 +1,7 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Unosquare.Labs.LiteLib.Tests.Database;
 using Unosquare.Labs.LiteLib.Tests.Helpers;
 #if MONO
@@ -285,6 +285,18 @@ namespace Unosquare.Labs.LiteLib.Tests
                 var list = context.Orders.SelectAll();
                 Assert.AreEqual(TestHelper.DataSource.Length, list.Count());
             }
+        }
+
+        [Test]
+        public void TestInsertRangeEmptyset()
+        {
+            Assert.Throws(typeof(ArgumentNullException), () =>
+            {
+                using (var context = new TestDbContext(nameof(TestInsertRangeData)))
+                {
+                    context.Orders.InsertRange(new List<Order>());
+                }
+            });
         }
 
         [Test]

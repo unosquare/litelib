@@ -326,6 +326,9 @@
         /// <param name="entities">The entities.</param>
         public void InsertRange(IEnumerable<T> entities)
         {
+            if (entities == null || entities.Any() == false)
+                throw new ArgumentNullException(nameof(entities));
+
             var escapedColumnNames = string.Join(", ", PropertyNames.Select(p => $"[{p}]").ToArray());
             var command = $"INSERT INTO [{TableName}] ({escapedColumnNames})";
             var baseTypeProperties =
