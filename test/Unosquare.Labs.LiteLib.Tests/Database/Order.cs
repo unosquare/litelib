@@ -14,7 +14,7 @@ namespace Unosquare.Labs.LiteLib.Tests.Database
         public bool IsShipped { get; set; }
         public int Amount { get; set; }
 
-        public DateTime ShippedDate { get; set; }
+        public DateTime? ShippedDate { get; set; }
 
         public ComplexDetail ComplexDetail { get; set; }
     }
