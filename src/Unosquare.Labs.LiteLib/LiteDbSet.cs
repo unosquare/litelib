@@ -438,7 +438,6 @@
 
             Context.LogSqlCommand(UpdateDefinition, entity);
             var affected = await Context.Connection.ExecuteAsync(UpdateDefinition, entity);
-
             OnAfterUpdate(this, args);
             return affected;
         }
@@ -492,7 +491,21 @@
         /// <returns></returns>
         public T FirstOrDefault(string fieldName, object fieldValue)
         {
-            return Select($"[{fieldName}] = @FieldValue", new { FieldValue = fieldValue }).FirstOrDefault();
+            return Select($"[{fieldName}] = @FieldValue", new {FieldValue = fieldValue}).FirstOrDefault();
+        }
+
+
+        /// <summary>
+        /// Firsts the or default asynchronous.
+        /// </summary>
+        /// <param name="fieldName">Name of the field.</param>
+        /// <param name="fieldValue">The field value.</param>
+        /// <returns></returns>
+        public async Task<T> FirstOrDefaultAsync(string fieldName, object fieldValue)
+        {
+            var result = await SelectAsync($"[{fieldName}] = @FieldValue", new {FieldValue = fieldValue});
+
+            return result.FirstOrDefault();
         }
 
         /// <summary>

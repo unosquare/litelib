@@ -114,29 +114,20 @@ namespace Unosquare.Labs.LiteLib.Tests
         {
             using (var context = new TestDbContext(nameof(OnAfterUpdateTest)))
             {
-                foreach (var item in TestHelper.DataSource)
-                {
-                    context.Orders.Insert(item);
-                }
+                var entity = TestHelper.DataSource.First();
 
-                var dataSource = new List<Order>();
+                context.Orders.Insert(entity);
+                var changed = false;
                 context.Orders.OnAfterUpdate += (s, e) =>
                 {
-                    if (e.Entity.ShipperCity == "Guadalajara")
-                    {
-                        dataSource.Add(e.Entity);
-                    }
+                    changed = true;
                 };
 
-                for (var i = 0; i < 10; i++)
-                {
-                    foreach (var item in context.Orders.SelectAll())
-                    {
-                        context.Orders.Update(item);
-                    }
-                }
+                entity.Amount = 10;
 
-                Assert.AreEqual(40, dataSource.Count());
+                context.Orders.Update(entity);
+
+                Assert.IsTrue(changed);
             }
         }
 

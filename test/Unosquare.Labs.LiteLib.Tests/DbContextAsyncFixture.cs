@@ -93,7 +93,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                     await context.Orders.InsertAsync(item);
                 }
 
-                var list = await context.Orders.SelectAsync("CustomerName = @CustomerName", new { CustomerName = "John" });
+                var list = await context.Orders.SelectAsync("CustomerName = @CustomerName", new {CustomerName = "John"});
                 foreach (var item in list)
                 {
                     item.ShipperCity = "Atlanta";
@@ -101,7 +101,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                 }
 
                 var updatedList =
-                    await context.Orders.SelectAsync("ShipperCity = @ShipperCity", new { ShipperCity = "Atlanta" });
+                    await context.Orders.SelectAsync("ShipperCity = @ShipperCity", new {ShipperCity = "Atlanta"});
                 foreach (var item in updatedList)
                 {
                     Assert.AreEqual("Atlanta", item.ShipperCity);
@@ -123,7 +123,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                 }
                 // Selecting Data By name
                 var selectingData =
-                    await context.Orders.SelectAsync("CustomerName = @CustomerName", new { CustomerName = "Peter" });
+                    await context.Orders.SelectAsync("CustomerName = @CustomerName", new {CustomerName = "Peter"});
 
                 foreach (var item in selectingData)
                 {
@@ -187,7 +187,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                     await
                         context.QueryAsync<Order>(
                             $"{context.Orders.SelectDefinition} WHERE CustomerName = @CustomerName",
-                            new Order { CustomerName = "John" });
+                            new Order {CustomerName = "John"});
 
                 foreach (var item in selectedData)
                 {
@@ -246,8 +246,25 @@ namespace Unosquare.Labs.LiteLib.Tests
                     item.ShipperCity = "Atlanta";
                     await context.UpdateAsync(item);
                 }
-                var updatedItems = await context.Orders.SelectAsync("ShipperCity = @ShipperCity", new { ShipperCity = "Atlanta" });
+                var updatedItems =
+                    await context.Orders.SelectAsync("ShipperCity = @ShipperCity", new {ShipperCity = "Atlanta"});
                 Assert.AreEqual(TestHelper.DataSource.Length, updatedItems.Count());
+            }
+        }
+
+        [Test]
+        public async Task AsyncTestFirstOrDefault()
+        {
+            using (var context = new TestDbContext(nameof(AsyncTestFirstOrDefault)))
+            {
+                foreach (var item in TestHelper.DataSource)
+                {
+                    context.Orders.Insert(item);
+                }
+
+                var order = await context.Orders.FirstOrDefaultAsync(nameof(Order.CustomerName), "Peter");
+
+                Assert.IsNotNull(order);
             }
         }
     }

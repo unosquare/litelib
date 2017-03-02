@@ -11,18 +11,104 @@ namespace Unosquare.Labs.LiteLib.Tests.Helpers
         /// </summary>
         internal static readonly Order[] DataSource =
         {
-            new Order { UniqueId = "1", CustomerName = "John", ShipperCity = "Guadalajara", Amount = 4, IsShipped = true, ShippedDate = DateTime.UtcNow },
-            new Order { UniqueId = "2", CustomerName = "Peter", ShipperCity = "Leon", Amount = 6},
-            new Order { UniqueId = "3", CustomerName = "Margarita", ShipperCity = "Boston", Amount = 7, IsShipped = true, ShippedDate = DateTime.UtcNow },
-            new Order { UniqueId = "4", CustomerName = "John", ShipperCity = "Guadalajara", Amount = 4},
-            new Order { UniqueId = "5", CustomerName = "Peter", ShipperCity = "Leon", Amount = 6},
-            new Order { UniqueId = "6", CustomerName = "Margarita", ShipperCity = "Boston", Amount = 7},
-            new Order { UniqueId = "7", CustomerName = "John", ShipperCity = "Guadalajara", Amount = 4},
-            new Order { UniqueId = "8", CustomerName = "Peter", ShipperCity = "Leon", Amount = 6},
-            new Order { UniqueId = "9", CustomerName = "Margarita", ShipperCity = "Boston", Amount = 7},
-            new Order { UniqueId = "10", CustomerName = "John", ShipperCity = "Guadalajara", Amount = 4},
-            new Order { UniqueId = "11", CustomerName = "Peter", ShipperCity = "Leon", Amount = 6},
-            new Order { UniqueId = "12", CustomerName = "Margarita", ShipperCity = "Boston", Amount = 7}
+            new Order
+            {
+                UniqueId = "1",
+                CustomerName = "John",
+                ShipperCity = "Guadalajara",
+                Amount = 4,
+                IsShipped = true,
+                ShippedDate = DateTime.UtcNow
+            },
+            new Order
+            {
+                UniqueId = "2",
+                CustomerName = "Peter",
+                ShipperCity = "Leon",
+                Amount = 6,
+                ShippedDate = DateTime.UtcNow
+            },
+            new Order
+            {
+                UniqueId = "3",
+                CustomerName = "Margarita",
+                ShipperCity = "Boston",
+                Amount = 7,
+                IsShipped = true,
+                ShippedDate = DateTime.UtcNow
+            },
+            new Order
+            {
+                UniqueId = "4",
+                CustomerName = "John",
+                ShipperCity = "Guadalajara",
+                Amount = 4,
+                ShippedDate = DateTime.UtcNow
+            },
+            new Order
+            {
+                UniqueId = "5",
+                CustomerName = "Peter",
+                ShipperCity = "Leon",
+                Amount = 6,
+                ShippedDate = DateTime.UtcNow
+            },
+            new Order
+            {
+                UniqueId = "6",
+                CustomerName = "Margarita",
+                ShipperCity = "Boston",
+                Amount = 7,
+                ShippedDate = DateTime.UtcNow
+            },
+            new Order
+            {
+                UniqueId = "7",
+                CustomerName = "John",
+                ShipperCity = "Guadalajara",
+                Amount = 4,
+                ShippedDate = DateTime.UtcNow
+            },
+            new Order
+            {
+                UniqueId = "8",
+                CustomerName = "Peter",
+                ShipperCity = "Leon",
+                Amount = 6,
+                ShippedDate = DateTime.UtcNow
+            },
+            new Order
+            {
+                UniqueId = "9",
+                CustomerName = "Margarita",
+                ShipperCity = "Boston",
+                Amount = 7,
+                ShippedDate = DateTime.UtcNow
+            },
+            new Order
+            {
+                UniqueId = "10",
+                CustomerName = "John",
+                ShipperCity = "Guadalajara",
+                Amount = 4,
+                ShippedDate = DateTime.UtcNow
+            },
+            new Order
+            {
+                UniqueId = "11",
+                CustomerName = "Peter",
+                ShipperCity = "Leon",
+                Amount = 6,
+                ShippedDate = DateTime.UtcNow
+            },
+            new Order
+            {
+                UniqueId = "12",
+                CustomerName = "Margarita",
+                ShipperCity = "Boston",
+                Amount = 7,
+                ShippedDate = DateTime.UtcNow
+            }
         };
 
         internal static string GetTempDb(string name)

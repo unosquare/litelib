@@ -16,15 +16,8 @@ namespace Unosquare.Labs.LiteLib.Tests
     {
         static void Main(string[] args)
         {
-            using (var context = new TestDbContext("MasterTest"))
-            {
-                foreach (var item in TestHelper.DataSource)
-                {
-                    context.Insert(item);
-                }
-
-                Assert.Greater(0, context.Orders.Count(), "Has data");
-            }
+            var x = new DbContextFixture();
+            x.TestFirstOrDefault();
         }
     }
 
@@ -369,12 +362,10 @@ namespace Unosquare.Labs.LiteLib.Tests
         {
             using (var context = new TestDbContext(nameof(TestFirstOrDefault)))
             {
-                foreach (var item in TestHelper.DataSource)
-                {
-                    context.Insert(item);
-                }
+                var id = context.Orders.Insert(TestHelper.DataSource.First());
+                Assert.AreNotEqual(0, id);
 
-                var order = context.Orders.FirstOrDefault(nameof(Order.CustomerName), "Peter");
+                var order = context.Orders.FirstOrDefault(nameof(Order.CustomerName), "John");
 
                 Assert.IsNotNull(order);
             }
