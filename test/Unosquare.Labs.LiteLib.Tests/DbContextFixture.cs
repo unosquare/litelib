@@ -275,8 +275,8 @@ namespace Unosquare.Labs.LiteLib.Tests
             using (var context = new TestDbContext(nameof(TestInsertRangeData)))
             {
                 context.Orders.InsertRange(TestHelper.DataSource);
-                var list = context.Orders.SelectAll();
-                Assert.AreEqual(TestHelper.DataSource.Length, list.Count());
+                var list = context.Orders.Count();
+                Assert.AreEqual(TestHelper.DataSource.Length, list);
             }
         }
 
