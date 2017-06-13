@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Interface ILiteDbSet
    | Unosquare LiteLib ">
-    <meta name="generator" content="docfx 2.13.2.0">
+    <meta name="generator" content="docfx 2.18.4.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -57,7 +57,7 @@
           </div>
         </div>
       </header>
-      <div role="main" class="container body-content">
+      <div class="container body-content">
         
         <div id="search-results">
           <div class="search-list"></div>
@@ -75,231 +75,231 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content">
-              
-              
-              <h1 id="Unosquare_Labs_LiteLib_ILiteDbSet" data-uid="Unosquare.Labs.LiteLib.ILiteDbSet">Interface ILiteDbSet
-              </h1>
-              <div class="markdown level0 summary"><p>Provides basic DDL and CRUD command definitions and a DI-supplied Context</p>
+            <article class="content wrap" id="_content" data-uid="Unosquare.Labs.LiteLib.ILiteDbSet">
+  
+  
+  <h1 id="Unosquare_Labs_LiteLib_ILiteDbSet" data-uid="Unosquare.Labs.LiteLib.ILiteDbSet">Interface ILiteDbSet
+  </h1>
+  <div class="markdown level0 summary"><p>Provides basic DDL and CRUD command definitions and a DI-supplied Context</p>
 </div>
-              <div class="markdown level0 conceptual"></div>
-              <h6><strong>Namespace</strong>:Unosquare.Labs.LiteLib</h6>
-              <h6><strong>Assembly</strong>:cs.temp.dll.dll</h6>
-              <h5 id="Unosquare_Labs_LiteLib_ILiteDbSet_syntax">Syntax</h5>
-              <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public interface ILiteDbSet</code></pre>
-              </div>
-              <h3 id="properties">Properties
-              </h3>
-              
-              
-              <a id="Unosquare_Labs_LiteLib_ILiteDbSet_Context_" data-uid="Unosquare.Labs.LiteLib.ILiteDbSet.Context*"></a>
-              <h4 id="Unosquare_Labs_LiteLib_ILiteDbSet_Context" data-uid="Unosquare.Labs.LiteLib.ILiteDbSet.Context">Context</h4>
-              <div class="markdown level1 summary"><p>Gets or sets the parent set context.</p>
+  <div class="markdown level0 conceptual"></div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Unosquare.Labs.LiteLib.html">Unosquare.Labs.LiteLib</a></h6>
+  <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
+  <h5 id="Unosquare_Labs_LiteLib_ILiteDbSet_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface ILiteDbSet</code></pre>
+  </div>
+  <h3 id="properties">Properties
+  </h3>
+  
+  
+  <a id="Unosquare_Labs_LiteLib_ILiteDbSet_Context_" data-uid="Unosquare.Labs.LiteLib.ILiteDbSet.Context*"></a>
+  <h4 id="Unosquare_Labs_LiteLib_ILiteDbSet_Context" data-uid="Unosquare.Labs.LiteLib.ILiteDbSet.Context">Context</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the parent set context.</p>
 </div>
-              <div class="markdown level1 conceptual"></div>
-              <h5 class="decalaration">Declaration</h5>
-              <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">LiteDbContext Context { get; set; }</code></pre>
-              </div>
-              <h5 class="propertyValue">Property Value</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><a class="xref" href="Unosquare.Labs.LiteLib.LiteDbContext.html">LiteDbContext</a></td>
-                    <td></td>
-                  </tr>
-                </tbody>
-              </table>
-              
-              
-              <a id="Unosquare_Labs_LiteLib_ILiteDbSet_DeleteDefinition_" data-uid="Unosquare.Labs.LiteLib.ILiteDbSet.DeleteDefinition*"></a>
-              <h4 id="Unosquare_Labs_LiteLib_ILiteDbSet_DeleteDefinition" data-uid="Unosquare.Labs.LiteLib.ILiteDbSet.DeleteDefinition">DeleteDefinition</h4>
-              <div class="markdown level1 summary"><p>Gets the delete command definition.</p>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">LiteDbContext Context { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Unosquare.Labs.LiteLib.LiteDbContext.html">LiteDbContext</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Unosquare_Labs_LiteLib_ILiteDbSet_DeleteDefinition_" data-uid="Unosquare.Labs.LiteLib.ILiteDbSet.DeleteDefinition*"></a>
+  <h4 id="Unosquare_Labs_LiteLib_ILiteDbSet_DeleteDefinition" data-uid="Unosquare.Labs.LiteLib.ILiteDbSet.DeleteDefinition">DeleteDefinition</h4>
+  <div class="markdown level1 summary"><p>Gets the delete command definition.</p>
 </div>
-              <div class="markdown level1 conceptual"></div>
-              <h5 class="decalaration">Declaration</h5>
-              <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">string DeleteDefinition { get; }</code></pre>
-              </div>
-              <h5 class="propertyValue">Property Value</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="xref">System.String</span></td>
-                    <td></td>
-                  </tr>
-                </tbody>
-              </table>
-              
-              
-              <a id="Unosquare_Labs_LiteLib_ILiteDbSet_EntityType_" data-uid="Unosquare.Labs.LiteLib.ILiteDbSet.EntityType*"></a>
-              <h4 id="Unosquare_Labs_LiteLib_ILiteDbSet_EntityType" data-uid="Unosquare.Labs.LiteLib.ILiteDbSet.EntityType">EntityType</h4>
-              <div class="markdown level1 summary"><p>Gets or sets the type of the entity.</p>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string DeleteDefinition { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Unosquare_Labs_LiteLib_ILiteDbSet_EntityType_" data-uid="Unosquare.Labs.LiteLib.ILiteDbSet.EntityType*"></a>
+  <h4 id="Unosquare_Labs_LiteLib_ILiteDbSet_EntityType" data-uid="Unosquare.Labs.LiteLib.ILiteDbSet.EntityType">EntityType</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the type of the entity.</p>
 </div>
-              <div class="markdown level1 conceptual"></div>
-              <h5 class="decalaration">Declaration</h5>
-              <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">Type EntityType { get; set; }</code></pre>
-              </div>
-              <h5 class="propertyValue">Property Value</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="xref">System.Type</span></td>
-                    <td></td>
-                  </tr>
-                </tbody>
-              </table>
-              
-              
-              <a id="Unosquare_Labs_LiteLib_ILiteDbSet_InsertDefinition_" data-uid="Unosquare.Labs.LiteLib.ILiteDbSet.InsertDefinition*"></a>
-              <h4 id="Unosquare_Labs_LiteLib_ILiteDbSet_InsertDefinition" data-uid="Unosquare.Labs.LiteLib.ILiteDbSet.InsertDefinition">InsertDefinition</h4>
-              <div class="markdown level1 summary"><p>Gets the insert command definition.</p>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Type EntityType { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Type</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Unosquare_Labs_LiteLib_ILiteDbSet_InsertDefinition_" data-uid="Unosquare.Labs.LiteLib.ILiteDbSet.InsertDefinition*"></a>
+  <h4 id="Unosquare_Labs_LiteLib_ILiteDbSet_InsertDefinition" data-uid="Unosquare.Labs.LiteLib.ILiteDbSet.InsertDefinition">InsertDefinition</h4>
+  <div class="markdown level1 summary"><p>Gets the insert command definition.</p>
 </div>
-              <div class="markdown level1 conceptual"></div>
-              <h5 class="decalaration">Declaration</h5>
-              <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">string InsertDefinition { get; }</code></pre>
-              </div>
-              <h5 class="propertyValue">Property Value</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="xref">System.String</span></td>
-                    <td></td>
-                  </tr>
-                </tbody>
-              </table>
-              
-              
-              <a id="Unosquare_Labs_LiteLib_ILiteDbSet_SelectDefinition_" data-uid="Unosquare.Labs.LiteLib.ILiteDbSet.SelectDefinition*"></a>
-              <h4 id="Unosquare_Labs_LiteLib_ILiteDbSet_SelectDefinition" data-uid="Unosquare.Labs.LiteLib.ILiteDbSet.SelectDefinition">SelectDefinition</h4>
-              <div class="markdown level1 summary"><p>Gets the select command definition.</p>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string InsertDefinition { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Unosquare_Labs_LiteLib_ILiteDbSet_SelectDefinition_" data-uid="Unosquare.Labs.LiteLib.ILiteDbSet.SelectDefinition*"></a>
+  <h4 id="Unosquare_Labs_LiteLib_ILiteDbSet_SelectDefinition" data-uid="Unosquare.Labs.LiteLib.ILiteDbSet.SelectDefinition">SelectDefinition</h4>
+  <div class="markdown level1 summary"><p>Gets the select command definition.</p>
 </div>
-              <div class="markdown level1 conceptual"></div>
-              <h5 class="decalaration">Declaration</h5>
-              <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">string SelectDefinition { get; }</code></pre>
-              </div>
-              <h5 class="propertyValue">Property Value</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="xref">System.String</span></td>
-                    <td></td>
-                  </tr>
-                </tbody>
-              </table>
-              
-              
-              <a id="Unosquare_Labs_LiteLib_ILiteDbSet_TableDefinition_" data-uid="Unosquare.Labs.LiteLib.ILiteDbSet.TableDefinition*"></a>
-              <h4 id="Unosquare_Labs_LiteLib_ILiteDbSet_TableDefinition" data-uid="Unosquare.Labs.LiteLib.ILiteDbSet.TableDefinition">TableDefinition</h4>
-              <div class="markdown level1 summary"><p>Gets the table definition.</p>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string SelectDefinition { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Unosquare_Labs_LiteLib_ILiteDbSet_TableDefinition_" data-uid="Unosquare.Labs.LiteLib.ILiteDbSet.TableDefinition*"></a>
+  <h4 id="Unosquare_Labs_LiteLib_ILiteDbSet_TableDefinition" data-uid="Unosquare.Labs.LiteLib.ILiteDbSet.TableDefinition">TableDefinition</h4>
+  <div class="markdown level1 summary"><p>Gets the table definition.</p>
 </div>
-              <div class="markdown level1 conceptual"></div>
-              <h5 class="decalaration">Declaration</h5>
-              <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">string TableDefinition { get; }</code></pre>
-              </div>
-              <h5 class="propertyValue">Property Value</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="xref">System.String</span></td>
-                    <td></td>
-                  </tr>
-                </tbody>
-              </table>
-              
-              
-              <a id="Unosquare_Labs_LiteLib_ILiteDbSet_TableName_" data-uid="Unosquare.Labs.LiteLib.ILiteDbSet.TableName*"></a>
-              <h4 id="Unosquare_Labs_LiteLib_ILiteDbSet_TableName" data-uid="Unosquare.Labs.LiteLib.ILiteDbSet.TableName">TableName</h4>
-              <div class="markdown level1 summary"><p>Gets the name of the data-backing table.</p>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string TableDefinition { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Unosquare_Labs_LiteLib_ILiteDbSet_TableName_" data-uid="Unosquare.Labs.LiteLib.ILiteDbSet.TableName*"></a>
+  <h4 id="Unosquare_Labs_LiteLib_ILiteDbSet_TableName" data-uid="Unosquare.Labs.LiteLib.ILiteDbSet.TableName">TableName</h4>
+  <div class="markdown level1 summary"><p>Gets the name of the data-backing table.</p>
 </div>
-              <div class="markdown level1 conceptual"></div>
-              <h5 class="decalaration">Declaration</h5>
-              <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">string TableName { get; }</code></pre>
-              </div>
-              <h5 class="propertyValue">Property Value</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="xref">System.String</span></td>
-                    <td></td>
-                  </tr>
-                </tbody>
-              </table>
-              
-              
-              <a id="Unosquare_Labs_LiteLib_ILiteDbSet_UpdateDefinition_" data-uid="Unosquare.Labs.LiteLib.ILiteDbSet.UpdateDefinition*"></a>
-              <h4 id="Unosquare_Labs_LiteLib_ILiteDbSet_UpdateDefinition" data-uid="Unosquare.Labs.LiteLib.ILiteDbSet.UpdateDefinition">UpdateDefinition</h4>
-              <div class="markdown level1 summary"><p>Gets the update command definition.</p>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string TableName { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Unosquare_Labs_LiteLib_ILiteDbSet_UpdateDefinition_" data-uid="Unosquare.Labs.LiteLib.ILiteDbSet.UpdateDefinition*"></a>
+  <h4 id="Unosquare_Labs_LiteLib_ILiteDbSet_UpdateDefinition" data-uid="Unosquare.Labs.LiteLib.ILiteDbSet.UpdateDefinition">UpdateDefinition</h4>
+  <div class="markdown level1 summary"><p>Gets the update command definition.</p>
 </div>
-              <div class="markdown level1 conceptual"></div>
-              <h5 class="decalaration">Declaration</h5>
-              <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">string UpdateDefinition { get; }</code></pre>
-              </div>
-              <h5 class="propertyValue">Property Value</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="xref">System.String</span></td>
-                    <td></td>
-                  </tr>
-                </tbody>
-              </table>
-                        </article>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string UpdateDefinition { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</article>
           </div>
           
           <div class="hidden-sm col-md-2" role="complementary">
@@ -324,7 +324,7 @@
               <a href="#top">Back to top</a>
             </span>
             
-            <span>Copyright © 2015-2016 Microsoft<br>Generated by <strong>DocFX</strong></span>
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
           </div>
         </div>
       </footer>
