@@ -4,6 +4,7 @@
  [![Coverage Status](https://coveralls.io/repos/github/unosquare/litelib/badge.svg?branch=master)](https://coveralls.io/github/unosquare/litelib?branch=master)
 
 <img src="https://raw.githubusercontent.com/unosquare/litelib/master/litelib-logo.png" alt="LiteLib Logo" />
+
 # LiteLib
 
 _A cool little wrapper for SQLite based on Dapper from Unosquare Labs -- It's also free and MIT-licensed_
