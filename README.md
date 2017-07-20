@@ -4,7 +4,7 @@
  [![Coverage Status](https://coveralls.io/repos/github/unosquare/litelib/badge.svg?branch=master)](https://coveralls.io/github/unosquare/litelib?branch=master)
 
 <img src="https://raw.githubusercontent.com/unosquare/litelib/master/litelib-logo.png" alt="LiteLib Logo" />
-#LiteLib
+# LiteLib
 
 _A cool little wrapper for SQLite based on Dapper from Unosquare Labs -- It's also free and MIT-licensed_
 
@@ -24,7 +24,7 @@ Stuff that LiteLib *does not* cover:
 - Navigation properties or relationships. You'll have to implement and ensure consistency of data relations manually -- which BTW, it's not hard at all and lets you write faster, lighter code.
 - Automatic transactions or changesets. You'll have to `BeginTransaction` and `Commit` manually. The Data context class you define simply exposes the underlying Dapper connection.
 
-##Installation [![NuGet version](https://badge.fury.io/nu/litelib.svg)](https://badge.fury.io/nu/litelib)
+## Installation [![NuGet version](https://badge.fury.io/nu/litelib.svg)](https://badge.fury.io/nu/litelib)
 
 You can install LiteLib via NuGet Package Manager as follows:
 
@@ -32,7 +32,7 @@ You can install LiteLib via NuGet Package Manager as follows:
 PM> Install-Package LiteLib
 </pre>
 
-##Usage
+## Usage
 
 We designed LiteLib to be extremely easy to use. There are 3 steps you need to follow.
 
@@ -40,7 +40,7 @@ We designed LiteLib to be extremely easy to use. There are 3 steps you need to f
 2. Create your context class. It must extend `LiteDbContext`, and it must expose your `LiteDbSet` classes
 3. Use your context class. Example provided in the following section.
 
-##Example
+## Example
 
 Create your model class. Use the `Table` attribute to specify the name of the table you want to map your model to. Also note we inherit from `LiteModel`. If you wish to create a unique index on a column, use the `LiteUnique` attribute on a property. If you wish to index a column, then simply use the `LiteIndex` attribute. Please note properties with complex datatypes will not be mapped to the database.
 
