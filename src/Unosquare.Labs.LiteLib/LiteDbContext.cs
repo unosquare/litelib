@@ -26,22 +26,13 @@
     /// <seealso cref="System.IDisposable" />
     public abstract class LiteDbContext : IDisposable
     {
-#region Private Declarations 
+        #region Private Declarations 
 
         private readonly Dictionary<string, ILiteDbSet> _entitySets = new Dictionary<string, ILiteDbSet>();
         private readonly Type _contextType;
         private static readonly ConcurrentDictionary<Guid, LiteDbContext> Intances = new ConcurrentDictionary<Guid, LiteDbContext>();
         private static readonly PropertyTypeCache PropertyInfoCache = new PropertyTypeCache();
         private static readonly Type GenericLiteDbSetType = typeof(LiteDbSet<>);
-
-#endregion
-
-#region Events
-
-        /// <summary>
-        /// Occurs when [on database created].
-        /// </summary>
-        public event EventHandler OnDatabaseCreated = (s, e) => { };
 
         #endregion
 
@@ -66,7 +57,7 @@
             var builder = new SqliteConnectionStringBuilder
             {
                 DataSource = databaseFilePath,
-                //DateTimeKind = DateTimeKind.Utc
+                // DateTimeKind = DateTimeKind.Utc
             };
 
             Connection = new SqliteConnection(builder.ToString());
@@ -83,6 +74,15 @@
             UniqueId = Guid.NewGuid();
             Intances[UniqueId] = this;
         }
+
+        #endregion
+
+        #region Events
+
+        /// <summary>
+        /// Occurs when [on database created].
+        /// </summary>
+        public event EventHandler OnDatabaseCreated = (s, e) => { };
 
         #endregion
 
@@ -136,25 +136,6 @@
             }
 
             $"Context instance {_contextType.Name} - {_entitySets.Count} entity sets. {Instances.Count} context instances.".Debug(nameof(LiteDbContext));
-        }
-
-        /// <summary>
-        /// Creates the database schema using the entity set DDL generators.
-        /// </summary>
-        private void CreateDatabase()
-        {
-            var ddlBuilder = new StringBuilder();
-            foreach (var entitySet in _entitySets)
-            {
-                ddlBuilder.AppendLine(entitySet.Value.TableDefinition);
-            }
-
-            using (var tran = Connection.BeginTransaction())
-            {
-                Connection.Execute(ddlBuilder.ToString());
-                tran.Commit();
-                OnDatabaseCreated(this, EventArgs.Empty);
-            }
         }
 
         /// <summary>
@@ -232,7 +213,7 @@
         /// <typeparam name="TEntity">The type of the entity.</typeparam>
         /// <param name="commandText">The command text.</param>
         /// <param name="whereParams">The where parameters.</param>
-        /// <returns></returns>
+        /// <returns>An enumerable of the type</returns>
         public IEnumerable<TEntity> Query<TEntity>(string commandText, object whereParams = null)
         {
             LogSqlCommand(commandText, whereParams);
@@ -245,7 +226,7 @@
         /// <typeparam name="TEntity">The type of the entity.</typeparam>
         /// <param name="commandText">The command text.</param>
         /// <param name="whereParams">The where parameters.</param>
-        /// <returns></returns>
+        /// <returns>A Task with an enumerable of the type</returns>
         public async Task<IEnumerable<TEntity>> QueryAsync<TEntity>(string commandText, object whereParams = null)
         {
             LogSqlCommand(commandText, whereParams);
@@ -287,7 +268,7 @@
         /// Deletes the specified entity without triggering events.
         /// </summary>
         /// <param name="entity">The entity.</param>
-        /// <returns></returns>
+        /// <returns>The affected rows count</returns>
         public int Delete(object entity)
         {
             var set = Set(entity.GetType());
@@ -301,7 +282,7 @@
         /// Deletes the asynchronous without triggering events.
         /// </summary>
         /// <param name="entity">The entity.</param>
-        /// <returns></returns>
+        /// <returns>A Task with the affected rows count</returns>
         public async Task<int> DeleteAsync(object entity)
         {
             var set = Set(entity.GetType());
@@ -315,7 +296,7 @@
         /// Updates the specified entity without triggering events.
         /// </summary>
         /// <param name="entity">The entity.</param>
-        /// <returns></returns>
+        /// <returns>The affected rows count</returns>
         public int Update(object entity)
         {
             var set = Set(entity.GetType());
@@ -329,7 +310,7 @@
         /// Updates the asynchronous without triggering events.
         /// </summary>
         /// <param name="entity">The entity.</param>
-        /// <returns></returns>
+        /// <returns>A task with he affected rows count</returns>
         public async Task<int> UpdateAsync(object entity)
         {
             var set = Set(entity.GetType());
@@ -339,9 +320,33 @@
             return await Connection.ExecuteAsync(set.UpdateDefinition, entity);
         }
 
+        /// <summary>
+        /// Creates the database schema using the entity set DDL generators.
+        /// </summary>
+        private void CreateDatabase()
+        {
+            var ddlBuilder = new StringBuilder();
+            foreach (var entitySet in _entitySets)
+            {
+                ddlBuilder.AppendLine(entitySet.Value.TableDefinition);
+            }
+
+            using (var tran = Connection.BeginTransaction())
+            {
+                Connection.Execute(ddlBuilder.ToString());
+                tran.Commit();
+                OnDatabaseCreated(this, EventArgs.Empty);
+            }
+        }
+
         #endregion
 
         #region Properties
+
+        /// <summary>
+        /// Gets all instances of Lite DB contexts that are instantiated and not disposed.
+        /// </summary>
+        public static ReadOnlyCollection<LiteDbContext> Instances => new ReadOnlyCollection<LiteDbContext>(Intances.Values.ToList());
 
         /// <summary>
         /// Gets the underlying SQLite connection.
@@ -357,12 +362,7 @@
         /// Gets or sets a value indicating whether [enabled log].
         /// </summary>
         public bool EnabledLog { get; set; }
-
-        /// <summary>
-        /// Gets all instances of Lite DB contexts that are instantiated and not disposed.
-        /// </summary>
-        public static ReadOnlyCollection<LiteDbContext> Instances => new ReadOnlyCollection<LiteDbContext>(Intances.Values.ToList());
-
+        
 #endregion
 
 #region IDisposable Support
@@ -373,22 +373,21 @@
         /// Releases unmanaged and - optionally - managed resources.
         /// </summary>
         /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
-        void Dispose(bool disposing)
+        public void Dispose(bool disposing)
         {
-            if (!_isDisposing)
-            {
-                if (disposing)
-                {
-                    LiteDbContext removed;
-                    Intances.TryRemove(this.UniqueId, out removed);
-                    Connection.Close();
-                    Connection.Dispose();
-                    Connection = null;
-                    $"Disposed {_contextType.Name}. {Intances.Count} context instances.".Debug();
-                }
+            if (_isDisposing) return;
 
-                _isDisposing = true;
+            if (disposing)
+            {
+                LiteDbContext removed;
+                Intances.TryRemove(this.UniqueId, out removed);
+                Connection.Close();
+                Connection.Dispose();
+                Connection = null;
+                $"Disposed {_contextType.Name}. {Intances.Count} context instances.".Debug();
             }
+
+            _isDisposing = true;
         }
 
         /// <summary>
@@ -396,7 +395,6 @@
         /// </summary>
         public void Dispose()
         {
-            
             Dispose(true);
         }
 #endregion

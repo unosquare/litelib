@@ -15,17 +15,17 @@
 
         private static readonly Dictionary<Type, string> TypeMappings = new Dictionary<Type, string>
         {
-            {typeof (Int16), IntegerAffinity},
-            {typeof (Int32), IntegerAffinity},
-            {typeof (Int64), IntegerAffinity},
-            {typeof (UInt16), IntegerAffinity},
-            {typeof (UInt32), IntegerAffinity},
-            {typeof (UInt64), IntegerAffinity},
-            {typeof (byte), IntegerAffinity},
-            {typeof (char), IntegerAffinity},
-            {typeof (Decimal), NumericAffinity},
-            {typeof (Boolean), NumericAffinity},
-            {typeof (DateTime), DateTimeAffinity},
+            {typeof(Int16), IntegerAffinity},
+            {typeof(Int32), IntegerAffinity},
+            {typeof(Int64), IntegerAffinity},
+            {typeof(UInt16), IntegerAffinity},
+            {typeof(UInt32), IntegerAffinity},
+            {typeof(UInt64), IntegerAffinity},
+            {typeof(byte), IntegerAffinity},
+            {typeof(char), IntegerAffinity},
+            {typeof(Decimal), NumericAffinity},
+            {typeof(Boolean), NumericAffinity},
+            {typeof(DateTime), DateTimeAffinity},
         };
 
         /// <summary>

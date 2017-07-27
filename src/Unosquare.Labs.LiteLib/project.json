@@ -3,10 +3,17 @@
   "title": "LiteLib",
   "description": "A cool little wrapper for SQLite based on Dapper.",
   "buildOptions": {
+    "additionalArguments": [
+      "/ruleset:../../StyleCop.Analyzers.ruleset"
+    ],
     "xmlDoc": true
   },
 
   "dependencies": {
+    "StyleCop.Analyzers": {
+      "type": "build",
+      "version": "1.0.0"
+    },
     "Dapper": "1.50.2",
     "Microsoft.Data.Sqlite": "1.0.0",
     "Unosquare.Swan": "0.12.0"

@@ -36,7 +36,7 @@
         /// <value>
         /// The database set.
         /// </value>
-        public ILiteDbSet<T> DbSet {get; protected set;}
+        public ILiteDbSet<T> DbSet { get; protected set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether this <see cref="EntityEventArgs{T}"/> is cancel.

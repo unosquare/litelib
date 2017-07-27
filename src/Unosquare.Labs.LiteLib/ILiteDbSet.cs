@@ -62,17 +62,23 @@
         /// <summary>
         /// Inserts the specified entity.
         /// </summary>
+        /// <param name="entity">The entity.</param>
+        /// <returns></returns>
         int Insert(T entity);
 
         /// <summary>
         /// Deletes the specified entity. RowId must be set.
         /// </summary>
+        /// <param name="entity">The entity.</param>
+        /// <returns></returns>
         int Delete(T entity);
 
         /// <summary>
         /// Updates the specified entity in a non optimistic concurrency manner.
         /// RowId must be set.
         /// </summary>
+        /// <param name="entity">The entity.</param>
+        /// <returns></returns>
         int Update(T entity);
 
         /// <summary>
@@ -89,7 +95,7 @@
         /// </summary>
         /// <returns></returns>
         IEnumerable<T> SelectAll();
-        
+
         /// <summary>
         /// Selects a single entity from the databse given its row id.
         /// </summary>

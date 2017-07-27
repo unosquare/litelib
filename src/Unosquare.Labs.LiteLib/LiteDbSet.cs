@@ -39,6 +39,18 @@
 
         #endregion
 
+        #region Constructor
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LiteDbSet{T}"/> class.
+        /// </summary>
+        public LiteDbSet()
+        {
+            LoadDefinitions();
+        }
+
+        #endregion
+
         #region Events
 
         /// <summary>
@@ -70,7 +82,6 @@
         /// Occurs when [on after delete].
         /// </summary>
         public event EventHandler<EntityEventArgs<T>> OnAfterDelete = (s, e) => { };
-
 
         #endregion
 
@@ -123,18 +134,6 @@
 
         #endregion
 
-        #region Constructor
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="LiteDbSet{T}"/> class.
-        /// </summary>
-        public LiteDbSet()
-        {
-            LoadDefinitions();
-        }
-
-        #endregion
-
         #region Methods and Data Access
 
         /// <summary>
@@ -161,7 +160,7 @@
 
             var createBuilder = new StringBuilder();
             var indexBuilder = new List<string>();
-            
+
             var properties = typeof(T).GetProperties(PublicInstanceFlags);
             var propertyNames = new List<string>();
 
@@ -178,33 +177,27 @@
             {
                 if (property.Name == nameof(ILiteModel.RowId) || property.CanWrite == false)
                     continue;
+                
+                // Skip if not mapped
+                var notMappedAttribute = property.GetCustomAttribute<NotMappedAttribute>();
+                if (notMappedAttribute != null)
+                    continue;
 
+                // Add to indexes if indexed attribute is ON
+                var indexedAttribute = property.GetCustomAttribute<LiteIndexAttribute>();
+                if (indexedAttribute != null)
                 {
-                    // Skip if not mapped
-                    var notMappedAttribute = property.GetCustomAttribute<NotMappedAttribute>();
-                    if (notMappedAttribute != null)
-                        continue;
+                    indexBuilder.Add(
+                        $"CREATE INDEX IF NOT EXISTS [IX_{tableName}_{property.Name}] ON [{tableName}] ([{property.Name}]);");
                 }
 
-                {
-                    // Add to indexes if indexed attribute is ON
-                    var indexedAttribute = property.GetCustomAttribute<LiteIndexAttribute>();
-                    if (indexedAttribute != null)
-                    {
-                        indexBuilder.Add(
-                            $"CREATE INDEX IF NOT EXISTS [IX_{tableName}_{property.Name}] ON [{tableName}] ([{property.Name}]);");
-                    }
-                }
+                // Add to unique indexes if indexed attribute is ON
+                var uniqueIndexAttribute = property.GetCustomAttribute<LiteUniqueAttribute>();
 
+                if (uniqueIndexAttribute != null)
                 {
-                    // Add to unique indexes if indexed attribute is ON
-                    var uniqueIndexAttribute = property.GetCustomAttribute<LiteUniqueAttribute>();
-
-                    if (uniqueIndexAttribute != null)
-                    {
-                        indexBuilder.Add(
-                            $"CREATE UNIQUE INDEX IF NOT EXISTS [IX_{tableName}_{property.Name}] ON [{tableName}] ([{property.Name}]);");
-                    }
+                    indexBuilder.Add(
+                        $"CREATE UNIQUE INDEX IF NOT EXISTS [IX_{tableName}_{property.Name}] ON [{tableName}] ([{property.Name}]);");
                 }
 
                 var isValidProperty = false;
@@ -264,7 +257,7 @@
             if (propertyNames.Any() == false)
                 throw new Exception("Invalid DbSet, you need at least one property to bind");
 
-            //trim out the extra comma
+            // trim out the extra comma
             createBuilder.Remove(createBuilder.Length - Environment.NewLine.Length - 1, Environment.NewLine.Length + 1);
 
             createBuilder.AppendLine();
@@ -302,7 +295,7 @@
                 PropertyNames = PropertyNames
             };
         }
-        
+
         /// <summary>
         /// Inserts the specified entity.
         /// </summary>
@@ -491,9 +484,8 @@
         /// <returns></returns>
         public T FirstOrDefault(string fieldName, object fieldValue)
         {
-            return Select($"[{fieldName}] = @FieldValue", new {FieldValue = fieldValue}).FirstOrDefault();
+            return Select($"[{fieldName}] = @FieldValue", new { FieldValue = fieldValue }).FirstOrDefault();
         }
-
 
         /// <summary>
         /// Firsts the or default asynchronous.
@@ -503,7 +495,7 @@
         /// <returns></returns>
         public async Task<T> FirstOrDefaultAsync(string fieldName, object fieldValue)
         {
-            var result = await SelectAsync($"[{fieldName}] = @FieldValue", new {FieldValue = fieldValue});
+            var result = await SelectAsync($"[{fieldName}] = @FieldValue", new { FieldValue = fieldValue });
 
             return result.FirstOrDefault();
         }
@@ -553,7 +545,7 @@
             Context.LogSqlCommand(commandText, null);
             return await Context.Connection.ExecuteScalarAsync<int>(commandText);
         }
-        
+
         #endregion
     }
 }

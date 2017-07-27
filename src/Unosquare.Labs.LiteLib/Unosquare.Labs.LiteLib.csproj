@@ -75,7 +75,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Events.cs" />
+    <Compile Include="EntityEventArgs.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="ILiteDbSet.cs" />
     <Compile Include="ILiteModel.cs" />
