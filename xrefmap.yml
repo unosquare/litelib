@@ -524,6 +524,12 @@ references:
   commentId: M:Unosquare.Labs.LiteLib.LiteDbContext.Dispose
   fullName: Unosquare.Labs.LiteLib.LiteDbContext.Dispose()
   nameWithType: LiteDbContext.Dispose()
+- uid: Unosquare.Labs.LiteLib.LiteDbContext.Dispose(System.Boolean)
+  name: Dispose(Boolean)
+  href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_Dispose_System_Boolean_
+  commentId: M:Unosquare.Labs.LiteLib.LiteDbContext.Dispose(System.Boolean)
+  fullName: Unosquare.Labs.LiteLib.LiteDbContext.Dispose(System.Boolean)
+  nameWithType: LiteDbContext.Dispose(Boolean)
 - uid: Unosquare.Labs.LiteLib.LiteDbContext.Dispose*
   name: Dispose
   href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_Dispose_
