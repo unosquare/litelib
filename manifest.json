@@ -53,7 +53,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Labs.LiteLib.Extensions.html",
-          "hash": "SGQOEo/Bg6p/grFn+4Rtzw=="
+          "hash": "N7OAfhm9LGF2akgL4CBJUw=="
         }
       },
       "is_incremental": false,
@@ -65,7 +65,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html",
-          "hash": "cmKmITFrJ6Gnm9fxoeLAcg=="
+          "hash": "xlv/R2GWtBQemhSdy7L1PQ=="
         }
       },
       "is_incremental": false,
@@ -101,7 +101,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Labs.LiteLib.LiteDbContext.html",
-          "hash": "fD7kaL4Pj4h+D8+7CNXxqA=="
+          "hash": "r62pvmhNDIMdIgwGePG0bg=="
         }
       },
       "is_incremental": false,
@@ -200,6 +200,11 @@
         "incrementalPhase": "build"
       },
       "processors": {
+        "RestApiDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor RestApiDocumentProcessor cannot suppport incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build"
+        },
         "ConceptualDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build"
@@ -211,11 +216,6 @@
         "ResourceDocumentProcessor": {
           "can_incremental": false,
           "details": "Processor ResourceDocumentProcessor cannot suppport incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
-          "incrementalPhase": "build"
-        },
-        "RestApiDocumentProcessor": {
-          "can_incremental": false,
-          "details": "Processor RestApiDocumentProcessor cannot suppport incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
           "incrementalPhase": "build"
         },
         "TocDocumentProcessor": {
