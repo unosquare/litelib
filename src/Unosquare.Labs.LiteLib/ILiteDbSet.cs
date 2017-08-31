@@ -63,14 +63,14 @@
         /// Inserts the specified entity.
         /// </summary>
         /// <param name="entity">The entity.</param>
-        /// <returns>Returns an int</returns>
+        /// <returns>The number of rows inserted</returns>
         int Insert(T entity);
 
         /// <summary>
         /// Deletes the specified entity. RowId must be set.
         /// </summary>
         /// <param name="entity">The entity.</param>
-        /// <returns>Returns an int</returns>
+        /// <returns>The number of rows deleted</returns>
         int Delete(T entity);
 
         /// <summary>
@@ -78,7 +78,7 @@
         /// RowId must be set.
         /// </summary>
         /// <param name="entity">The entity.</param>
-        /// <returns>Returns an int</returns>
+        /// <returns>The number of rows updated</returns>
         int Update(T entity);
 
         /// <summary>
@@ -87,47 +87,47 @@
         /// </summary>
         /// <param name="whereText">The where text.</param>
         /// <param name="whereParams">The where parameters.</param>
-        /// <returns>Returns an IEnumerable with generic type</returns>
+        /// <returns>A Enumerable with generic type</returns>
         IEnumerable<T> Select(string whereText, object whereParams);
 
         /// <summary>
         /// Selects all entities from the database.
         /// </summary>
-        /// <returns>Returns an IEnumerable with generic type</returns>
+        /// <returns>A Enumerable with generic type</returns>
         IEnumerable<T> SelectAll();
 
         /// <summary>
         /// Selects a single entity from the databse given its row id.
         /// </summary>
         /// <param name="rowId">The row identifier.</param>
-        /// <returns>Returns a generic type</returns>
+        /// <returns>A generic type</returns>
         T Single(long rowId);
 
         /// <summary>
         /// Counts the total number of rows in the table
         /// </summary>
-        /// <returns>Returns an int</returns>
+        /// <returns>The total number of rows</returns>
         int Count();
 
         /// <summary>
         /// Provides and asynchronous counterpart to the Insert method
         /// </summary>
         /// <param name="entity">The entity.</param>
-        /// <returns>Returns a Task of type int</returns>
+        /// <returns>A Task with the number of rows inserted</returns>
         Task<int> InsertAsync(T entity);
 
         /// <summary>
         /// Provides and asynchronous counterpart to the Delete method
         /// </summary>
         /// <param name="entity">The entity.</param>
-        /// <returns>Returns a Task of type int</returns>
+        /// <returns>A Task with the number of rows deleted</returns>
         Task<int> DeleteAsync(T entity);
 
         /// <summary>
         /// Provides and asynchronous counterpart to the Update method
         /// </summary>
         /// <param name="entity">The entity.</param>
-        /// <returns>Returns a Task of type int</returns>
+        /// <returns>A Task with the number of rows updated</returns>
         Task<int> UpdateAsync(T entity);
 
         /// <summary>
@@ -135,26 +135,26 @@
         /// </summary>
         /// <param name="whereText">The where text.</param>
         /// <param name="whereParams">The where parameters.</param>
-        /// <returns>Returns a Task of type IEnumerable with a generic type</returns>
+        /// <returns>A Task of type Enumerable with a generic type</returns>
         Task<IEnumerable<T>> SelectAsync(string whereText, object whereParams);
 
         /// <summary>
         /// Selects all asynchronous.
         /// </summary>
-        /// <returns>Returns a Task of type IEnumerable with a generic type</returns>
+        /// <returns>A Task of type Enumerable with a generic type</returns>
         Task<IEnumerable<T>> SelectAllAsync();
 
         /// <summary>
         /// Provides and asynchronous counterpart to the Single method
         /// </summary>
         /// <param name="rowId">The row identifier.</param>
-        /// <returns>Returns a Task with a generyc type</returns>
+        /// <returns>A Task with a generyc type</returns>
         Task<T> SingleAsync(long rowId);
 
         /// <summary>
         /// Provides and asynchronous counterpart to the Count method
         /// </summary>
-        /// <returns>Returns a Task with a generyc type</returns>
+        /// <returns>A Task with the total number of rows</returns>
         Task<int> CountAsync();
     }
 }

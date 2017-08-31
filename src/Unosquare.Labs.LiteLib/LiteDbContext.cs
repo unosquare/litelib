@@ -142,7 +142,7 @@
         /// Vacuums the database asynchronously.
         /// </summary>
         /// <returns>
-        /// Returns a Task that represent the Execution of the Vacuum command
+        /// A Task that represent the Execution of the Vacuum command
         /// </returns>
         public async Task VaccuumDatabaseAsync()
         {
@@ -156,7 +156,7 @@
         /// </summary>
         /// <param name="entityType">Type of the entity.</param>
         /// <returns>
-        /// Returns a non-generic liteDbSet instance for access to entities of the given type in the context and the underlying store.
+        /// A non-generic liteDbSet instance for access to entities of the given type in the context and the underlying store.
         /// </returns>
         /// <exception cref="ArgumentOutOfRangeException">Throws an ArgumentOutOfRangeException</exception>
         public ILiteDbSet Set(Type entityType)
@@ -174,7 +174,7 @@
         /// </summary>
         /// <typeparam name="TEntity">Entity type</typeparam>
         /// <returns>
-        /// Returns a liteDbSet instance for access to entities of the given type in the context and the underlying store.
+        /// A liteDbSet instance for access to entities of the given type in the context and the underlying store.
         /// </returns>
         public ILiteDbSet Set<TEntity>()
         {
@@ -184,7 +184,7 @@
         /// <summary>
         /// Gets the set names.
         /// </summary>
-        /// <returns>Returns an array of strings of the entities</returns>
+        /// <returns>An array of strings of the entities</returns>
         public string[] GetSetNames() => _entitySets.Keys.ToArray();
 
         /// <summary>
@@ -194,7 +194,7 @@
         /// <param name="set">The set.</param>
         /// <param name="whereText">The where text.</param>
         /// <param name="whereParams">The where parameters.</param>
-        /// <returns>Returns an enumerable of type of the Entity</returns>
+        /// <returns>An enumerable of type of the Entity</returns>
         public IEnumerable<TEntity> Select<TEntity>(ILiteDbSet set, string whereText, object whereParams = null)
         {
             return Query<TEntity>($"{set.SelectDefinition} WHERE {whereText}", whereParams);
@@ -207,7 +207,7 @@
         /// <param name="set">The set.</param>
         /// <param name="whereText">The where text.</param>
         /// <param name="whereParams">The where parameters.</param>
-        /// <returns>Returns a Task with a enumerable of type of the entity</returns>
+        /// <returns>A Task with a enumerable of type of the entity</returns>
         public async Task<IEnumerable<TEntity>> SelectAsync<TEntity>(ILiteDbSet set, string whereText, object whereParams = null)
         {
             return await QueryAsync<TEntity>($"{set.SelectDefinition} WHERE {whereText}", whereParams);
@@ -247,7 +247,7 @@
         /// Inserts the specified entity without triggering events.
         /// </summary>
         /// <param name="entity">The entity.</param>
-        /// <returns>Returns a query of type int</returns>
+        /// <returns>The number of rows inserted</returns>
         /// <exception cref="System.ArgumentOutOfRangeException">entity - The object type must be registered as ILiteDbSet</exception>
         public int Insert(object entity)
         {
@@ -262,7 +262,7 @@
         /// Inserts the asynchronous without triggering events.
         /// </summary>
         /// <param name="entity">The entity.</param>
-        /// <returns>Returns an int representing the result</returns>
+        /// <returns>A Task with the total number of rows inserted</returns>
         public async Task<int> InsertAsync(object entity)
         {
             var set = Set(entity.GetType());
