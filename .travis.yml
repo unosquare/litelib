@@ -2,9 +2,7 @@ language: csharp
 solution: Unosquare.Labs.LiteLib.sln
 notifications:
   slack: unolabs:cbusXPH6pBwZ35rVDzi4k4ve
-os:
-  - linux
-  - osx
+dotnet: 2.0.0
 install:
   - dotnet restore
   - if [[ $TRAVIS_OS_NAME == "linux" ]]; then sudo apt-get install sqlite; fi
