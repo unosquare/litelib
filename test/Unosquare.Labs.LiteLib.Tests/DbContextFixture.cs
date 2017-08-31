@@ -14,11 +14,11 @@ namespace Unosquare.Labs.LiteLib.Tests
 {
     public class Program
     {
-        static void Main(string[] args)
-        {
-            var x = new DbContextFixture();
-            x.TestFirstOrDefault();
-        }
+        //static void Main(string[] args)
+        //{
+        //    var x = new DbContextFixture();
+        //    x.TestFirstOrDefault();
+        //}
     }
 
     /// <summary>
