@@ -1,11 +1,20 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unosquare.Labs.LiteLib", "src\Unosquare.Labs.LiteLib\Unosquare.Labs.LiteLib.csproj", "{61110638-2D09-4B02-A543-AE32D182C0CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Unosquare.Labs.LiteLib", "src\Unosquare.Labs.LiteLib\Unosquare.Labs.LiteLib.csproj", "{61110638-2D09-4B02-A543-AE32D182C0CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unosquare.Labs.LiteLib.Tests", "test\Unosquare.Labs.LiteLib.Tests\Unosquare.Labs.LiteLib.Tests.csproj", "{35CA62F7-7CC8-4086-BE8B-1195D48F3232}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Unosquare.Labs.LiteLib.Tests", "test\Unosquare.Labs.LiteLib.Tests\Unosquare.Labs.LiteLib.Tests.csproj", "{35CA62F7-7CC8-4086-BE8B-1195D48F3232}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{615FCCD1-FBB0-4BBC-9BD9-F27D9591429C}"
+	ProjectSection(SolutionItems) = preProject
+		.travis.yml = .travis.yml
+		appveyor.yml = appveyor.yml
+		LICENSE = LICENSE
+		README.md = README.md
+		StyleCop.Analyzers.ruleset = StyleCop.Analyzers.ruleset
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -16,18 +25,21 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{61110638-2D09-4B02-A543-AE32D182C0CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{61110638-2D09-4B02-A543-AE32D182C0CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{61110638-2D09-4B02-A543-AE32D182C0CE}.Mono|Any CPU.ActiveCfg = Mono|Any CPU
-		{61110638-2D09-4B02-A543-AE32D182C0CE}.Mono|Any CPU.Build.0 = Mono|Any CPU
+		{61110638-2D09-4B02-A543-AE32D182C0CE}.Mono|Any CPU.ActiveCfg = Release|Any CPU
+		{61110638-2D09-4B02-A543-AE32D182C0CE}.Mono|Any CPU.Build.0 = Release|Any CPU
 		{61110638-2D09-4B02-A543-AE32D182C0CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{61110638-2D09-4B02-A543-AE32D182C0CE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{35CA62F7-7CC8-4086-BE8B-1195D48F3232}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{35CA62F7-7CC8-4086-BE8B-1195D48F3232}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{35CA62F7-7CC8-4086-BE8B-1195D48F3232}.Mono|Any CPU.ActiveCfg = Mono|Any CPU
-		{35CA62F7-7CC8-4086-BE8B-1195D48F3232}.Mono|Any CPU.Build.0 = Mono|Any CPU
+		{35CA62F7-7CC8-4086-BE8B-1195D48F3232}.Mono|Any CPU.ActiveCfg = Release|Any CPU
+		{35CA62F7-7CC8-4086-BE8B-1195D48F3232}.Mono|Any CPU.Build.0 = Release|Any CPU
 		{35CA62F7-7CC8-4086-BE8B-1195D48F3232}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{35CA62F7-7CC8-4086-BE8B-1195D48F3232}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B8F223FC-160A-4FDE-9262-1324249193C5}
 	EndGlobalSection
 EndGlobal

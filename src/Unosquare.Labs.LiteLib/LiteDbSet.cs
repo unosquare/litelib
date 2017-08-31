@@ -299,8 +299,10 @@
         /// <summary>
         /// Inserts the specified entity.
         /// </summary>
-        /// <param name="entity"></param>
-        /// <returns></returns>
+        /// <param name="entity">The entity.</param>
+        /// <returns>
+        /// The number of rows inserted
+        /// </returns>
         public int Insert(T entity)
         {
             var args = new EntityEventArgs<T>(entity, this);
@@ -317,6 +319,7 @@
         /// Inserts the specified entities.
         /// </summary>
         /// <param name="entities">The entities.</param>
+        /// <exception cref="ArgumentNullException">entities</exception>
         public void InsertRange(IEnumerable<T> entities)
         {
             if (entities == null || entities.Any() == false)
@@ -338,7 +341,9 @@
         /// Provides and asynchronous counterpart to the Insert method
         /// </summary>
         /// <param name="entity">The entity.</param>
-        /// <returns></returns>
+        /// <returns>
+        /// A Task with the number of rows inserted
+        /// </returns>
         public async Task<int> InsertAsync(T entity)
         {
             var args = new EntityEventArgs<T>(entity, this);
@@ -358,9 +363,11 @@
         /// <summary>
         /// Deletes the specified entity. RowId must be set.
         /// </summary>
-        /// <param name="entity"></param>
-        /// <returns></returns>
-        /// <exception cref="System.ArgumentException"></exception>
+        /// <param name="entity">The entity.</param>
+        /// <returns>
+        /// The number of rows deleted
+        /// </returns>
+        /// <exception cref="ArgumentException">RowId</exception>
         public int Delete(T entity)
         {
             if (entity.RowId == default(long))
@@ -381,8 +388,10 @@
         /// Provides and asynchronous counterpart to the Delete method
         /// </summary>
         /// <param name="entity">The entity.</param>
-        /// <returns></returns>
-        /// <exception cref="System.ArgumentException"></exception>
+        /// <returns>
+        /// A Task with the number of rows deleted
+        /// </returns>
+        /// <exception cref="ArgumentException">RowId</exception>
         public async Task<int> DeleteAsync(T entity)
         {
             if (entity.RowId == default(long))
@@ -404,8 +413,10 @@
         /// Updates the specified entity in a non optimistic concurrency manner.
         /// RowId must be set.
         /// </summary>
-        /// <param name="entity"></param>
-        /// <returns></returns>
+        /// <param name="entity">The entity.</param>
+        /// <returns>
+        /// The number of rows updated
+        /// </returns>
         public int Update(T entity)
         {
             var args = new EntityEventArgs<T>(entity, this);
@@ -422,7 +433,9 @@
         /// Provides and asynchronous counterpart to the Update method
         /// </summary>
         /// <param name="entity">The entity.</param>
-        /// <returns></returns>
+        /// <returns>
+        /// A Task with the number of rows updated
+        /// </returns>
         public async Task<int> UpdateAsync(T entity)
         {
             var args = new EntityEventArgs<T>(entity, this);
@@ -441,7 +454,9 @@
         /// </summary>
         /// <param name="whereText">The where text.</param>
         /// <param name="whereParams">The where parameters.</param>
-        /// <returns></returns>
+        /// <returns>
+        /// An Enumerable with generic type
+        /// </returns>
         public IEnumerable<T> Select(string whereText, object whereParams = null)
         {
             return Context.Select<T>(this, whereText, whereParams);
@@ -450,7 +465,9 @@
         /// <summary>
         /// Selects all entities from the database.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>
+        /// An Enumerable with generic type
+        /// </returns>
         public IEnumerable<T> SelectAll()
         {
             return Select("1 = 1");
@@ -461,7 +478,9 @@
         /// </summary>
         /// <param name="whereText">The where text.</param>
         /// <param name="whereParams">The where parameters.</param>
-        /// <returns></returns>
+        /// <returns>
+        /// A Task of type Enumerable with a generic type
+        /// </returns>
         public async Task<IEnumerable<T>> SelectAsync(string whereText, object whereParams = null)
         {
             return await Context.SelectAsync<T>(this, whereText, whereParams);
@@ -470,7 +489,9 @@
         /// <summary>
         /// Selects all asynchronous.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>
+        /// A Task of type Enumerable with a generic type
+        /// </returns>
         public async Task<IEnumerable<T>> SelectAllAsync()
         {
             return await SelectAsync("1 = 1", null);
@@ -481,7 +502,7 @@
         /// </summary>
         /// <param name="fieldName">Name of the field.</param>
         /// <param name="fieldValue">The field value.</param>
-        /// <returns></returns>
+        /// <returns> A generic type</returns>
         public T FirstOrDefault(string fieldName, object fieldValue)
         {
             return Select($"[{fieldName}] = @FieldValue", new { FieldValue = fieldValue }).FirstOrDefault();
@@ -492,7 +513,7 @@
         /// </summary>
         /// <param name="fieldName">Name of the field.</param>
         /// <param name="fieldValue">The field value.</param>
-        /// <returns></returns>
+        /// <returns>A Task with a generic type</returns>
         public async Task<T> FirstOrDefaultAsync(string fieldName, object fieldValue)
         {
             var result = await SelectAsync($"[{fieldName}] = @FieldValue", new { FieldValue = fieldValue });
@@ -504,7 +525,9 @@
         /// Selects a single entity from the database given its row id.
         /// </summary>
         /// <param name="rowId">The row identifier.</param>
-        /// <returns></returns>
+        /// <returns>
+        /// A generic type
+        /// </returns>
         public T Single(long rowId)
         {
             return
@@ -516,7 +539,9 @@
         /// Provides and asynchronous counterpart to the Single method
         /// </summary>
         /// <param name="rowId">The row identifier.</param>
-        /// <returns></returns>
+        /// <returns>
+        /// A Task with a generyc type
+        /// </returns>
         public async Task<T> SingleAsync(long rowId)
         {
             var result =
@@ -527,7 +552,9 @@
         /// <summary>
         /// Counts the total number of rows in the table
         /// </summary>
-        /// <returns></returns>
+        /// <returns>
+        /// The total number of rows
+        /// </returns>
         public int Count()
         {
             var commandText = $"SELECT COUNT(*) FROM [{TableName}]";
@@ -538,7 +565,9 @@
         /// <summary>
         /// Provides and asynchronous counterpart to the Count method
         /// </summary>
-        /// <returns></returns>
+        /// <returns>
+        /// A Task with the total number of rows
+        /// </returns>
         public async Task<int> CountAsync()
         {
             var commandText = $"SELECT COUNT(*) FROM [{TableName}]";

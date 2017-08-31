@@ -12,15 +12,6 @@ using Microsoft.Data.Sqlite;
 
 namespace Unosquare.Labs.LiteLib.Tests
 {
-    public class Program
-    {
-        static void Main(string[] args)
-        {
-            var x = new DbContextFixture();
-            x.TestFirstOrDefault();
-        }
-    }
-
     /// <summary>
     /// A TestFixture to test the included methods in LiteDbSet
     /// </summary>
@@ -317,7 +308,7 @@ namespace Unosquare.Labs.LiteLib.Tests
             {
                 using (var context = new TestDbContext(nameof(TestInvalidSetname)))
                 {
-                    context.Set<Program>();
+                    context.Set<DbContextFixture>();
                 }
             });
         }

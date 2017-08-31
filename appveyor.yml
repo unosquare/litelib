@@ -1,4 +1,7 @@
 version: '1.0.{build}'
+image: Visual Studio 2017
+build:
+  project: Unosquare.Labs.LiteLib.sln
 configuration:
 - Release
 platform: Any CPU
@@ -29,11 +32,6 @@ before_build:
 - mkdir tools
 - nuget install OpenCover -Version 4.6.519 -OutputDirectory tools
 - nuget install coveralls.net -Version 0.7.0 -OutputDirectory tools
-- nuget install sqlite -Version 3.13.0 -OutputDirectory tools
-build_script:
-- dotnet build "src\Unosquare.Labs.LiteLib" -c %CONFIGURATION%
-- dotnet build "test\Unosquare.Labs.LiteLib.Tests" -c %CONFIGURATION%
-- cp tools\SQLite.3.13.0\runtimes\win7-x64\native\sqlite3.dll test\Unosquare.Labs.LiteLib.Tests\bin\Release\net452\win8-x64\sqlite3.dll
 test_script:
 - tools\OpenCover.4.6.519\tools\OpenCover.Console.exe -target:"%ProgramFiles%\dotnet\dotnet.exe" -targetargs:"test "test\Unosquare.Labs.LiteLib.Tests" -c %CONFIGURATION%" -output:coverage.xml -filter:"+[*]* -[Unosquare.Swan*]* -[Unosquare.Labs.LiteLib.Tests*]*" -register:userdotnet
 - tools\coveralls.net.0.7.0\tools\csmacnz.Coveralls.exe --opencover -i coverage.xml --serviceName appveyor --jobId %APPVEYOR_BUILD_NUMBER%
