@@ -9,10 +9,11 @@
     <AssemblyName>Unosquare.Labs.LiteLib</AssemblyName>
     <PackageId>Unosquare.Labs.LiteLib</PackageId>
     <DebugType>Full</DebugType>
+    <CodeAnalysisRuleSet>..\..\StyleCop.Analyzers.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="StyleCop.Analyzers" Version="1.0.0">
+    <PackageReference Include="StyleCop.Analyzers" Version="1.0.2">
       <PrivateAssets>All</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Dapper" Version="1.50.2" />
