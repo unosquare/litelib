@@ -32,7 +32,7 @@
         /// Gets the type mapping.
         /// </summary>
         /// <param name="propertyType">Type of the property.</param>
-        /// <returns>A string dependending on the propertyType</returns>
+        /// <returns>A property type of the mapping</returns>
         public static string GetTypeMapping(this Type propertyType)
         {
             return TypeMappings.ContainsKey(propertyType) ? TypeMappings[propertyType] : TextAffinity;
@@ -42,7 +42,7 @@
         /// Transform a DateTime to a SQLite UTC date.
         /// </summary>
         /// <param name="utcDate">The UTC date.</param>
-        /// <returns>The time that has elapsed since the startup</returns>
+        /// <returns>UTC DateTime</returns>
         public static DateTime ToSQLiteUtcDate(this DateTime utcDate)
         {
             var startupDifference = (int)DateTime.UtcNow.Subtract(DateTime.Now).TotalHours;
