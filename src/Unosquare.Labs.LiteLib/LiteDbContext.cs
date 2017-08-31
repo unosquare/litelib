@@ -115,7 +115,7 @@
                             p.PropertyType.GetTypeInfo().IsGenericType &&
                             p.PropertyType.GetGenericTypeDefinition() == GenericLiteDbSetType);
             });
-            
+
             foreach (var entitySetProp in contextDbSetProperties)
             {
                 var entitySetType = entitySetProp.PropertyType.GetGenericArguments()[0];
@@ -141,7 +141,9 @@
         /// <summary>
         /// Vacuums the database asynchronously.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>
+        /// Returns a Task that represent the Execution of the Vacuum command
+        /// </returns>
         public async Task VaccuumDatabaseAsync()
         {
             "DB VACUUM command executing.".Debug(nameof(LiteDbContext));
@@ -150,11 +152,13 @@
         }
 
         /// <summary>
-        /// Returns a non-generic ILiteDbSet instance for access to entities of the given type in the context and the underlying store.
+        /// Sets the specified entity type.
         /// </summary>
         /// <param name="entityType">Type of the entity.</param>
-        /// <returns></returns>
-        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        /// <returns>
+        /// Returns a non-generic liteDbSet instance for access to entities of the given type in the context and the underlying store.
+        /// </returns>
+        /// <exception cref="ArgumentOutOfRangeException">Throws an ArgumentOutOfRangeException</exception>
         public ILiteDbSet Set(Type entityType)
         {
             var set = _entitySets.Values.FirstOrDefault(x => x.GetType().GetTypeInfo().GetGenericArguments().Any(z => z == entityType));
@@ -166,10 +170,12 @@
         }
 
         /// <summary>
-        /// Returns a ILiteDbSet instance for access to entities of the given type in the context and the underlying store.
+        /// Sets this instance.
         /// </summary>
         /// <typeparam name="TEntity">Entity type</typeparam>
-        /// <returns></returns>
+        /// <returns>
+        /// Returns a liteDbSet instance for access to entities of the given type in the context and the underlying store.
+        /// </returns>
         public ILiteDbSet Set<TEntity>()
         {
             return Set(typeof(TEntity));
@@ -178,7 +184,7 @@
         /// <summary>
         /// Gets the set names.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Returns an array of strings of the entities</returns>
         public string[] GetSetNames() => _entitySets.Keys.ToArray();
 
         /// <summary>
@@ -188,12 +194,12 @@
         /// <param name="set">The set.</param>
         /// <param name="whereText">The where text.</param>
         /// <param name="whereParams">The where parameters.</param>
-        /// <returns></returns>
+        /// <returns>Returns an enumerable of type of the Entity</returns>
         public IEnumerable<TEntity> Select<TEntity>(ILiteDbSet set, string whereText, object whereParams = null)
         {
             return Query<TEntity>($"{set.SelectDefinition} WHERE {whereText}", whereParams);
         }
-        
+
         /// <summary>
         /// Selects the asynchronous.
         /// </summary>
@@ -201,7 +207,7 @@
         /// <param name="set">The set.</param>
         /// <param name="whereText">The where text.</param>
         /// <param name="whereParams">The where parameters.</param>
-        /// <returns></returns>
+        /// <returns>Returns a Task with a enumerable of type of the entity</returns>
         public async Task<IEnumerable<TEntity>> SelectAsync<TEntity>(ILiteDbSet set, string whereText, object whereParams = null)
         {
             return await QueryAsync<TEntity>($"{set.SelectDefinition} WHERE {whereText}", whereParams);
@@ -213,7 +219,9 @@
         /// <typeparam name="TEntity">The type of the entity.</typeparam>
         /// <param name="commandText">The command text.</param>
         /// <param name="whereParams">The where parameters.</param>
-        /// <returns>An enumerable of the type</returns>
+        /// <returns>
+        /// An enumerable of the type of the entity
+        /// </returns>
         public IEnumerable<TEntity> Query<TEntity>(string commandText, object whereParams = null)
         {
             LogSqlCommand(commandText, whereParams);
@@ -226,7 +234,9 @@
         /// <typeparam name="TEntity">The type of the entity.</typeparam>
         /// <param name="commandText">The command text.</param>
         /// <param name="whereParams">The where parameters.</param>
-        /// <returns>A Task with an enumerable of the type</returns>
+        /// <returns>
+        /// A Task with an enumerable of the type of the entity
+        /// </returns>
         public async Task<IEnumerable<TEntity>> QueryAsync<TEntity>(string commandText, object whereParams = null)
         {
             LogSqlCommand(commandText, whereParams);
@@ -237,7 +247,7 @@
         /// Inserts the specified entity without triggering events.
         /// </summary>
         /// <param name="entity">The entity.</param>
-        /// <returns></returns>
+        /// <returns>Returns a query of type int</returns>
         /// <exception cref="System.ArgumentOutOfRangeException">entity - The object type must be registered as ILiteDbSet</exception>
         public int Insert(object entity)
         {
@@ -252,7 +262,7 @@
         /// Inserts the asynchronous without triggering events.
         /// </summary>
         /// <param name="entity">The entity.</param>
-        /// <returns></returns>
+        /// <returns>Returns an int representing the result</returns>
         public async Task<int> InsertAsync(object entity)
         {
             var set = Set(entity.GetType());

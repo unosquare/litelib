@@ -8,6 +8,7 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <AssemblyName>Unosquare.Labs.LiteLib</AssemblyName>
     <PackageId>Unosquare.Labs.LiteLib</PackageId>
+    <DebugType>Full</DebugType>
   </PropertyGroup>
 
   <ItemGroup>

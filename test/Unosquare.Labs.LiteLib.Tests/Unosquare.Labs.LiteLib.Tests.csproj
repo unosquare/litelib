@@ -6,6 +6,7 @@
     <OutputType>Exe</OutputType>
     <PackageId>Unosquare.Labs.LiteLib.Tests</PackageId>
     <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
+    <DebugType>Full</DebugType>
   </PropertyGroup>
 
   <ItemGroup>
