@@ -18,7 +18,7 @@
       "output": {
         ".html": {
           "relative_path": "README.html",
-          "hash": "l1AlOvk9/w7Y+rviCJAozw=="
+          "hash": "/CKe5/3N/FGZaM4svIbD3g=="
         }
       },
       "is_incremental": false,
@@ -41,7 +41,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Labs.LiteLib.EntityEventArgs-1.html",
-          "hash": "xZ4s3pwQCO7/m9ar+GlJSA=="
+          "hash": "TjazCon+e0lEa/M0HyLjmw=="
         }
       },
       "is_incremental": false,
@@ -53,7 +53,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Labs.LiteLib.Extensions.html",
-          "hash": "pFqNq2WlJ0Uw123BBLMBBQ=="
+          "hash": "06qJj13UUPWa3HIi4a69Pg=="
         }
       },
       "is_incremental": false,
@@ -65,7 +65,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html",
-          "hash": "FL5Of7h9CC0/VNx1HC8nOA=="
+          "hash": "/E0UN7/1Cnso4nLnrDO1aQ=="
         }
       },
       "is_incremental": false,
@@ -77,7 +77,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Labs.LiteLib.ILiteDbSet.html",
-          "hash": "cqRSR5o38hSqi6DMELOPmw=="
+          "hash": "VOSeSdh0MwUfgMkDhDrDQg=="
         }
       },
       "is_incremental": false,
@@ -89,7 +89,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Labs.LiteLib.ILiteModel.html",
-          "hash": "2glbDv4xBSI84I/i/qGjTw=="
+          "hash": "fyJbIePEpyX+9SCSy9xr3g=="
         }
       },
       "is_incremental": false,
@@ -101,7 +101,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Labs.LiteLib.LiteDbContext.html",
-          "hash": "ZI7Xr8fBTLnsNCiIjW92pg=="
+          "hash": "gJrLsayspJSlQZ2WsuTSDg=="
         }
       },
       "is_incremental": false,
@@ -113,7 +113,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Labs.LiteLib.LiteDbSet-1.html",
-          "hash": "o66hse7S9W6Gnj9IUabqEg=="
+          "hash": "Y7BOzjvXLLZ8V9aAUNRKtA=="
         }
       },
       "is_incremental": false,
@@ -125,7 +125,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Labs.LiteLib.LiteIndexAttribute.html",
-          "hash": "fukKJHJhzjTmC+ivvznIzw=="
+          "hash": "vocLB1Eh38VwxpuNDnuANA=="
         }
       },
       "is_incremental": false,
@@ -137,7 +137,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Labs.LiteLib.LiteModel.html",
-          "hash": "U5mkv0IlTvFwfJSt7HMG9Q=="
+          "hash": "0v87Gmi7gX3RzdJ8kdNBXQ=="
         }
       },
       "is_incremental": false,
@@ -149,7 +149,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Labs.LiteLib.LiteUniqueAttribute.html",
-          "hash": "VaKkO6sBpLhf3cZhNoL2Iw=="
+          "hash": "XG1gWRPwOAEV/z19P2uK8w=="
         }
       },
       "is_incremental": false,
@@ -161,7 +161,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Labs.LiteLib.html",
-          "hash": "cRELH92WwiA8ptlW5lYeNA=="
+          "hash": "x3ZuKUmpx+KBLUyj/OyikQ=="
         }
       },
       "is_incremental": false,
@@ -173,7 +173,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "m/zBOkeM3qLhBtRB2l2gTw=="
+          "hash": "5MA6y7V7xkHdz28QDh77iQ=="
         }
       },
       "is_incremental": false,
@@ -185,7 +185,7 @@
       "output": {
         ".html": {
           "relative_path": "toc.html",
-          "hash": "pcgz4wm8yzSJIFD84CP9aA=="
+          "hash": "4xXX2xoARgx5UUubZvaedg=="
         }
       },
       "is_incremental": false,
@@ -200,9 +200,9 @@
         "incrementalPhase": "build"
       },
       "processors": {
-        "RestApiDocumentProcessor": {
+        "ResourceDocumentProcessor": {
           "can_incremental": false,
-          "details": "Processor RestApiDocumentProcessor cannot suppport incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "details": "Processor ResourceDocumentProcessor cannot suppport incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
           "incrementalPhase": "build"
         },
         "ConceptualDocumentProcessor": {
@@ -213,9 +213,9 @@
           "can_incremental": false,
           "incrementalPhase": "build"
         },
-        "ResourceDocumentProcessor": {
+        "RestApiDocumentProcessor": {
           "can_incremental": false,
-          "details": "Processor ResourceDocumentProcessor cannot suppport incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "details": "Processor RestApiDocumentProcessor cannot suppport incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
           "incrementalPhase": "build"
         },
         "TocDocumentProcessor": {
@@ -234,5 +234,10 @@
       "processors": {}
     }
   ],
-  "version_info": {}
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
 }
