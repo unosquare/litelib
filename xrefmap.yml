@@ -141,6 +141,18 @@ references:
   commentId: Overload:Unosquare.Labs.LiteLib.ILiteDbSet.DeleteDefinition
   fullName: Unosquare.Labs.LiteLib.ILiteDbSet.DeleteDefinition
   nameWithType: ILiteDbSet.DeleteDefinition
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet.DeleteDefinitionWhere
+  name: DeleteDefinitionWhere
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet.html#Unosquare_Labs_LiteLib_ILiteDbSet_DeleteDefinitionWhere
+  commentId: P:Unosquare.Labs.LiteLib.ILiteDbSet.DeleteDefinitionWhere
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet.DeleteDefinitionWhere
+  nameWithType: ILiteDbSet.DeleteDefinitionWhere
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet.DeleteDefinitionWhere*
+  name: DeleteDefinitionWhere
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet.html#Unosquare_Labs_LiteLib_ILiteDbSet_DeleteDefinitionWhere_
+  commentId: Overload:Unosquare.Labs.LiteLib.ILiteDbSet.DeleteDefinitionWhere
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet.DeleteDefinitionWhere
+  nameWithType: ILiteDbSet.DeleteDefinitionWhere
 - uid: Unosquare.Labs.LiteLib.ILiteDbSet.EntityType
   name: EntityType
   href: api/Unosquare.Labs.LiteLib.ILiteDbSet.html#Unosquare_Labs_LiteLib_ILiteDbSet_EntityType
@@ -262,6 +274,14 @@ references:
   fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).Delete(T)
   nameWithType: ILiteDbSet<T>.Delete(T)
   nameWithType.vb: ILiteDbSet(Of T).Delete(T)
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet`1.Delete(System.String,System.Object)
+  name: Delete(String, Object)
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_Delete_System_String_System_Object_
+  commentId: M:Unosquare.Labs.LiteLib.ILiteDbSet`1.Delete(System.String,System.Object)
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.Delete(System.String, System.Object)
+  fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).Delete(System.String, System.Object)
+  nameWithType: ILiteDbSet<T>.Delete(String, Object)
+  nameWithType.vb: ILiteDbSet(Of T).Delete(String, Object)
 - uid: Unosquare.Labs.LiteLib.ILiteDbSet`1.Delete*
   name: Delete
   href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_Delete_
@@ -278,6 +298,14 @@ references:
   fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).DeleteAsync(T)
   nameWithType: ILiteDbSet<T>.DeleteAsync(T)
   nameWithType.vb: ILiteDbSet(Of T).DeleteAsync(T)
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet`1.DeleteAsync(System.String,System.Object)
+  name: DeleteAsync(String, Object)
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_DeleteAsync_System_String_System_Object_
+  commentId: M:Unosquare.Labs.LiteLib.ILiteDbSet`1.DeleteAsync(System.String,System.Object)
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.DeleteAsync(System.String, System.Object)
+  fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).DeleteAsync(System.String, System.Object)
+  nameWithType: ILiteDbSet<T>.DeleteAsync(String, Object)
+  nameWithType.vb: ILiteDbSet(Of T).DeleteAsync(String, Object)
 - uid: Unosquare.Labs.LiteLib.ILiteDbSet`1.DeleteAsync*
   name: DeleteAsync
   href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_DeleteAsync_
@@ -500,6 +528,12 @@ references:
   commentId: M:Unosquare.Labs.LiteLib.LiteDbContext.Delete(System.Object)
   fullName: Unosquare.Labs.LiteLib.LiteDbContext.Delete(System.Object)
   nameWithType: LiteDbContext.Delete(Object)
+- uid: Unosquare.Labs.LiteLib.LiteDbContext.Delete(Unosquare.Labs.LiteLib.ILiteDbSet,System.String,System.Object)
+  name: Delete(ILiteDbSet, String, Object)
+  href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_Delete_Unosquare_Labs_LiteLib_ILiteDbSet_System_String_System_Object_
+  commentId: M:Unosquare.Labs.LiteLib.LiteDbContext.Delete(Unosquare.Labs.LiteLib.ILiteDbSet,System.String,System.Object)
+  fullName: Unosquare.Labs.LiteLib.LiteDbContext.Delete(Unosquare.Labs.LiteLib.ILiteDbSet, System.String, System.Object)
+  nameWithType: LiteDbContext.Delete(ILiteDbSet, String, Object)
 - uid: Unosquare.Labs.LiteLib.LiteDbContext.Delete*
   name: Delete
   href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_Delete_
@@ -512,6 +546,12 @@ references:
   commentId: M:Unosquare.Labs.LiteLib.LiteDbContext.DeleteAsync(System.Object)
   fullName: Unosquare.Labs.LiteLib.LiteDbContext.DeleteAsync(System.Object)
   nameWithType: LiteDbContext.DeleteAsync(Object)
+- uid: Unosquare.Labs.LiteLib.LiteDbContext.DeleteAsync(Unosquare.Labs.LiteLib.ILiteDbSet,System.String,System.Object)
+  name: DeleteAsync(ILiteDbSet, String, Object)
+  href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_DeleteAsync_Unosquare_Labs_LiteLib_ILiteDbSet_System_String_System_Object_
+  commentId: M:Unosquare.Labs.LiteLib.LiteDbContext.DeleteAsync(Unosquare.Labs.LiteLib.ILiteDbSet,System.String,System.Object)
+  fullName: Unosquare.Labs.LiteLib.LiteDbContext.DeleteAsync(Unosquare.Labs.LiteLib.ILiteDbSet, System.String, System.Object)
+  nameWithType: LiteDbContext.DeleteAsync(ILiteDbSet, String, Object)
 - uid: Unosquare.Labs.LiteLib.LiteDbContext.DeleteAsync*
   name: DeleteAsync
   href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_DeleteAsync_
@@ -812,6 +852,14 @@ references:
   fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).Delete(T)
   nameWithType: LiteDbSet<T>.Delete(T)
   nameWithType.vb: LiteDbSet(Of T).Delete(T)
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.Delete(System.String,System.Object)
+  name: Delete(String, Object)
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_Delete_System_String_System_Object_
+  commentId: M:Unosquare.Labs.LiteLib.LiteDbSet`1.Delete(System.String,System.Object)
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.Delete(System.String, System.Object)
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).Delete(System.String, System.Object)
+  nameWithType: LiteDbSet<T>.Delete(String, Object)
+  nameWithType.vb: LiteDbSet(Of T).Delete(String, Object)
 - uid: Unosquare.Labs.LiteLib.LiteDbSet`1.Delete*
   name: Delete
   href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_Delete_
@@ -828,6 +876,14 @@ references:
   fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).DeleteAsync(T)
   nameWithType: LiteDbSet<T>.DeleteAsync(T)
   nameWithType.vb: LiteDbSet(Of T).DeleteAsync(T)
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.DeleteAsync(System.String,System.Object)
+  name: DeleteAsync(String, Object)
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_DeleteAsync_System_String_System_Object_
+  commentId: M:Unosquare.Labs.LiteLib.LiteDbSet`1.DeleteAsync(System.String,System.Object)
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.DeleteAsync(System.String, System.Object)
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).DeleteAsync(System.String, System.Object)
+  nameWithType: LiteDbSet<T>.DeleteAsync(String, Object)
+  nameWithType.vb: LiteDbSet(Of T).DeleteAsync(String, Object)
 - uid: Unosquare.Labs.LiteLib.LiteDbSet`1.DeleteAsync*
   name: DeleteAsync
   href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_DeleteAsync_
@@ -852,6 +908,22 @@ references:
   fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).DeleteDefinition
   nameWithType: LiteDbSet<T>.DeleteDefinition
   nameWithType.vb: LiteDbSet(Of T).DeleteDefinition
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.DeleteDefinitionWhere
+  name: DeleteDefinitionWhere
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_DeleteDefinitionWhere
+  commentId: P:Unosquare.Labs.LiteLib.LiteDbSet`1.DeleteDefinitionWhere
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.DeleteDefinitionWhere
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).DeleteDefinitionWhere
+  nameWithType: LiteDbSet<T>.DeleteDefinitionWhere
+  nameWithType.vb: LiteDbSet(Of T).DeleteDefinitionWhere
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.DeleteDefinitionWhere*
+  name: DeleteDefinitionWhere
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_DeleteDefinitionWhere_
+  commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.DeleteDefinitionWhere
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.DeleteDefinitionWhere
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).DeleteDefinitionWhere
+  nameWithType: LiteDbSet<T>.DeleteDefinitionWhere
+  nameWithType.vb: LiteDbSet(Of T).DeleteDefinitionWhere
 - uid: Unosquare.Labs.LiteLib.LiteDbSet`1.EntityType
   name: EntityType
   href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_EntityType
