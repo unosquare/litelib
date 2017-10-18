@@ -31,6 +31,7 @@
             public string InsertDefinition { get; set; }
             public string UpdateDefinition { get; set; }
             public string DeleteDefinition { get; set; }
+            public string DeleteDefinitionWhere { get; set; }
             public string[] PropertyNames { get; set; }
         }
 
@@ -108,6 +109,11 @@
         public string DeleteDefinition { get; protected set; }
 
         /// <summary>
+        /// Gets the delete definition where.
+        /// </summary>
+        public string DeleteDefinitionWhere { get; protected set; }
+
+        /// <summary>
         /// Gets the table definition.
         /// </summary>
         public string TableDefinition { get; protected set; }
@@ -153,6 +159,7 @@
                 InsertDefinition = cache.InsertDefinition;
                 UpdateDefinition = cache.UpdateDefinition;
                 DeleteDefinition = cache.DeleteDefinition;
+                DeleteDefinitionWhere = cache.DeleteDefinitionWhere;
                 PropertyNames = cache.PropertyNames;
 
                 return;
@@ -283,6 +290,8 @@
                 $"UPDATE [{tableName}] SET {keyValueColumnNames}  WHERE [{nameof(ILiteModel.RowId)}] = @{nameof(ILiteModel.RowId)}";
             DeleteDefinition =
                 $"DELETE FROM [{tableName}] WHERE [{nameof(ILiteModel.RowId)}] = @{nameof(ILiteModel.RowId)}";
+            DeleteDefinitionWhere =
+                $"DELETE FROM [{tableName}]";
 
             DefinitionCache[dbSetType] = new DefinitionCacheItem
             {
@@ -358,6 +367,34 @@
             entity.RowId = result.First();
             OnAfterInsert(this, args);
             return 1;
+        }
+
+        /// <summary>
+        /// Deletes the specified where text.
+        /// Example whereText = "X = @X" and whereParames = new { X = "hello" }
+        /// </summary>
+        /// <param name="whereText">The where text.</param>
+        /// <param name="whereParams">The where parameters.</param>
+        /// <returns>
+        /// A count of affected rows.
+        /// </returns>
+        public int Delete(string whereText, object whereParams = null)
+        {
+            return Context.Delete(this, whereText, whereParams);
+        }
+
+        /// <summary>
+        /// Deletes the asynchronous.
+        /// Example whereText = "X = @X" and whereParames = new { X = "hello" }
+        /// </summary>
+        /// <param name="whereText">The where text.</param>
+        /// <param name="whereParams">The where parameters.</param>
+        /// <returns>
+        /// A count of affected rows.
+        /// </returns>
+        public async Task<int> DeleteAsync(string whereText, object whereParams = null)
+        {
+            return await Context.DeleteAsync(this, whereText, whereParams);
         }
 
         /// <summary>

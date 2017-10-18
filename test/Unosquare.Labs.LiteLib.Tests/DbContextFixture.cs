@@ -381,5 +381,20 @@ namespace Unosquare.Labs.LiteLib.Tests
                 Assert.AreEqual(TestHelper.DataSource.Length, updatedItems.Count());
             }
         }
+        
+        [Test]
+        public void DeleteUsingWhere()
+        {
+            using (var context = new TestDbContext(nameof(DeleteUsingWhere)))
+            {
+                foreach (var item in TestHelper.DataSource)
+                {
+                    context.Orders.Insert(item);
+                }
+
+                var deletedData = context.Orders.Delete("CustomerName = @CustomerName", new { CustomerName = "Peter" });
+                Assert.AreEqual(deletedData, TestHelper.DataSource.Where(x => x.CustomerName == "Peter").Count());
+            }
+        }
     }
 }

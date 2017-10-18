@@ -45,6 +45,11 @@
         string DeleteDefinition { get; }
 
         /// <summary>
+        /// Gets the delete definition where.
+        /// </summary>
+        string DeleteDefinitionWhere { get; }
+
+        /// <summary>
         /// Gets or sets the parent set context.
         /// </summary>
         LiteDbContext Context { get; set; }
@@ -129,6 +134,24 @@
         /// <param name="entity">The entity.</param>
         /// <returns>A Task with the number of rows updated</returns>
         Task<int> UpdateAsync(T entity);
+
+        /// <summary>
+        /// Deletes the specified where text.
+        /// Example whereText = "X = @X" and whereParames = new { X = "hello" }
+        /// </summary>
+        /// <param name="whereText">The where text.</param>
+        /// <param name="whereParams">The where parameters.</param>
+        /// <returns>A Enumerable with generic type</returns>
+        int Delete(string whereText, object whereParams);
+
+        /// <summary>
+        /// Deletes the asynchronous.
+        /// Example whereText = "X = @X" and whereParames = new { X = "hello" }
+        /// </summary>
+        /// <param name="whereText">The where text.</param>
+        /// <param name="whereParams">The where parameters.</param>
+        /// <returns>A Task of type Enumerable with a generic type</returns>
+        Task<int> DeleteAsync(string whereText, object whereParams);
 
         /// <summary>
         /// Provides and asynchronous counterpart to the Select method

@@ -267,5 +267,20 @@ namespace Unosquare.Labs.LiteLib.Tests
                 Assert.IsNotNull(order);
             }
         }
+
+        [Test]
+        public async Task DeleteUsingWhereAsync()
+        {
+            using (var context = new TestDbContext(nameof(DeleteUsingWhereAsync)))
+            {
+                foreach (var item in TestHelper.DataSource)
+                {
+                    context.Orders.Insert(item);
+                }
+
+                var deletedData = await context.Orders.DeleteAsync("CustomerName = @CustomerName", new { CustomerName = "Peter" });
+                Assert.AreEqual(deletedData, TestHelper.DataSource.Where(x => x.CustomerName == "Peter").Count());
+            }
+        }
     }
 }

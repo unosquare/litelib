@@ -199,6 +199,34 @@
         {
             return Query<TEntity>($"{set.SelectDefinition} WHERE {whereText}", whereParams);
         }
+        
+        /// <summary>
+        /// Deletes the specified set.
+        /// </summary>
+        /// <param name="set">The set.</param>
+        /// <param name="whereText">The where text.</param>
+        /// <param name="whereParams">The where parameters.</param>
+        /// <returns>A count for affected rows.</returns>
+        public int Delete(ILiteDbSet set, string whereText, object whereParams = null)
+        {
+            var commandText = $"{set.DeleteDefinitionWhere} WHERE {whereText}";
+            LogSqlCommand(commandText, whereParams);
+            return Connection.Execute(commandText, whereParams);
+        }
+
+        /// <summary>
+        /// Deletes the asynchronous.
+        /// </summary>
+        /// <param name="set">The set.</param>
+        /// <param name="whereText">The where text.</param>
+        /// <param name="whereParams">The where parameters.</param>
+        /// <returns>A count for affected rows.</returns>
+        public async Task<int> DeleteAsync(ILiteDbSet set, string whereText, object whereParams = null)
+        {
+            var commandText = $"{set.DeleteDefinitionWhere} WHERE {whereText}";
+            LogSqlCommand(commandText, whereParams);
+            return await Connection.ExecuteAsync(commandText, whereParams);
+        }
 
         /// <summary>
         /// Selects the asynchronous.
