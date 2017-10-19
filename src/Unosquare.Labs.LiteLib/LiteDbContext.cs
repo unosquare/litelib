@@ -28,11 +28,16 @@
     {
         #region Private Declarations 
 
-        private readonly Dictionary<string, ILiteDbSet> _entitySets = new Dictionary<string, ILiteDbSet>();
-        private readonly Type _contextType;
-        private static readonly ConcurrentDictionary<Guid, LiteDbContext> Intances = new ConcurrentDictionary<Guid, LiteDbContext>();
+        private static readonly ConcurrentDictionary<Guid, LiteDbContext> Intances =
+            new ConcurrentDictionary<Guid, LiteDbContext>();
+
         private static readonly PropertyTypeCache PropertyInfoCache = new PropertyTypeCache();
         private static readonly Type GenericLiteDbSetType = typeof(LiteDbSet<>);
+
+        private readonly Dictionary<string, ILiteDbSet> _entitySets = new Dictionary<string, ILiteDbSet>();
+        private readonly Type _contextType;
+
+        private bool _isDisposing; // To detect redundant calls
 
         #endregion
 
@@ -56,8 +61,7 @@
 #else
             var builder = new SqliteConnectionStringBuilder
             {
-                DataSource = databaseFilePath,
-                // DateTimeKind = DateTimeKind.Utc
+                DataSource = databaseFilePath
             };
 
             Connection = new SqliteConnection(builder.ToString());
@@ -86,57 +90,32 @@
 
         #endregion
 
+        #region Properties
+
+        /// <summary>
+        /// Gets all instances of Lite DB contexts that are instantiated and not disposed.
+        /// </summary>
+        public static ReadOnlyCollection<LiteDbContext> Instances =>
+            new ReadOnlyCollection<LiteDbContext>(Intances.Values.ToList());
+
+        /// <summary>
+        /// Gets the underlying SQLite connection.
+        /// </summary>
+        public IDbConnection Connection { get; private set; }
+
+        /// <summary>
+        /// Gets the unique identifier of this context.
+        /// </summary>
+        public Guid UniqueId { get; protected set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether [enabled log].
+        /// </summary>
+        public bool EnabledLog { get; set; }
+
+        #endregion
+
         #region Methods
-
-        /// <summary>
-        /// Logs the SQL command being executed and its arguments.
-        /// </summary>
-        /// <param name="command">The command.</param>
-        /// <param name="arguments">The arguments.</param>
-        internal void LogSqlCommand(string command, object arguments)
-        {
-            if (EnabledLog == false) return;
-
-            if (Debugger.IsAttached == false || Terminal.IsConsolePresent == false) return;
-
-            $"> {command}{arguments.Stringify()}".Debug(nameof(LiteDbContext));
-        }
-
-        /// <summary>
-        /// Loads the entity sets registered as virtual public properties of the derived class.
-        /// </summary>
-        private void LoadEntitySets()
-        {
-            var contextDbSetProperties = PropertyInfoCache.Retrieve(GetType(), () =>
-            {
-                return GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance)
-                    .Where(
-                        p =>
-                            p.PropertyType.GetTypeInfo().IsGenericType &&
-                            p.PropertyType.GetGenericTypeDefinition() == GenericLiteDbSetType);
-            });
-
-            foreach (var entitySetProp in contextDbSetProperties)
-            {
-                var entitySetType = entitySetProp.PropertyType.GetGenericArguments()[0];
-                var currentValue = entitySetProp.GetValue(this) as ILiteDbSet;
-
-                if (currentValue == null)
-                {
-                    var instanceType = GenericLiteDbSetType.MakeGenericType(entitySetType);
-                    currentValue = Activator.CreateInstance(instanceType) as ILiteDbSet;
-                    entitySetProp.SetValue(this, currentValue);
-                }
-
-                if (currentValue == null) continue;
-
-                currentValue.Context = this;
-                currentValue.EntityType = entitySetType;
-                _entitySets[entitySetProp.Name] = currentValue;
-            }
-
-            $"Context instance {_contextType.Name} - {_entitySets.Count} entity sets. {Instances.Count} context instances.".Debug(nameof(LiteDbContext));
-        }
 
         /// <summary>
         /// Vacuums the database asynchronously.
@@ -161,7 +140,8 @@
         /// <exception cref="ArgumentOutOfRangeException">Throws an ArgumentOutOfRangeException</exception>
         public ILiteDbSet Set(Type entityType)
         {
-            var set = _entitySets.Values.FirstOrDefault(x => x.GetType().GetTypeInfo().GetGenericArguments().Any(z => z == entityType));
+            var set = _entitySets.Values.FirstOrDefault(x =>
+                x.GetType().GetTypeInfo().GetGenericArguments().Any(z => z == entityType));
 
             if (set == null)
                 throw new ArgumentOutOfRangeException(nameof(entityType));
@@ -176,10 +156,7 @@
         /// <returns>
         /// A liteDbSet instance for access to entities of the given type in the context and the underlying store.
         /// </returns>
-        public ILiteDbSet Set<TEntity>()
-        {
-            return Set(typeof(TEntity));
-        }
+        public ILiteDbSet Set<TEntity>() => Set(typeof(TEntity));
 
         /// <summary>
         /// Gets the set names.
@@ -199,7 +176,7 @@
         {
             return Query<TEntity>($"{set.SelectDefinition} WHERE {whereText}", whereParams);
         }
-        
+
         /// <summary>
         /// Deletes the specified set.
         /// </summary>
@@ -234,7 +211,10 @@
         /// <param name="whereText">The where text.</param>
         /// <param name="whereParams">The where parameters.</param>
         /// <returns>A Task with a enumerable of type of the entity</returns>
-        public async Task<IEnumerable<TEntity>> SelectAsync<TEntity>(ILiteDbSet set, string whereText, object whereParams = null)
+        public async Task<IEnumerable<TEntity>> SelectAsync<TEntity>(
+            ILiteDbSet set, 
+            string whereText,
+            object whereParams = null)
         {
             return await QueryAsync<TEntity>($"{set.SelectDefinition} WHERE {whereText}", whereParams);
         }
@@ -357,11 +337,62 @@
         }
 
         /// <summary>
+        /// Logs the SQL command being executed and its arguments.
+        /// </summary>
+        /// <param name="command">The command.</param>
+        /// <param name="arguments">The arguments.</param>
+        internal void LogSqlCommand(string command, object arguments = null)
+        {
+            if (EnabledLog == false) return;
+
+            if (Debugger.IsAttached == false || Terminal.IsConsolePresent == false) return;
+
+            $"> {command}{arguments.Stringify()}".Debug(nameof(LiteDbContext));
+        }
+
+        /// <summary>
+        /// Loads the entity sets registered as virtual public properties of the derived class.
+        /// </summary>
+        private void LoadEntitySets()
+        {
+            var contextDbSetProperties = PropertyInfoCache.Retrieve(GetType(), () =>
+            {
+                return GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance)
+                    .Where(
+                        p =>
+                            p.PropertyType.GetTypeInfo().IsGenericType &&
+                            p.PropertyType.GetGenericTypeDefinition() == GenericLiteDbSetType);
+            });
+
+            foreach (var entitySetProp in contextDbSetProperties)
+            {
+                var entitySetType = entitySetProp.PropertyType.GetGenericArguments()[0];
+
+                if (!(entitySetProp.GetValue(this) is ILiteDbSet currentValue))
+                {
+                    var instanceType = GenericLiteDbSetType.MakeGenericType(entitySetType);
+                    currentValue = Activator.CreateInstance(instanceType) as ILiteDbSet;
+                    entitySetProp.SetValue(this, currentValue);
+                }
+
+                if (currentValue == null) continue;
+
+                currentValue.Context = this;
+                currentValue.EntityType = entitySetType;
+                _entitySets[entitySetProp.Name] = currentValue;
+            }
+
+            $"Context instance {_contextType.Name} - {_entitySets.Count} entity sets. {Instances.Count} context instances."
+                .Debug(nameof(LiteDbContext));
+        }
+
+        /// <summary>
         /// Creates the database schema using the entity set DDL generators.
         /// </summary>
         private void CreateDatabase()
         {
             var ddlBuilder = new StringBuilder();
+
             foreach (var entitySet in _entitySets)
             {
                 ddlBuilder.AppendLine(entitySet.Value.TableDefinition);
@@ -377,33 +408,7 @@
 
         #endregion
 
-        #region Properties
-
-        /// <summary>
-        /// Gets all instances of Lite DB contexts that are instantiated and not disposed.
-        /// </summary>
-        public static ReadOnlyCollection<LiteDbContext> Instances => new ReadOnlyCollection<LiteDbContext>(Intances.Values.ToList());
-
-        /// <summary>
-        /// Gets the underlying SQLite connection.
-        /// </summary>
-        public IDbConnection Connection { get; private set; }
-        
-        /// <summary>
-        /// Gets the unique identifier of this context.
-        /// </summary>
-        public Guid UniqueId { get; protected set; }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether [enabled log].
-        /// </summary>
-        public bool EnabledLog { get; set; }
-        
-#endregion
-
-#region IDisposable Support
-
-        private bool _isDisposing; // To detect redundant calls
+        #region IDisposable Support
 
         /// <summary>
         /// Releases unmanaged and - optionally - managed resources.
@@ -415,8 +420,7 @@
 
             if (disposing)
             {
-                LiteDbContext removed;
-                Intances.TryRemove(this.UniqueId, out removed);
+                Intances.TryRemove(UniqueId, out var removed);
                 Connection.Close();
                 Connection.Dispose();
                 Connection = null;
@@ -433,7 +437,8 @@
         {
             Dispose(true);
         }
-#endregion
+
+        #endregion
 
     }
 }

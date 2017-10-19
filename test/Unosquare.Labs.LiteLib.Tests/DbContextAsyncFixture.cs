@@ -27,7 +27,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                 }
 
                 var list = await context.Orders.SelectAllAsync();
-                Assert.AreEqual(TestHelper.DataSource.Count(), list.Count(), "Same set");
+                Assert.AreEqual(TestHelper.DataSource.Length, list.Count(), "Same set");
             }
         }
 
@@ -45,10 +45,12 @@ namespace Unosquare.Labs.LiteLib.Tests
                 }
 
                 var incomingData = context.Orders.SelectAll();
+
                 foreach (var item in incomingData)
                 {
                     await context.Orders.DeleteAsync(item);
                 }
+
                 Assert.AreEqual(0, context.Orders.Count());
             }
         }
@@ -75,7 +77,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                     await context.Orders.InsertAsync(item);
                 }
                 var list = await context.Orders.SelectAllAsync();
-                Assert.AreEqual(TestHelper.DataSource.Count(), list.Count());
+                Assert.AreEqual(TestHelper.DataSource.Length, list.Count());
             }
 
         }
@@ -93,7 +95,8 @@ namespace Unosquare.Labs.LiteLib.Tests
                     await context.Orders.InsertAsync(item);
                 }
 
-                var list = await context.Orders.SelectAsync("CustomerName = @CustomerName", new {CustomerName = "John"});
+                var list = await context.Orders.SelectAsync("CustomerName = @CustomerName",
+                    new {CustomerName = "John"});
                 foreach (var item in list)
                 {
                     item.ShipperCity = "Atlanta";
@@ -121,6 +124,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                 {
                     await context.Orders.InsertAsync(item);
                 }
+
                 // Selecting Data By name
                 var selectingData =
                     await context.Orders.SelectAsync("CustomerName = @CustomerName", new {CustomerName = "Peter"});
@@ -278,8 +282,9 @@ namespace Unosquare.Labs.LiteLib.Tests
                     context.Orders.Insert(item);
                 }
 
-                var deletedData = await context.Orders.DeleteAsync("CustomerName = @CustomerName", new { CustomerName = "Peter" });
-                Assert.AreEqual(deletedData, TestHelper.DataSource.Where(x => x.CustomerName == "Peter").Count());
+                var deletedData =
+                    await context.Orders.DeleteAsync("CustomerName = @CustomerName", new {CustomerName = "Peter"});
+                Assert.AreEqual(deletedData, TestHelper.DataSource.Count(x => x.CustomerName == "Peter"));
             }
         }
     }

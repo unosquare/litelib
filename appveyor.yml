@@ -33,7 +33,7 @@ before_build:
 - nuget install OpenCover -Version 4.6.519 -OutputDirectory tools
 - nuget install coveralls.net -Version 0.7.0 -OutputDirectory tools
 test_script:
-- tools\OpenCover.4.6.519\tools\OpenCover.Console.exe -target:"%ProgramFiles%\dotnet\dotnet.exe" -targetargs:"test "test\Unosquare.Labs.LiteLib.Tests" -c %CONFIGURATION%" -output:coverage.xml -filter:"+[*]* -[Unosquare.Swan*]* -[Unosquare.Labs.LiteLib.Tests*]*" -register:userdotnet
+- tools\OpenCover.4.6.519\tools\OpenCover.Console.exe -target:"%ProgramFiles%\dotnet\dotnet.exe" -targetargs:"test test\Unosquare.Labs.LiteLib.Tests -c %CONFIGURATION% -f netcoreapp2.0" -output:coverage.xml -filter:"+[*]* -[Unosquare.Swan*]* -[Unosquare.Labs.LiteLib.Tests*]*" -register:userdotnet
 - tools\coveralls.net.0.7.0\tools\csmacnz.Coveralls.exe --opencover -i coverage.xml --serviceName appveyor --jobId %APPVEYOR_BUILD_NUMBER%
 after_build:
 - ps: |

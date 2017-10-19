@@ -393,7 +393,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                 }
 
                 var deletedData = context.Orders.Delete("CustomerName = @CustomerName", new { CustomerName = "Peter" });
-                Assert.AreEqual(deletedData, TestHelper.DataSource.Where(x => x.CustomerName == "Peter").Count());
+                Assert.AreEqual(deletedData, TestHelper.DataSource.Count(x => x.CustomerName == "Peter"));
             }
         }
     }

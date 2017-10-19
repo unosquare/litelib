@@ -69,7 +69,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                 Assert.AreEqual("Margarita", item.CustomerName);
             }
 
-            Assert.AreEqual(4, afterList.Count());
+            Assert.AreEqual(4, afterList.Count);
         }
 
         /// <summary>
@@ -98,11 +98,10 @@ namespace Unosquare.Labs.LiteLib.Tests
                     context.Orders.Update(item);
                 }
 
-                var updatedList = context.Orders.Select("CustomerName = @CustomerName", new { CustomerName = "Peter" });
-                foreach (var item in updatedList)
-                {
-                    Assert.AreEqual("Atlanta", item.ShipperCity);
-                }
+                context.Orders
+                    .Select("CustomerName = @CustomerName", new { CustomerName = "Peter" })
+                    .ToList()
+                    .ForEach(x => Assert.AreEqual("Atlanta", x.ShipperCity));
             }
         }
 
@@ -118,10 +117,8 @@ namespace Unosquare.Labs.LiteLib.Tests
 
                 context.Orders.Insert(entity);
                 var changed = false;
-                context.Orders.OnAfterUpdate += (s, e) =>
-                {
-                    changed = true;
-                };
+
+                context.Orders.OnAfterUpdate += (s, e) => changed = true;
 
                 entity.Amount = 10;
 
@@ -145,20 +142,14 @@ namespace Unosquare.Labs.LiteLib.Tests
                 }
 
                 var deletedList = new List<Order>();
-                context.Orders.OnBeforeDelete += (s, e) =>
-                {
-                    deletedList.Add(e.Entity);
-                };
+                context.Orders.OnBeforeDelete += (s, e) => deletedList.Add(e.Entity);
 
-                foreach (var item in context.Orders.SelectAll())
+                foreach (var item in context.Orders.SelectAll().Where(item => item.CustomerName == "John"))
                 {
-                    if (item.CustomerName == "John")
-                    {
-                        context.Orders.Delete(item);
-                    }
+                    context.Orders.Delete(item);
                 }
 
-                Assert.AreEqual(4, deletedList.Count());
+                Assert.AreEqual(4, deletedList.Count);
             }
         }
 
@@ -178,12 +169,9 @@ namespace Unosquare.Labs.LiteLib.Tests
                 context.Orders.Insert(e.Entity);
             };
 
-            foreach (var item in context.Orders.SelectAll())
+            foreach (var item in context.Orders.SelectAll().Where(item => item.CustomerName == "Margarita"))
             {
-                if (item.CustomerName == "Margarita")
-                {
-                    context.Orders.Delete(item);
-                }
+                context.Orders.Delete(item);
             }
 
             foreach (var item in context.Orders.Select("CustomerName = @CustomerName", new { CustomerName = "Jessy" })

@@ -7,9 +7,22 @@
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <AssemblyName>Unosquare.Labs.LiteLib</AssemblyName>
-    <PackageId>Unosquare.Labs.LiteLib</PackageId>
+    <PackageId>LiteLib</PackageId>
     <DebugType>Full</DebugType>
     <CodeAnalysisRuleSet>..\..\StyleCop.Analyzers.ruleset</CodeAnalysisRuleSet>
+    <AssemblyVersion>0.14.1.0</AssemblyVersion>
+    <FileVersion>0.14.1.0</FileVersion>
+    <Version>0.14.1</Version>
+    <Authors>Unosquare</Authors>
+    <Company>Unosquare</Company>
+    <Copyright>Copyright (c) 2016-2017 Unosquare</Copyright>
+    <Product>LiteLib</Product>
+    <PackageLicenseUrl>https://github.com/unosquare/litelib/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://unosquare.github.io/litelib</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/unosquare/litelib</RepositoryUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/unosquare/litelib/master/litelib-logo.png</PackageIconUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>orm sqlite dapper</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,7 +31,8 @@
     </PackageReference>
     <PackageReference Include="Dapper" Version="1.50.2" />
     <PackageReference Include="Microsoft.Data.Sqlite" Version="2.0.0" />
-    <PackageReference Include="Unosquare.Swan" Version="0.12.0" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.4.0" />
+    <PackageReference Include="Unosquare.Swan" Version="0.17.1" />
   </ItemGroup>
 
 </Project>

@@ -14,7 +14,7 @@
     /// <summary>
     /// Represents a ILiteDbSet implementation 
     /// </summary>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T">The type of entity</typeparam>
     /// <seealso cref="LiteLib.ILiteDbSet{T}" />
     public class LiteDbSet<T> : ILiteDbSet<T>
         where T : ILiteModel, new()
@@ -241,7 +241,6 @@
                     {
                         createBuilder.AppendLine($"    [{property.Name}] NVARCHAR({stringLength}) {nullStatement},");
                     }
-
                 }
                 else if (propertyType.GetTypeInfo().IsValueType)
                 {
@@ -290,8 +289,7 @@
                 $"UPDATE [{tableName}] SET {keyValueColumnNames}  WHERE [{nameof(ILiteModel.RowId)}] = @{nameof(ILiteModel.RowId)}";
             DeleteDefinition =
                 $"DELETE FROM [{tableName}] WHERE [{nameof(ILiteModel.RowId)}] = @{nameof(ILiteModel.RowId)}";
-            DeleteDefinitionWhere =
-                $"DELETE FROM [{tableName}]";
+            DeleteDefinitionWhere = $"DELETE FROM [{tableName}]";
 
             DefinitionCache[dbSetType] = new DefinitionCacheItem
             {
@@ -301,6 +299,7 @@
                 InsertDefinition = InsertDefinition,
                 UpdateDefinition = UpdateDefinition,
                 DeleteDefinition = DeleteDefinition,
+                DeleteDefinitionWhere = DeleteDefinitionWhere,
                 PropertyNames = PropertyNames
             };
         }
@@ -505,10 +504,7 @@
         /// <returns>
         /// An Enumerable with generic type
         /// </returns>
-        public IEnumerable<T> SelectAll()
-        {
-            return Select("1 = 1");
-        }
+        public IEnumerable<T> SelectAll() => Select("1 = 1");
 
         /// <summary>
         /// Provides and asynchronous counterpart to the Select method
@@ -518,9 +514,9 @@
         /// <returns>
         /// A Task of type Enumerable with a generic type
         /// </returns>
-        public async Task<IEnumerable<T>> SelectAsync(string whereText, object whereParams = null)
+        public Task<IEnumerable<T>> SelectAsync(string whereText, object whereParams = null)
         {
-            return await Context.SelectAsync<T>(this, whereText, whereParams);
+            return Context.SelectAsync<T>(this, whereText, whereParams);
         }
 
         /// <summary>
@@ -529,10 +525,7 @@
         /// <returns>
         /// A Task of type Enumerable with a generic type
         /// </returns>
-        public async Task<IEnumerable<T>> SelectAllAsync()
-        {
-            return await SelectAsync("1 = 1", null);
-        }
+        public Task<IEnumerable<T>> SelectAllAsync() => SelectAsync("1 = 1");
 
         /// <summary>
         /// Firsts the or default.
@@ -595,7 +588,7 @@
         public int Count()
         {
             var commandText = $"SELECT COUNT(*) FROM [{TableName}]";
-            Context.LogSqlCommand(commandText, null);
+            Context.LogSqlCommand(commandText);
             return Context.Connection.ExecuteScalar<int>(commandText);
         }
 
@@ -608,7 +601,7 @@
         public async Task<int> CountAsync()
         {
             var commandText = $"SELECT COUNT(*) FROM [{TableName}]";
-            Context.LogSqlCommand(commandText, null);
+            Context.LogSqlCommand(commandText);
             return await Context.Connection.ExecuteScalarAsync<int>(commandText);
         }
 
