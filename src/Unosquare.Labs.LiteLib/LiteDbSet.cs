@@ -392,9 +392,9 @@
         /// <returns>
         /// A count of affected rows.
         /// </returns>
-        public async Task<int> DeleteAsync(string whereText, object whereParams = null)
+        public Task<int> DeleteAsync(string whereText, object whereParams = null)
         {
-            return await Context.DeleteAsync(this, whereText, whereParams);
+            return Context.DeleteAsync(this, whereText, whereParams);
         }
 
         /// <summary>

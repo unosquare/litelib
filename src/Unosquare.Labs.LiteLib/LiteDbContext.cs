@@ -209,9 +209,8 @@
         /// <returns>A count for affected rows.</returns>
         public int Delete(ILiteDbSet set, string whereText, object whereParams = null)
         {
-            var commandText = $"{set.DeleteDefinitionWhere} WHERE {whereText}";
-            LogSqlCommand(commandText, whereParams);
-            return Connection.Execute(commandText, whereParams);
+            LogSqlCommand($"{set.DeleteDefinitionWhere} WHERE {whereText}", whereParams);
+            return Connection.Execute($"{set.DeleteDefinitionWhere} WHERE {whereText}", whereParams);
         }
 
         /// <summary>
@@ -221,11 +220,10 @@
         /// <param name="whereText">The where text.</param>
         /// <param name="whereParams">The where parameters.</param>
         /// <returns>A count for affected rows.</returns>
-        public async Task<int> DeleteAsync(ILiteDbSet set, string whereText, object whereParams = null)
+        public Task<int> DeleteAsync(ILiteDbSet set, string whereText, object whereParams = null)
         {
-            var commandText = $"{set.DeleteDefinitionWhere} WHERE {whereText}";
-            LogSqlCommand(commandText, whereParams);
-            return await Connection.ExecuteAsync(commandText, whereParams);
+            LogSqlCommand($"{set.DeleteDefinitionWhere} WHERE {whereText}", whereParams);
+            return Connection.ExecuteAsync($"{set.DeleteDefinitionWhere} WHERE {whereText}", whereParams);
         }
 
         /// <summary>
