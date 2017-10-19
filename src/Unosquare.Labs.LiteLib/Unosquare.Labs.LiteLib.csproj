@@ -4,7 +4,7 @@
     <Description>A cool little wrapper for SQLite based on Dapper.</Description>
     <AssemblyTitle>LiteLib</AssemblyTitle>
     <VersionPrefix>0.12.1</VersionPrefix>
-    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;net452</TargetFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <AssemblyName>Unosquare.Labs.LiteLib</AssemblyName>
     <PackageId>LiteLib</PackageId>
@@ -30,9 +30,17 @@
       <PrivateAssets>All</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Dapper" Version="1.50.2" />
-    <PackageReference Include="Microsoft.Data.Sqlite" Version="2.0.0" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.4.0" />
     <PackageReference Include="Unosquare.Swan" Version="0.17.1" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net452' ">
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="1.0.1" />
+    <PackageReference Include="SQLite" Version="3.13.0" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="2.0.0" />
   </ItemGroup>
 
 </Project>
