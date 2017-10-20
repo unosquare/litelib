@@ -3,16 +3,13 @@
   <PropertyGroup>
     <Description>A cool little wrapper for SQLite based on Dapper.</Description>
     <AssemblyTitle>LiteLib</AssemblyTitle>
-    <VersionPrefix>0.12.1</VersionPrefix>
     <TargetFrameworks>netstandard2.0;net452</TargetFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <AssemblyName>Unosquare.Labs.LiteLib</AssemblyName>
     <PackageId>LiteLib</PackageId>
     <DebugType>Full</DebugType>
     <CodeAnalysisRuleSet>..\..\StyleCop.Analyzers.ruleset</CodeAnalysisRuleSet>
-    <AssemblyVersion>0.14.1.0</AssemblyVersion>
-    <FileVersion>0.14.1.0</FileVersion>
-    <Version>0.14.1</Version>
+    <Version>0.14.2</Version>
     <Authors>Unosquare</Authors>
     <Company>Unosquare</Company>
     <Copyright>Copyright (c) 2016-2017 Unosquare</Copyright>
