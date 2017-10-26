@@ -341,7 +341,7 @@ namespace Unosquare.Labs.LiteLib.Tests
 
                     foreach (var item in selectedData)
                     {
-                        Assert.IsTrue(item.CustomerName == "John");
+                        Assert.AreEqual(item.CustomerName, "John");
                     }
                 }
             }
