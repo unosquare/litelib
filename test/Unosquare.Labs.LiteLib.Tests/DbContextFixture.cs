@@ -18,382 +18,453 @@ namespace Unosquare.Labs.LiteLib.Tests
     [TestFixture]
     public class DbContextFixture
     {
-        /// <summary>
-        /// Tests the select all.
-        /// </summary>
-        [Test]
-        public void TestSelectAll()
+        public class SelectTest : DbContextFixture
         {
-            using (var context = new TestDbContext(nameof(TestSelectAll)))
+            /// <summary>
+            /// Tests the select all.
+            /// </summary>
+            [Test]
+            public void SelectAllData()
             {
-                foreach (var item in TestHelper.DataSource)
+                using (var context = new TestDbContext(nameof(SelectAllData)))
                 {
-                    context.Orders.Insert(item);
-                }
+                    foreach (var item in TestHelper.DataSource)
+                    {
+                        context.Orders.Insert(item);
+                    }
 
-                var list = context.Orders.SelectAll();
-                Assert.AreEqual(TestHelper.DataSource.Length, list.Count(), "Same set");
+                    var list = context.Orders.SelectAll();
+                    Assert.AreEqual(TestHelper.DataSource.Length, list.Count(), "Same set");
+                }
             }
-        }
 
-        /// <summary>
-        /// Tests the delete data.
-        /// </summary>
-        [Test]
-        public void TestDeleteData()
-        {
-            using (var context = new TestDbContext(nameof(TestDeleteData)))
+            [Test]
+            public void SelectDataWithParameters()
             {
-                foreach (var item in TestHelper.DataSource)
+                using (var context = new TestDbContext(nameof(SelectDataWithParameters)))
                 {
-                    context.Orders.Insert(item);
-                }
+                    foreach (var item in TestHelper.DataSource)
+                    {
+                        context.Orders.Insert(item);
+                    }
 
-                var incomingData = context.Orders.SelectAll();
-                foreach (var item in incomingData)
-                {
-                    context.Orders.Delete(item);
+                    var entities = context.Orders.Select("CustomerName = @CustomerName", new { CustomerName = "John" });
+                    foreach (var item in entities)
+                    {
+                        Assert.AreEqual("John", item.CustomerName);
+                    }
                 }
-                Assert.AreEqual(0, context.Orders.Count());
             }
-        }
 
-        /// <summary>
-        /// Tests the insert data.
-        /// </summary>
-        [Test]
-        public void TestInsertData()
-        {
-            using (var context = new TestDbContext(nameof(TestInsertData)))
+            [Test]
+            public void SelectWithBadParameters_ThrowsException()
             {
-                var entity = TestHelper.DataSource.First();
-                context.Orders.Insert(entity);
-                
-                Assert.AreNotEqual(0, entity.RowId, "Has a RowId value");
+                using (var context = new TestDbContext(nameof(SelectWithBadParameters_ThrowsException)))
+                {
+                    foreach (var item in TestHelper.DataSource)
+                    {
+                        context.Orders.Insert(item);
+                    }
+
+                    Assert.Throws<SqliteException>(() =>
+                    {
+                        var entities = context.Orders.Select("Customer = @CustomerName", new { CustomerName = "John" });
+                    });
+                }
             }
-        }
-
-
-        /// <summary>
-        /// Tests the update data.
-        /// </summary>
-        [Test]
-        public void TestUpdateData()
-        {
-            using (var context = new TestDbContext(nameof(TestUpdateData)))
+            
+            [Test]
+            public void SelectingFirstOrDefault()
             {
-                foreach (var item in TestHelper.DataSource)
+                using (var context = new TestDbContext(nameof(SelectingFirstOrDefault)))
                 {
-                    context.Orders.Insert(item);
-                }
+                    var id = context.Orders.Insert(TestHelper.DataSource.First());
+                    Assert.AreNotEqual(0, id);
 
-                var list = context.Orders.Select("CustomerName = @CustomerName", new {CustomerName = "John"});
-                foreach (var item in list)
-                {
-                    item.ShipperCity = "Atlanta";
-                    context.Orders.Update(item);
-                }
+                    var order = context.Orders.FirstOrDefault(nameof(Order.CustomerName), "John");
 
-                var updatedList = context.Orders.Select("ShipperCity = @ShipperCity", new {ShipperCity = "Atlanta"});
-                foreach (var item in updatedList)
-                {
-                    Assert.AreEqual("Atlanta", item.ShipperCity);
+                    Assert.IsNotNull(order);
                 }
             }
         }
 
-
-        /// <summary>
-        /// Tests the select data.
-        /// </summary>
-        [Test]
-        public void TestSelectData()
+        public class DeleteTest : DbContextFixture
         {
-            using (var context = new TestDbContext(nameof(TestSelectData)))
+            [Test]
+            public void DeletingData()
             {
-                foreach (var item in TestHelper.DataSource)
+                using (var context = new TestDbContext(nameof(DeletingData)))
                 {
-                    context.Orders.Insert(item);
-                }
+                    foreach (var item in TestHelper.DataSource)
+                    {
+                        context.Orders.Insert(item);
+                    }
 
-                var selectingData = context.Orders.Select("CustomerName = @CustomerName", new {CustomerName = "Peter"});
-                foreach (var item in selectingData)
+                    var incomingData = context.Orders.SelectAll();
+                    foreach (var item in incomingData)
+                    {
+                        context.Orders.Delete(item);
+                    }
+                    Assert.AreEqual(0, context.Orders.Count());
+                }
+            }
+
+            [Test]
+            public void DeletingUsingParams()
+            {
+                using (var context = new TestDbContext(nameof(DeletingUsingParams)))
                 {
-                    Assert.AreEqual("Peter", item.CustomerName);
+                    foreach (var item in TestHelper.DataSource)
+                    {
+                        context.Orders.Insert(item);
+                    }
+
+                    var deletedData = context.Orders.Delete("CustomerName = @CustomerName", new { CustomerName = "Peter" });
+                    Assert.AreEqual(deletedData, TestHelper.DataSource.Count(x => x.CustomerName == "Peter"));
+                }
+            }
+
+            [Test]
+            public void DeletingUsingInvalidParams_TrhowsSqliteException()
+            {
+                using (var context = new TestDbContext(nameof(DeletingUsingParams)))
+                {
+                    foreach (var item in TestHelper.DataSource)
+                    {
+                        context.Orders.Insert(item);
+                    }
+
+                    Assert.Throws<SqliteException>(() => {
+                        var deletedData = context.Orders.Delete("Customer = @CustomerName", new { CustomerName = "Peter" });
+                    });
                 }
             }
         }
 
-
-        /// <summary>
-        /// Tests the count data.
-        /// </summary>
-        [Test]
-        public void TestCountData()
+        public class InsertTest : DbContextFixture
         {
-            using (var context = new TestDbContext(nameof(TestCountData)))
+            [Test]
+            public void InsertData()
             {
-                foreach (var item in TestHelper.DataSource)
+                using (var context = new TestDbContext(nameof(InsertData)))
                 {
-                    context.Orders.Insert(item);
-                }
+                    var entity = TestHelper.DataSource.First();
+                    context.Orders.Insert(entity);
 
-                var selectingData = context.Orders.Select("CustomerName = @CustomerName",
-                    new {CustomerName = "Margarita"});
-                Assert.AreEqual(4, selectingData.Count());
+                    Assert.AreNotEqual(0, entity.RowId, "Has a RowId value");
+                }
+            }
+
+            [Test]
+            public void InsertUsingUnique_ThrowsSqliteException()
+            {
+                using (var context = new TestDbContext(nameof(InsertUsingUnique_ThrowsSqliteException)))
+                {
+                    foreach (var item in TestHelper.DataSource)
+                    {
+                        context.Orders.Insert(item);
+                    }
+
+                    Assert.Throws<SqliteException>(delegate
+                    {
+                        var newOrder = new Order
+                        {
+                            CustomerName = "John",
+                            Amount = 2,
+                            ShipperCity = "Atlanta",
+                            UniqueId = "1"
+                        };
+                        context.Orders.Insert(newOrder);
+                    });
+                }
+            }
+            
+            [Test]
+            public void InsertingWithOutOfRangeString_ThrowsSqliteException()
+            {
+                using (var context = new TestDbContext(nameof(InsertingWithOutOfRangeString_ThrowsSqliteException)))
+                {
+                    Assert.Throws<SqliteException>(delegate
+                    {
+                        context.Orders.Insert(new Order
+                        {
+                            CustomerName = "John",
+                            Amount = 2,
+                            ShipperCity = "StringStringStringStringStringStringStringString"
+                        });
+                    });
+                }
             }
         }
 
-        /// <summary>
-        /// Tests the single data.
-        /// </summary>
-        [Test]
-        public void TestSingleData()
+        public class InsertRangeTest : DbContextFixture
         {
-            using (var cotext = new TestDbContext(nameof(TestSingleData)))
+            [Test]
+            public void InsertingDataList()
             {
-                var k = 0;
-                for (var i = 0; i < 10; i++)
+                using (var context = new TestDbContext(nameof(InsertingDataList)))
                 {
+                    context.Orders.InsertRange(TestHelper.DataSource);
+                    var list = context.Orders.Count();
+                    Assert.AreEqual(TestHelper.DataSource.Length, list);
+                }
+            }
+
+            [Test]
+            public void InsertingEmptyDataList_TrhowsArgumentException()
+            {
+                Assert.Throws(typeof(ArgumentNullException), () =>
+                {
+                    using (var context = new TestDbContext(nameof(InsertingEmptyDataList_TrhowsArgumentException)))
+                    {
+                        context.Orders.InsertRange(new List<Order>());
+                    }
+                });
+            }
+        }
+
+        public class UpdateTest : DbContextFixture
+        {
+            [Test]
+            public void UpdatingEntities()
+            {
+                using (var context = new TestDbContext(nameof(UpdatingEntities)))
+                {
+                    foreach (var item in TestHelper.DataSource)
+                    {
+                        context.Orders.Insert(item);
+                    }
+
+                    var list = context.Orders.Select("CustomerName = @CustomerName", new { CustomerName = "John" });
+                    foreach (var item in list)
+                    {
+                        item.ShipperCity = "Atlanta";
+                        context.Orders.Update(item);
+                    }
+
+                    var updatedList = context.Orders.Select("ShipperCity = @ShipperCity", new { ShipperCity = "Atlanta" });
+                    foreach (var item in updatedList)
+                    {
+                        Assert.AreEqual("Atlanta", item.ShipperCity);
+                    }
+                }
+            }
+        }
+
+        public class SinigleTest : DbContextFixture
+        {
+            [Test]
+            public void SelectingSingleDataWithCorrectId()
+            {
+                using (var cotext = new TestDbContext(nameof(SelectingSingleDataWithCorrectId)))
+                {
+                    var k = 0;
                     foreach (var item in TestHelper.DataSource)
                     {
                         item.UniqueId = (k++).ToString();
                         cotext.Orders.Insert(item);
                     }
+
+                    var singleSelect = cotext.Orders.Single(3);
+                    Assert.AreEqual("Margarita", singleSelect.CustomerName);
                 }
-
-                var singleSelect = cotext.Orders.Single(3);
-                Assert.AreEqual("Margarita", singleSelect.CustomerName);
             }
-        }
 
-        /// <summary>
-        /// Tests the query data.
-        /// </summary>
-        [Test]
-        public void TestQueryData()
-        {
-            using (var context = new TestDbContext(nameof(TestQueryData)))
+            [Test]
+            public void SelectingSingleDataWithIncorrectId_ReturnsNull()
             {
-                var k = 0;
-                for (var i = 0; i < 10; i++)
+                using (var cotext = new TestDbContext(nameof(SelectingSingleDataWithIncorrectId_ReturnsNull)))
                 {
+                    var k = 0;
+
                     foreach (var item in TestHelper.DataSource)
                     {
                         item.UniqueId = (k++).ToString();
+                        cotext.Orders.Insert(item);
+                    }
+
+                    var singleSelect = cotext.Orders.Single(50);
+                    Assert.IsNull(singleSelect);
+                }
+            }
+        }
+
+        public class SetTest : DbContextFixture
+        {
+            [Test]
+            public void SetEntity()
+            {
+                using (var context = new TestDbContext(nameof(SetEntity)))
+                {
+                    var names = context.GetSetNames();
+                    Assert.IsNotNull(names);
+                    Assert.AreEqual(names, new[] { nameof(context.Orders), nameof(context.Warehouses) });
+
+                    var orders = context.Set<Order>();
+                    var ordersByName = context.Set(typeof(Order));
+
+                    Assert.AreEqual(context.Orders, orders);
+                    Assert.AreEqual(context.Orders, ordersByName);
+                }
+            }
+
+
+            [Test]
+            public void SelectFromSetname()
+            {
+                using (var context = new TestDbContext(nameof(SelectFromSetname)))
+                {
+                    foreach (var item in TestHelper.DataSource)
+                    {
                         context.Orders.Insert(item);
                     }
-                }
 
-                var selectedData =
-                    context.Query<Order>($"{context.Orders.SelectDefinition} WHERE CustomerName = @CustomerName",
-                        new Order {CustomerName = "Margarita"});
+                    var orders = context.Set<Order>();
 
-                foreach (var item in selectedData)
-                {
-                    Assert.IsTrue(item.CustomerName == "Margarita");
+                    var data = context.Select<Order>(orders, "1=1");
+                    Assert.IsNotNull(data);
+                    Assert.AreEqual(context.Orders.SelectAll().First().RowId, data.First().RowId, "Same first object");
                 }
             }
-        }
 
-        /// <summary>
-        /// Tests the entity unique.
-        /// </summary>
-        [Test]
-        public void TestEntityUnique()
-        {
-            using (var context = new TestDbContext(nameof(TestEntityUnique)))
+            [Test]
+            public void InvalidSetname_ThrowsArgumentOutOfRangeException()
             {
-                foreach (var item in TestHelper.DataSource)
+                Assert.Throws(typeof(System.ArgumentOutOfRangeException), () =>
                 {
-                    context.Orders.Insert(item);
-                }
-
-                Assert.Throws<SqliteException>(delegate
-                {
-                    var newOrder = new Order
+                    using (var context = new TestDbContext(nameof(InvalidSetname_ThrowsArgumentOutOfRangeException)))
                     {
-                        CustomerName = "John",
-                        Amount = 2,
-                        ShipperCity = "Atlanta",
-                        UniqueId = "1"
-                    };
-                    context.Orders.Insert(newOrder);
+                        context.Set<DbContextFixture>();
+                    }
                 });
             }
-        }
 
-        /// <summary>
-        /// Tests the string length.
-        /// </summary>
-        [Test]
-        public void TestStringLengt()
-        {
-            using (var context = new TestDbContext(nameof(TestStringLengt)))
+            [Test]
+            public void InsertFromSetname()
             {
-                Assert.Throws<SqliteException>(delegate
+                using (var context = new TestDbContext(nameof(InsertFromSetname)))
                 {
-                    context.Orders.Insert(new Order
+                    foreach (var item in TestHelper.DataSource)
                     {
-                        CustomerName = "John",
-                        Amount = 2,
-                        ShipperCity = "StringStringStringStringStringStringStringString"
+                        context.Insert(item);
+                    }
+
+                    Assert.AreEqual(TestHelper.DataSource.Length, context.Orders.Count(), "Has data");
+                }
+            }
+
+            [Test]
+            public void DeleteFromSetname()
+            {
+                using (var context = new TestDbContext(nameof(DeleteFromSetname)))
+                {
+                    foreach (var item in TestHelper.DataSource)
+                    {
+                        context.Insert(item);
+                    }
+
+                    Assert.AreEqual(TestHelper.DataSource.Length, context.Orders.Count(), "Has data");
+
+                    foreach (var item in TestHelper.DataSource)
+                    {
+                        context.Delete(item);
+                    }
+
+                    Assert.AreEqual(0, context.Orders.Count(), "Has data");
+                }
+            }
+
+            [Test]
+            public void UpdateFromSetname()
+            {
+                using (var context = new TestDbContext(nameof(UpdateFromSetname)))
+                {
+                    foreach (var item in TestHelper.DataSource)
+                    {
+                        context.Insert(item);
+                    }
+
+                    foreach (var item in TestHelper.DataSource)
+                    {
+                        item.ShipperCity = "Atlanta";
+                        context.Update(item);
+                    }
+                    var updatedItems = context.Orders.Select("ShipperCity = @ShipperCity", new { ShipperCity = "Atlanta" });
+                    Assert.AreEqual(TestHelper.DataSource.Length, updatedItems.Count());
+                }
+            }
+        }
+                
+        public class Qerytest : DbContextFixture
+        {
+            [Test]
+            public void SelectingData()
+            {
+                using (var context = new TestDbContext(nameof(SelectingData)))
+                {
+                    var k = 0;
+                    for (var i = 0; i < 10; i++)
+                    {
+                        foreach (var item in TestHelper.DataSource)
+                        {
+                            item.UniqueId = (k++).ToString();
+                            context.Orders.Insert(item);
+                        }
+                    }
+
+                    var selectedData =
+                        context.Query<Order>($"{context.Orders.SelectDefinition} WHERE CustomerName = @CustomerName",
+                            new Order { CustomerName = "Margarita" });
+
+                    foreach (var item in selectedData)
+                    {
+                        Assert.AreEqual(item.CustomerName, "Margarita");
+                    }
+                }
+            }
+
+            [Test]
+            public void UsingBadQuery_ThrowsSqliteException()
+            {
+                using (var context = new TestDbContext(nameof(UsingBadQuery_ThrowsSqliteException)))
+                {
+                    var k = 0;
+                    for (var i = 0; i < 10; i++)
+                    {
+                        foreach (var item in TestHelper.DataSource)
+                        {
+                            item.UniqueId = (k++).ToString();
+                            context.Orders.Insert(item);
+                        }
+                    }
+
+                    Assert.Throws<SqliteException>(() => {
+                        var selectedData =
+                            context.Query<Order>($"{context.Orders.UpdateDefinition} WHERE CustomerName = @CustomerName",
+                                new Order { CustomerName = "Margarita" });
+
                     });
-                });
+                }
             }
         }
 
-        [Test]
-        public void TestSets()
+        public class CountAsync : DbContextFixture
         {
-            using (var context = new TestDbContext(nameof(TestSets)))
+            [Test]
+            public void CountingData()
             {
-                var names = context.GetSetNames();
-                Assert.IsNotNull(names);
-                Assert.AreEqual(names, new[] {nameof(context.Orders), nameof(context.Warehouses)});
-
-                var orders = context.Set<Order>();
-                var ordersByName = context.Set(typeof(Order));
-
-                Assert.AreEqual(context.Orders, orders);
-                Assert.AreEqual(context.Orders, ordersByName);
-            }
-        }
-
-        [Test]
-        public void TestInsertRangeData()
-        {
-            using (var context = new TestDbContext(nameof(TestInsertRangeData)))
-            {
-                context.Orders.InsertRange(TestHelper.DataSource);
-                var list = context.Orders.Count();
-                Assert.AreEqual(TestHelper.DataSource.Length, list);
-            }
-        }
-
-        [Test]
-        public void TestInsertRangeEmptyset()
-        {
-            Assert.Throws(typeof(ArgumentNullException), () =>
-            {
-                using (var context = new TestDbContext(nameof(TestInsertRangeData)))
+                using (var context = new TestDbContext(nameof(CountingData)))
                 {
-                    context.Orders.InsertRange(new List<Order>());
+                    foreach (var item in TestHelper.DataSource)
+                    {
+                        context.Orders.Insert(item);
+                    }
+
+                    var selectingData =
+                        context.Orders.Count();
+
+                    Assert.AreEqual(12, selectingData);
                 }
-            });
-        }
-
-        [Test]
-        public void TestSelectFromSetname()
-        {
-            using (var context = new TestDbContext(nameof(TestSets)))
-            {
-                foreach (var item in TestHelper.DataSource)
-                {
-                    context.Orders.Insert(item);
-                }
-
-                var orders = context.Set<Order>();
-
-                var data = context.Select<Order>(orders, "1=1");
-                Assert.IsNotNull(data);
-                Assert.AreEqual(context.Orders.SelectAll().First().RowId, data.First().RowId, "Same first object");
-            }
-        }
-
-        [Test]
-        public void TestInvalidSetname()
-        {
-            Assert.Throws(typeof(System.ArgumentOutOfRangeException), () =>
-            {
-                using (var context = new TestDbContext(nameof(TestInvalidSetname)))
-                {
-                    context.Set<DbContextFixture>();
-                }
-            });
-        }
-
-        [Test]
-        public void TestInsertFromSetname()
-        {
-            using (var context = new TestDbContext(nameof(TestInsertFromSetname)))
-            {
-                foreach (var item in TestHelper.DataSource)
-                {
-                    context.Insert(item);
-                }
-
-                Assert.AreEqual(TestHelper.DataSource.Length, context.Orders.Count(), "Has data");
-            }
-        }
-        
-        [Test]
-        public void TestDeleteFromSetname()
-        {
-            using (var context = new TestDbContext(nameof(TestDeleteFromSetname)))
-            {
-                foreach (var item in TestHelper.DataSource)
-                {
-                    context.Insert(item);
-                }
-
-                Assert.AreEqual(TestHelper.DataSource.Length, context.Orders.Count(), "Has data");
-
-                foreach (var item in TestHelper.DataSource)
-                {
-                    context.Delete(item);
-                }
-
-                Assert.AreEqual(0, context.Orders.Count(), "Has data");
-            }
-        }
-
-        [Test]
-        public void TestFirstOrDefault()
-        {
-            using (var context = new TestDbContext(nameof(TestFirstOrDefault)))
-            {
-                var id = context.Orders.Insert(TestHelper.DataSource.First());
-                Assert.AreNotEqual(0, id);
-
-                var order = context.Orders.FirstOrDefault(nameof(Order.CustomerName), "John");
-
-                Assert.IsNotNull(order);
-            }
-        }
-
-        [Test]
-        public void UpdateFromSetname()
-        {
-            using (var context = new TestDbContext(nameof(UpdateFromSetname)))
-            {
-                foreach (var item in TestHelper.DataSource)
-                {
-                    context.Insert(item);
-                }
-
-                foreach (var item in TestHelper.DataSource)
-                {
-                    item.ShipperCity = "Atlanta";
-                    context.Update(item);
-                }
-                var updatedItems = context.Orders.Select("ShipperCity = @ShipperCity", new { ShipperCity = "Atlanta" });
-                Assert.AreEqual(TestHelper.DataSource.Length, updatedItems.Count());
-            }
-        }
-        
-        [Test]
-        public void DeleteUsingWhere()
-        {
-            using (var context = new TestDbContext(nameof(DeleteUsingWhere)))
-            {
-                foreach (var item in TestHelper.DataSource)
-                {
-                    context.Orders.Insert(item);
-                }
-
-                var deletedData = context.Orders.Delete("CustomerName = @CustomerName", new { CustomerName = "Peter" });
-                Assert.AreEqual(deletedData, TestHelper.DataSource.Count(x => x.CustomerName == "Peter"));
             }
         }
     }
