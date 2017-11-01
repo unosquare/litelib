@@ -53,17 +53,15 @@
         /// Gets or sets the parent set context.
         /// </summary>
         LiteDbContext Context { get; set; }
-
     }
 
     /// <summary>
     /// Provides typed access to querying the database
     /// </summary>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T">The type of LiteModel</typeparam>
     public interface ILiteDbSet<T> : ILiteDbSet
         where T : ILiteModel
     {
-
         /// <summary>
         /// Inserts the specified entity.
         /// </summary>

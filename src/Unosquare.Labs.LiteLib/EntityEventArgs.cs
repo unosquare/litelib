@@ -5,7 +5,7 @@
     /// <summary>
     /// Represents a Entity EventArg
     /// </summary>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T">The type of LiteModel</typeparam>
     /// <seealso cref="System.EventArgs" />
     public class EntityEventArgs<T> : EventArgs
         where T : ILiteModel
