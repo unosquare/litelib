@@ -11,6 +11,9 @@
     }
   ],
   "build": {
+    "template": [
+      "best-practices/templates/default"
+    ],
     "content": [
       {
         "files": [ "**/*.yml" ],
@@ -23,13 +26,14 @@
     ],
     "resource": [
       {
-        "files": [ "litelib-logo.png" ]
+        "files": [ "best-practices/resources/**", "litelib-logo.png" ]
       }
     ],
     "globalMetadata": {
       "_appTitle": "Unosquare LiteLib",
       "_enableSearch": true,
-      "_appLogoPath": "litelib-logo.png"
+      "_appLogoPath": "best-practices/resources/images/logo.png",
+      "_docLogo": "litelib-logo.png"
     },
     "dest": "_site"
   }

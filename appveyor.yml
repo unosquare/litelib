@@ -47,6 +47,8 @@ after_build:
             git config --global user.name $env:op_build_user
 
             git clone https://github.com/unosquare/litelib.git -b gh-pages origin_site -q
+            git clone -b documentation https://github.com/unosquare/best-practices.git -q
+            docfx docfx.json --logLevel Error
             Copy-Item origin_site/.git _site -recurse
             CD _site
             Copy-Item README.html index.html -force
