@@ -9,7 +9,7 @@
     <PackageId>LiteLib</PackageId>
     <DebugType>Full</DebugType>
     <CodeAnalysisRuleSet>..\..\StyleCop.Analyzers.ruleset</CodeAnalysisRuleSet>
-    <Version>0.14.3</Version>
+    <Version>0.15.0</Version>
     <Authors>Unosquare</Authors>
     <Company>Unosquare</Company>
     <Copyright>Copyright (c) 2016-2017 Unosquare</Copyright>
@@ -20,6 +20,7 @@
     <PackageIconUrl>https://raw.githubusercontent.com/unosquare/litelib/master/litelib-logo.png</PackageIconUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>orm sqlite dapper</PackageTags>
+    <ContentSQLiteInteropFiles>true</ContentSQLiteInteropFiles>
   </PropertyGroup>
 
   <ItemGroup>
@@ -28,12 +29,11 @@
     </PackageReference>
     <PackageReference Include="Dapper" Version="1.50.2" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.4.0" />
-    <PackageReference Include="Unosquare.Swan" Version="0.17.1" />
+    <PackageReference Include="Unosquare.Swan" Version="0.18.0" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net46' ">
-    <PackageReference Include="Microsoft.Data.Sqlite" Version="1.0.1" />
-    <PackageReference Include="SQLite" Version="3.13.0" />
+    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.106" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">

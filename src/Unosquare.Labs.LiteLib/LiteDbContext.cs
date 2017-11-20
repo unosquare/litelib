@@ -16,6 +16,8 @@
     using Swan.Reflection;
 #if MONO
     using Mono.Data.Sqlite;
+#elif NET46
+    using System.Data.SQLite;
 #else
     using Microsoft.Data.Sqlite;
 #endif
@@ -58,6 +60,8 @@
             var databaseExists = File.Exists(databaseFilePath);
 #if MONO
             Connection = new SqliteConnection($"URI=file:{databaseFilePath}");
+#elif NET46
+            Connection = new SQLiteConnection($"URI=file:{databaseFilePath}");
 #else
             var builder = new SqliteConnectionStringBuilder
             {

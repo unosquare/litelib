@@ -5,7 +5,9 @@ using System.Linq;
 using Unosquare.Labs.LiteLib.Tests.Database;
 using Unosquare.Labs.LiteLib.Tests.Helpers;
 #if MONO
-    using Mono.Data.Sqlite;
+using Mono.Data.Sqlite;
+#elif NET46
+using System.Data.SQLite;
 #else
 using Microsoft.Data.Sqlite;
 #endif
@@ -48,7 +50,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                         context.Orders.Insert(item);
                     }
 
-                    var entities = context.Orders.Select("CustomerName = @CustomerName", new { CustomerName = "John" });
+                    var entities = context.Orders.Select("CustomerName = @CustomerName", new {CustomerName = "John"});
                     foreach (var item in entities)
                     {
                         Assert.AreEqual("John", item.CustomerName);
@@ -65,14 +67,17 @@ namespace Unosquare.Labs.LiteLib.Tests
                     {
                         context.Orders.Insert(item);
                     }
-
+#if NET46
+                    Assert.Throws<SQLiteException>(() =>
+#else
                     Assert.Throws<SqliteException>(() =>
+#endif
                     {
-                        var entities = context.Orders.Select("Customer = @CustomerName", new { CustomerName = "John" });
+                        var entities = context.Orders.Select("Customer = @CustomerName", new {CustomerName = "John"});
                     });
                 }
             }
-            
+
             [Test]
             public void SelectingFirstOrDefault()
             {
@@ -119,7 +124,8 @@ namespace Unosquare.Labs.LiteLib.Tests
                         context.Orders.Insert(item);
                     }
 
-                    var deletedData = context.Orders.Delete("CustomerName = @CustomerName", new { CustomerName = "Peter" });
+                    var deletedData =
+                        context.Orders.Delete("CustomerName = @CustomerName", new {CustomerName = "Peter"});
                     Assert.AreEqual(deletedData, TestHelper.DataSource.Count(x => x.CustomerName == "Peter"));
                 }
             }
@@ -134,8 +140,14 @@ namespace Unosquare.Labs.LiteLib.Tests
                         context.Orders.Insert(item);
                     }
 
-                    Assert.Throws<SqliteException>(() => {
-                        var deletedData = context.Orders.Delete("Customer = @CustomerName", new { CustomerName = "Peter" });
+#if NET46
+                    Assert.Throws<SQLiteException>(() =>
+#else
+                    Assert.Throws<SqliteException>(() =>
+#endif
+                    {
+                        var deletedData =
+                            context.Orders.Delete("Customer = @CustomerName", new {CustomerName = "Peter"});
                     });
                 }
             }
@@ -165,7 +177,11 @@ namespace Unosquare.Labs.LiteLib.Tests
                         context.Orders.Insert(item);
                     }
 
-                    Assert.Throws<SqliteException>(delegate
+#if NET46
+                    Assert.Throws<SQLiteException>(() =>
+#else
+                    Assert.Throws<SqliteException>(() =>
+#endif
                     {
                         var newOrder = new Order
                         {
@@ -178,13 +194,17 @@ namespace Unosquare.Labs.LiteLib.Tests
                     });
                 }
             }
-            
+
             [Test]
             public void InsertingWithOutOfRangeString_ThrowsSqliteException()
             {
                 using (var context = new TestDbContext(nameof(InsertingWithOutOfRangeString_ThrowsSqliteException)))
                 {
-                    Assert.Throws<SqliteException>(delegate
+#if NET46
+                    Assert.Throws<SQLiteException>(() =>
+#else
+                    Assert.Throws<SqliteException>(() =>
+#endif
                     {
                         context.Orders.Insert(new Order
                         {
@@ -213,7 +233,7 @@ namespace Unosquare.Labs.LiteLib.Tests
             [Test]
             public void InsertingEmptyDataList_TrhowsArgumentException()
             {
-                Assert.Throws(typeof(ArgumentNullException), () =>
+                Assert.Throws<ArgumentNullException>(() =>
                 {
                     using (var context = new TestDbContext(nameof(InsertingEmptyDataList_TrhowsArgumentException)))
                     {
@@ -235,14 +255,15 @@ namespace Unosquare.Labs.LiteLib.Tests
                         context.Orders.Insert(item);
                     }
 
-                    var list = context.Orders.Select("CustomerName = @CustomerName", new { CustomerName = "John" });
+                    var list = context.Orders.Select("CustomerName = @CustomerName", new {CustomerName = "John"});
                     foreach (var item in list)
                     {
                         item.ShipperCity = "Atlanta";
                         context.Orders.Update(item);
                     }
 
-                    var updatedList = context.Orders.Select("ShipperCity = @ShipperCity", new { ShipperCity = "Atlanta" });
+                    var updatedList =
+                        context.Orders.Select("ShipperCity = @ShipperCity", new {ShipperCity = "Atlanta"});
                     foreach (var item in updatedList)
                     {
                         Assert.AreEqual("Atlanta", item.ShipperCity);
@@ -298,7 +319,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                 {
                     var names = context.GetSetNames();
                     Assert.IsNotNull(names);
-                    Assert.AreEqual(names, new[] { nameof(context.Orders), nameof(context.Warehouses) });
+                    Assert.AreEqual(names, new[] {nameof(context.Orders), nameof(context.Warehouses)});
 
                     var orders = context.Set<Order>();
                     var ordersByName = context.Set(typeof(Order));
@@ -330,7 +351,7 @@ namespace Unosquare.Labs.LiteLib.Tests
             [Test]
             public void InvalidSetname_ThrowsArgumentOutOfRangeException()
             {
-                Assert.Throws(typeof(System.ArgumentOutOfRangeException), () =>
+                Assert.Throws<ArgumentOutOfRangeException>(() =>
                 {
                     using (var context = new TestDbContext(nameof(InvalidSetname_ThrowsArgumentOutOfRangeException)))
                     {
@@ -389,12 +410,13 @@ namespace Unosquare.Labs.LiteLib.Tests
                         item.ShipperCity = "Atlanta";
                         context.Update(item);
                     }
-                    var updatedItems = context.Orders.Select("ShipperCity = @ShipperCity", new { ShipperCity = "Atlanta" });
+                    var updatedItems =
+                        context.Orders.Select("ShipperCity = @ShipperCity", new {ShipperCity = "Atlanta"});
                     Assert.AreEqual(TestHelper.DataSource.Length, updatedItems.Count());
                 }
             }
         }
-                
+
         public class Qerytest : DbContextFixture
         {
             [Test]
@@ -414,7 +436,7 @@ namespace Unosquare.Labs.LiteLib.Tests
 
                     var selectedData =
                         context.Query<Order>($"{context.Orders.SelectDefinition} WHERE CustomerName = @CustomerName",
-                            new Order { CustomerName = "Margarita" });
+                            new Order {CustomerName = "Margarita"});
 
                     foreach (var item in selectedData)
                     {
@@ -438,10 +460,16 @@ namespace Unosquare.Labs.LiteLib.Tests
                         }
                     }
 
-                    Assert.Throws<SqliteException>(() => {
+#if NET46
+                    Assert.Throws<SQLiteException>(() =>
+#else
+                    Assert.Throws<SqliteException>(() =>
+#endif
+                    {
                         var selectedData =
-                            context.Query<Order>($"{context.Orders.UpdateDefinition} WHERE CustomerName = @CustomerName",
-                                new Order { CustomerName = "Margarita" });
+                            context.Query<Order>(
+                                $"{context.Orders.UpdateDefinition} WHERE CustomerName = @CustomerName",
+                                new Order {CustomerName = "Margarita"});
 
                     });
                 }

@@ -1,9 +1,13 @@
-﻿using Microsoft.Data.Sqlite;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using System.Linq;
 using System.Threading.Tasks;
 using Unosquare.Labs.LiteLib.Tests.Database;
 using Unosquare.Labs.LiteLib.Tests.Helpers;
+#if NET46
+using System.Data.SQLite;
+#else
+using Microsoft.Data.Sqlite;
+#endif
 
 namespace Unosquare.Labs.LiteLib.Tests
 {
@@ -42,7 +46,7 @@ namespace Unosquare.Labs.LiteLib.Tests
 
                     // Selecting Data By name
                     var selectingData =
-                        await context.Orders.SelectAsync("CustomerName = @CustomerName", new { CustomerName = "Peter" });
+                        await context.Orders.SelectAsync("CustomerName = @CustomerName", new {CustomerName = "Peter"});
 
                     foreach (var item in selectingData)
                     {
@@ -63,7 +67,7 @@ namespace Unosquare.Labs.LiteLib.Tests
 
                     // Selecting Data By name
                     var selectingData =
-                        await context.Orders.SelectAsync("CustomerName = @CustomerName", new { CustomerName = "Peter" });
+                        await context.Orders.SelectAsync("CustomerName = @CustomerName", new {CustomerName = "Peter"});
 
                     foreach (var item in selectingData)
                     {
@@ -123,7 +127,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                     }
 
                     var deletedData =
-                        await context.Orders.DeleteAsync("CustomerName = @CustomerName", new { CustomerName = "Peter" });
+                        await context.Orders.DeleteAsync("CustomerName = @CustomerName", new {CustomerName = "Peter"});
                     Assert.AreEqual(deletedData, TestHelper.DataSource.Count(x => x.CustomerName == "Peter"));
                 }
             }
@@ -163,8 +167,11 @@ namespace Unosquare.Labs.LiteLib.Tests
                     {
                         await context.Orders.InsertAsync(item);
                     }
-
+#if NET46
+                    Assert.ThrowsAsync<SQLiteException>(async () =>
+#else
                     Assert.ThrowsAsync<SqliteException>(async () =>
+#endif
                     {
                         var newOrder = new Order
                         {
@@ -173,6 +180,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                             ShipperCity = "Atlanta",
                             UniqueId = "1"
                         };
+
                         await context.Orders.InsertAsync(newOrder);
                     });
                 }
@@ -183,7 +191,11 @@ namespace Unosquare.Labs.LiteLib.Tests
             {
                 using (var context = new TestDbContext(nameof(InsertAsyncWithOutOfRangeString_ThrowsSqliteException)))
                 {
+#if NET46
+                    Assert.ThrowsAsync<SQLiteException>(async () =>
+#else
                     Assert.ThrowsAsync<SqliteException>(async () =>
+#endif
                     {
                         await context.Orders.InsertAsync(new Order
                         {
@@ -209,7 +221,8 @@ namespace Unosquare.Labs.LiteLib.Tests
                     }
 
                     var list = await context.Orders.SelectAsync("CustomerName = @CustomerName",
-                        new { CustomerName = "John" });
+                        new {CustomerName = "John"});
+
                     foreach (var item in list)
                     {
                         item.ShipperCity = "Atlanta";
@@ -217,7 +230,8 @@ namespace Unosquare.Labs.LiteLib.Tests
                     }
 
                     var updatedList =
-                        await context.Orders.SelectAsync("ShipperCity = @ShipperCity", new { ShipperCity = "Atlanta" });
+                        await context.Orders.SelectAsync("ShipperCity = @ShipperCity", new {ShipperCity = "Atlanta"});
+
                     foreach (var item in updatedList)
                     {
                         Assert.AreEqual("Atlanta", item.ShipperCity);
@@ -314,8 +328,9 @@ namespace Unosquare.Labs.LiteLib.Tests
                         item.ShipperCity = "Atlanta";
                         await context.UpdateAsync(item);
                     }
+
                     var updatedItems =
-                        await context.Orders.SelectAsync("ShipperCity = @ShipperCity", new { ShipperCity = "Atlanta" });
+                        await context.Orders.SelectAsync("ShipperCity = @ShipperCity", new {ShipperCity = "Atlanta"});
                     Assert.AreEqual(TestHelper.DataSource.Length, updatedItems.Count());
                 }
             }
@@ -337,7 +352,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                         await
                             context.QueryAsync<Order>(
                                 $"{context.Orders.SelectDefinition} WHERE CustomerName = @CustomerName",
-                                new Order { CustomerName = "John" });
+                                new Order {CustomerName = "John"});
 
                     foreach (var item in selectedData)
                     {
