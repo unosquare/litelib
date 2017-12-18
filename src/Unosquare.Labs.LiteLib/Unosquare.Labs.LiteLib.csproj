@@ -29,7 +29,7 @@
     </PackageReference>
     <PackageReference Include="Dapper" Version="1.50.2" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.4.0" />
-    <PackageReference Include="Unosquare.Swan" Version="0.18.0" />
+    <PackageReference Include="Unosquare.Swan.Lite" Version="0.24.0" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net46' ">
