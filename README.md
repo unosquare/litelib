@@ -11,13 +11,13 @@ _A cool little wrapper for [SQLite](https://www.sqlite.org/) based on [Dapper](h
 
 :star: *Please star this project if you find it useful!* 
 
-LiteLib is a library that helps you get the job done quickly and easily by defining POCO classes and turns those classes into SQLite-mapped tables. You define a database context and LiteLib will automatically create the necessary SQLite tables for your context. You will then be able to easily query, insert, update or delete records from the database tables via the database context you just defined. LiteLib is not intended to be a replacement for Entity Framework, but rather a lighter alternative that saves you the work of creating tables, managing connection intances, logging SQL commands, and still allows you to use Dapper-style querying. So, if you like Entity Framework, but you prefer the speed of Dapper, and you are using SQLite for your project, then we hope you'll love LiteLib!
+LiteLib is a library that helps you get the job done quickly and easily by defining POCO classes and turns those classes into SQLite-mapped tables. You define a database context and LiteLib will automatically create the necessary SQLite tables for your context. You will then be able to easily query, insert, update or delete records from the database tables via the database context you just defined. LiteLib is not intended to be a replacement for Entity Framework, but rather a lighter alternative that saves you the work of creating tables, managing connection instances, logging SQL commands, and still allows you to use Dapper-style querying. So, if you like Entity Framework, but you prefer the speed of Dapper, and you are using SQLite for your project, then we hope you'll love LiteLib!
 
 Stuff that LiteLib *does very well*:
 - Creates your database files and tables that map to classes and properties of your objects.
 - Automatically gives you access to predefined `SELECT`, `UPDATE`, `INSERT` and `DELETE` commands for each of your classes.
 - Automatically provides you with a simple and extensible data access layer.
-- Automatically manages connection intances.
+- Automatically manages connection instances.
 - Provides you with a log of SQL commands executed against your database file.
 
 Stuff that LiteLib *does not* cover:
@@ -39,11 +39,11 @@ We designed LiteLib to be extremely easy to use. There are 3 steps you need to f
 
 1. Create your model classes. All model classes must extend from `LiteModel`. There are a few class and property attributes that LiteLib understands. See the examples below.
 2. Create your context class. It must extend `LiteDbContext`, and it must expose your `LiteDbSet` classes
-3. Use your context class. Example provided in the following section.
+3. Use your context class. An example provided in the following section.
 
 ## Example
 
-Create your model class. Use the `Table` attribute to specify the name of the table you want to map your model to. Also note we inherit from `LiteModel`. If you wish to create a unique index on a column, use the `LiteUnique` attribute on a property. If you wish to index a column, then simply use the `LiteIndex` attribute. Please note properties with complex datatypes will not be mapped to the database.
+Create your model class. Use the `Table` attribute to specify the name of the table you want to map your model to. Also, note we inherit from `LiteModel`. If you wish to create a unique index on a column, use the `LiteUnique` attribute on a property. If you wish to index a column, then simply use the `LiteIndex` attribute. Please note properties with complex datatypes will not be mapped to the database.
 
 ```cs
 namespace Models
@@ -105,6 +105,6 @@ using (var db = new AppDbContext())
 }
 ```
 
-At this point it should be easy for you to see that you can esily extend your data access logic via extension methods or by extending the `LiteDbSet<>` class and exposing it as a property in your database context class.
+At this point, it should be easy for you to see that you can easily extend your data access logic via extension methods or by extending the `LiteDbSet<>` class and exposing it as a property in your database context class.
 
 That's it! Happy coding!
