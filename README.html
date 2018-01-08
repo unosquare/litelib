@@ -8,7 +8,7 @@
     <title>LiteLib | Unosquare LiteLib </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="LiteLib | Unosquare LiteLib ">
-    <meta name="generator" content="docfx 2.28.3.0">
+    <meta name="generator" content="docfx 2.29.1.0">
     
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="stylesheet" href="styles/docfx.vendor.css">
@@ -78,13 +78,13 @@
 <h1 id="litelib">LiteLib</h1>
 <p><em>A cool little wrapper for <a href="https://www.sqlite.org/">SQLite</a> based on <a href="https://github.com/StackExchange/Dapper">Dapper</a> from Unosquare Labs -- It&#39;s also free and MIT-licensed</em></p>
 <p><span class="emoji" shortcode="star">⭐</span> <em>Please star this project if you find it useful!</em> </p>
-<p>LiteLib is a library that helps you get the job done quickly and easily by defining POCO classes and turns those classes into SQLite-mapped tables. You define a database context and LiteLib will automatically create the necessary SQLite tables for your context. You will then be able to easily query, insert, update or delete records from the database tables via the database context you just defined. LiteLib is not intended to be a replacement for Entity Framework, but rather a lighter alternative that saves you the work of creating tables, managing connection intances, logging SQL commands, and still allows you to use Dapper-style querying. So, if you like Entity Framework, but you prefer the speed of Dapper, and you are using SQLite for your project, then we hope you&#39;ll love LiteLib!</p>
+<p>LiteLib is a library that helps you get the job done quickly and easily by defining POCO classes and turns those classes into SQLite-mapped tables. You define a database context and LiteLib will automatically create the necessary SQLite tables for your context. You will then be able to easily query, insert, update or delete records from the database tables via the database context you just defined. LiteLib is not intended to be a replacement for Entity Framework, but rather a lighter alternative that saves you the work of creating tables, managing connection instances, logging SQL commands, and still allows you to use Dapper-style querying. So, if you like Entity Framework, but you prefer the speed of Dapper, and you are using SQLite for your project, then we hope you&#39;ll love LiteLib!</p>
 <p>Stuff that LiteLib <em>does very well</em>:</p>
 <ul>
 <li>Creates your database files and tables that map to classes and properties of your objects.</li>
 <li>Automatically gives you access to predefined <code>SELECT</code>, <code>UPDATE</code>, <code>INSERT</code> and <code>DELETE</code> commands for each of your classes.</li>
 <li>Automatically provides you with a simple and extensible data access layer.</li>
-<li>Automatically manages connection intances.</li>
+<li>Automatically manages connection instances.</li>
 <li>Provides you with a log of SQL commands executed against your database file.</li>
 </ul>
 <p>Stuff that LiteLib <em>does not</em> cover:</p>
@@ -104,10 +104,10 @@ PM> Install-Package LiteLib
 <ol>
 <li>Create your model classes. All model classes must extend from <code>LiteModel</code>. There are a few class and property attributes that LiteLib understands. See the examples below.</li>
 <li>Create your context class. It must extend <code>LiteDbContext</code>, and it must expose your <code>LiteDbSet</code> classes</li>
-<li>Use your context class. Example provided in the following section.</li>
+<li>Use your context class. An example provided in the following section.</li>
 </ol>
 <h2 id="example">Example</h2>
-<p>Create your model class. Use the <code>Table</code> attribute to specify the name of the table you want to map your model to. Also note we inherit from <code>LiteModel</code>. If you wish to create a unique index on a column, use the <code>LiteUnique</code> attribute on a property. If you wish to index a column, then simply use the <code>LiteIndex</code> attribute. Please note properties with complex datatypes will not be mapped to the database.</p>
+<p>Create your model class. Use the <code>Table</code> attribute to specify the name of the table you want to map your model to. Also, note we inherit from <code>LiteModel</code>. If you wish to create a unique index on a column, use the <code>LiteUnique</code> attribute on a property. If you wish to index a column, then simply use the <code>LiteIndex</code> attribute. Please note properties with complex datatypes will not be mapped to the database.</p>
 <pre><code class="lang-cs">namespace Models
 {
     using System;
@@ -157,7 +157,7 @@ PM> Install-Package LiteLib
       $&quot;{nameof(ClientAccount.Username)} = @{nameof(ClientAccount.Username)}&quot;, 
       new { Username = &quot;someuser&quot; });
 }
-</code></pre><p>At this point it should be easy for you to see that you can esily extend your data access logic via extension methods or by extending the <code>LiteDbSet&lt;&gt;</code> class and exposing it as a property in your database context class.</p>
+</code></pre><p>At this point, it should be easy for you to see that you can easily extend your data access logic via extension methods or by extending the <code>LiteDbSet&lt;&gt;</code> class and exposing it as a property in your database context class.</p>
 <p>That&#39;s it! Happy coding!</p>
 </article>
           </div>
