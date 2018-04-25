@@ -9,7 +9,7 @@
     <PackageId>LiteLib</PackageId>
     <DebugType>Full</DebugType>
     <CodeAnalysisRuleSet>..\..\StyleCop.Analyzers.ruleset</CodeAnalysisRuleSet>
-    <Version>0.15.0</Version>
+    <Version>0.15.3</Version>
     <Authors>Unosquare</Authors>
     <Company>Unosquare</Company>
     <Copyright>Copyright (c) 2016-2017 Unosquare</Copyright>
@@ -21,22 +21,24 @@
     <RepositoryType>git</RepositoryType>
     <PackageTags>orm sqlite dapper</PackageTags>
     <ContentSQLiteInteropFiles>true</ContentSQLiteInteropFiles>
+    <AssemblyVersion>0.15.2.0</AssemblyVersion>
+    <FileVersion>0.15.2.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="StyleCop.Analyzers" Version="1.0.2">
       <PrivateAssets>All</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="Dapper" Version="1.50.2" />
-    <PackageReference Include="System.ComponentModel.Annotations" Version="4.4.0" />
-    <PackageReference Include="Unosquare.Swan.Lite" Version="0.24.0" />
+    <PackageReference Include="Dapper" Version="1.50.4" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.4.1" />
+    <PackageReference Include="Unosquare.Swan.Lite" Version="0.29.0" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net46' ">
-    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.106" />
+    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.108" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
-    <PackageReference Include="Microsoft.Data.Sqlite" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="2.0.1" />
   </ItemGroup>
 </Project>
