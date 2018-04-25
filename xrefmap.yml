@@ -29,6 +29,7 @@ references:
   name: EntityEventArgs
   href: api/Unosquare.Labs.LiteLib.EntityEventArgs-1.html#Unosquare_Labs_LiteLib_EntityEventArgs_1__ctor_
   commentId: Overload:Unosquare.Labs.LiteLib.EntityEventArgs`1.#ctor
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.EntityEventArgs<T>.EntityEventArgs
   fullName.vb: Unosquare.Labs.LiteLib.EntityEventArgs(Of T).EntityEventArgs
   nameWithType: EntityEventArgs<T>.EntityEventArgs
@@ -45,6 +46,7 @@ references:
   name: Cancel
   href: api/Unosquare.Labs.LiteLib.EntityEventArgs-1.html#Unosquare_Labs_LiteLib_EntityEventArgs_1_Cancel_
   commentId: Overload:Unosquare.Labs.LiteLib.EntityEventArgs`1.Cancel
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.EntityEventArgs<T>.Cancel
   fullName.vb: Unosquare.Labs.LiteLib.EntityEventArgs(Of T).Cancel
   nameWithType: EntityEventArgs<T>.Cancel
@@ -61,6 +63,7 @@ references:
   name: DbSet
   href: api/Unosquare.Labs.LiteLib.EntityEventArgs-1.html#Unosquare_Labs_LiteLib_EntityEventArgs_1_DbSet_
   commentId: Overload:Unosquare.Labs.LiteLib.EntityEventArgs`1.DbSet
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.EntityEventArgs<T>.DbSet
   fullName.vb: Unosquare.Labs.LiteLib.EntityEventArgs(Of T).DbSet
   nameWithType: EntityEventArgs<T>.DbSet
@@ -77,6 +80,7 @@ references:
   name: Entity
   href: api/Unosquare.Labs.LiteLib.EntityEventArgs-1.html#Unosquare_Labs_LiteLib_EntityEventArgs_1_Entity_
   commentId: Overload:Unosquare.Labs.LiteLib.EntityEventArgs`1.Entity
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.EntityEventArgs<T>.Entity
   fullName.vb: Unosquare.Labs.LiteLib.EntityEventArgs(Of T).Entity
   nameWithType: EntityEventArgs<T>.Entity
@@ -97,6 +101,7 @@ references:
   name: GetTypeMapping
   href: api/Unosquare.Labs.LiteLib.Extensions.html#Unosquare_Labs_LiteLib_Extensions_GetTypeMapping_
   commentId: Overload:Unosquare.Labs.LiteLib.Extensions.GetTypeMapping
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.Extensions.GetTypeMapping
   nameWithType: Extensions.GetTypeMapping
 - uid: Unosquare.Labs.LiteLib.Extensions.ToSQLiteUtcDate(System.DateTime)
@@ -109,6 +114,7 @@ references:
   name: ToSQLiteUtcDate
   href: api/Unosquare.Labs.LiteLib.Extensions.html#Unosquare_Labs_LiteLib_Extensions_ToSQLiteUtcDate_
   commentId: Overload:Unosquare.Labs.LiteLib.Extensions.ToSQLiteUtcDate
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.Extensions.ToSQLiteUtcDate
   nameWithType: Extensions.ToSQLiteUtcDate
 - uid: Unosquare.Labs.LiteLib.ILiteDbSet
@@ -127,6 +133,7 @@ references:
   name: Context
   href: api/Unosquare.Labs.LiteLib.ILiteDbSet.html#Unosquare_Labs_LiteLib_ILiteDbSet_Context_
   commentId: Overload:Unosquare.Labs.LiteLib.ILiteDbSet.Context
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.ILiteDbSet.Context
   nameWithType: ILiteDbSet.Context
 - uid: Unosquare.Labs.LiteLib.ILiteDbSet.DeleteDefinition
@@ -139,6 +146,7 @@ references:
   name: DeleteDefinition
   href: api/Unosquare.Labs.LiteLib.ILiteDbSet.html#Unosquare_Labs_LiteLib_ILiteDbSet_DeleteDefinition_
   commentId: Overload:Unosquare.Labs.LiteLib.ILiteDbSet.DeleteDefinition
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.ILiteDbSet.DeleteDefinition
   nameWithType: ILiteDbSet.DeleteDefinition
 - uid: Unosquare.Labs.LiteLib.ILiteDbSet.DeleteDefinitionWhere
@@ -151,6 +159,7 @@ references:
   name: DeleteDefinitionWhere
   href: api/Unosquare.Labs.LiteLib.ILiteDbSet.html#Unosquare_Labs_LiteLib_ILiteDbSet_DeleteDefinitionWhere_
   commentId: Overload:Unosquare.Labs.LiteLib.ILiteDbSet.DeleteDefinitionWhere
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.ILiteDbSet.DeleteDefinitionWhere
   nameWithType: ILiteDbSet.DeleteDefinitionWhere
 - uid: Unosquare.Labs.LiteLib.ILiteDbSet.EntityType
@@ -163,6 +172,7 @@ references:
   name: EntityType
   href: api/Unosquare.Labs.LiteLib.ILiteDbSet.html#Unosquare_Labs_LiteLib_ILiteDbSet_EntityType_
   commentId: Overload:Unosquare.Labs.LiteLib.ILiteDbSet.EntityType
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.ILiteDbSet.EntityType
   nameWithType: ILiteDbSet.EntityType
 - uid: Unosquare.Labs.LiteLib.ILiteDbSet.InsertDefinition
@@ -175,6 +185,7 @@ references:
   name: InsertDefinition
   href: api/Unosquare.Labs.LiteLib.ILiteDbSet.html#Unosquare_Labs_LiteLib_ILiteDbSet_InsertDefinition_
   commentId: Overload:Unosquare.Labs.LiteLib.ILiteDbSet.InsertDefinition
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.ILiteDbSet.InsertDefinition
   nameWithType: ILiteDbSet.InsertDefinition
 - uid: Unosquare.Labs.LiteLib.ILiteDbSet.SelectDefinition
@@ -187,6 +198,7 @@ references:
   name: SelectDefinition
   href: api/Unosquare.Labs.LiteLib.ILiteDbSet.html#Unosquare_Labs_LiteLib_ILiteDbSet_SelectDefinition_
   commentId: Overload:Unosquare.Labs.LiteLib.ILiteDbSet.SelectDefinition
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.ILiteDbSet.SelectDefinition
   nameWithType: ILiteDbSet.SelectDefinition
 - uid: Unosquare.Labs.LiteLib.ILiteDbSet.TableDefinition
@@ -199,6 +211,7 @@ references:
   name: TableDefinition
   href: api/Unosquare.Labs.LiteLib.ILiteDbSet.html#Unosquare_Labs_LiteLib_ILiteDbSet_TableDefinition_
   commentId: Overload:Unosquare.Labs.LiteLib.ILiteDbSet.TableDefinition
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.ILiteDbSet.TableDefinition
   nameWithType: ILiteDbSet.TableDefinition
 - uid: Unosquare.Labs.LiteLib.ILiteDbSet.TableName
@@ -211,6 +224,7 @@ references:
   name: TableName
   href: api/Unosquare.Labs.LiteLib.ILiteDbSet.html#Unosquare_Labs_LiteLib_ILiteDbSet_TableName_
   commentId: Overload:Unosquare.Labs.LiteLib.ILiteDbSet.TableName
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.ILiteDbSet.TableName
   nameWithType: ILiteDbSet.TableName
 - uid: Unosquare.Labs.LiteLib.ILiteDbSet.UpdateDefinition
@@ -223,6 +237,7 @@ references:
   name: UpdateDefinition
   href: api/Unosquare.Labs.LiteLib.ILiteDbSet.html#Unosquare_Labs_LiteLib_ILiteDbSet_UpdateDefinition_
   commentId: Overload:Unosquare.Labs.LiteLib.ILiteDbSet.UpdateDefinition
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.ILiteDbSet.UpdateDefinition
   nameWithType: ILiteDbSet.UpdateDefinition
 - uid: Unosquare.Labs.LiteLib.ILiteDbSet`1
@@ -246,6 +261,7 @@ references:
   name: Count
   href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_Count_
   commentId: Overload:Unosquare.Labs.LiteLib.ILiteDbSet`1.Count
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.Count
   fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).Count
   nameWithType: ILiteDbSet<T>.Count
@@ -262,6 +278,7 @@ references:
   name: CountAsync
   href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_CountAsync_
   commentId: Overload:Unosquare.Labs.LiteLib.ILiteDbSet`1.CountAsync
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.CountAsync
   fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).CountAsync
   nameWithType: ILiteDbSet<T>.CountAsync
@@ -286,6 +303,7 @@ references:
   name: Delete
   href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_Delete_
   commentId: Overload:Unosquare.Labs.LiteLib.ILiteDbSet`1.Delete
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.Delete
   fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).Delete
   nameWithType: ILiteDbSet<T>.Delete
@@ -310,6 +328,7 @@ references:
   name: DeleteAsync
   href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_DeleteAsync_
   commentId: Overload:Unosquare.Labs.LiteLib.ILiteDbSet`1.DeleteAsync
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.DeleteAsync
   fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).DeleteAsync
   nameWithType: ILiteDbSet<T>.DeleteAsync
@@ -326,6 +345,7 @@ references:
   name: Insert
   href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_Insert_
   commentId: Overload:Unosquare.Labs.LiteLib.ILiteDbSet`1.Insert
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.Insert
   fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).Insert
   nameWithType: ILiteDbSet<T>.Insert
@@ -342,6 +362,7 @@ references:
   name: InsertAsync
   href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_InsertAsync_
   commentId: Overload:Unosquare.Labs.LiteLib.ILiteDbSet`1.InsertAsync
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.InsertAsync
   fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).InsertAsync
   nameWithType: ILiteDbSet<T>.InsertAsync
@@ -358,6 +379,7 @@ references:
   name: Select
   href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_Select_
   commentId: Overload:Unosquare.Labs.LiteLib.ILiteDbSet`1.Select
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.Select
   fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).Select
   nameWithType: ILiteDbSet<T>.Select
@@ -374,6 +396,7 @@ references:
   name: SelectAll
   href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_SelectAll_
   commentId: Overload:Unosquare.Labs.LiteLib.ILiteDbSet`1.SelectAll
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.SelectAll
   fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).SelectAll
   nameWithType: ILiteDbSet<T>.SelectAll
@@ -390,6 +413,7 @@ references:
   name: SelectAllAsync
   href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_SelectAllAsync_
   commentId: Overload:Unosquare.Labs.LiteLib.ILiteDbSet`1.SelectAllAsync
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.SelectAllAsync
   fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).SelectAllAsync
   nameWithType: ILiteDbSet<T>.SelectAllAsync
@@ -406,6 +430,7 @@ references:
   name: SelectAsync
   href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_SelectAsync_
   commentId: Overload:Unosquare.Labs.LiteLib.ILiteDbSet`1.SelectAsync
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.SelectAsync
   fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).SelectAsync
   nameWithType: ILiteDbSet<T>.SelectAsync
@@ -422,6 +447,7 @@ references:
   name: Single
   href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_Single_
   commentId: Overload:Unosquare.Labs.LiteLib.ILiteDbSet`1.Single
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.Single
   fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).Single
   nameWithType: ILiteDbSet<T>.Single
@@ -438,6 +464,7 @@ references:
   name: SingleAsync
   href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_SingleAsync_
   commentId: Overload:Unosquare.Labs.LiteLib.ILiteDbSet`1.SingleAsync
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.SingleAsync
   fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).SingleAsync
   nameWithType: ILiteDbSet<T>.SingleAsync
@@ -454,6 +481,7 @@ references:
   name: Update
   href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_Update_
   commentId: Overload:Unosquare.Labs.LiteLib.ILiteDbSet`1.Update
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.Update
   fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).Update
   nameWithType: ILiteDbSet<T>.Update
@@ -470,6 +498,7 @@ references:
   name: UpdateAsync
   href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_UpdateAsync_
   commentId: Overload:Unosquare.Labs.LiteLib.ILiteDbSet`1.UpdateAsync
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.UpdateAsync
   fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).UpdateAsync
   nameWithType: ILiteDbSet<T>.UpdateAsync
@@ -490,6 +519,7 @@ references:
   name: RowId
   href: api/Unosquare.Labs.LiteLib.ILiteModel.html#Unosquare_Labs_LiteLib_ILiteModel_RowId_
   commentId: Overload:Unosquare.Labs.LiteLib.ILiteModel.RowId
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.ILiteModel.RowId
   nameWithType: ILiteModel.RowId
 - uid: Unosquare.Labs.LiteLib.LiteDbContext
@@ -508,6 +538,7 @@ references:
   name: LiteDbContext
   href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext__ctor_
   commentId: Overload:Unosquare.Labs.LiteLib.LiteDbContext.#ctor
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.LiteDbContext.LiteDbContext
   nameWithType: LiteDbContext.LiteDbContext
 - uid: Unosquare.Labs.LiteLib.LiteDbContext.Connection
@@ -520,6 +551,7 @@ references:
   name: Connection
   href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_Connection_
   commentId: Overload:Unosquare.Labs.LiteLib.LiteDbContext.Connection
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.LiteDbContext.Connection
   nameWithType: LiteDbContext.Connection
 - uid: Unosquare.Labs.LiteLib.LiteDbContext.Delete(System.Object)
@@ -538,6 +570,7 @@ references:
   name: Delete
   href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_Delete_
   commentId: Overload:Unosquare.Labs.LiteLib.LiteDbContext.Delete
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.LiteDbContext.Delete
   nameWithType: LiteDbContext.Delete
 - uid: Unosquare.Labs.LiteLib.LiteDbContext.DeleteAsync(System.Object)
@@ -556,6 +589,7 @@ references:
   name: DeleteAsync
   href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_DeleteAsync_
   commentId: Overload:Unosquare.Labs.LiteLib.LiteDbContext.DeleteAsync
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.LiteDbContext.DeleteAsync
   nameWithType: LiteDbContext.DeleteAsync
 - uid: Unosquare.Labs.LiteLib.LiteDbContext.Dispose
@@ -574,6 +608,7 @@ references:
   name: Dispose
   href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_Dispose_
   commentId: Overload:Unosquare.Labs.LiteLib.LiteDbContext.Dispose
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.LiteDbContext.Dispose
   nameWithType: LiteDbContext.Dispose
 - uid: Unosquare.Labs.LiteLib.LiteDbContext.EnabledLog
@@ -586,6 +621,7 @@ references:
   name: EnabledLog
   href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_EnabledLog_
   commentId: Overload:Unosquare.Labs.LiteLib.LiteDbContext.EnabledLog
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.LiteDbContext.EnabledLog
   nameWithType: LiteDbContext.EnabledLog
 - uid: Unosquare.Labs.LiteLib.LiteDbContext.GetSetNames
@@ -598,6 +634,7 @@ references:
   name: GetSetNames
   href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_GetSetNames_
   commentId: Overload:Unosquare.Labs.LiteLib.LiteDbContext.GetSetNames
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.LiteDbContext.GetSetNames
   nameWithType: LiteDbContext.GetSetNames
 - uid: Unosquare.Labs.LiteLib.LiteDbContext.Insert(System.Object)
@@ -610,6 +647,7 @@ references:
   name: Insert
   href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_Insert_
   commentId: Overload:Unosquare.Labs.LiteLib.LiteDbContext.Insert
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.LiteDbContext.Insert
   nameWithType: LiteDbContext.Insert
 - uid: Unosquare.Labs.LiteLib.LiteDbContext.InsertAsync(System.Object)
@@ -622,6 +660,7 @@ references:
   name: InsertAsync
   href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_InsertAsync_
   commentId: Overload:Unosquare.Labs.LiteLib.LiteDbContext.InsertAsync
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.LiteDbContext.InsertAsync
   nameWithType: LiteDbContext.InsertAsync
 - uid: Unosquare.Labs.LiteLib.LiteDbContext.Instances
@@ -634,6 +673,7 @@ references:
   name: Instances
   href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_Instances_
   commentId: Overload:Unosquare.Labs.LiteLib.LiteDbContext.Instances
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.LiteDbContext.Instances
   nameWithType: LiteDbContext.Instances
 - uid: Unosquare.Labs.LiteLib.LiteDbContext.OnDatabaseCreated
@@ -646,6 +686,7 @@ references:
   name: Query
   href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_Query_
   commentId: Overload:Unosquare.Labs.LiteLib.LiteDbContext.Query
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.LiteDbContext.Query
   nameWithType: LiteDbContext.Query
 - uid: Unosquare.Labs.LiteLib.LiteDbContext.Query``1(System.String,System.Object)
@@ -661,6 +702,7 @@ references:
   name: QueryAsync
   href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_QueryAsync_
   commentId: Overload:Unosquare.Labs.LiteLib.LiteDbContext.QueryAsync
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.LiteDbContext.QueryAsync
   nameWithType: LiteDbContext.QueryAsync
 - uid: Unosquare.Labs.LiteLib.LiteDbContext.QueryAsync``1(System.String,System.Object)
@@ -676,6 +718,7 @@ references:
   name: Select
   href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_Select_
   commentId: Overload:Unosquare.Labs.LiteLib.LiteDbContext.Select
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.LiteDbContext.Select
   nameWithType: LiteDbContext.Select
 - uid: Unosquare.Labs.LiteLib.LiteDbContext.Select``1(Unosquare.Labs.LiteLib.ILiteDbSet,System.String,System.Object)
@@ -691,6 +734,7 @@ references:
   name: SelectAsync
   href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_SelectAsync_
   commentId: Overload:Unosquare.Labs.LiteLib.LiteDbContext.SelectAsync
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.LiteDbContext.SelectAsync
   nameWithType: LiteDbContext.SelectAsync
 - uid: Unosquare.Labs.LiteLib.LiteDbContext.SelectAsync``1(Unosquare.Labs.LiteLib.ILiteDbSet,System.String,System.Object)
@@ -712,6 +756,7 @@ references:
   name: Set
   href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_Set_
   commentId: Overload:Unosquare.Labs.LiteLib.LiteDbContext.Set
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.LiteDbContext.Set
   nameWithType: LiteDbContext.Set
 - uid: Unosquare.Labs.LiteLib.LiteDbContext.Set``1
@@ -733,6 +778,7 @@ references:
   name: UniqueId
   href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_UniqueId_
   commentId: Overload:Unosquare.Labs.LiteLib.LiteDbContext.UniqueId
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.LiteDbContext.UniqueId
   nameWithType: LiteDbContext.UniqueId
 - uid: Unosquare.Labs.LiteLib.LiteDbContext.Update(System.Object)
@@ -745,6 +791,7 @@ references:
   name: Update
   href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_Update_
   commentId: Overload:Unosquare.Labs.LiteLib.LiteDbContext.Update
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.LiteDbContext.Update
   nameWithType: LiteDbContext.Update
 - uid: Unosquare.Labs.LiteLib.LiteDbContext.UpdateAsync(System.Object)
@@ -757,6 +804,7 @@ references:
   name: UpdateAsync
   href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_UpdateAsync_
   commentId: Overload:Unosquare.Labs.LiteLib.LiteDbContext.UpdateAsync
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.LiteDbContext.UpdateAsync
   nameWithType: LiteDbContext.UpdateAsync
 - uid: Unosquare.Labs.LiteLib.LiteDbContext.VaccuumDatabaseAsync
@@ -769,6 +817,7 @@ references:
   name: VaccuumDatabaseAsync
   href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_VaccuumDatabaseAsync_
   commentId: Overload:Unosquare.Labs.LiteLib.LiteDbContext.VaccuumDatabaseAsync
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.LiteDbContext.VaccuumDatabaseAsync
   nameWithType: LiteDbContext.VaccuumDatabaseAsync
 - uid: Unosquare.Labs.LiteLib.LiteDbSet`1
@@ -792,6 +841,7 @@ references:
   name: LiteDbSet
   href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1__ctor_
   commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.#ctor
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.LiteDbSet
   fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).LiteDbSet
   nameWithType: LiteDbSet<T>.LiteDbSet
@@ -808,6 +858,7 @@ references:
   name: Context
   href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_Context_
   commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.Context
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.Context
   fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).Context
   nameWithType: LiteDbSet<T>.Context
@@ -824,6 +875,7 @@ references:
   name: Count
   href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_Count_
   commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.Count
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.Count
   fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).Count
   nameWithType: LiteDbSet<T>.Count
@@ -840,6 +892,7 @@ references:
   name: CountAsync
   href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_CountAsync_
   commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.CountAsync
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.CountAsync
   fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).CountAsync
   nameWithType: LiteDbSet<T>.CountAsync
@@ -864,6 +917,7 @@ references:
   name: Delete
   href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_Delete_
   commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.Delete
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.Delete
   fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).Delete
   nameWithType: LiteDbSet<T>.Delete
@@ -888,6 +942,7 @@ references:
   name: DeleteAsync
   href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_DeleteAsync_
   commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.DeleteAsync
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.DeleteAsync
   fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).DeleteAsync
   nameWithType: LiteDbSet<T>.DeleteAsync
@@ -904,6 +959,7 @@ references:
   name: DeleteDefinition
   href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_DeleteDefinition_
   commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.DeleteDefinition
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.DeleteDefinition
   fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).DeleteDefinition
   nameWithType: LiteDbSet<T>.DeleteDefinition
@@ -920,6 +976,7 @@ references:
   name: DeleteDefinitionWhere
   href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_DeleteDefinitionWhere_
   commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.DeleteDefinitionWhere
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.DeleteDefinitionWhere
   fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).DeleteDefinitionWhere
   nameWithType: LiteDbSet<T>.DeleteDefinitionWhere
@@ -936,6 +993,7 @@ references:
   name: EntityType
   href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_EntityType_
   commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.EntityType
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.EntityType
   fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).EntityType
   nameWithType: LiteDbSet<T>.EntityType
@@ -952,6 +1010,7 @@ references:
   name: FirstOrDefault
   href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_FirstOrDefault_
   commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.FirstOrDefault
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.FirstOrDefault
   fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).FirstOrDefault
   nameWithType: LiteDbSet<T>.FirstOrDefault
@@ -968,6 +1027,7 @@ references:
   name: FirstOrDefaultAsync
   href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_FirstOrDefaultAsync_
   commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.FirstOrDefaultAsync
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.FirstOrDefaultAsync
   fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).FirstOrDefaultAsync
   nameWithType: LiteDbSet<T>.FirstOrDefaultAsync
@@ -984,6 +1044,7 @@ references:
   name: Insert
   href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_Insert_
   commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.Insert
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.Insert
   fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).Insert
   nameWithType: LiteDbSet<T>.Insert
@@ -1000,6 +1061,7 @@ references:
   name: InsertAsync
   href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_InsertAsync_
   commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.InsertAsync
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.InsertAsync
   fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).InsertAsync
   nameWithType: LiteDbSet<T>.InsertAsync
@@ -1016,6 +1078,7 @@ references:
   name: InsertDefinition
   href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_InsertDefinition_
   commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.InsertDefinition
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.InsertDefinition
   fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).InsertDefinition
   nameWithType: LiteDbSet<T>.InsertDefinition
@@ -1033,6 +1096,7 @@ references:
   name: InsertRange
   href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_InsertRange_
   commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.InsertRange
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.InsertRange
   fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).InsertRange
   nameWithType: LiteDbSet<T>.InsertRange
@@ -1097,6 +1161,7 @@ references:
   name: PropertyNames
   href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_PropertyNames_
   commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.PropertyNames
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.PropertyNames
   fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).PropertyNames
   nameWithType: LiteDbSet<T>.PropertyNames
@@ -1113,6 +1178,7 @@ references:
   name: Select
   href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_Select_
   commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.Select
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.Select
   fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).Select
   nameWithType: LiteDbSet<T>.Select
@@ -1129,6 +1195,7 @@ references:
   name: SelectAll
   href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_SelectAll_
   commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.SelectAll
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.SelectAll
   fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).SelectAll
   nameWithType: LiteDbSet<T>.SelectAll
@@ -1145,6 +1212,7 @@ references:
   name: SelectAllAsync
   href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_SelectAllAsync_
   commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.SelectAllAsync
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.SelectAllAsync
   fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).SelectAllAsync
   nameWithType: LiteDbSet<T>.SelectAllAsync
@@ -1161,6 +1229,7 @@ references:
   name: SelectAsync
   href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_SelectAsync_
   commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.SelectAsync
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.SelectAsync
   fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).SelectAsync
   nameWithType: LiteDbSet<T>.SelectAsync
@@ -1177,6 +1246,7 @@ references:
   name: SelectDefinition
   href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_SelectDefinition_
   commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.SelectDefinition
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.SelectDefinition
   fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).SelectDefinition
   nameWithType: LiteDbSet<T>.SelectDefinition
@@ -1193,6 +1263,7 @@ references:
   name: Single
   href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_Single_
   commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.Single
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.Single
   fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).Single
   nameWithType: LiteDbSet<T>.Single
@@ -1209,6 +1280,7 @@ references:
   name: SingleAsync
   href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_SingleAsync_
   commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.SingleAsync
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.SingleAsync
   fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).SingleAsync
   nameWithType: LiteDbSet<T>.SingleAsync
@@ -1225,6 +1297,7 @@ references:
   name: TableDefinition
   href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_TableDefinition_
   commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.TableDefinition
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.TableDefinition
   fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).TableDefinition
   nameWithType: LiteDbSet<T>.TableDefinition
@@ -1241,6 +1314,7 @@ references:
   name: TableName
   href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_TableName_
   commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.TableName
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.TableName
   fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).TableName
   nameWithType: LiteDbSet<T>.TableName
@@ -1257,6 +1331,7 @@ references:
   name: Update
   href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_Update_
   commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.Update
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.Update
   fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).Update
   nameWithType: LiteDbSet<T>.Update
@@ -1273,6 +1348,7 @@ references:
   name: UpdateAsync
   href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_UpdateAsync_
   commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.UpdateAsync
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.UpdateAsync
   fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).UpdateAsync
   nameWithType: LiteDbSet<T>.UpdateAsync
@@ -1289,6 +1365,7 @@ references:
   name: UpdateDefinition
   href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_UpdateDefinition_
   commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.UpdateDefinition
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.UpdateDefinition
   fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).UpdateDefinition
   nameWithType: LiteDbSet<T>.UpdateDefinition
@@ -1315,6 +1392,7 @@ references:
   name: RowId
   href: api/Unosquare.Labs.LiteLib.LiteModel.html#Unosquare_Labs_LiteLib_LiteModel_RowId_
   commentId: Overload:Unosquare.Labs.LiteLib.LiteModel.RowId
+  isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.LiteModel.RowId
   nameWithType: LiteModel.RowId
 - uid: Unosquare.Labs.LiteLib.LiteUniqueAttribute
