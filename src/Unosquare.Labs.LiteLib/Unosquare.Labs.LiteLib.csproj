@@ -30,15 +30,16 @@
         <PrivateAssets>All</PrivateAssets>
       </PackageReference>
       <PackageReference Include="Dapper" Version="1.50.4" />
-      <PackageReference Include="System.ComponentModel.Annotations" Version="4.4.1" />
       <PackageReference Include="Unosquare.Swan.Lite" Version="0.29.0" />
     </ItemGroup>
 
     <ItemGroup Condition=" '$(TargetFramework)' == 'net46' ">
+      <Reference Include="System.ComponentModel.Annotations" />
       <PackageReference Include="System.Data.SQLite.Core" Version="1.0.108" />
     </ItemGroup>
 
     <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
       <PackageReference Include="Microsoft.Data.Sqlite" Version="2.0.1" />
+      <PackageReference Include="System.ComponentModel.Annotations" Version="4.4.1" />
     </ItemGroup>
   </Project>
