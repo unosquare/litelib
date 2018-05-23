@@ -1,3 +1,4 @@
+ [![NuGet](https://img.shields.io/nuget/dt/LiteLib%20.svg)](https://www.nuget.org/packages/LiteLib/)
  [![Analytics](https://ga-beacon.appspot.com/UA-8535255-2/unosquare/litelib/)](https://github.com/igrigorik/ga-beacon)
  [![Build Status](https://travis-ci.org/unosquare/litelib.svg?branch=master)](https://travis-ci.org/unosquare/litelib)
  [![Build status](https://ci.appveyor.com/api/projects/status/iwk94ol34b7y5411?svg=true)](https://ci.appveyor.com/project/geoperez/litelib)
