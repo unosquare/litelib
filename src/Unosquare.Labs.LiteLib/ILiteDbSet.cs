@@ -86,7 +86,7 @@
 
         /// <summary>
         /// Selects a set of entities from the database.
-        /// Example whereText = "X = @X" and whereParames = new { X = "hello" }
+        /// Example whereText = "X = @X" and whereParames = new { X = "hello" }.
         /// </summary>
         /// <param name="whereText">The where text.</param>
         /// <param name="whereParams">The where parameters.</param>
@@ -144,38 +144,38 @@
 
         /// <summary>
         /// Deletes the asynchronous.
-        /// Example whereText = "X = @X" and whereParames = new { X = "hello" }
+        /// Example whereText = "X = @X" and whereParames = new { X = "hello" }.
         /// </summary>
         /// <param name="whereText">The where text.</param>
         /// <param name="whereParams">The where parameters.</param>
-        /// <returns>A Task of type Enumerable with a generic type</returns>
+        /// <returns>A Task of type Enumerable with a generic type.</returns>
         Task<int> DeleteAsync(string whereText, object whereParams);
 
         /// <summary>
-        /// Provides and asynchronous counterpart to the Select method
+        /// Provides and asynchronous counterpart to the Select method.
         /// </summary>
         /// <param name="whereText">The where text.</param>
         /// <param name="whereParams">The where parameters.</param>
-        /// <returns>A Task of type Enumerable with a generic type</returns>
+        /// <returns>A Task of type Enumerable with a generic type.</returns>
         Task<IEnumerable<T>> SelectAsync(string whereText, object whereParams);
 
         /// <summary>
         /// Selects all asynchronous.
         /// </summary>
-        /// <returns>A Task of type Enumerable with a generic type</returns>
+        /// <returns>A Task of type Enumerable with a generic type.</returns>
         Task<IEnumerable<T>> SelectAllAsync();
 
         /// <summary>
-        /// Provides and asynchronous counterpart to the Single method
+        /// Provides and asynchronous counterpart to the Single method.
         /// </summary>
         /// <param name="rowId">The row identifier.</param>
-        /// <returns>A Task with a generyc type</returns>
+        /// <returns>A Task with a generyc type.</returns>
         Task<T> SingleAsync(long rowId);
 
         /// <summary>
-        /// Provides and asynchronous counterpart to the Count method
+        /// Provides and asynchronous counterpart to the Count method.
         /// </summary>
-        /// <returns>A Task with the total number of rows</returns>
+        /// <returns>A Task with the total number of rows.</returns>
         Task<int> CountAsync();
     }
 }

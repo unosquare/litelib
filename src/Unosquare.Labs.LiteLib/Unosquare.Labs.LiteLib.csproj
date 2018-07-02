@@ -3,13 +3,13 @@
   <PropertyGroup>
     <Description>A cool little wrapper for SQLite based on Dapper.</Description>
     <AssemblyTitle>LiteLib</AssemblyTitle>
-    <TargetFrameworks>netstandard2.0;net46</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <AssemblyName>Unosquare.Labs.LiteLib</AssemblyName>
     <PackageId>LiteLib</PackageId>
     <DebugType>Full</DebugType>
     <CodeAnalysisRuleSet>..\..\StyleCop.Analyzers.ruleset</CodeAnalysisRuleSet>
-    <Version>0.15.4</Version>
+    <Version>0.16.1</Version>
     <Authors>Unosquare</Authors>
     <Company>Unosquare</Company>
     <Copyright>Copyright (c) 2016-2018 Unosquare</Copyright>
@@ -19,8 +19,8 @@
     <RepositoryUrl>https://github.com/unosquare/litelib</RepositoryUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/unosquare/litelib/master/litelib-logo.png</PackageIconUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageTags>orm sqlite dapper</PackageTags>
-    <ContentSQLiteInteropFiles>true</ContentSQLiteInteropFiles>    <LangVersion>7.2</LangVersion>
+    <PackageTags>orm sqlite dapper database</PackageTags>
+    <LangVersion>7.2</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -30,13 +30,6 @@
     <PackageReference Include="Dapper" Version="1.50.5" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
     <PackageReference Include="Unosquare.Swan.Lite" Version="0.32.1" />
-  </ItemGroup>
-
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net46' ">
-    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.108" />
-  </ItemGroup>
-
-  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
-    <PackageReference Include="Microsoft.Data.Sqlite" Version="2.1.0" />
+    <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="2.1.0" />
   </ItemGroup>
 </Project>
