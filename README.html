@@ -100,6 +100,16 @@
 PM> Install-Package LiteLib
 </pre>
 
+<p>LiteLib doesn&#39;t contains any SQLite interop or library, so you need to add it to your project. You can choose to a general bundle or custom bundle.</p>
+<pre>
+PM> Install-Package SQLitePCLRaw.bundle_green
+</pre>
+
+<p>If you are targeting only Linux environments, you can use the sqlite3 bundle.</p>
+<pre>
+PM> Install-Package SQLitePCLRaw.bundle_e_sqlite3
+</pre>
+
 <h2 id="usage">Usage</h2>
 <p>We designed LiteLib to be extremely easy to use. There are 3 steps you need to follow.</p>
 <ol>
