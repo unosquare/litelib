@@ -34,6 +34,18 @@ You can install LiteLib via NuGet Package Manager as follows:
 PM> Install-Package LiteLib
 </pre>
 
+LiteLib doesn't contains any SQLite interop or library, so you need to add it to your project. You can choose to a general bundle or custom bundle.
+
+<pre>
+PM> Install-Package SQLitePCLRaw.bundle_green
+</pre>
+
+If you are targeting only Linux environments, you can use the sqlite3 bundle.
+
+<pre>
+PM> Install-Package SQLitePCLRaw.bundle_e_sqlite3
+</pre>
+
 ## Usage
 
 We designed LiteLib to be extremely easy to use. There are 3 steps you need to follow.
