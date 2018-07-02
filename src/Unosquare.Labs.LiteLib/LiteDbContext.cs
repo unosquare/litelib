@@ -19,7 +19,9 @@
 #elif NET46
     using System.Data.SQLite;
 #else
+
     using Microsoft.Data.Sqlite;
+
 #endif
 
     /// <summary>
@@ -28,7 +30,7 @@
     /// <seealso cref="System.IDisposable" />
     public abstract class LiteDbContext : IDisposable
     {
-        #region Private Declarations 
+        #region Private Declarations
 
         private static readonly ConcurrentDictionary<Guid, LiteDbContext> Intances =
             new ConcurrentDictionary<Guid, LiteDbContext>();
@@ -41,7 +43,7 @@
 
         private bool _isDisposing; // To detect redundant calls
 
-        #endregion
+        #endregion Private Declarations
 
         #region Constructor
 
@@ -83,7 +85,7 @@
             Intances[UniqueId] = this;
         }
 
-        #endregion
+        #endregion Constructor
 
         #region Events
 
@@ -92,7 +94,7 @@
         /// </summary>
         public event EventHandler OnDatabaseCreated = (s, e) => { };
 
-        #endregion
+        #endregion Events
 
         #region Properties
 
@@ -117,7 +119,7 @@
         /// </summary>
         public bool EnabledLog { get; set; }
 
-        #endregion
+        #endregion Properties
 
         #region Methods
 
@@ -147,10 +149,7 @@
             var set = _entitySets.Values.FirstOrDefault(x =>
                 x.GetType().GetTypeInfo().GetGenericArguments().Any(z => z == entityType));
 
-            if (set == null)
-                throw new ArgumentOutOfRangeException(nameof(entityType));
-
-            return set;
+            return set ?? throw new ArgumentOutOfRangeException(nameof(entityType));
         }
 
         /// <summary>
@@ -215,12 +214,12 @@
         /// <param name="whereText">The where text.</param>
         /// <param name="whereParams">The where parameters.</param>
         /// <returns>A Task with a enumerable of type of the entity</returns>
-        public async Task<IEnumerable<TEntity>> SelectAsync<TEntity>(
-            ILiteDbSet set, 
+        public Task<IEnumerable<TEntity>> SelectAsync<TEntity>(
+            ILiteDbSet set,
             string whereText,
             object whereParams = null)
         {
-            return await QueryAsync<TEntity>($"{set.SelectDefinition} WHERE {whereText}", whereParams);
+            return QueryAsync<TEntity>($"{set.SelectDefinition} WHERE {whereText}", whereParams);
         }
 
         /// <summary>
@@ -247,10 +246,10 @@
         /// <returns>
         /// A Task with an enumerable of the type of the entity
         /// </returns>
-        public async Task<IEnumerable<TEntity>> QueryAsync<TEntity>(string commandText, object whereParams = null)
+        public Task<IEnumerable<TEntity>> QueryAsync<TEntity>(string commandText, object whereParams = null)
         {
             LogSqlCommand(commandText, whereParams);
-            return await Connection.QueryAsync<TEntity>(commandText, whereParams);
+            return Connection.QueryAsync<TEntity>(commandText, whereParams);
         }
 
         /// <summary>
@@ -302,21 +301,21 @@
         /// Deletes the asynchronous without triggering events.
         /// </summary>
         /// <param name="entity">The entity.</param>
-        /// <returns>A Task with the affected rows count</returns>
-        public async Task<int> DeleteAsync(object entity)
+        /// <returns>A Task with the affected rows count.</returns>
+        public Task<int> DeleteAsync(object entity)
         {
             var set = Set(entity.GetType());
 
             LogSqlCommand(set.DeleteDefinition, entity);
 
-            return await Connection.ExecuteAsync(set.DeleteDefinition, entity);
+            return Connection.ExecuteAsync(set.DeleteDefinition, entity);
         }
 
         /// <summary>
         /// Updates the specified entity without triggering events.
         /// </summary>
         /// <param name="entity">The entity.</param>
-        /// <returns>The affected rows count</returns>
+        /// <returns>The affected rows count.</returns>
         public int Update(object entity)
         {
             var set = Set(entity.GetType());
@@ -330,14 +329,14 @@
         /// Updates the asynchronous without triggering events.
         /// </summary>
         /// <param name="entity">The entity.</param>
-        /// <returns>A task with he affected rows count</returns>
-        public async Task<int> UpdateAsync(object entity)
+        /// <returns>A task with he affected rows count.</returns>
+        public Task<int> UpdateAsync(object entity)
         {
             var set = Set(entity.GetType());
 
             LogSqlCommand(set.UpdateDefinition, entity);
 
-            return await Connection.ExecuteAsync(set.UpdateDefinition, entity);
+            return Connection.ExecuteAsync(set.UpdateDefinition, entity);
         }
 
         /// <summary>
@@ -347,9 +346,7 @@
         /// <param name="arguments">The arguments.</param>
         internal void LogSqlCommand(string command, object arguments = null)
         {
-            if (EnabledLog == false) return;
-
-            if (Debugger.IsAttached == false || Terminal.IsConsolePresent == false) return;
+            if (EnabledLog == false || Debugger.IsAttached == false || Terminal.IsConsolePresent == false) return;
 
             $"> {command}{arguments.Stringify()}".Debug(nameof(LiteDbContext));
         }
@@ -359,14 +356,11 @@
         /// </summary>
         private void LoadEntitySets()
         {
-            var contextDbSetProperties = PropertyInfoCache.Retrieve(GetType(), () =>
-            {
-                return GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance)
-                    .Where(
-                        p =>
-                            p.PropertyType.GetTypeInfo().IsGenericType &&
-                            p.PropertyType.GetGenericTypeDefinition() == GenericLiteDbSetType);
-            });
+            var contextDbSetProperties = PropertyInfoCache.Retrieve(GetType(), () => GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance)
+                .Where(
+                    p =>
+                        p.PropertyType.GetTypeInfo().IsGenericType &&
+                        p.PropertyType.GetGenericTypeDefinition() == GenericLiteDbSetType));
 
             foreach (var entitySetProp in contextDbSetProperties)
             {
@@ -410,7 +404,7 @@
             }
         }
 
-        #endregion
+        #endregion Methods
 
         #region IDisposable Support
 
@@ -434,15 +428,12 @@
             _isDisposing = true;
         }
 
-        /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-        /// </summary>
+        /// <inheritdoc />
         public void Dispose()
         {
             Dispose(true);
         }
 
-        #endregion
-
+        #endregion IDisposable Support
     }
 }

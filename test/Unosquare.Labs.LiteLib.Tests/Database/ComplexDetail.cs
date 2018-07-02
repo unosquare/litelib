@@ -3,7 +3,7 @@
 namespace Unosquare.Labs.LiteLib.Tests.Database
 {
     [Table("ComplexDetails")]
-    class ComplexDetail : LiteModel
+    internal class ComplexDetail : LiteModel
     {
         [LiteUnique]
         public int Id { get; set; }

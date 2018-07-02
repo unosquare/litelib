@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <Description>A cool little wrapper for SQLite based on Dapper.</Description>
@@ -9,10 +9,10 @@
     <PackageId>LiteLib</PackageId>
     <DebugType>Full</DebugType>
     <CodeAnalysisRuleSet>..\..\StyleCop.Analyzers.ruleset</CodeAnalysisRuleSet>
-    <Version>0.15.3</Version>
+    <Version>0.15.4</Version>
     <Authors>Unosquare</Authors>
     <Company>Unosquare</Company>
-    <Copyright>Copyright (c) 2016-2017 Unosquare</Copyright>
+    <Copyright>Copyright (c) 2016-2018 Unosquare</Copyright>
     <Product>LiteLib</Product>
     <PackageLicenseUrl>https://github.com/unosquare/litelib/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://unosquare.github.io/litelib</PackageProjectUrl>
@@ -20,18 +20,16 @@
     <PackageIconUrl>https://raw.githubusercontent.com/unosquare/litelib/master/litelib-logo.png</PackageIconUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>orm sqlite dapper</PackageTags>
-    <ContentSQLiteInteropFiles>true</ContentSQLiteInteropFiles>
-    <AssemblyVersion>0.15.2.0</AssemblyVersion>
-    <FileVersion>0.15.2.0</FileVersion>
+    <ContentSQLiteInteropFiles>true</ContentSQLiteInteropFiles>    <LangVersion>7.2</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="StyleCop.Analyzers" Version="1.0.2">
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.0-beta008">
       <PrivateAssets>All</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="Dapper" Version="1.50.4" />
-    <PackageReference Include="System.ComponentModel.Annotations" Version="4.4.1" />
-    <PackageReference Include="Unosquare.Swan.Lite" Version="0.29.0" />
+    <PackageReference Include="Dapper" Version="1.50.5" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
+    <PackageReference Include="Unosquare.Swan.Lite" Version="0.32.1" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net46' ">
@@ -39,6 +37,6 @@
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
-    <PackageReference Include="Microsoft.Data.Sqlite" Version="2.0.1" />
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="2.1.0" />
   </ItemGroup>
 </Project>

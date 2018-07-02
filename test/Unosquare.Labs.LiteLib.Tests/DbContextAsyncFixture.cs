@@ -3,8 +3,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Unosquare.Labs.LiteLib.Tests.Database;
 using Unosquare.Labs.LiteLib.Tests.Helpers;
+
 #if NET46
+
 using System.Data.SQLite;
+
 #else
 using Microsoft.Data.Sqlite;
 #endif
@@ -46,7 +49,7 @@ namespace Unosquare.Labs.LiteLib.Tests
 
                     // Selecting Data By name
                     var selectingData =
-                        await context.Orders.SelectAsync("CustomerName = @CustomerName", new {CustomerName = "Peter"});
+                        await context.Orders.SelectAsync("CustomerName = @CustomerName", new { CustomerName = "Peter" });
 
                     foreach (var item in selectingData)
                     {
@@ -67,7 +70,7 @@ namespace Unosquare.Labs.LiteLib.Tests
 
                     // Selecting Data By name
                     var selectingData =
-                        await context.Orders.SelectAsync("CustomerName = @CustomerName", new {CustomerName = "Peter"});
+                        await context.Orders.SelectAsync("CustomerName = @CustomerName", new { CustomerName = "Peter" });
 
                     foreach (var item in selectingData)
                     {
@@ -127,7 +130,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                     }
 
                     var deletedData =
-                        await context.Orders.DeleteAsync("CustomerName = @CustomerName", new {CustomerName = "Peter"});
+                        await context.Orders.DeleteAsync("CustomerName = @CustomerName", new { CustomerName = "Peter" });
                     Assert.AreEqual(deletedData, TestHelper.DataSource.Count(x => x.CustomerName == "Peter"));
                 }
             }
@@ -221,7 +224,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                     }
 
                     var list = await context.Orders.SelectAsync("CustomerName = @CustomerName",
-                        new {CustomerName = "John"});
+                        new { CustomerName = "John" });
 
                     foreach (var item in list)
                     {
@@ -230,7 +233,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                     }
 
                     var updatedList =
-                        await context.Orders.SelectAsync("ShipperCity = @ShipperCity", new {ShipperCity = "Atlanta"});
+                        await context.Orders.SelectAsync("ShipperCity = @ShipperCity", new { ShipperCity = "Atlanta" });
 
                     foreach (var item in updatedList)
                     {
@@ -330,7 +333,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                     }
 
                     var updatedItems =
-                        await context.Orders.SelectAsync("ShipperCity = @ShipperCity", new {ShipperCity = "Atlanta"});
+                        await context.Orders.SelectAsync("ShipperCity = @ShipperCity", new { ShipperCity = "Atlanta" });
                     Assert.AreEqual(TestHelper.DataSource.Length, updatedItems.Count());
                 }
             }
@@ -352,7 +355,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                         await
                             context.QueryAsync<Order>(
                                 $"{context.Orders.SelectDefinition} WHERE CustomerName = @CustomerName",
-                                new Order {CustomerName = "John"});
+                                new Order { CustomerName = "John" });
 
                     foreach (var item in selectedData)
                     {

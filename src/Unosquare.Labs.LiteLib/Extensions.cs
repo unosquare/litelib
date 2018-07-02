@@ -15,16 +15,16 @@
 
         private static readonly Dictionary<Type, string> TypeMappings = new Dictionary<Type, string>
         {
-            {typeof(Int16), IntegerAffinity},
-            {typeof(Int32), IntegerAffinity},
-            {typeof(Int64), IntegerAffinity},
-            {typeof(UInt16), IntegerAffinity},
-            {typeof(UInt32), IntegerAffinity},
-            {typeof(UInt64), IntegerAffinity},
+            {typeof(short), IntegerAffinity},
+            {typeof(int), IntegerAffinity},
+            {typeof(long), IntegerAffinity},
+            {typeof(ushort), IntegerAffinity},
+            {typeof(uint), IntegerAffinity},
+            {typeof(ulong), IntegerAffinity},
             {typeof(byte), IntegerAffinity},
             {typeof(char), IntegerAffinity},
-            {typeof(Decimal), NumericAffinity},
-            {typeof(Boolean), NumericAffinity},
+            {typeof(decimal), NumericAffinity},
+            {typeof(bool), NumericAffinity},
             {typeof(DateTime), DateTimeAffinity},
         };
 
@@ -33,10 +33,7 @@
         /// </summary>
         /// <param name="propertyType">Type of the property.</param>
         /// <returns>A property type of the mapping</returns>
-        public static string GetTypeMapping(this Type propertyType)
-        {
-            return TypeMappings.ContainsKey(propertyType) ? TypeMappings[propertyType] : TextAffinity;
-        }
+        public static string GetTypeMapping(this Type propertyType) => TypeMappings.ContainsKey(propertyType) ? TypeMappings[propertyType] : TextAffinity;
 
         /// <summary>
         /// Transform a DateTime to a SQLite UTC date.

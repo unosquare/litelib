@@ -12,7 +12,7 @@
     using System.Threading.Tasks;
 
     /// <summary>
-    /// Represents a ILiteDbSet implementation 
+    /// Represents a ILiteDbSet implementation
     /// </summary>
     /// <typeparam name="T">The type of entity</typeparam>
     /// <seealso cref="LiteLib.ILiteDbSet{T}" />
@@ -20,10 +20,10 @@
         where T : ILiteModel, new()
     {
         private const BindingFlags PublicInstanceFlags = BindingFlags.Instance | BindingFlags.Public;
-        
+
         private static readonly ConcurrentDictionary<Type, DefinitionCacheItem> DefinitionCache =
             new ConcurrentDictionary<Type, DefinitionCacheItem>();
-        
+
         /// <summary>
         /// Initializes a new instance of the <see cref="LiteDbSet{T}"/> class.
         /// </summary>
@@ -31,7 +31,7 @@
         {
             LoadDefinitions();
         }
-        
+
         #region Events
 
         /// <summary>
@@ -64,7 +64,7 @@
         /// </summary>
         public event EventHandler<EntityEventArgs<T>> OnAfterDelete = (s, e) => { };
 
-        #endregion
+        #endregion Events
 
         #region Properties
 
@@ -118,7 +118,7 @@
         /// </summary>
         public string[] PropertyNames { get; set; }
 
-        #endregion
+        #endregion Properties
 
         #region Methods and Data Access
 
@@ -196,24 +196,18 @@
         /// <returns>
         /// A count of affected rows.
         /// </returns>
-        public int Delete(string whereText, object whereParams = null)
-        {
-            return Context.Delete(this, whereText, whereParams);
-        }
+        public int Delete(string whereText, object whereParams = null) => Context.Delete(this, whereText, whereParams);
 
         /// <summary>
         /// Deletes the asynchronous.
-        /// Example whereText = "X = @X" and whereParames = new { X = "hello" }
+        /// Example whereText = "X = @X" and whereParames = new { X = "hello" }.
         /// </summary>
         /// <param name="whereText">The where text.</param>
         /// <param name="whereParams">The where parameters.</param>
         /// <returns>
         /// A count of affected rows.
         /// </returns>
-        public Task<int> DeleteAsync(string whereText, object whereParams = null)
-        {
-            return Context.DeleteAsync(this, whereText, whereParams);
-        }
+        public Task<int> DeleteAsync(string whereText, object whereParams = null) => Context.DeleteAsync(this, whereText, whereParams);
 
         /// <summary>
         /// Deletes the specified entity. RowId must be set.
@@ -225,7 +219,7 @@
         /// <exception cref="ArgumentException">RowId</exception>
         public int Delete(T entity)
         {
-            if (entity.RowId == default(long))
+            if (entity.RowId == default)
                 throw new ArgumentException(nameof(entity.RowId));
 
             var args = new EntityEventArgs<T>(entity, this);
@@ -234,7 +228,7 @@
 
             Context.LogSqlCommand(DeleteDefinition, entity);
             var affected = Context.Connection.Execute(DeleteDefinition, entity);
-            entity.RowId = default(long);
+            entity.RowId = default;
             OnAfterDelete(this, args);
             return affected;
         }
@@ -249,7 +243,7 @@
         /// <exception cref="ArgumentException">RowId</exception>
         public async Task<int> DeleteAsync(T entity)
         {
-            if (entity.RowId == default(long))
+            if (entity.RowId == default)
                 throw new ArgumentException(nameof(entity.RowId));
 
             var args = new EntityEventArgs<T>(entity, this);
@@ -258,7 +252,7 @@
 
             Context.LogSqlCommand(DeleteDefinition, entity);
             var affected = await Context.Connection.ExecuteAsync(DeleteDefinition, entity);
-            entity.RowId = default(long);
+            entity.RowId = default;
             OnAfterDelete(this, args);
 
             return affected;
@@ -305,44 +299,38 @@
 
         /// <summary>
         /// Selects a set of entities from the database.
-        /// Example whereText = "X = @X" and whereParames = new { X = "hello" }
+        /// Example whereText = "X = @X" and whereParames = new { X = "hello" }.
         /// </summary>
         /// <param name="whereText">The where text.</param>
         /// <param name="whereParams">The where parameters.</param>
         /// <returns>
         /// An Enumerable with generic type
         /// </returns>
-        public IEnumerable<T> Select(string whereText, object whereParams = null)
-        {
-            return Context.Select<T>(this, whereText, whereParams);
-        }
+        public IEnumerable<T> Select(string whereText, object whereParams = null) => Context.Select<T>(this, whereText, whereParams);
 
         /// <summary>
         /// Selects all entities from the database.
         /// </summary>
         /// <returns>
-        /// An Enumerable with generic type
+        /// An Enumerable with generic type.
         /// </returns>
         public IEnumerable<T> SelectAll() => Select("1 = 1");
 
         /// <summary>
-        /// Provides and asynchronous counterpart to the Select method
+        /// Provides and asynchronous counterpart to the Select method.
         /// </summary>
         /// <param name="whereText">The where text.</param>
         /// <param name="whereParams">The where parameters.</param>
         /// <returns>
-        /// A Task of type Enumerable with a generic type
+        /// A Task of type Enumerable with a generic type.
         /// </returns>
-        public Task<IEnumerable<T>> SelectAsync(string whereText, object whereParams = null)
-        {
-            return Context.SelectAsync<T>(this, whereText, whereParams);
-        }
+        public Task<IEnumerable<T>> SelectAsync(string whereText, object whereParams = null) => Context.SelectAsync<T>(this, whereText, whereParams);
 
         /// <summary>
         /// Selects all asynchronous.
         /// </summary>
         /// <returns>
-        /// A Task of type Enumerable with a generic type
+        /// A Task of type Enumerable with a generic type.
         /// </returns>
         public Task<IEnumerable<T>> SelectAllAsync() => SelectAsync("1 = 1");
 
@@ -352,20 +340,17 @@
         /// <param name="fieldName">Name of the field.</param>
         /// <param name="fieldValue">The field value.</param>
         /// <returns> A generic type</returns>
-        public T FirstOrDefault(string fieldName, object fieldValue)
-        {
-            return Select($"[{fieldName}] = @FieldValue", new {FieldValue = fieldValue}).FirstOrDefault();
-        }
+        public T FirstOrDefault(string fieldName, object fieldValue) => Select($"[{fieldName}] = @FieldValue", new { FieldValue = fieldValue }).FirstOrDefault();
 
         /// <summary>
         /// Firsts the or default asynchronous.
         /// </summary>
         /// <param name="fieldName">Name of the field.</param>
         /// <param name="fieldValue">The field value.</param>
-        /// <returns>A Task with a generic type</returns>
+        /// <returns>A Task with a generic type.</returns>
         public async Task<T> FirstOrDefaultAsync(string fieldName, object fieldValue)
         {
-            var result = await SelectAsync($"[{fieldName}] = @FieldValue", new {FieldValue = fieldValue});
+            var result = await SelectAsync($"[{fieldName}] = @FieldValue", new { FieldValue = fieldValue });
 
             return result.FirstOrDefault();
         }
@@ -375,26 +360,22 @@
         /// </summary>
         /// <param name="rowId">The row identifier.</param>
         /// <returns>
-        /// A generic type
+        /// A generic type.
         /// </returns>
-        public T Single(long rowId)
-        {
-            return
-                Select($"[{nameof(ILiteModel.RowId)}] = @{nameof(ILiteModel.RowId)}", new {RowId = rowId})
-                    .FirstOrDefault();
-        }
+        public T Single(long rowId) => Select($"[{nameof(ILiteModel.RowId)}] = @{nameof(ILiteModel.RowId)}", new { RowId = rowId })
+            .FirstOrDefault();
 
         /// <summary>
         /// Provides and asynchronous counterpart to the Single method
         /// </summary>
         /// <param name="rowId">The row identifier.</param>
         /// <returns>
-        /// A Task with a generyc type
+        /// A Task with a generyc type.
         /// </returns>
         public async Task<T> SingleAsync(long rowId)
         {
             var result =
-                await SelectAsync($"[{nameof(ILiteModel.RowId)}] = @{nameof(ILiteModel.RowId)}", new {RowId = rowId});
+                await SelectAsync($"[{nameof(ILiteModel.RowId)}] = @{nameof(ILiteModel.RowId)}", new { RowId = rowId });
             return result.FirstOrDefault();
         }
 
@@ -489,57 +470,7 @@
                         $"CREATE UNIQUE INDEX IF NOT EXISTS [IX_{tableName}_{property.Name}] ON [{tableName}] ([{property.Name}]);");
                 }
 
-                var isValidProperty = false;
-                var propertyType = property.PropertyType;
-                var isNullable = propertyType.GetTypeInfo().IsGenericType &&
-                                 propertyType.GetGenericTypeDefinition() == typeof(Nullable<>);
-                if (isNullable) propertyType = Nullable.GetUnderlyingType(propertyType);
-                var nullStatement = isNullable ? "NULL" : "NOT NULL";
-
-                if (propertyType == typeof(string))
-                {
-                    isValidProperty = true;
-
-                    var stringLength = 4096;
-                    {
-                        var stringLengthAttribute = property.GetCustomAttribute<StringLengthAttribute>();
-
-                        if (stringLengthAttribute != null)
-                        {
-                            stringLength = stringLengthAttribute.MaximumLength;
-                        }
-                    }
-
-                    isNullable = property.GetCustomAttribute<RequiredAttribute>() == null;
-
-                    nullStatement = isNullable ? "NULL" : "NOT NULL";
-                    if (stringLength != 4096)
-                    {
-                        var checkLength = $"length({property.Name})<={stringLength}";
-                        createBuilder.AppendLine(
-                            $"    [{property.Name}] NVARCHAR({stringLength}) {nullStatement} CHECK({checkLength}),");
-                    }
-                    else
-                    {
-                        createBuilder.AppendLine($"    [{property.Name}] NVARCHAR({stringLength}) {nullStatement},");
-                    }
-                }
-                else if (propertyType.GetTypeInfo().IsValueType)
-                {
-                    isValidProperty = true;
-                    createBuilder.AppendLine(
-                        $"    [{property.Name}] {propertyType.GetTypeMapping()} {nullStatement},");
-                }
-                else if (propertyType == typeof(byte[]))
-                {
-                    isValidProperty = true;
-                    createBuilder.AppendLine($"    [{property.Name}] BLOB {nullStatement},");
-                }
-
-                if (isValidProperty)
-                {
-                    propertyNames.Add(property.Name);
-                }
+                GeneratePropertyInfo(property, createBuilder, propertyNames);
             }
 
             if (propertyNames.Any() == false)
@@ -586,17 +517,79 @@
             };
         }
 
-        #endregion
+        private static void GeneratePropertyInfo(PropertyInfo property, StringBuilder createBuilder, List<string> propertyNames)
+        {
+            var isValidProperty = false;
+            var propertyType = property.PropertyType;
+            var isNullable = propertyType.GetTypeInfo().IsGenericType &&
+                             propertyType.GetGenericTypeDefinition() == typeof(Nullable<>);
+            if (isNullable) propertyType = Nullable.GetUnderlyingType(propertyType);
+            var nullStatement = isNullable ? "NULL" : "NOT NULL";
+
+            if (propertyType == typeof(string))
+            {
+                isValidProperty = true;
+
+                var stringLength = 4096;
+                {
+                    var stringLengthAttribute = property.GetCustomAttribute<StringLengthAttribute>();
+
+                    if (stringLengthAttribute != null)
+                    {
+                        stringLength = stringLengthAttribute.MaximumLength;
+                    }
+                }
+
+                isNullable = property.GetCustomAttribute<RequiredAttribute>() == null;
+
+                nullStatement = isNullable ? "NULL" : "NOT NULL";
+                if (stringLength != 4096)
+                {
+                    var checkLength = $"length({property.Name})<={stringLength}";
+                    createBuilder.AppendLine(
+                        $"    [{property.Name}] NVARCHAR({stringLength}) {nullStatement} CHECK({checkLength}),");
+                }
+                else
+                {
+                    createBuilder.AppendLine($"    [{property.Name}] NVARCHAR({stringLength}) {nullStatement},");
+                }
+            }
+            else if (propertyType.GetTypeInfo().IsValueType)
+            {
+                isValidProperty = true;
+                createBuilder.AppendLine(
+                    $"    [{property.Name}] {propertyType.GetTypeMapping()} {nullStatement},");
+            }
+            else if (propertyType == typeof(byte[]))
+            {
+                isValidProperty = true;
+                createBuilder.AppendLine($"    [{property.Name}] BLOB {nullStatement},");
+            }
+
+            if (isValidProperty)
+            {
+                propertyNames.Add(property.Name);
+            }
+        }
+
+        #endregion Methods and Data Access
 
         private class DefinitionCacheItem
         {
             public string TableName { get; set; }
+
             public string TableDefinition { get; set; }
+
             public string SelectDefinition { get; set; }
+
             public string InsertDefinition { get; set; }
+
             public string UpdateDefinition { get; set; }
+
             public string DeleteDefinition { get; set; }
+
             public string DeleteDefinitionWhere { get; set; }
+
             public string[] PropertyNames { get; set; }
         }
     }
