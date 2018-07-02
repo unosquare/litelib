@@ -8,9 +8,7 @@ using Unosquare.Labs.LiteLib.Tests.Helpers;
 #if MONO
 using Mono.Data.Sqlite;
 #elif NET46
-
 using System.Data.SQLite;
-
 #else
 using Microsoft.Data.Sqlite;
 #endif
@@ -76,7 +74,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                     Assert.Throws<SqliteException>(() =>
 #endif
                     {
-                        var entities = context.Orders.Select("Customer = @CustomerName", new { CustomerName = "John" });
+                        context.Orders.Select("Customer = @CustomerName", new { CustomerName = "John" });
                     });
                 }
             }
@@ -149,8 +147,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                     Assert.Throws<SqliteException>(() =>
 #endif
                     {
-                        var deletedData =
-                            context.Orders.Delete("Customer = @CustomerName", new { CustomerName = "Peter" });
+                        context.Orders.Delete("Customer = @CustomerName", new { CustomerName = "Peter" });
                     });
                 }
             }
@@ -468,10 +465,9 @@ namespace Unosquare.Labs.LiteLib.Tests
                     Assert.Throws<SqliteException>(() =>
 #endif
                     {
-                        var selectedData =
-                            context.Query<Order>(
-                                $"{context.Orders.UpdateDefinition} WHERE CustomerName = @CustomerName",
-                                new Order { CustomerName = "Margarita" });
+                        context.Query<Order>(
+                            $"{context.Orders.UpdateDefinition} WHERE CustomerName = @CustomerName",
+                            new Order { CustomerName = "Margarita" });
                     });
                 }
             }
@@ -489,10 +485,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                         context.Orders.Insert(item);
                     }
 
-                    var selectingData =
-                        context.Orders.Count();
-
-                    Assert.AreEqual(12, selectingData);
+                    Assert.AreEqual(12, context.Orders.Count());
                 }
             }
         }

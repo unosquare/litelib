@@ -19,13 +19,11 @@
 #elif NET46
     using System.Data.SQLite;
 #else
-
     using Microsoft.Data.Sqlite;
-
 #endif
 
     /// <summary>
-    /// A base class containing all the functionality to perform data operations on Entity Sets
+    /// A base class containing all the functionality to perform data operations on Entity Sets.
     /// </summary>
     /// <seealso cref="System.IDisposable" />
     public abstract class LiteDbContext : IDisposable
@@ -127,7 +125,7 @@
         /// Vacuums the database asynchronously.
         /// </summary>
         /// <returns>
-        /// A Task that represent the Execution of the Vacuum command
+        /// A Task that represent the Execution of the Vacuum command.
         /// </returns>
         public async Task VaccuumDatabaseAsync()
         {
@@ -143,7 +141,7 @@
         /// <returns>
         /// A non-generic liteDbSet instance for access to entities of the given type in the context and the underlying store.
         /// </returns>
-        /// <exception cref="ArgumentOutOfRangeException">Throws an ArgumentOutOfRangeException</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Throws an ArgumentOutOfRangeException.</exception>
         public ILiteDbSet Set(Type entityType)
         {
             var set = _entitySets.Values.FirstOrDefault(x =>
@@ -155,7 +153,7 @@
         /// <summary>
         /// Sets this instance.
         /// </summary>
-        /// <typeparam name="TEntity">Entity type</typeparam>
+        /// <typeparam name="TEntity">Entity type.</typeparam>
         /// <returns>
         /// A liteDbSet instance for access to entities of the given type in the context and the underlying store.
         /// </returns>
@@ -164,7 +162,7 @@
         /// <summary>
         /// Gets the set names.
         /// </summary>
-        /// <returns>An array of strings of the entities</returns>
+        /// <returns>An array of strings of the entities.</returns>
         public string[] GetSetNames() => _entitySets.Keys.ToArray();
 
         /// <summary>
@@ -174,7 +172,7 @@
         /// <param name="set">The set.</param>
         /// <param name="whereText">The where text.</param>
         /// <param name="whereParams">The where parameters.</param>
-        /// <returns>An enumerable of type of the Entity</returns>
+        /// <returns>An enumerable of type of the Entity.</returns>
         public IEnumerable<TEntity> Select<TEntity>(ILiteDbSet set, string whereText, object whereParams = null)
         {
             return Query<TEntity>($"{set.SelectDefinition} WHERE {whereText}", whereParams);
@@ -244,7 +242,7 @@
         /// <param name="commandText">The command text.</param>
         /// <param name="whereParams">The where parameters.</param>
         /// <returns>
-        /// A Task with an enumerable of the type of the entity
+        /// A Task with an enumerable of the type of the entity.
         /// </returns>
         public Task<IEnumerable<TEntity>> QueryAsync<TEntity>(string commandText, object whereParams = null)
         {
@@ -256,8 +254,8 @@
         /// Inserts the specified entity without triggering events.
         /// </summary>
         /// <param name="entity">The entity.</param>
-        /// <returns>The number of rows inserted</returns>
-        /// <exception cref="System.ArgumentOutOfRangeException">entity - The object type must be registered as ILiteDbSet</exception>
+        /// <returns>The number of rows inserted.</returns>
+        /// <exception cref="System.ArgumentOutOfRangeException">entity - The object type must be registered as ILiteDbSet.</exception>
         public int Insert(object entity)
         {
             var set = Set(entity.GetType());
@@ -418,7 +416,7 @@
 
             if (disposing)
             {
-                Intances.TryRemove(UniqueId, out var removed);
+                Intances.TryRemove(UniqueId, out var _);
                 Connection.Close();
                 Connection.Dispose();
                 Connection = null;

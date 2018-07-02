@@ -4,7 +4,6 @@ build:
   project: Unosquare.Labs.LiteLib.sln
 configuration:
 - Release
-platform: Any CPU
 notifications:
 - provider: Slack
   auth_token:

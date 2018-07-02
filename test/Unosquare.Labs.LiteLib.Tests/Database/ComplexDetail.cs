@@ -1,7 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-
-namespace Unosquare.Labs.LiteLib.Tests.Database
+﻿namespace Unosquare.Labs.LiteLib.Tests.Database
 {
+    using System.ComponentModel.DataAnnotations.Schema;
+
     [Table("ComplexDetails")]
     internal class ComplexDetail : LiteModel
     {

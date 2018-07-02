@@ -192,13 +192,14 @@ namespace Unosquare.Labs.LiteLib.Tests
             [Test]
             public async Task InsertAsyncWithOutOfRangeString_ThrowsSqliteException()
             {
-                using (var context = new TestDbContext(nameof(InsertAsyncWithOutOfRangeString_ThrowsSqliteException)))
-                {
 #if NET46
-                    Assert.ThrowsAsync<SQLiteException>(async () =>
+                Assert.ThrowsAsync<SQLiteException>(async () =>
 #else
                     Assert.ThrowsAsync<SqliteException>(async () =>
 #endif
+                {
+                    using (var context =
+                        new TestDbContext(nameof(InsertAsyncWithOutOfRangeString_ThrowsSqliteException)))
                     {
                         await context.Orders.InsertAsync(new Order
                         {
@@ -206,8 +207,8 @@ namespace Unosquare.Labs.LiteLib.Tests
                             Amount = 2,
                             ShipperCity = "StringStringStringStringStringStringStringString"
                         });
-                    });
-                }
+                    }
+                });
             }
         }
 
