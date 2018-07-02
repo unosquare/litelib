@@ -24,7 +24,7 @@ init:
 - ps: $Env:LABEL = "CI" + $Env:APPVEYOR_BUILD_NUMBER.PadLeft(5, "0")
 before_build:
 - ps: |
-        if(-Not $env:APPVEYOR_PULL_REQUEST_TITLE)
+        if(-Not $env:APPVEYOR_PULL_REQUEST_TITLE -And $isWindows)
         {
             git checkout $env:APPVEYOR_REPO_BRANCH -q
             cinst docfx -y
@@ -34,11 +34,12 @@ before_build:
 - nuget install OpenCover -Version 4.6.519 -OutputDirectory tools
 - nuget install coveralls.net -Version 0.7.0 -OutputDirectory tools
 test_script:
-- tools\OpenCover.4.6.519\tools\OpenCover.Console.exe -target:"%ProgramFiles%\dotnet\dotnet.exe" -targetargs:"test test\Unosquare.Labs.LiteLib.Tests -c %CONFIGURATION% -f net46" -output:coverage.xml -filter:"+[*]* -[Unosquare.Swan*]* -[Unosquare.Labs.LiteLib.Tests*]*" -register:userdotnet
-- tools\coveralls.net.0.7.0\tools\csmacnz.Coveralls.exe --opencover -i coverage.xml --serviceName appveyor --jobId %APPVEYOR_BUILD_NUMBER%
+- dotnet test test\Unosquare.Labs.LiteLib.Tests -c Release -f netcoreapp2.1
+- cmd: tools\OpenCover.4.6.519\tools\OpenCover.Console.exe -target:"%ProgramFiles%\dotnet\dotnet.exe" -targetargs:"test test\Unosquare.Labs.LiteLib.Tests -c %CONFIGURATION% -f net46" -output:coverage.xml -filter:"+[*]* -[Unosquare.Swan*]* -[Unosquare.Labs.LiteLib.Tests*]*" -register:userdotnet
+- cmd: tools\coveralls.net.0.7.0\tools\csmacnz.Coveralls.exe --opencover -i coverage.xml --serviceName appveyor --jobId %APPVEYOR_BUILD_NUMBER%
 after_build:
 - ps: |
-        if(-Not $env:APPVEYOR_PULL_REQUEST_TITLE)
+        if(-Not $env:APPVEYOR_PULL_REQUEST_TITLE -And $isWindows)
         {
             docfx docfx.json
             git config --global credential.helper store
