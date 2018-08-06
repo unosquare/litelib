@@ -31,12 +31,10 @@ before_build:
         }
 - dotnet restore
 - cmd: mkdir tools
-- cmd: nuget install OpenCover -Version 4.6.519 -OutputDirectory tools
 - cmd: nuget install coveralls.net -Version 0.7.0 -OutputDirectory tools
 test_script:
-- dotnet test test/Unosquare.Labs.LiteLib.Tests/Unosquare.Labs.LiteLib.Tests.csproj -c Release -f netcoreapp2.1
-- cmd: tools\OpenCover.4.6.519\tools\OpenCover.Console.exe -target:"%ProgramFiles%\dotnet\dotnet.exe" -targetargs:"test test\Unosquare.Labs.LiteLib.Tests -c %CONFIGURATION%" -output:coverage.xml -filter:"+[*]* -[Unosquare.Swan*]* -[Unosquare.Labs.LiteLib.Tests*]*" -register:userdotnet
-- cmd: tools\coveralls.net.0.7.0\tools\csmacnz.Coveralls.exe --opencover -i coverage.xml --serviceName appveyor --jobId %APPVEYOR_BUILD_NUMBER%
+- dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover test/Unosquare.Labs.LiteLib.Tests/Unosquare.Labs.LiteLib.Tests.csproj -c Release -f netcoreapp2.1
+- cmd: tools\coveralls.net.0.7.0\tools\csmacnz.Coveralls.exe --opencover -i coverage.xml --serviceName appveyor --jobId %APPVEYOR_BUILD_NUMBER% --useRelativePaths
 after_build:
 - ps: |
         if(-Not $env:APPVEYOR_PULL_REQUEST_TITLE -And $isWindows)
