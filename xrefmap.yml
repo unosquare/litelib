@@ -541,22 +541,6 @@ references:
   isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.LiteDbContext.LiteDbContext
   nameWithType: LiteDbContext.LiteDbContext
-- uid: Unosquare.Labs.LiteLib.LiteDbContext.Any*
-  name: Any
-  href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_Any_
-  commentId: Overload:Unosquare.Labs.LiteLib.LiteDbContext.Any
-  isSpec: "True"
-  fullName: Unosquare.Labs.LiteLib.LiteDbContext.Any
-  nameWithType: LiteDbContext.Any
-- uid: Unosquare.Labs.LiteLib.LiteDbContext.Any``1(System.String,System.String)
-  name: Any<TEntity>(String, String)
-  href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_Any__1_System_String_System_String_
-  commentId: M:Unosquare.Labs.LiteLib.LiteDbContext.Any``1(System.String,System.String)
-  name.vb: Any(Of TEntity)(String, String)
-  fullName: Unosquare.Labs.LiteLib.LiteDbContext.Any<TEntity>(System.String, System.String)
-  fullName.vb: Unosquare.Labs.LiteLib.LiteDbContext.Any(Of TEntity)(System.String, System.String)
-  nameWithType: LiteDbContext.Any<TEntity>(String, String)
-  nameWithType.vb: LiteDbContext.Any(Of TEntity)(String, String)
 - uid: Unosquare.Labs.LiteLib.LiteDbContext.Connection
   name: Connection
   href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_Connection
@@ -862,6 +846,40 @@ references:
   fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).LiteDbSet
   nameWithType: LiteDbSet<T>.LiteDbSet
   nameWithType.vb: LiteDbSet(Of T).LiteDbSet
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.Any(System.String,System.String)
+  name: Any(String, String)
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_Any_System_String_System_String_
+  commentId: M:Unosquare.Labs.LiteLib.LiteDbSet`1.Any(System.String,System.String)
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.Any(System.String, System.String)
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).Any(System.String, System.String)
+  nameWithType: LiteDbSet<T>.Any(String, String)
+  nameWithType.vb: LiteDbSet(Of T).Any(String, String)
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.Any*
+  name: Any
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_Any_
+  commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.Any
+  isSpec: "True"
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.Any
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).Any
+  nameWithType: LiteDbSet<T>.Any
+  nameWithType.vb: LiteDbSet(Of T).Any
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.AnyAsync(System.String,System.String)
+  name: AnyAsync(String, String)
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_AnyAsync_System_String_System_String_
+  commentId: M:Unosquare.Labs.LiteLib.LiteDbSet`1.AnyAsync(System.String,System.String)
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.AnyAsync(System.String, System.String)
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).AnyAsync(System.String, System.String)
+  nameWithType: LiteDbSet<T>.AnyAsync(String, String)
+  nameWithType.vb: LiteDbSet(Of T).AnyAsync(String, String)
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.AnyAsync*
+  name: AnyAsync
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_AnyAsync_
+  commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.AnyAsync
+  isSpec: "True"
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.AnyAsync
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).AnyAsync
+  nameWithType: LiteDbSet<T>.AnyAsync
+  nameWithType.vb: LiteDbSet(Of T).AnyAsync
 - uid: Unosquare.Labs.LiteLib.LiteDbSet`1.Context
   name: Context
   href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_Context
