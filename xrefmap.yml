@@ -541,6 +541,22 @@ references:
   isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.LiteDbContext.LiteDbContext
   nameWithType: LiteDbContext.LiteDbContext
+- uid: Unosquare.Labs.LiteLib.LiteDbContext.Any*
+  name: Any
+  href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_Any_
+  commentId: Overload:Unosquare.Labs.LiteLib.LiteDbContext.Any
+  isSpec: "True"
+  fullName: Unosquare.Labs.LiteLib.LiteDbContext.Any
+  nameWithType: LiteDbContext.Any
+- uid: Unosquare.Labs.LiteLib.LiteDbContext.Any``1(System.String,System.String)
+  name: Any<TEntity>(String, String)
+  href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_Any__1_System_String_System_String_
+  commentId: M:Unosquare.Labs.LiteLib.LiteDbContext.Any``1(System.String,System.String)
+  name.vb: Any(Of TEntity)(String, String)
+  fullName: Unosquare.Labs.LiteLib.LiteDbContext.Any<TEntity>(System.String, System.String)
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbContext.Any(Of TEntity)(System.String, System.String)
+  nameWithType: LiteDbContext.Any<TEntity>(String, String)
+  nameWithType.vb: LiteDbContext.Any(Of TEntity)(String, String)
 - uid: Unosquare.Labs.LiteLib.LiteDbContext.Connection
   name: Connection
   href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_Connection
