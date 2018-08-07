@@ -489,5 +489,35 @@ namespace Unosquare.Labs.LiteLib.Tests
                 }
             }
         }
+
+        public class AnyTest : DbContextAsyncFixture
+        {
+            [Test]
+            public void AnyMethod_ShouldPass()
+            {
+                using (var context = new TestDbContext(nameof(AnyMethod_ShouldPass)))
+                {
+                    foreach (var item in TestHelper.DataSource)
+                    {
+                        context.Orders.Insert(item);
+                    }
+
+                    var result = context.Orders.Any("CustomerName = @CustomerName", new { CustomerName = "John" });
+
+                    Assert.IsTrue(result);
+                }
+            }
+
+            [Test]
+            public void AnyMethod_ShouldFail()
+            {
+                using (var context = new TestDbContext(nameof(AnyMethod_ShouldFail)))
+                {
+                    var result = context.Orders.Any("CustomerName", "Fail");
+
+                    Assert.IsFalse(result);
+                }
+            }
+        }
     }
 }
