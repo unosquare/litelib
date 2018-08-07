@@ -82,7 +82,7 @@
   
   <h1 id="Unosquare_Labs_LiteLib_ILiteDbSet_1" data-uid="Unosquare.Labs.LiteLib.ILiteDbSet`1" class="text-break">Interface ILiteDbSet&lt;T&gt;
   </h1>
-  <div class="markdown level0 summary"><p>Provides typed access to querying the database</p>
+  <div class="markdown level0 summary"><p>Provides typed access to querying the database.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritedMembers">
@@ -112,7 +112,34 @@
       <a class="xref" href="Unosquare.Labs.LiteLib.ILiteDbSet.html#Unosquare_Labs_LiteLib_ILiteDbSet_DeleteDefinitionWhere">ILiteDbSet.DeleteDefinitionWhere</a>
     </div>
     <div>
+      <a class="xref" href="Unosquare.Labs.LiteLib.ILiteDbSet.html#Unosquare_Labs_LiteLib_ILiteDbSet_AnyDefinition">ILiteDbSet.AnyDefinition</a>
+    </div>
+    <div>
       <a class="xref" href="Unosquare.Labs.LiteLib.ILiteDbSet.html#Unosquare_Labs_LiteLib_ILiteDbSet_Context">ILiteDbSet.Context</a>
+    </div>
+    <div>
+      <a class="xref" href="Unosquare.Labs.LiteLib.ILiteDbSet.html#Unosquare_Labs_LiteLib_ILiteDbSet_CountAsync">ILiteDbSet.CountAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="Unosquare.Labs.LiteLib.ILiteDbSet.html#Unosquare_Labs_LiteLib_ILiteDbSet_Count">ILiteDbSet.Count()</a>
+    </div>
+    <div>
+      <a class="xref" href="Unosquare.Labs.LiteLib.ILiteDbSet.html#Unosquare_Labs_LiteLib_ILiteDbSet_CountAsync_System_String_System_Object_">ILiteDbSet.CountAsync(String, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="Unosquare.Labs.LiteLib.ILiteDbSet.html#Unosquare_Labs_LiteLib_ILiteDbSet_Count_System_String_System_Object_">ILiteDbSet.Count(String, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="Unosquare.Labs.LiteLib.ILiteDbSet.html#Unosquare_Labs_LiteLib_ILiteDbSet_Any">ILiteDbSet.Any()</a>
+    </div>
+    <div>
+      <a class="xref" href="Unosquare.Labs.LiteLib.ILiteDbSet.html#Unosquare_Labs_LiteLib_ILiteDbSet_Any_System_String_System_Object_">ILiteDbSet.Any(String, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="Unosquare.Labs.LiteLib.ILiteDbSet.html#Unosquare_Labs_LiteLib_ILiteDbSet_AnyAsync_System_String_System_Object_">ILiteDbSet.AnyAsync(String, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="Unosquare.Labs.LiteLib.ILiteDbSet.html#Unosquare_Labs_LiteLib_ILiteDbSet_AnyAsync">ILiteDbSet.AnyAsync()</a>
     </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="Unosquare.Labs.LiteLib.html">Unosquare.Labs.LiteLib</a></h6>
@@ -131,67 +158,13 @@
     <tbody>
       <tr>
         <td><span class="parametername">T</span></td>
-        <td><p>The type of LiteModel</p>
+        <td><p>The type of LiteModel.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h3 id="methods">Methods
   </h3>
-  
-  
-  <a id="Unosquare_Labs_LiteLib_ILiteDbSet_1_Count_" data-uid="Unosquare.Labs.LiteLib.ILiteDbSet`1.Count*"></a>
-  <h4 id="Unosquare_Labs_LiteLib_ILiteDbSet_1_Count" data-uid="Unosquare.Labs.LiteLib.ILiteDbSet`1.Count">Count()</h4>
-  <div class="markdown level1 summary"><p>Counts the total number of rows in the table</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">int Count()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
-        <td><p>The total number of rows</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <a id="Unosquare_Labs_LiteLib_ILiteDbSet_1_CountAsync_" data-uid="Unosquare.Labs.LiteLib.ILiteDbSet`1.CountAsync*"></a>
-  <h4 id="Unosquare_Labs_LiteLib_ILiteDbSet_1_CountAsync" data-uid="Unosquare.Labs.LiteLib.ILiteDbSet`1.CountAsync">CountAsync()</h4>
-  <div class="markdown level1 summary"><p>Provides and asynchronous counterpart to the Count method.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;int&gt; CountAsync()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>&gt;</td>
-        <td><p>A Task with the total number of rows.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   
   <a id="Unosquare_Labs_LiteLib_ILiteDbSet_1_Delete_" data-uid="Unosquare.Labs.LiteLib.ILiteDbSet`1.Delete*"></a>
@@ -242,7 +215,7 @@
   <a id="Unosquare_Labs_LiteLib_ILiteDbSet_1_Delete_" data-uid="Unosquare.Labs.LiteLib.ILiteDbSet`1.Delete*"></a>
   <h4 id="Unosquare_Labs_LiteLib_ILiteDbSet_1_Delete_System_String_System_Object_" data-uid="Unosquare.Labs.LiteLib.ILiteDbSet`1.Delete(System.String,System.Object)">Delete(String, Object)</h4>
   <div class="markdown level1 summary"><p>Deletes the specified where text.
-Example whereText = &quot;X = @X&amp;quot; and whereParames = new { X = &quot;hello&quot; }</p>
+Example whereText = &quot;X = @X&amp;quot; and whereParames = new { X = &quot;hello&quot; }.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -293,7 +266,7 @@ Example whereText = &quot;X = @X&amp;quot; and whereParames = new { X = &quot;he
   
   <a id="Unosquare_Labs_LiteLib_ILiteDbSet_1_DeleteAsync_" data-uid="Unosquare.Labs.LiteLib.ILiteDbSet`1.DeleteAsync*"></a>
   <h4 id="Unosquare_Labs_LiteLib_ILiteDbSet_1_DeleteAsync__0_" data-uid="Unosquare.Labs.LiteLib.ILiteDbSet`1.DeleteAsync(`0)">DeleteAsync(T)</h4>
-  <div class="markdown level1 summary"><p>Provides and asynchronous counterpart to the Delete method</p>
+  <div class="markdown level1 summary"><p>Provides and asynchronous counterpart to the Delete method.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -388,6 +361,108 @@ Example whereText = &quot;X = @X&amp;quot; and whereParames = new { X = &quot;he
   </table>
   
   
+  <a id="Unosquare_Labs_LiteLib_ILiteDbSet_1_FirstOrDefault_" data-uid="Unosquare.Labs.LiteLib.ILiteDbSet`1.FirstOrDefault*"></a>
+  <h4 id="Unosquare_Labs_LiteLib_ILiteDbSet_1_FirstOrDefault_System_String_System_Object_" data-uid="Unosquare.Labs.LiteLib.ILiteDbSet`1.FirstOrDefault(System.String,System.Object)">FirstOrDefault(String, Object)</h4>
+  <div class="markdown level1 summary"><p>Firsts the or default.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">T FirstOrDefault(string fieldName, object fieldValue)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">fieldName</span></td>
+        <td><p>Name of the field.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></td>
+        <td><span class="parametername">fieldValue</span></td>
+        <td><p>The field value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><p>A generic type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Unosquare_Labs_LiteLib_ILiteDbSet_1_FirstOrDefaultAsync_" data-uid="Unosquare.Labs.LiteLib.ILiteDbSet`1.FirstOrDefaultAsync*"></a>
+  <h4 id="Unosquare_Labs_LiteLib_ILiteDbSet_1_FirstOrDefaultAsync_System_String_System_Object_" data-uid="Unosquare.Labs.LiteLib.ILiteDbSet`1.FirstOrDefaultAsync(System.String,System.Object)">FirstOrDefaultAsync(String, Object)</h4>
+  <div class="markdown level1 summary"><p>Firsts the or default asynchronous.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;T&gt; FirstOrDefaultAsync(string fieldName, object fieldValue)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">fieldName</span></td>
+        <td><p>Name of the field.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></td>
+        <td><span class="parametername">fieldValue</span></td>
+        <td><p>The field value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;T&gt;</td>
+        <td><p>A Task with a generic type.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
   <a id="Unosquare_Labs_LiteLib_ILiteDbSet_1_Insert_" data-uid="Unosquare.Labs.LiteLib.ILiteDbSet`1.Insert*"></a>
   <h4 id="Unosquare_Labs_LiteLib_ILiteDbSet_1_Insert__0_" data-uid="Unosquare.Labs.LiteLib.ILiteDbSet`1.Insert(`0)">Insert(T)</h4>
   <div class="markdown level1 summary"><p>Inserts the specified entity.</p>
@@ -435,7 +510,7 @@ Example whereText = &quot;X = @X&amp;quot; and whereParames = new { X = &quot;he
   
   <a id="Unosquare_Labs_LiteLib_ILiteDbSet_1_InsertAsync_" data-uid="Unosquare.Labs.LiteLib.ILiteDbSet`1.InsertAsync*"></a>
   <h4 id="Unosquare_Labs_LiteLib_ILiteDbSet_1_InsertAsync__0_" data-uid="Unosquare.Labs.LiteLib.ILiteDbSet`1.InsertAsync(`0)">InsertAsync(T)</h4>
-  <div class="markdown level1 summary"><p>Provides and asynchronous counterpart to the Insert method</p>
+  <div class="markdown level1 summary"><p>Provides and asynchronous counterpart to the Insert method.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -471,7 +546,52 @@ Example whereText = &quot;X = @X&amp;quot; and whereParames = new { X = &quot;he
     <tbody>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>&gt;</td>
-        <td><p>A Task with the number of rows inserted</p>
+        <td><p>A Task with the number of rows inserted.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Unosquare_Labs_LiteLib_ILiteDbSet_1_InsertRange_" data-uid="Unosquare.Labs.LiteLib.ILiteDbSet`1.InsertRange*"></a>
+  <h4 id="Unosquare_Labs_LiteLib_ILiteDbSet_1_InsertRange_System_Collections_Generic_IEnumerable__0__" data-uid="Unosquare.Labs.LiteLib.ILiteDbSet`1.InsertRange(System.Collections.Generic.IEnumerable{`0})">InsertRange(IEnumerable&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Inserts the specified entities.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void InsertRange(IEnumerable&lt;T&gt; entities)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;T&gt;</td>
+        <td><span class="parametername">entities</span></td>
+        <td><p>The entities.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p>entities.</p>
 </td>
       </tr>
     </tbody>
@@ -673,7 +793,7 @@ Example whereText = &quot;X = @X&amp;quot; and whereParames = new { X = &quot;he
     <tbody>
       <tr>
         <td><span class="xref">T</span></td>
-        <td><p>A generic type</p>
+        <td><p>A generic type.</p>
 </td>
       </tr>
     </tbody>
@@ -773,7 +893,7 @@ RowId must be set.</p>
   
   <a id="Unosquare_Labs_LiteLib_ILiteDbSet_1_UpdateAsync_" data-uid="Unosquare.Labs.LiteLib.ILiteDbSet`1.UpdateAsync*"></a>
   <h4 id="Unosquare_Labs_LiteLib_ILiteDbSet_1_UpdateAsync__0_" data-uid="Unosquare.Labs.LiteLib.ILiteDbSet`1.UpdateAsync(`0)">UpdateAsync(T)</h4>
-  <div class="markdown level1 summary"><p>Provides and asynchronous counterpart to the Update method</p>
+  <div class="markdown level1 summary"><p>Provides and asynchronous counterpart to the Update method.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>

@@ -123,6 +123,57 @@ references:
   commentId: T:Unosquare.Labs.LiteLib.ILiteDbSet
   fullName: Unosquare.Labs.LiteLib.ILiteDbSet
   nameWithType: ILiteDbSet
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet.Any
+  name: Any()
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet.html#Unosquare_Labs_LiteLib_ILiteDbSet_Any
+  commentId: M:Unosquare.Labs.LiteLib.ILiteDbSet.Any
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet.Any()
+  nameWithType: ILiteDbSet.Any()
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet.Any(System.String,System.Object)
+  name: Any(String, Object)
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet.html#Unosquare_Labs_LiteLib_ILiteDbSet_Any_System_String_System_Object_
+  commentId: M:Unosquare.Labs.LiteLib.ILiteDbSet.Any(System.String,System.Object)
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet.Any(System.String, System.Object)
+  nameWithType: ILiteDbSet.Any(String, Object)
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet.Any*
+  name: Any
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet.html#Unosquare_Labs_LiteLib_ILiteDbSet_Any_
+  commentId: Overload:Unosquare.Labs.LiteLib.ILiteDbSet.Any
+  isSpec: "True"
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet.Any
+  nameWithType: ILiteDbSet.Any
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet.AnyAsync
+  name: AnyAsync()
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet.html#Unosquare_Labs_LiteLib_ILiteDbSet_AnyAsync
+  commentId: M:Unosquare.Labs.LiteLib.ILiteDbSet.AnyAsync
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet.AnyAsync()
+  nameWithType: ILiteDbSet.AnyAsync()
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet.AnyAsync(System.String,System.Object)
+  name: AnyAsync(String, Object)
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet.html#Unosquare_Labs_LiteLib_ILiteDbSet_AnyAsync_System_String_System_Object_
+  commentId: M:Unosquare.Labs.LiteLib.ILiteDbSet.AnyAsync(System.String,System.Object)
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet.AnyAsync(System.String, System.Object)
+  nameWithType: ILiteDbSet.AnyAsync(String, Object)
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet.AnyAsync*
+  name: AnyAsync
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet.html#Unosquare_Labs_LiteLib_ILiteDbSet_AnyAsync_
+  commentId: Overload:Unosquare.Labs.LiteLib.ILiteDbSet.AnyAsync
+  isSpec: "True"
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet.AnyAsync
+  nameWithType: ILiteDbSet.AnyAsync
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet.AnyDefinition
+  name: AnyDefinition
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet.html#Unosquare_Labs_LiteLib_ILiteDbSet_AnyDefinition
+  commentId: P:Unosquare.Labs.LiteLib.ILiteDbSet.AnyDefinition
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet.AnyDefinition
+  nameWithType: ILiteDbSet.AnyDefinition
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet.AnyDefinition*
+  name: AnyDefinition
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet.html#Unosquare_Labs_LiteLib_ILiteDbSet_AnyDefinition_
+  commentId: Overload:Unosquare.Labs.LiteLib.ILiteDbSet.AnyDefinition
+  isSpec: "True"
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet.AnyDefinition
+  nameWithType: ILiteDbSet.AnyDefinition
 - uid: Unosquare.Labs.LiteLib.ILiteDbSet.Context
   name: Context
   href: api/Unosquare.Labs.LiteLib.ILiteDbSet.html#Unosquare_Labs_LiteLib_ILiteDbSet_Context
@@ -136,6 +187,44 @@ references:
   isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.ILiteDbSet.Context
   nameWithType: ILiteDbSet.Context
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet.Count
+  name: Count()
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet.html#Unosquare_Labs_LiteLib_ILiteDbSet_Count
+  commentId: M:Unosquare.Labs.LiteLib.ILiteDbSet.Count
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet.Count()
+  nameWithType: ILiteDbSet.Count()
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet.Count(System.String,System.Object)
+  name: Count(String, Object)
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet.html#Unosquare_Labs_LiteLib_ILiteDbSet_Count_System_String_System_Object_
+  commentId: M:Unosquare.Labs.LiteLib.ILiteDbSet.Count(System.String,System.Object)
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet.Count(System.String, System.Object)
+  nameWithType: ILiteDbSet.Count(String, Object)
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet.Count*
+  name: Count
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet.html#Unosquare_Labs_LiteLib_ILiteDbSet_Count_
+  commentId: Overload:Unosquare.Labs.LiteLib.ILiteDbSet.Count
+  isSpec: "True"
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet.Count
+  nameWithType: ILiteDbSet.Count
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet.CountAsync
+  name: CountAsync()
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet.html#Unosquare_Labs_LiteLib_ILiteDbSet_CountAsync
+  commentId: M:Unosquare.Labs.LiteLib.ILiteDbSet.CountAsync
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet.CountAsync()
+  nameWithType: ILiteDbSet.CountAsync()
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet.CountAsync(System.String,System.Object)
+  name: CountAsync(String, Object)
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet.html#Unosquare_Labs_LiteLib_ILiteDbSet_CountAsync_System_String_System_Object_
+  commentId: M:Unosquare.Labs.LiteLib.ILiteDbSet.CountAsync(System.String,System.Object)
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet.CountAsync(System.String, System.Object)
+  nameWithType: ILiteDbSet.CountAsync(String, Object)
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet.CountAsync*
+  name: CountAsync
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet.html#Unosquare_Labs_LiteLib_ILiteDbSet_CountAsync_
+  commentId: Overload:Unosquare.Labs.LiteLib.ILiteDbSet.CountAsync
+  isSpec: "True"
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet.CountAsync
+  nameWithType: ILiteDbSet.CountAsync
 - uid: Unosquare.Labs.LiteLib.ILiteDbSet.DeleteDefinition
   name: DeleteDefinition
   href: api/Unosquare.Labs.LiteLib.ILiteDbSet.html#Unosquare_Labs_LiteLib_ILiteDbSet_DeleteDefinition
@@ -249,40 +338,6 @@ references:
   fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T)
   nameWithType: ILiteDbSet<T>
   nameWithType.vb: ILiteDbSet(Of T)
-- uid: Unosquare.Labs.LiteLib.ILiteDbSet`1.Count
-  name: Count()
-  href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_Count
-  commentId: M:Unosquare.Labs.LiteLib.ILiteDbSet`1.Count
-  fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.Count()
-  fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).Count()
-  nameWithType: ILiteDbSet<T>.Count()
-  nameWithType.vb: ILiteDbSet(Of T).Count()
-- uid: Unosquare.Labs.LiteLib.ILiteDbSet`1.Count*
-  name: Count
-  href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_Count_
-  commentId: Overload:Unosquare.Labs.LiteLib.ILiteDbSet`1.Count
-  isSpec: "True"
-  fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.Count
-  fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).Count
-  nameWithType: ILiteDbSet<T>.Count
-  nameWithType.vb: ILiteDbSet(Of T).Count
-- uid: Unosquare.Labs.LiteLib.ILiteDbSet`1.CountAsync
-  name: CountAsync()
-  href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_CountAsync
-  commentId: M:Unosquare.Labs.LiteLib.ILiteDbSet`1.CountAsync
-  fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.CountAsync()
-  fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).CountAsync()
-  nameWithType: ILiteDbSet<T>.CountAsync()
-  nameWithType.vb: ILiteDbSet(Of T).CountAsync()
-- uid: Unosquare.Labs.LiteLib.ILiteDbSet`1.CountAsync*
-  name: CountAsync
-  href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_CountAsync_
-  commentId: Overload:Unosquare.Labs.LiteLib.ILiteDbSet`1.CountAsync
-  isSpec: "True"
-  fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.CountAsync
-  fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).CountAsync
-  nameWithType: ILiteDbSet<T>.CountAsync
-  nameWithType.vb: ILiteDbSet(Of T).CountAsync
 - uid: Unosquare.Labs.LiteLib.ILiteDbSet`1.Delete(`0)
   name: Delete(T)
   href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_Delete__0_
@@ -333,6 +388,40 @@ references:
   fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).DeleteAsync
   nameWithType: ILiteDbSet<T>.DeleteAsync
   nameWithType.vb: ILiteDbSet(Of T).DeleteAsync
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet`1.FirstOrDefault(System.String,System.Object)
+  name: FirstOrDefault(String, Object)
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_FirstOrDefault_System_String_System_Object_
+  commentId: M:Unosquare.Labs.LiteLib.ILiteDbSet`1.FirstOrDefault(System.String,System.Object)
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.FirstOrDefault(System.String, System.Object)
+  fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).FirstOrDefault(System.String, System.Object)
+  nameWithType: ILiteDbSet<T>.FirstOrDefault(String, Object)
+  nameWithType.vb: ILiteDbSet(Of T).FirstOrDefault(String, Object)
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet`1.FirstOrDefault*
+  name: FirstOrDefault
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_FirstOrDefault_
+  commentId: Overload:Unosquare.Labs.LiteLib.ILiteDbSet`1.FirstOrDefault
+  isSpec: "True"
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.FirstOrDefault
+  fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).FirstOrDefault
+  nameWithType: ILiteDbSet<T>.FirstOrDefault
+  nameWithType.vb: ILiteDbSet(Of T).FirstOrDefault
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet`1.FirstOrDefaultAsync(System.String,System.Object)
+  name: FirstOrDefaultAsync(String, Object)
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_FirstOrDefaultAsync_System_String_System_Object_
+  commentId: M:Unosquare.Labs.LiteLib.ILiteDbSet`1.FirstOrDefaultAsync(System.String,System.Object)
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.FirstOrDefaultAsync(System.String, System.Object)
+  fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).FirstOrDefaultAsync(System.String, System.Object)
+  nameWithType: ILiteDbSet<T>.FirstOrDefaultAsync(String, Object)
+  nameWithType.vb: ILiteDbSet(Of T).FirstOrDefaultAsync(String, Object)
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet`1.FirstOrDefaultAsync*
+  name: FirstOrDefaultAsync
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_FirstOrDefaultAsync_
+  commentId: Overload:Unosquare.Labs.LiteLib.ILiteDbSet`1.FirstOrDefaultAsync
+  isSpec: "True"
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.FirstOrDefaultAsync
+  fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).FirstOrDefaultAsync
+  nameWithType: ILiteDbSet<T>.FirstOrDefaultAsync
+  nameWithType.vb: ILiteDbSet(Of T).FirstOrDefaultAsync
 - uid: Unosquare.Labs.LiteLib.ILiteDbSet`1.Insert(`0)
   name: Insert(T)
   href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_Insert__0_
@@ -367,6 +456,24 @@ references:
   fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).InsertAsync
   nameWithType: ILiteDbSet<T>.InsertAsync
   nameWithType.vb: ILiteDbSet(Of T).InsertAsync
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet`1.InsertRange(System.Collections.Generic.IEnumerable{`0})
+  name: InsertRange(IEnumerable<T>)
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_InsertRange_System_Collections_Generic_IEnumerable__0__
+  commentId: M:Unosquare.Labs.LiteLib.ILiteDbSet`1.InsertRange(System.Collections.Generic.IEnumerable{`0})
+  name.vb: InsertRange(IEnumerable(Of T))
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.InsertRange(System.Collections.Generic.IEnumerable<T>)
+  fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).InsertRange(System.Collections.Generic.IEnumerable(Of T))
+  nameWithType: ILiteDbSet<T>.InsertRange(IEnumerable<T>)
+  nameWithType.vb: ILiteDbSet(Of T).InsertRange(IEnumerable(Of T))
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet`1.InsertRange*
+  name: InsertRange
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_InsertRange_
+  commentId: Overload:Unosquare.Labs.LiteLib.ILiteDbSet`1.InsertRange
+  isSpec: "True"
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.InsertRange
+  fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).InsertRange
+  nameWithType: ILiteDbSet<T>.InsertRange
+  nameWithType.vb: ILiteDbSet(Of T).InsertRange
 - uid: Unosquare.Labs.LiteLib.ILiteDbSet`1.Select(System.String,System.Object)
   name: Select(String, Object)
   href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_Select_System_String_System_Object_
