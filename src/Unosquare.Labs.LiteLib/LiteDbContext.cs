@@ -227,7 +227,7 @@
         /// <param name="commandText">The command text.</param>
         /// <param name="whereParams">The where parameters.</param>
         /// <returns>
-        /// An enumerable of the type of the entity
+        /// An enumerable of the type of the entity.
         /// </returns>
         public IEnumerable<TEntity> Query<TEntity>(string commandText, object whereParams = null)
         {
@@ -335,6 +335,18 @@
             LogSqlCommand(set.UpdateDefinition, entity);
 
             return Connection.ExecuteAsync(set.UpdateDefinition, entity);
+        }
+        
+        internal T ExecuteScalar<T>(string commandText, object whereParams = null)
+        {
+            LogSqlCommand(commandText);
+            return Connection.ExecuteScalar<T>(commandText, whereParams);
+        }
+
+        internal Task<T> ExecuteScalarAsync<T>(string commandText, object whereParams = null)
+        {
+            LogSqlCommand(commandText);
+            return Connection.ExecuteScalarAsync<T>(commandText, whereParams);
         }
 
         /// <summary>

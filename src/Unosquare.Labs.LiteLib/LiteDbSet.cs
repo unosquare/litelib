@@ -94,6 +94,14 @@
         public string DeleteDefinitionWhere { get; protected set; }
 
         /// <summary>
+        /// Gets or sets any definition.
+        /// </summary>
+        /// <value>
+        /// Any definition.
+        /// </value>
+        public string AnyDefinition { get; protected set; }
+
+        /// <summary>
         /// Gets the table definition.
         /// </summary>
         public string TableDefinition { get; protected set; }
@@ -189,7 +197,7 @@
 
         /// <summary>
         /// Deletes the specified where text.
-        /// Example whereText = "X = @X" and whereParames = new { X = "hello" }
+        /// Example whereText = "X = @X" and whereParames = new { X = "hello" }.
         /// </summary>
         /// <param name="whereText">The where text.</param>
         /// <param name="whereParams">The where parameters.</param>
@@ -264,7 +272,7 @@
         /// </summary>
         /// <param name="entity">The entity.</param>
         /// <returns>
-        /// The number of rows updated
+        /// The number of rows updated.
         /// </returns>
         public int Update(T entity)
         {
@@ -304,7 +312,7 @@
         /// <param name="whereText">The where text.</param>
         /// <param name="whereParams">The where parameters.</param>
         /// <returns>
-        /// An Enumerable with generic type
+        /// An Enumerable with generic type.
         /// </returns>
         public IEnumerable<T> Select(string whereText, object whereParams = null) => Context.Select<T>(this, whereText, whereParams);
 
@@ -380,17 +388,35 @@
         }
 
         /// <summary>
+        /// Provides and asynchronous counterpart to the Count method.
+        /// </summary>
+        /// <param name="whereText">The where text.</param>
+        /// <param name="whereParams">The where parameters.</param>
+        /// <returns>
+        /// The total number of rows.
+        /// </returns>
+        public int Count(string whereText, object whereParams = null)
+            => Context.ExecuteScalar<int>($"SELECT COUNT(*) FROM [{TableName}] WHERE {whereText})", whereParams);
+
+        /// <summary>
         /// Counts the total number of rows in the table.
         /// </summary>
         /// <returns>
         /// The total number of rows.
         /// </returns>
         public int Count()
-        {
-            var commandText = $"SELECT COUNT(*) FROM [{TableName}]";
-            Context.LogSqlCommand(commandText);
-            return Context.Connection.ExecuteScalar<int>(commandText);
-        }
+            => Context.ExecuteScalar<int>($"SELECT COUNT(*) FROM [{TableName}]");
+
+        /// <summary>
+        /// Provides and asynchronous counterpart to the Count method.
+        /// </summary>
+        /// <param name="whereText">The where text.</param>
+        /// <param name="whereParams">The where parameters.</param>
+        /// <returns>
+        /// A Task with the total number of rows.
+        /// </returns>
+        public Task<int> CountAsync(string whereText, object whereParams = null)
+            => Context.ExecuteScalarAsync<int>($"SELECT COUNT(*) FROM [{TableName}] WHERE {whereText})", whereParams);
 
         /// <summary>
         /// Provides and asynchronous counterpart to the Count method.
@@ -398,38 +424,40 @@
         /// <returns>
         /// A Task with the total number of rows.
         /// </returns>
-        public async Task<int> CountAsync()
-        {
-            var commandText = $"SELECT COUNT(*) FROM [{TableName}]";
-            Context.LogSqlCommand(commandText);
-            return await Context.Connection.ExecuteScalarAsync<int>(commandText);
-        }
+        public Task<int> CountAsync()
+            => Context.ExecuteScalarAsync<int>($"SELECT COUNT(*) FROM [{TableName}]");
 
         /// <summary>
         /// Check if the row exist in the table.
         /// </summary>
-        /// <param name="tableColumn">The table column.</param>
-        /// <param name="record">The table record.</param>
-        /// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
-        public bool Any(string tableColumn, string record)
-        {
-            var commandText = $"SELECT EXISTS(SELECT 1 FROM '{TableName}' WHERE {tableColumn} = {record})";
-            Context.LogSqlCommand(commandText);
-            return Context.Connection.ExecuteScalar<bool>(commandText);
-        }
+        /// <param name="whereText">The where text.</param>
+        /// <param name="whereParams">The where parameters.</param>
+        /// <returns><c>true</c> if the query contains data, otherwise <c>false</c>.</returns>
+        public bool Any(string whereText, object whereParams = null)
+            => Context.ExecuteScalar<bool>($"{AnyDefinition} WHERE {whereText})", whereParams);
+
+        /// <summary>
+        /// Check if the row exist in the table.
+        /// </summary>
+        /// <returns><c>true</c> if the query contains data, otherwise <c>false</c>.</returns>
+        public bool Any()
+            => Context.ExecuteScalar<bool>(AnyDefinition);
 
         /// <summary>
         /// Check asynchronous if the row exist in the table.
         /// </summary>
-        /// <param name="tableColumn">The table column.</param>
-        /// <param name="record">The table record.</param>
+        /// <param name="whereText">The where text.</param>
+        /// <param name="whereParams">The where parameters.</param>
         /// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
-        public async Task<bool> AnyAsync(string tableColumn, string record)
-        {
-            var commandText = $"SELECT EXISTS(SELECT 1 FROM '{TableName}' WHERE {tableColumn} = '{record}')";
-            Context.LogSqlCommand(commandText);
-            return await Context.Connection.ExecuteScalarAsync<bool>(commandText);
-        }
+        public Task<bool> AnyAsync(string whereText, object whereParams = null)
+            => Context.ExecuteScalarAsync<bool>($"{AnyDefinition}' WHERE {whereText})", whereParams);
+
+        /// <summary>
+        /// Check asynchronous if the table contains data.
+        /// </summary>
+        /// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
+        public Task<bool> AnyAsync()
+            => Context.ExecuteScalarAsync<bool>(AnyDefinition);
 
         /// <summary>
         /// Loads the necessary command definitions to create a backing table and
@@ -449,6 +477,7 @@
                 UpdateDefinition = cache.UpdateDefinition;
                 DeleteDefinition = cache.DeleteDefinition;
                 DeleteDefinitionWhere = cache.DeleteDefinitionWhere;
+                AnyDefinition = cache.AnyDefinition;
                 PropertyNames = cache.PropertyNames;
 
                 return;
@@ -529,6 +558,7 @@
             DeleteDefinition =
                 $"DELETE FROM [{tableName}] WHERE [{nameof(ILiteModel.RowId)}] = @{nameof(ILiteModel.RowId)}";
             DeleteDefinitionWhere = $"DELETE FROM [{tableName}]";
+            AnyDefinition = $"SELECT EXISTS(SELECT 1 FROM '{tableName}')";
 
             DefinitionCache[setType] = new DefinitionCacheItem
             {
@@ -539,7 +569,8 @@
                 UpdateDefinition = UpdateDefinition,
                 DeleteDefinition = DeleteDefinition,
                 DeleteDefinitionWhere = DeleteDefinitionWhere,
-                PropertyNames = PropertyNames
+                AnyDefinition = AnyDefinition,
+                PropertyNames = PropertyNames,
             };
         }
 
@@ -599,24 +630,5 @@
         }
 
         #endregion Methods and Data Access
-
-        private class DefinitionCacheItem
-        {
-            public string TableName { get; set; }
-
-            public string TableDefinition { get; set; }
-
-            public string SelectDefinition { get; set; }
-
-            public string InsertDefinition { get; set; }
-
-            public string UpdateDefinition { get; set; }
-
-            public string DeleteDefinition { get; set; }
-
-            public string DeleteDefinitionWhere { get; set; }
-
-            public string[] PropertyNames { get; set; }
-        }
     }
 }
