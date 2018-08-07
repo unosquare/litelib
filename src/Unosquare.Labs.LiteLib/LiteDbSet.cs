@@ -19,17 +19,14 @@
     public class LiteDbSet<T> : ILiteDbSet<T>
         where T : ILiteModel, new()
     {
-        private const BindingFlags PublicInstanceFlags = BindingFlags.Instance | BindingFlags.Public;
-
-        private static readonly ConcurrentDictionary<Type, DefinitionCacheItem> DefinitionCache =
-            new ConcurrentDictionary<Type, DefinitionCacheItem>();
+        private readonly DefinitionCacheItem tableDefinition;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LiteDbSet{T}"/> class.
         /// </summary>
         public LiteDbSet()
         {
-            LoadDefinitions();
+            tableDefinition = new TypeDefinition(typeof(T)).Definition;
         }
 
         #region Events
@@ -71,45 +68,42 @@
         /// <summary>
         /// Gets the select command definition.
         /// </summary>
-        public string SelectDefinition { get; protected set; }
+        public string SelectDefinition => tableDefinition.SelectDefinition;
 
         /// <summary>
         /// Gets the insert command definition.
         /// </summary>
-        public string InsertDefinition { get; protected set; }
+        public string InsertDefinition  => tableDefinition.InsertDefinition;
 
         /// <summary>
         /// Gets the update command definition.
         /// </summary>
-        public string UpdateDefinition { get; protected set; }
+        public string UpdateDefinition => tableDefinition.UpdateDefinition;
 
         /// <summary>
         /// Gets the delete command definition.
         /// </summary>
-        public string DeleteDefinition { get; protected set; }
+        public string DeleteDefinition => tableDefinition.DeleteDefinition;
 
         /// <summary>
         /// Gets the delete definition where.
         /// </summary>
-        public string DeleteDefinitionWhere { get; protected set; }
+        public string DeleteDefinitionWhere => tableDefinition.DeleteDefinitionWhere;
 
         /// <summary>
         /// Gets or sets any definition.
         /// </summary>
-        /// <value>
-        /// Any definition.
-        /// </value>
-        public string AnyDefinition { get; protected set; }
+        public string AnyDefinition => tableDefinition.AnyDefinition;
 
         /// <summary>
         /// Gets the table definition.
         /// </summary>
-        public string TableDefinition { get; protected set; }
+        public string TableDefinition => tableDefinition.TableDefinition;
 
         /// <summary>
         /// Gets the name of the data-backing table.
         /// </summary>
-        public string TableName { get; protected set; }
+        public string TableName  => tableDefinition.TableName;
 
         /// <summary>
         /// Gets or sets the parent set context.
@@ -124,7 +118,7 @@
         /// <summary>
         /// Gets or sets the property names.
         /// </summary>
-        public string[] PropertyNames { get; set; }
+        public string[] PropertyNames  => tableDefinition.PropertyNames;
 
         #endregion Properties
 
@@ -434,7 +428,7 @@
         /// <param name="whereParams">The where parameters.</param>
         /// <returns><c>true</c> if the query contains data, otherwise <c>false</c>.</returns>
         public bool Any(string whereText, object whereParams = null)
-            => Context.ExecuteScalar<bool>($"{AnyDefinition} WHERE {whereText})", whereParams);
+            => Context.ExecuteScalar<bool>($"SELECT EXISTS(SELECT 1 FROM '{TableName}' WHERE {whereText})", whereParams);
 
         /// <summary>
         /// Check if the row exist in the table.
@@ -450,7 +444,7 @@
         /// <param name="whereParams">The where parameters.</param>
         /// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
         public Task<bool> AnyAsync(string whereText, object whereParams = null)
-            => Context.ExecuteScalarAsync<bool>($"{AnyDefinition}' WHERE {whereText})", whereParams);
+            => Context.ExecuteScalarAsync<bool>($"SELECT EXISTS(SELECT 1 FROM '{TableName}' WHERE {whereText})", whereParams);
 
         /// <summary>
         /// Check asynchronous if the table contains data.
@@ -458,176 +452,6 @@
         /// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
         public Task<bool> AnyAsync()
             => Context.ExecuteScalarAsync<bool>(AnyDefinition);
-
-        /// <summary>
-        /// Loads the necessary command definitions to create a backing table and
-        /// perform CRUD operations with models.
-        /// </summary>
-        private void LoadDefinitions()
-        {
-            var setType = GetType();
-
-            if (DefinitionCache.ContainsKey(setType))
-            {
-                var cache = DefinitionCache[setType];
-                TableName = cache.TableName;
-                TableDefinition = cache.TableDefinition;
-                SelectDefinition = cache.SelectDefinition;
-                InsertDefinition = cache.InsertDefinition;
-                UpdateDefinition = cache.UpdateDefinition;
-                DeleteDefinition = cache.DeleteDefinition;
-                DeleteDefinitionWhere = cache.DeleteDefinitionWhere;
-                AnyDefinition = cache.AnyDefinition;
-                PropertyNames = cache.PropertyNames;
-
-                return;
-            }
-
-            var createBuilder = new StringBuilder();
-            var indexBuilder = new List<string>();
-
-            var properties = typeof(T).GetProperties(PublicInstanceFlags);
-            var propertyNames = new List<string>();
-
-            // Start off with the table name
-            var tableName = typeof(T).Name;
-            var tableAttribute = typeof(T).GetTypeInfo().GetCustomAttribute<TableAttribute>();
-            if (tableAttribute != null)
-                tableName = tableAttribute.Name;
-
-            createBuilder.AppendLine($"CREATE TABLE IF NOT EXISTS [{tableName}] (");
-            createBuilder.AppendLine($"    [{nameof(ILiteModel.RowId)}] INTEGER PRIMARY KEY AUTOINCREMENT,");
-
-            foreach (var property in properties)
-            {
-                if (property.Name == nameof(ILiteModel.RowId) || property.CanWrite == false)
-                    continue;
-
-                // Skip if not mapped
-                var notMappedAttribute = property.GetCustomAttribute<NotMappedAttribute>();
-                if (notMappedAttribute != null)
-                    continue;
-
-                // Add to indexes if indexed attribute is ON
-                var indexedAttribute = property.GetCustomAttribute<LiteIndexAttribute>();
-                if (indexedAttribute != null)
-                {
-                    indexBuilder.Add(
-                        $"CREATE INDEX IF NOT EXISTS [IX_{tableName}_{property.Name}] ON [{tableName}] ([{property.Name}]);");
-                }
-
-                // Add to unique indexes if indexed attribute is ON
-                var uniqueIndexAttribute = property.GetCustomAttribute<LiteUniqueAttribute>();
-
-                if (uniqueIndexAttribute != null)
-                {
-                    indexBuilder.Add(
-                        $"CREATE UNIQUE INDEX IF NOT EXISTS [IX_{tableName}_{property.Name}] ON [{tableName}] ([{property.Name}]);");
-                }
-
-                GeneratePropertyInfo(property, createBuilder, propertyNames);
-            }
-
-            if (propertyNames.Any() == false)
-                throw new Exception("Invalid DbSet, you need at least one property to bind");
-
-            // trim out the extra comma
-            createBuilder.Remove(createBuilder.Length - Environment.NewLine.Length - 1, Environment.NewLine.Length + 1);
-
-            createBuilder.AppendLine();
-            createBuilder.AppendLine(");");
-
-            foreach (var indexDdl in indexBuilder)
-            {
-                createBuilder.AppendLine(indexDdl);
-            }
-
-            var escapedColumnNames = string.Join(", ", propertyNames.Select(p => $"[{p}]").ToArray());
-            var parameterColumnNames = string.Join(", ", propertyNames.Select(p => $"@{p}").ToArray());
-            var keyValueColumnNames = string.Join(", ", propertyNames.Select(p => $"[{p}] = @{p}").ToArray());
-
-            TableName = tableName;
-            TableDefinition = createBuilder.ToString();
-            PropertyNames = propertyNames.ToArray();
-
-            SelectDefinition = $"SELECT [{nameof(ILiteModel.RowId)}], {escapedColumnNames} FROM [{tableName}]";
-            InsertDefinition =
-                $"INSERT INTO [{tableName}] ({escapedColumnNames}) VALUES ({parameterColumnNames}); SELECT last_insert_rowid();";
-            UpdateDefinition =
-                $"UPDATE [{tableName}] SET {keyValueColumnNames}  WHERE [{nameof(ILiteModel.RowId)}] = @{nameof(ILiteModel.RowId)}";
-            DeleteDefinition =
-                $"DELETE FROM [{tableName}] WHERE [{nameof(ILiteModel.RowId)}] = @{nameof(ILiteModel.RowId)}";
-            DeleteDefinitionWhere = $"DELETE FROM [{tableName}]";
-            AnyDefinition = $"SELECT EXISTS(SELECT 1 FROM '{tableName}')";
-
-            DefinitionCache[setType] = new DefinitionCacheItem
-            {
-                TableName = TableName,
-                TableDefinition = TableDefinition,
-                SelectDefinition = SelectDefinition,
-                InsertDefinition = InsertDefinition,
-                UpdateDefinition = UpdateDefinition,
-                DeleteDefinition = DeleteDefinition,
-                DeleteDefinitionWhere = DeleteDefinitionWhere,
-                AnyDefinition = AnyDefinition,
-                PropertyNames = PropertyNames,
-            };
-        }
-
-        private static void GeneratePropertyInfo(PropertyInfo property, StringBuilder createBuilder, List<string> propertyNames)
-        {
-            var isValidProperty = false;
-            var propertyType = property.PropertyType;
-            var isNullable = propertyType.GetTypeInfo().IsGenericType &&
-                             propertyType.GetGenericTypeDefinition() == typeof(Nullable<>);
-            if (isNullable) propertyType = Nullable.GetUnderlyingType(propertyType);
-            var nullStatement = isNullable ? "NULL" : "NOT NULL";
-
-            if (propertyType == typeof(string))
-            {
-                isValidProperty = true;
-
-                var stringLength = 4096;
-                {
-                    var stringLengthAttribute = property.GetCustomAttribute<StringLengthAttribute>();
-
-                    if (stringLengthAttribute != null)
-                    {
-                        stringLength = stringLengthAttribute.MaximumLength;
-                    }
-                }
-
-                isNullable = property.GetCustomAttribute<RequiredAttribute>() == null;
-
-                nullStatement = isNullable ? "NULL" : "NOT NULL";
-                if (stringLength != 4096)
-                {
-                    var checkLength = $"length({property.Name})<={stringLength}";
-                    createBuilder.AppendLine(
-                        $"    [{property.Name}] NVARCHAR({stringLength}) {nullStatement} CHECK({checkLength}),");
-                }
-                else
-                {
-                    createBuilder.AppendLine($"    [{property.Name}] NVARCHAR({stringLength}) {nullStatement},");
-                }
-            }
-            else if (propertyType.GetTypeInfo().IsValueType)
-            {
-                isValidProperty = true;
-                createBuilder.AppendLine(
-                    $"    [{property.Name}] {propertyType.GetTypeMapping()} {nullStatement},");
-            }
-            else if (propertyType == typeof(byte[]))
-            {
-                isValidProperty = true;
-                createBuilder.AppendLine($"    [{property.Name}] BLOB {nullStatement},");
-            }
-
-            if (isValidProperty)
-            {
-                propertyNames.Add(property.Name);
-            }
-        }
 
         #endregion Methods and Data Access
     }

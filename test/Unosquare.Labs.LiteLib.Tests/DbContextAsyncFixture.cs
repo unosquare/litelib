@@ -398,7 +398,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                         await context.Orders.InsertAsync(item);
                     }
 
-                    var result = await context.Orders.AnyAsync("CustomerName", "John");
+                    var result = await context.Orders.AnyAsync("CustomerName = @CustomerName", new { CustomerName = "John" });
 
                     Assert.IsTrue(result);
                 }

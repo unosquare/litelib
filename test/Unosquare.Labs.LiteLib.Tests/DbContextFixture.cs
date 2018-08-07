@@ -436,7 +436,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                     var selectedData =
                         context.Query<Order>($"{context.Orders.SelectDefinition} WHERE CustomerName = @CustomerName",
                             new Order { CustomerName = "Margarita" });
-
+                    
                     foreach (var item in selectedData)
                     {
                         Assert.AreEqual(item.CustomerName, "Margarita");
