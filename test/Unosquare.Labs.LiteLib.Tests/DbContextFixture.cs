@@ -473,7 +473,7 @@ namespace Unosquare.Labs.LiteLib.Tests
             }
         }
 
-        public class CountAsync : DbContextFixture
+        public class Count : DbContextFixture
         {
             [Test]
             public void CountingData()
@@ -486,6 +486,20 @@ namespace Unosquare.Labs.LiteLib.Tests
                     }
 
                     Assert.AreEqual(12, context.Orders.Count());
+                }
+            }
+
+            [Test]
+            public void CountingDataWithParams()
+            {
+                using (var context = new TestDbContext(nameof(CountingDataWithParams)))
+                {
+                    foreach (var item in TestHelper.DataSource)
+                    {
+                        context.Orders.Insert(item);
+                    }
+
+                    Assert.AreEqual(4, context.Orders.Count("CustomerName = @CustomerName", new { CustomerName = "John" }));
                 }
             }
         }
@@ -502,6 +516,22 @@ namespace Unosquare.Labs.LiteLib.Tests
                         context.Orders.Insert(item);
                     }
 
+                    var result = context.Orders.Any();
+
+                    Assert.IsTrue(result);
+                }
+            }
+
+            [Test]
+            public void AnyMethodWithParams_ShouldPass()
+            {
+                using (var context = new TestDbContext(nameof(AnyMethodWithParams_ShouldPass)))
+                {
+                    foreach (var item in TestHelper.DataSource)
+                    {
+                        context.Orders.Insert(item);
+                    }
+
                     var result = context.Orders.Any("CustomerName = @CustomerName", new { CustomerName = "John" });
 
                     Assert.IsTrue(result);
@@ -509,9 +539,9 @@ namespace Unosquare.Labs.LiteLib.Tests
             }
 
             [Test]
-            public void AnyMethod_ShouldFail()
+            public void AnyMethodWithParams_ShouldFail()
             {
-                using (var context = new TestDbContext(nameof(AnyMethod_ShouldFail)))
+                using (var context = new TestDbContext(nameof(AnyMethodWithParams_ShouldFail)))
                 {
                     var result = context.Orders.Any("CustomerName", "Fail");
 

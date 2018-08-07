@@ -384,6 +384,23 @@ namespace Unosquare.Labs.LiteLib.Tests
                     Assert.AreEqual(12, selectingData);
                 }
             }
+
+            [Test]
+            public async Task CountingDataWithParams()
+            {
+                using (var context = new TestDbContext(nameof(CountingDataWithParams)))
+                {
+                    foreach (var item in TestHelper.DataSource)
+                    {
+                        context.Orders.Insert(item);
+                    }
+
+                    var selectingData =
+                        await context.Orders.CountAsync("CustomerName = @CustomerName", new { CustomerName = "John" });
+
+                    Assert.AreEqual(4, selectingData);
+                }
+            }
         }
 
         public class AnyAsyncTest : DbContextAsyncFixture
@@ -398,6 +415,22 @@ namespace Unosquare.Labs.LiteLib.Tests
                         await context.Orders.InsertAsync(item);
                     }
 
+                    var result = await context.Orders.AnyAsync();
+
+                    Assert.IsTrue(result);
+                }
+            }
+
+            [Test]
+            public async Task AnyAsyncMethodWithParams_ShouldPass()
+            {
+                using (var context = new TestDbContext(nameof(AnyAsyncMethodWithParams_ShouldPass)))
+                {
+                    foreach (var item in TestHelper.DataSource)
+                    {
+                        await context.Orders.InsertAsync(item);
+                    }
+
                     var result = await context.Orders.AnyAsync("CustomerName = @CustomerName", new { CustomerName = "John" });
 
                     Assert.IsTrue(result);
@@ -405,9 +438,9 @@ namespace Unosquare.Labs.LiteLib.Tests
             }
 
             [Test]
-            public async Task AnyAsyncMethod_ShouldFail()
+            public async Task AnyAsyncMethodWithParams_ShouldFail()
             {
-                using (var context = new TestDbContext(nameof(AnyAsyncMethod_ShouldFail)))
+                using (var context = new TestDbContext(nameof(AnyAsyncMethodWithParams_ShouldFail)))
                 {
                     var result = await context.Orders.AnyAsync("CustomerName", "Fail");
 

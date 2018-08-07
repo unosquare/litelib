@@ -253,7 +253,7 @@
 
         /// <inheritdoc />
         public int Count(string whereText, object whereParams = null)
-            => Context.ExecuteScalar<int>($"SELECT COUNT(*) FROM [{TableName}] WHERE {whereText})", whereParams);
+            => Context.ExecuteScalar<int>($"SELECT COUNT(*) FROM [{TableName}] WHERE {whereText}", whereParams);
 
         /// <inheritdoc />
         public int Count()
@@ -261,7 +261,7 @@
         
         /// <inheritdoc />
         public Task<int> CountAsync(string whereText, object whereParams = null)
-            => Context.ExecuteScalarAsync<int>($"SELECT COUNT(*) FROM [{TableName}] WHERE {whereText})", whereParams);
+            => Context.ExecuteScalarAsync<int>($"SELECT COUNT(*) FROM [{TableName}] WHERE {whereText}", whereParams);
         
         /// <inheritdoc />
         public Task<int> CountAsync()
