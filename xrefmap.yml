@@ -846,14 +846,22 @@ references:
   fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).LiteDbSet
   nameWithType: LiteDbSet<T>.LiteDbSet
   nameWithType.vb: LiteDbSet(Of T).LiteDbSet
-- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.Any(System.String,System.String)
-  name: Any(String, String)
-  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_Any_System_String_System_String_
-  commentId: M:Unosquare.Labs.LiteLib.LiteDbSet`1.Any(System.String,System.String)
-  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.Any(System.String, System.String)
-  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).Any(System.String, System.String)
-  nameWithType: LiteDbSet<T>.Any(String, String)
-  nameWithType.vb: LiteDbSet(Of T).Any(String, String)
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.Any
+  name: Any()
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_Any
+  commentId: M:Unosquare.Labs.LiteLib.LiteDbSet`1.Any
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.Any()
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).Any()
+  nameWithType: LiteDbSet<T>.Any()
+  nameWithType.vb: LiteDbSet(Of T).Any()
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.Any(System.String,System.Object)
+  name: Any(String, Object)
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_Any_System_String_System_Object_
+  commentId: M:Unosquare.Labs.LiteLib.LiteDbSet`1.Any(System.String,System.Object)
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.Any(System.String, System.Object)
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).Any(System.String, System.Object)
+  nameWithType: LiteDbSet<T>.Any(String, Object)
+  nameWithType.vb: LiteDbSet(Of T).Any(String, Object)
 - uid: Unosquare.Labs.LiteLib.LiteDbSet`1.Any*
   name: Any
   href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_Any_
@@ -863,14 +871,22 @@ references:
   fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).Any
   nameWithType: LiteDbSet<T>.Any
   nameWithType.vb: LiteDbSet(Of T).Any
-- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.AnyAsync(System.String,System.String)
-  name: AnyAsync(String, String)
-  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_AnyAsync_System_String_System_String_
-  commentId: M:Unosquare.Labs.LiteLib.LiteDbSet`1.AnyAsync(System.String,System.String)
-  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.AnyAsync(System.String, System.String)
-  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).AnyAsync(System.String, System.String)
-  nameWithType: LiteDbSet<T>.AnyAsync(String, String)
-  nameWithType.vb: LiteDbSet(Of T).AnyAsync(String, String)
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.AnyAsync
+  name: AnyAsync()
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_AnyAsync
+  commentId: M:Unosquare.Labs.LiteLib.LiteDbSet`1.AnyAsync
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.AnyAsync()
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).AnyAsync()
+  nameWithType: LiteDbSet<T>.AnyAsync()
+  nameWithType.vb: LiteDbSet(Of T).AnyAsync()
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.AnyAsync(System.String,System.Object)
+  name: AnyAsync(String, Object)
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_AnyAsync_System_String_System_Object_
+  commentId: M:Unosquare.Labs.LiteLib.LiteDbSet`1.AnyAsync(System.String,System.Object)
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.AnyAsync(System.String, System.Object)
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).AnyAsync(System.String, System.Object)
+  nameWithType: LiteDbSet<T>.AnyAsync(String, Object)
+  nameWithType.vb: LiteDbSet(Of T).AnyAsync(String, Object)
 - uid: Unosquare.Labs.LiteLib.LiteDbSet`1.AnyAsync*
   name: AnyAsync
   href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_AnyAsync_
@@ -880,6 +896,23 @@ references:
   fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).AnyAsync
   nameWithType: LiteDbSet<T>.AnyAsync
   nameWithType.vb: LiteDbSet(Of T).AnyAsync
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.AnyDefinition
+  name: AnyDefinition
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_AnyDefinition
+  commentId: P:Unosquare.Labs.LiteLib.LiteDbSet`1.AnyDefinition
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.AnyDefinition
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).AnyDefinition
+  nameWithType: LiteDbSet<T>.AnyDefinition
+  nameWithType.vb: LiteDbSet(Of T).AnyDefinition
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.AnyDefinition*
+  name: AnyDefinition
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_AnyDefinition_
+  commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.AnyDefinition
+  isSpec: "True"
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.AnyDefinition
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).AnyDefinition
+  nameWithType: LiteDbSet<T>.AnyDefinition
+  nameWithType.vb: LiteDbSet(Of T).AnyDefinition
 - uid: Unosquare.Labs.LiteLib.LiteDbSet`1.Context
   name: Context
   href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_Context
@@ -905,6 +938,14 @@ references:
   fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).Count()
   nameWithType: LiteDbSet<T>.Count()
   nameWithType.vb: LiteDbSet(Of T).Count()
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.Count(System.String,System.Object)
+  name: Count(String, Object)
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_Count_System_String_System_Object_
+  commentId: M:Unosquare.Labs.LiteLib.LiteDbSet`1.Count(System.String,System.Object)
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.Count(System.String, System.Object)
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).Count(System.String, System.Object)
+  nameWithType: LiteDbSet<T>.Count(String, Object)
+  nameWithType.vb: LiteDbSet(Of T).Count(String, Object)
 - uid: Unosquare.Labs.LiteLib.LiteDbSet`1.Count*
   name: Count
   href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_Count_
@@ -922,6 +963,14 @@ references:
   fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).CountAsync()
   nameWithType: LiteDbSet<T>.CountAsync()
   nameWithType.vb: LiteDbSet(Of T).CountAsync()
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.CountAsync(System.String,System.Object)
+  name: CountAsync(String, Object)
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_CountAsync_System_String_System_Object_
+  commentId: M:Unosquare.Labs.LiteLib.LiteDbSet`1.CountAsync(System.String,System.Object)
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.CountAsync(System.String, System.Object)
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).CountAsync(System.String, System.Object)
+  nameWithType: LiteDbSet<T>.CountAsync(String, Object)
+  nameWithType.vb: LiteDbSet(Of T).CountAsync(String, Object)
 - uid: Unosquare.Labs.LiteLib.LiteDbSet`1.CountAsync*
   name: CountAsync
   href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_CountAsync_

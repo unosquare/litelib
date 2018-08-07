@@ -157,6 +157,33 @@
   </h3>
   
   
+  <a id="Unosquare_Labs_LiteLib_LiteDbSet_1_AnyDefinition_" data-uid="Unosquare.Labs.LiteLib.LiteDbSet`1.AnyDefinition*"></a>
+  <h4 id="Unosquare_Labs_LiteLib_LiteDbSet_1_AnyDefinition" data-uid="Unosquare.Labs.LiteLib.LiteDbSet`1.AnyDefinition">AnyDefinition</h4>
+  <div class="markdown level1 summary"><p>Gets or sets any definition.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string AnyDefinition { get; protected set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><p>Any definition.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
   <a id="Unosquare_Labs_LiteLib_LiteDbSet_1_Context_" data-uid="Unosquare.Labs.LiteLib.LiteDbSet`1.Context*"></a>
   <h4 id="Unosquare_Labs_LiteLib_LiteDbSet_1_Context" data-uid="Unosquare.Labs.LiteLib.LiteDbSet`1.Context">Context</h4>
   <div class="markdown level1 summary"><p>Gets or sets the parent set context.</p>
@@ -420,13 +447,40 @@
   
   
   <a id="Unosquare_Labs_LiteLib_LiteDbSet_1_Any_" data-uid="Unosquare.Labs.LiteLib.LiteDbSet`1.Any*"></a>
-  <h4 id="Unosquare_Labs_LiteLib_LiteDbSet_1_Any_System_String_System_String_" data-uid="Unosquare.Labs.LiteLib.LiteDbSet`1.Any(System.String,System.String)">Any(String, String)</h4>
+  <h4 id="Unosquare_Labs_LiteLib_LiteDbSet_1_Any" data-uid="Unosquare.Labs.LiteLib.LiteDbSet`1.Any">Any()</h4>
   <div class="markdown level1 summary"><p>Check if the row exist in the table.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool Any(string tableColumn, string record)</code></pre>
+    <pre><code class="lang-csharp hljs">public bool Any()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p><code>true</code> if the query contains data, otherwise <code>false</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Unosquare_Labs_LiteLib_LiteDbSet_1_Any_" data-uid="Unosquare.Labs.LiteLib.LiteDbSet`1.Any*"></a>
+  <h4 id="Unosquare_Labs_LiteLib_LiteDbSet_1_Any_System_String_System_Object_" data-uid="Unosquare.Labs.LiteLib.LiteDbSet`1.Any(System.String,System.Object)">Any(String, Object)</h4>
+  <div class="markdown level1 summary"><p>Check if the row exist in the table.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Any(string whereText, object whereParams = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -440,14 +494,14 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
-        <td><span class="parametername">tableColumn</span></td>
-        <td><p>The table column.</p>
+        <td><span class="parametername">whereText</span></td>
+        <td><p>The where text.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
-        <td><span class="parametername">record</span></td>
-        <td><p>The table record.</p>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></td>
+        <td><span class="parametername">whereParams</span></td>
+        <td><p>The where parameters.</p>
 </td>
       </tr>
     </tbody>
@@ -463,6 +517,33 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p><code>true</code> if the query contains data, otherwise <code>false</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Unosquare_Labs_LiteLib_LiteDbSet_1_AnyAsync_" data-uid="Unosquare.Labs.LiteLib.LiteDbSet`1.AnyAsync*"></a>
+  <h4 id="Unosquare_Labs_LiteLib_LiteDbSet_1_AnyAsync" data-uid="Unosquare.Labs.LiteLib.LiteDbSet`1.AnyAsync">AnyAsync()</h4>
+  <div class="markdown level1 summary"><p>Check asynchronous if the table contains data.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; AnyAsync()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a>&gt;</td>
         <td><p>A <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task&lt;TResult&gt;</a> representing the result of the asynchronous operation.</p>
 </td>
       </tr>
@@ -471,13 +552,13 @@
   
   
   <a id="Unosquare_Labs_LiteLib_LiteDbSet_1_AnyAsync_" data-uid="Unosquare.Labs.LiteLib.LiteDbSet`1.AnyAsync*"></a>
-  <h4 id="Unosquare_Labs_LiteLib_LiteDbSet_1_AnyAsync_System_String_System_String_" data-uid="Unosquare.Labs.LiteLib.LiteDbSet`1.AnyAsync(System.String,System.String)">AnyAsync(String, String)</h4>
+  <h4 id="Unosquare_Labs_LiteLib_LiteDbSet_1_AnyAsync_System_String_System_Object_" data-uid="Unosquare.Labs.LiteLib.LiteDbSet`1.AnyAsync(System.String,System.Object)">AnyAsync(String, Object)</h4>
   <div class="markdown level1 summary"><p>Check asynchronous if the row exist in the table.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; AnyAsync(string tableColumn, string record)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; AnyAsync(string whereText, object whereParams = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -491,14 +572,14 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
-        <td><span class="parametername">tableColumn</span></td>
-        <td><p>The table column.</p>
+        <td><span class="parametername">whereText</span></td>
+        <td><p>The where text.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
-        <td><span class="parametername">record</span></td>
-        <td><p>The table record.</p>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></td>
+        <td><span class="parametername">whereParams</span></td>
+        <td><p>The where parameters.</p>
 </td>
       </tr>
     </tbody>
@@ -548,6 +629,57 @@
   </table>
   
   
+  <a id="Unosquare_Labs_LiteLib_LiteDbSet_1_Count_" data-uid="Unosquare.Labs.LiteLib.LiteDbSet`1.Count*"></a>
+  <h4 id="Unosquare_Labs_LiteLib_LiteDbSet_1_Count_System_String_System_Object_" data-uid="Unosquare.Labs.LiteLib.LiteDbSet`1.Count(System.String,System.Object)">Count(String, Object)</h4>
+  <div class="markdown level1 summary"><p>Provides and asynchronous counterpart to the Count method.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Count(string whereText, object whereParams = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">whereText</span></td>
+        <td><p>The where text.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></td>
+        <td><span class="parametername">whereParams</span></td>
+        <td><p>The where parameters.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><p>The total number of rows.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
   <a id="Unosquare_Labs_LiteLib_LiteDbSet_1_CountAsync_" data-uid="Unosquare.Labs.LiteLib.LiteDbSet`1.CountAsync*"></a>
   <h4 id="Unosquare_Labs_LiteLib_LiteDbSet_1_CountAsync" data-uid="Unosquare.Labs.LiteLib.LiteDbSet`1.CountAsync">CountAsync()</h4>
   <div class="markdown level1 summary"><p>Provides and asynchronous counterpart to the Count method.</p>
@@ -557,6 +689,57 @@
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Task&lt;int&gt; CountAsync()</code></pre>
   </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>&gt;</td>
+        <td><p>A Task with the total number of rows.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Unosquare_Labs_LiteLib_LiteDbSet_1_CountAsync_" data-uid="Unosquare.Labs.LiteLib.LiteDbSet`1.CountAsync*"></a>
+  <h4 id="Unosquare_Labs_LiteLib_LiteDbSet_1_CountAsync_System_String_System_Object_" data-uid="Unosquare.Labs.LiteLib.LiteDbSet`1.CountAsync(System.String,System.Object)">CountAsync(String, Object)</h4>
+  <div class="markdown level1 summary"><p>Provides and asynchronous counterpart to the Count method.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;int&gt; CountAsync(string whereText, object whereParams = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">whereText</span></td>
+        <td><p>The where text.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></td>
+        <td><span class="parametername">whereParams</span></td>
+        <td><p>The where parameters.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -639,7 +822,7 @@
   <a id="Unosquare_Labs_LiteLib_LiteDbSet_1_Delete_" data-uid="Unosquare.Labs.LiteLib.LiteDbSet`1.Delete*"></a>
   <h4 id="Unosquare_Labs_LiteLib_LiteDbSet_1_Delete_System_String_System_Object_" data-uid="Unosquare.Labs.LiteLib.LiteDbSet`1.Delete(System.String,System.Object)">Delete(String, Object)</h4>
   <div class="markdown level1 summary"><p>Deletes the specified where text.
-Example whereText = &quot;X = @X&amp;quot; and whereParames = new { X = &quot;hello&quot; }</p>
+Example whereText = &quot;X = @X&amp;quot; and whereParames = new { X = &quot;hello&quot; }.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -1083,7 +1266,7 @@ Example whereText = &quot;X = @X&amp;quot; and whereParames = new { X = &quot;he
     <tbody>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;T&gt;</td>
-        <td><p>An Enumerable with generic type</p>
+        <td><p>An Enumerable with generic type.</p>
 </td>
       </tr>
     </tbody>
@@ -1324,7 +1507,7 @@ RowId must be set.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
-        <td><p>The number of rows updated</p>
+        <td><p>The number of rows updated.</p>
 </td>
       </tr>
     </tbody>
