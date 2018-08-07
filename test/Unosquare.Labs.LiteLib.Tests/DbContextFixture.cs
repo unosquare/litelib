@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unosquare.Labs.LiteLib.Tests.Database;
 using Unosquare.Labs.LiteLib.Tests.Helpers;
+using System.Reflection;
 
 #if MONO
 using Mono.Data.Sqlite;
@@ -21,6 +22,33 @@ namespace Unosquare.Labs.LiteLib.Tests
     [TestFixture]
     public class DbContextFixture
     {
+        public class TypeDefinitionTest : DbContextAsyncFixture
+        {
+            [Test]
+            public void TypeDefinition()
+            {
+                Assert.Throws<TargetInvocationException > (() =>
+                {
+                    var context = new TestDbContextWithOutProperties(nameof(TypeDefinition));
+                });
+            }
+
+            [Test]
+            public void TypeDefinition_CustomAttribute()
+            {
+                using (var context = new TestDbContext(nameof(TypeDefinition_CustomAttribute)))
+                {
+                    context.ExtraAttributes.Insert(new ExtraAttribute
+                    {
+                        UniqueId = "1",
+                        ExraName = "Extra name"
+                    });
+                    
+                    Assert.True(context.ExtraAttributes.Any());
+                }
+            }
+        }
+
         public class SelectTest : DbContextFixture
         {
             /// <summary>
@@ -319,7 +347,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                 {
                     var names = context.GetSetNames();
                     Assert.IsNotNull(names);
-                    Assert.AreEqual(names, new[] { nameof(context.Orders), nameof(context.Warehouses) });
+                    Assert.AreEqual(names, new[] { nameof(context.Orders), nameof(context.Warehouses), nameof(context.ExtraAttributes) });
 
                     var orders = context.Set<Order>();
                     var ordersByName = context.Set(typeof(Order));
