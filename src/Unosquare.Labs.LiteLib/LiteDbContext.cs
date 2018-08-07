@@ -338,6 +338,19 @@
         }
 
         /// <summary>
+        /// Check if the row exist in the table.
+        /// </summary>
+        /// <typeparam name="TEntity">The entity to evaluate</typeparam>
+        /// <param name="tableName">The table name</param>
+        /// <param name="tableRow">The table row</param>
+        /// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
+        public Task<bool> Any<TEntity>(string tableName, string tableRow)
+        {
+            var result = QueryAsync<TEntity>($"SELECT EXISTS(SELECT 1 FROM " + tableName + " WHERE " + tableRow + " = " + tableRow + " LIMIT 1");
+            return Task.FromResult(result != null);
+        }
+
+        /// <summary>
         /// Logs the SQL command being executed and its arguments.
         /// </summary>
         /// <param name="command">The command.</param>
