@@ -380,10 +380,10 @@
         }
 
         /// <summary>
-        /// Counts the total number of rows in the table
+        /// Counts the total number of rows in the table.
         /// </summary>
         /// <returns>
-        /// The total number of rows
+        /// The total number of rows.
         /// </returns>
         public int Count()
         {
@@ -393,16 +393,42 @@
         }
 
         /// <summary>
-        /// Provides and asynchronous counterpart to the Count method
+        /// Provides and asynchronous counterpart to the Count method.
         /// </summary>
         /// <returns>
-        /// A Task with the total number of rows
+        /// A Task with the total number of rows.
         /// </returns>
         public async Task<int> CountAsync()
         {
             var commandText = $"SELECT COUNT(*) FROM [{TableName}]";
             Context.LogSqlCommand(commandText);
             return await Context.Connection.ExecuteScalarAsync<int>(commandText);
+        }
+
+        /// <summary>
+        /// Check if the row exist in the table.
+        /// </summary>
+        /// <param name="tableColumn">The table column.</param>
+        /// <param name="record">The table record.</param>
+        /// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
+        public bool Any(string tableColumn, string record)
+        {
+            var commandText = $"SELECT EXISTS(SELECT 1 FROM '{TableName}' WHERE {tableColumn} = {record})";
+            Context.LogSqlCommand(commandText);
+            return Context.Connection.ExecuteScalar<bool>(commandText);
+        }
+
+        /// <summary>
+        /// Check asynchronous if the row exist in the table.
+        /// </summary>
+        /// <param name="tableColumn">The table column.</param>
+        /// <param name="record">The table record.</param>
+        /// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
+        public async Task<bool> AnyAsync(string tableColumn, string record)
+        {
+            var commandText = $"SELECT EXISTS(SELECT 1 FROM '{TableName}' WHERE {tableColumn} = '{record}')";
+            Context.LogSqlCommand(commandText);
+            return await Context.Connection.ExecuteScalarAsync<bool>(commandText);
         }
 
         /// <summary>
