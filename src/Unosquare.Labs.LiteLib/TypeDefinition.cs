@@ -11,6 +11,7 @@
 
     internal class TypeDefinition
     {
+        private const int MaxStringLength = 4096;
         private const BindingFlags PublicInstanceFlags = BindingFlags.Instance | BindingFlags.Public;
 
         private static readonly ConcurrentDictionary<Type, DefinitionCacheItem> DefinitionCache =
@@ -28,47 +29,31 @@
             }
 
             Definition = new DefinitionCacheItem();
+            ParseType(type);
+
+            DefinitionCache[type] = Definition;
+        }
+        
+        public DefinitionCacheItem Definition { get; }
+
+        private void ParseType(Type type)
+        {
             var indexBuilder = new List<string>();
 
             var properties = type.GetProperties(PublicInstanceFlags);
 
             // Start off with the table name
-            var tableName = type.Name;
+            Definition.TableName = type.Name;
             var tableAttribute = type.GetTypeInfo().GetCustomAttribute<TableAttribute>();
             if (tableAttribute != null)
-                tableName = tableAttribute.Name;
+                Definition.TableName = tableAttribute.Name;
 
-            _createBuilder.AppendLine($"CREATE TABLE IF NOT EXISTS [{tableName}] (");
+            _createBuilder.AppendLine($"CREATE TABLE IF NOT EXISTS [{Definition.TableName}] (");
             _createBuilder.AppendLine($"    [{nameof(ILiteModel.RowId)}] INTEGER PRIMARY KEY AUTOINCREMENT,");
 
             foreach (var property in properties)
             {
-                if (property.Name == nameof(ILiteModel.RowId) || property.CanWrite == false)
-                    continue;
-
-                // Skip if not mapped
-                var notMappedAttribute = property.GetCustomAttribute<NotMappedAttribute>();
-                if (notMappedAttribute != null)
-                    continue;
-
-                // Add to indexes if indexed attribute is ON
-                var indexedAttribute = property.GetCustomAttribute<LiteIndexAttribute>();
-                if (indexedAttribute != null)
-                {
-                    indexBuilder.Add(
-                        $"CREATE INDEX IF NOT EXISTS [IX_{tableName}_{property.Name}] ON [{tableName}] ([{property.Name}]);");
-                }
-
-                // Add to unique indexes if indexed attribute is ON
-                var uniqueIndexAttribute = property.GetCustomAttribute<LiteUniqueAttribute>();
-
-                if (uniqueIndexAttribute != null)
-                {
-                    indexBuilder.Add(
-                        $"CREATE UNIQUE INDEX IF NOT EXISTS [IX_{tableName}_{property.Name}] ON [{tableName}] ([{property.Name}]);");
-                }
-
-                GeneratePropertyInfo(property, _propertyNames);
+                ParseProperty(property, indexBuilder);
             }
 
             if (_propertyNames.Any() == false)
@@ -89,26 +74,52 @@
             var parameterColumnNames = string.Join(", ", _propertyNames.Select(p => $"@{p}").ToArray());
             var keyValueColumnNames = string.Join(", ", _propertyNames.Select(p => $"[{p}] = @{p}").ToArray());
 
-            Definition.TableName = tableName;
             Definition.TableDefinition = _createBuilder.ToString();
             Definition.PropertyNames = _propertyNames.ToArray();
 
-            Definition.SelectDefinition = $"SELECT [{nameof(ILiteModel.RowId)}], {escapedColumnNames} FROM [{tableName}]";
+            Definition.SelectDefinition =
+                $"SELECT [{nameof(ILiteModel.RowId)}], {escapedColumnNames} FROM [{Definition.TableName}]";
             Definition.InsertDefinition =
-                $"INSERT INTO [{tableName}] ({escapedColumnNames}) VALUES ({parameterColumnNames}); SELECT last_insert_rowid();";
+                $"INSERT INTO [{Definition.TableName}] ({escapedColumnNames}) VALUES ({parameterColumnNames}); SELECT last_insert_rowid();";
             Definition.UpdateDefinition =
-                $"UPDATE [{tableName}] SET {keyValueColumnNames}  WHERE [{nameof(ILiteModel.RowId)}] = @{nameof(ILiteModel.RowId)}";
+                $"UPDATE [{Definition.TableName}] SET {keyValueColumnNames}  WHERE [{nameof(ILiteModel.RowId)}] = @{nameof(ILiteModel.RowId)}";
             Definition.DeleteDefinition =
-                $"DELETE FROM [{tableName}] WHERE [{nameof(ILiteModel.RowId)}] = @{nameof(ILiteModel.RowId)}";
-            Definition.DeleteDefinitionWhere = $"DELETE FROM [{tableName}]";
-            Definition.AnyDefinition = $"SELECT EXISTS(SELECT 1 FROM '{tableName}')";
-
-            DefinitionCache[type] = Definition;
+                $"DELETE FROM [{Definition.TableName}] WHERE [{nameof(ILiteModel.RowId)}] = @{nameof(ILiteModel.RowId)}";
+            Definition.DeleteDefinitionWhere = $"DELETE FROM [{Definition.TableName}]";
+            Definition.AnyDefinition = $"SELECT EXISTS(SELECT 1 FROM '{Definition.TableName}')";
         }
 
-        public DefinitionCacheItem Definition { get; }
+        private void ParseProperty(PropertyInfo property, List<string> indexBuilder)
+        {
+            if (property.Name == nameof(ILiteModel.RowId) || property.CanWrite == false)
+                return;
 
-        private void GeneratePropertyInfo(PropertyInfo property, List<string> propertyNames)
+            // Skip if not mapped
+            var notMappedAttribute = property.GetCustomAttribute<NotMappedAttribute>();
+            if (notMappedAttribute != null)
+                return;
+
+            // Add to indexes if indexed attribute is ON
+            var indexedAttribute = property.GetCustomAttribute<LiteIndexAttribute>();
+            if (indexedAttribute != null)
+            {
+                indexBuilder.Add(
+                    $"CREATE INDEX IF NOT EXISTS [IX_{Definition.TableName}_{property.Name}] ON [{Definition.TableName}] ([{property.Name}]);");
+            }
+
+            // Add to unique indexes if indexed attribute is ON
+            var uniqueIndexAttribute = property.GetCustomAttribute<LiteUniqueAttribute>();
+
+            if (uniqueIndexAttribute != null)
+            {
+                indexBuilder.Add(
+                    $"CREATE UNIQUE INDEX IF NOT EXISTS [IX_{Definition.TableName}_{property.Name}] ON [{Definition.TableName}] ([{property.Name}]);");
+            }
+
+            GeneratePropertyInfo(property);
+        }
+
+        private void GeneratePropertyInfo(PropertyInfo property)
         {
             var isValidProperty = false;
             var propertyType = property.PropertyType;
@@ -121,20 +132,13 @@
             {
                 isValidProperty = true;
 
-                var stringLength = 4096;
-                {
-                    var stringLengthAttribute = property.GetCustomAttribute<StringLengthAttribute>();
-
-                    if (stringLengthAttribute != null)
-                    {
-                        stringLength = stringLengthAttribute.MaximumLength;
-                    }
-                }
+                var stringLength = property.GetCustomAttribute<StringLengthAttribute>()?.MaximumLength ?? MaxStringLength;
 
                 isNullable = property.GetCustomAttribute<RequiredAttribute>() == null;
 
                 nullStatement = isNullable ? "NULL" : "NOT NULL";
-                if (stringLength != 4096)
+
+                if (stringLength != MaxStringLength)
                 {
                     var checkLength = $"length({property.Name})<={stringLength}";
                     _createBuilder.AppendLine(
@@ -159,7 +163,7 @@
 
             if (isValidProperty)
             {
-                propertyNames.Add(property.Name);
+                _propertyNames.Add(property.Name);
             }
         }
     }
