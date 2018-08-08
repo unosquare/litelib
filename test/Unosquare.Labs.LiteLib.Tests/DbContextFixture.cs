@@ -21,9 +21,9 @@
             public void TypeDefinition()
             {
                 Assert.Throws<TargetInvocationException>(() =>
-              {
-                  var context = new TestDbContextWithOutProperties(nameof(TypeDefinition));
-              });
+                {
+                    var context = new TestDbContextWithOutProperties(nameof(TypeDefinition));
+                });
             }
 
             [Test]
@@ -79,7 +79,7 @@
                         context.Orders.Insert(item);
                     }
 
-                    var entities = context.Orders.Select("CustomerName = @CustomerName", new { CustomerName = "John" });
+                    var entities = context.Orders.Select("CustomerName = @CustomerName", new {CustomerName = "John"});
                     foreach (var item in entities)
                     {
                         Assert.AreEqual("John", item.CustomerName);
@@ -99,7 +99,7 @@
 
                     Assert.Throws<SqliteException>(() =>
                     {
-                        context.Orders.Select("Customer = @CustomerName", new { CustomerName = "John" });
+                        context.Orders.Select("Customer = @CustomerName", new {CustomerName = "John"});
                     });
                 }
             }
@@ -136,6 +136,7 @@
                     {
                         context.Orders.Delete(item);
                     }
+
                     Assert.AreEqual(0, context.Orders.Count());
                 }
             }
@@ -151,7 +152,7 @@
                     }
 
                     var deletedData =
-                        context.Orders.Delete("CustomerName = @CustomerName", new { CustomerName = "Peter" });
+                        context.Orders.Delete("CustomerName = @CustomerName", new {CustomerName = "Peter"});
                     Assert.AreEqual(deletedData, TestHelper.DataSource.Count(x => x.CustomerName == "Peter"));
                 }
             }
@@ -168,7 +169,7 @@
 
                     Assert.Throws<SqliteException>(() =>
                     {
-                        context.Orders.Delete("Customer = @CustomerName", new { CustomerName = "Peter" });
+                        context.Orders.Delete("Customer = @CustomerName", new {CustomerName = "Peter"});
                     });
                 }
             }
@@ -268,7 +269,7 @@
                         context.Orders.Insert(item);
                     }
 
-                    var list = context.Orders.Select("CustomerName = @CustomerName", new { CustomerName = "John" });
+                    var list = context.Orders.Select("CustomerName = @CustomerName", new {CustomerName = "John"});
                     foreach (var item in list)
                     {
                         item.ShipperCity = "Atlanta";
@@ -276,7 +277,7 @@
                     }
 
                     var updatedList =
-                        context.Orders.Select("ShipperCity = @ShipperCity", new { ShipperCity = "Atlanta" });
+                        context.Orders.Select("ShipperCity = @ShipperCity", new {ShipperCity = "Atlanta"});
                     foreach (var item in updatedList)
                     {
                         Assert.AreEqual("Atlanta", item.ShipperCity);
@@ -332,7 +333,7 @@
                 {
                     var names = context.GetSetNames();
                     Assert.IsNotNull(names);
-                    Assert.AreEqual(names, new[] { nameof(context.Orders), nameof(context.Warehouses) });
+                    Assert.AreEqual(names, new[] {nameof(context.Orders), nameof(context.Warehouses)});
 
                     var orders = context.Set<Order>();
                     var ordersByName = context.Set(typeof(Order));
@@ -424,7 +425,7 @@
                     }
 
                     var updatedItems =
-                        context.Orders.Select("ShipperCity = @ShipperCity", new { ShipperCity = "Atlanta" });
+                        context.Orders.Select("ShipperCity = @ShipperCity", new {ShipperCity = "Atlanta"});
                     Assert.AreEqual(TestHelper.DataSource.Length, updatedItems.Count());
                 }
             }
@@ -449,8 +450,8 @@
 
                     var selectedData =
                         context.Query<Order>($"{context.Orders.SelectDefinition} WHERE CustomerName = @CustomerName",
-                            new Order { CustomerName = "Margarita" });
-                    
+                            new Order {CustomerName = "Margarita"});
+
                     foreach (var item in selectedData)
                     {
                         Assert.AreEqual(item.CustomerName, "Margarita");
@@ -481,7 +482,7 @@
                     {
                         context.Query<Order>(
                             $"{context.Orders.UpdateDefinition} WHERE CustomerName = @CustomerName",
-                            new Order { CustomerName = "Margarita" });
+                            new Order {CustomerName = "Margarita"});
                     });
                 }
             }
@@ -513,7 +514,8 @@
                         context.Orders.Insert(item);
                     }
 
-                    Assert.AreEqual(4, context.Orders.Count("CustomerName = @CustomerName", new { CustomerName = "John" }));
+                    Assert.AreEqual(4,
+                        context.Orders.Count("CustomerName = @CustomerName", new {CustomerName = "John"}));
                 }
             }
         }
@@ -546,7 +548,7 @@
                         context.Orders.Insert(item);
                     }
 
-                    var result = context.Orders.Any("CustomerName = @CustomerName", new { CustomerName = "John" });
+                    var result = context.Orders.Any("CustomerName = @CustomerName", new {CustomerName = "John"});
 
                     Assert.IsTrue(result);
                 }

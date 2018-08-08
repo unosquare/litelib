@@ -57,7 +57,7 @@
             }
 
             if (_propertyNames.Any() == false)
-                throw new Exception("Invalid DbSet, you need at least one property to bind");
+                throw new InvalidOperationException("Invalid DbSet, you need at least one property to bind");
 
             // trim out the extra comma
             _createBuilder.Remove(_createBuilder.Length - Environment.NewLine.Length - 1, Environment.NewLine.Length + 1);
