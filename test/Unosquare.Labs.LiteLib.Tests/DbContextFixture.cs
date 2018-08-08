@@ -1,26 +1,54 @@
-﻿using System;
-using NUnit.Framework;
-using System.Collections.Generic;
-using System.Linq;
-using Unosquare.Labs.LiteLib.Tests.Database;
-using Unosquare.Labs.LiteLib.Tests.Helpers;
-
-#if MONO
-using Mono.Data.Sqlite;
-#elif NET46
-using System.Data.SQLite;
-#else
-using Microsoft.Data.Sqlite;
-#endif
-
-namespace Unosquare.Labs.LiteLib.Tests
+﻿namespace Unosquare.Labs.LiteLib.Tests
 {
+    using Database;
+    using Helpers;
+    using Microsoft.Data.Sqlite;
+    using NUnit.Framework;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
+
     /// <summary>
     /// A TestFixture to test the included methods in LiteDbSet
     /// </summary>
     [TestFixture]
     public class DbContextFixture
     {
+        public class TypeDefinitionTest : DbContextAsyncFixture
+        {
+            [Test]
+            public void TypeDefinition()
+            {
+                Assert.Throws<TargetInvocationException>(() =>
+                {
+                    var context = new TestDbContextWithOutProperties(nameof(TypeDefinition));
+                });
+            }
+
+            [Test]
+            public void TypeDefinition_CustomAttribute()
+            {
+                using (var context = new TestDbContext(nameof(TypeDefinition_CustomAttribute)))
+                {
+                    var name = context.Warehouses.TableName;
+
+                    Assert.AreEqual("CustomWarehouse", name);
+                }
+            }
+
+            [Test]
+            public void TypeDefinition_NotMappedAttribute()
+            {
+                using (var context = new TestDbContext(nameof(TypeDefinition_NotMappedAttribute)))
+                {
+                    var properties = context.Warehouses.PropertyNames;
+
+                    Assert.AreEqual(3, properties.Length);
+                }
+            }
+        }
+
         public class SelectTest : DbContextFixture
         {
             /// <summary>
@@ -51,7 +79,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                         context.Orders.Insert(item);
                     }
 
-                    var entities = context.Orders.Select("CustomerName = @CustomerName", new { CustomerName = "John" });
+                    var entities = context.Orders.Select("CustomerName = @CustomerName", new {CustomerName = "John"});
                     foreach (var item in entities)
                     {
                         Assert.AreEqual("John", item.CustomerName);
@@ -68,13 +96,10 @@ namespace Unosquare.Labs.LiteLib.Tests
                     {
                         context.Orders.Insert(item);
                     }
-#if NET46
-                    Assert.Throws<SQLiteException>(() =>
-#else
+
                     Assert.Throws<SqliteException>(() =>
-#endif
                     {
-                        context.Orders.Select("Customer = @CustomerName", new { CustomerName = "John" });
+                        context.Orders.Select("Customer = @CustomerName", new {CustomerName = "John"});
                     });
                 }
             }
@@ -111,6 +136,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                     {
                         context.Orders.Delete(item);
                     }
+
                     Assert.AreEqual(0, context.Orders.Count());
                 }
             }
@@ -126,7 +152,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                     }
 
                     var deletedData =
-                        context.Orders.Delete("CustomerName = @CustomerName", new { CustomerName = "Peter" });
+                        context.Orders.Delete("CustomerName = @CustomerName", new {CustomerName = "Peter"});
                     Assert.AreEqual(deletedData, TestHelper.DataSource.Count(x => x.CustomerName == "Peter"));
                 }
             }
@@ -141,13 +167,9 @@ namespace Unosquare.Labs.LiteLib.Tests
                         context.Orders.Insert(item);
                     }
 
-#if NET46
-                    Assert.Throws<SQLiteException>(() =>
-#else
                     Assert.Throws<SqliteException>(() =>
-#endif
                     {
-                        context.Orders.Delete("Customer = @CustomerName", new { CustomerName = "Peter" });
+                        context.Orders.Delete("Customer = @CustomerName", new {CustomerName = "Peter"});
                     });
                 }
             }
@@ -177,11 +199,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                         context.Orders.Insert(item);
                     }
 
-#if NET46
-                    Assert.Throws<SQLiteException>(() =>
-#else
                     Assert.Throws<SqliteException>(() =>
-#endif
                     {
                         var newOrder = new Order
                         {
@@ -200,11 +218,7 @@ namespace Unosquare.Labs.LiteLib.Tests
             {
                 using (var context = new TestDbContext(nameof(InsertingWithOutOfRangeString_ThrowsSqliteException)))
                 {
-#if NET46
-                    Assert.Throws<SQLiteException>(() =>
-#else
                     Assert.Throws<SqliteException>(() =>
-#endif
                     {
                         context.Orders.Insert(new Order
                         {
@@ -255,7 +269,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                         context.Orders.Insert(item);
                     }
 
-                    var list = context.Orders.Select("CustomerName = @CustomerName", new { CustomerName = "John" });
+                    var list = context.Orders.Select("CustomerName = @CustomerName", new {CustomerName = "John"});
                     foreach (var item in list)
                     {
                         item.ShipperCity = "Atlanta";
@@ -263,7 +277,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                     }
 
                     var updatedList =
-                        context.Orders.Select("ShipperCity = @ShipperCity", new { ShipperCity = "Atlanta" });
+                        context.Orders.Select("ShipperCity = @ShipperCity", new {ShipperCity = "Atlanta"});
                     foreach (var item in updatedList)
                     {
                         Assert.AreEqual("Atlanta", item.ShipperCity);
@@ -319,7 +333,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                 {
                     var names = context.GetSetNames();
                     Assert.IsNotNull(names);
-                    Assert.AreEqual(names, new[] { nameof(context.Orders), nameof(context.Warehouses) });
+                    Assert.AreEqual(names, new[] {nameof(context.Orders), nameof(context.Warehouses)});
 
                     var orders = context.Set<Order>();
                     var ordersByName = context.Set(typeof(Order));
@@ -409,8 +423,9 @@ namespace Unosquare.Labs.LiteLib.Tests
                         item.ShipperCity = "Atlanta";
                         context.Update(item);
                     }
+
                     var updatedItems =
-                        context.Orders.Select("ShipperCity = @ShipperCity", new { ShipperCity = "Atlanta" });
+                        context.Orders.Select("ShipperCity = @ShipperCity", new {ShipperCity = "Atlanta"});
                     Assert.AreEqual(TestHelper.DataSource.Length, updatedItems.Count());
                 }
             }
@@ -435,7 +450,7 @@ namespace Unosquare.Labs.LiteLib.Tests
 
                     var selectedData =
                         context.Query<Order>($"{context.Orders.SelectDefinition} WHERE CustomerName = @CustomerName",
-                            new Order { CustomerName = "Margarita" });
+                            new Order {CustomerName = "Margarita"});
 
                     foreach (var item in selectedData)
                     {
@@ -467,13 +482,13 @@ namespace Unosquare.Labs.LiteLib.Tests
                     {
                         context.Query<Order>(
                             $"{context.Orders.UpdateDefinition} WHERE CustomerName = @CustomerName",
-                            new Order { CustomerName = "Margarita" });
+                            new Order {CustomerName = "Margarita"});
                     });
                 }
             }
         }
 
-        public class CountAsync : DbContextFixture
+        public class Count : DbContextFixture
         {
             [Test]
             public void CountingData()
@@ -486,6 +501,67 @@ namespace Unosquare.Labs.LiteLib.Tests
                     }
 
                     Assert.AreEqual(12, context.Orders.Count());
+                }
+            }
+
+            [Test]
+            public void CountingDataWithParams()
+            {
+                using (var context = new TestDbContext(nameof(CountingDataWithParams)))
+                {
+                    foreach (var item in TestHelper.DataSource)
+                    {
+                        context.Orders.Insert(item);
+                    }
+
+                    Assert.AreEqual(4,
+                        context.Orders.Count("CustomerName = @CustomerName", new {CustomerName = "John"}));
+                }
+            }
+        }
+
+        public class AnyTest : DbContextAsyncFixture
+        {
+            [Test]
+            public void AnyMethod_ShouldPass()
+            {
+                using (var context = new TestDbContext(nameof(AnyMethod_ShouldPass)))
+                {
+                    foreach (var item in TestHelper.DataSource)
+                    {
+                        context.Orders.Insert(item);
+                    }
+
+                    var result = context.Orders.Any();
+
+                    Assert.IsTrue(result);
+                }
+            }
+
+            [Test]
+            public void AnyMethodWithParams_ShouldPass()
+            {
+                using (var context = new TestDbContext(nameof(AnyMethodWithParams_ShouldPass)))
+                {
+                    foreach (var item in TestHelper.DataSource)
+                    {
+                        context.Orders.Insert(item);
+                    }
+
+                    var result = context.Orders.Any("CustomerName = @CustomerName", new {CustomerName = "John"});
+
+                    Assert.IsTrue(result);
+                }
+            }
+
+            [Test]
+            public void AnyMethodWithParams_ShouldFail()
+            {
+                using (var context = new TestDbContext(nameof(AnyMethodWithParams_ShouldFail)))
+                {
+                    var result = context.Orders.Any("CustomerName", "Fail");
+
+                    Assert.IsFalse(result);
                 }
             }
         }

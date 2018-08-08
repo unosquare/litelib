@@ -9,7 +9,7 @@
     <PackageId>LiteLib</PackageId>
     <DebugType>Full</DebugType>
     <CodeAnalysisRuleSet>..\..\StyleCop.Analyzers.ruleset</CodeAnalysisRuleSet>
-    <Version>0.16.1</Version>
+    <Version>0.17.0</Version>
     <Authors>Unosquare</Authors>
     <Company>Unosquare</Company>
     <Copyright>Copyright (c) 2016-2018 Unosquare</Copyright>
@@ -29,7 +29,7 @@
     </PackageReference>
     <PackageReference Include="Dapper" Version="1.50.5" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
-    <PackageReference Include="Unosquare.Swan.Lite" Version="0.32.1" />
+    <PackageReference Include="Unosquare.Swan.Lite" Version="0.33.3" />
     <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="2.1.0" />
   </ItemGroup>
 </Project>

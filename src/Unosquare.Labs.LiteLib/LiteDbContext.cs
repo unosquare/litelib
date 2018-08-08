@@ -14,13 +14,7 @@
     using System.Threading.Tasks;
     using Swan;
     using Swan.Reflection;
-#if MONO
-    using Mono.Data.Sqlite;
-#elif NET46
-    using System.Data.SQLite;
-#else
     using Microsoft.Data.Sqlite;
-#endif
 
     /// <summary>
     /// A base class containing all the functionality to perform data operations on Entity Sets.
@@ -28,8 +22,6 @@
     /// <seealso cref="System.IDisposable" />
     public abstract class LiteDbContext : IDisposable
     {
-        #region Private Declarations
-
         private static readonly ConcurrentDictionary<Guid, LiteDbContext> Intances =
             new ConcurrentDictionary<Guid, LiteDbContext>();
 
@@ -40,11 +32,7 @@
         private readonly Type _contextType;
 
         private bool _isDisposing; // To detect redundant calls
-
-        #endregion Private Declarations
-
-        #region Constructor
-
+        
         /// <summary>
         /// Initializes a new instance of the <see cref="LiteDbContext" /> class.
         /// </summary>
@@ -58,18 +46,12 @@
 
             databaseFilePath = Path.GetFullPath(databaseFilePath);
             var databaseExists = File.Exists(databaseFilePath);
-#if MONO
-            Connection = new SqliteConnection($"URI=file:{databaseFilePath}");
-#elif NET46
-            Connection = new SQLiteConnection($"URI=file:{databaseFilePath}");
-#else
             var builder = new SqliteConnectionStringBuilder
             {
-                DataSource = databaseFilePath
+                DataSource = databaseFilePath,
             };
 
             Connection = new SqliteConnection(builder.ToString());
-#endif
             Connection.Open();
 
             if (databaseExists == false)
@@ -82,18 +64,12 @@
             UniqueId = Guid.NewGuid();
             Intances[UniqueId] = this;
         }
-
-        #endregion Constructor
-
-        #region Events
-
+        
         /// <summary>
         /// Occurs when [on database created].
         /// </summary>
         public event EventHandler OnDatabaseCreated = (s, e) => { };
-
-        #endregion Events
-
+        
         #region Properties
 
         /// <summary>
@@ -211,7 +187,7 @@
         /// <param name="set">The set.</param>
         /// <param name="whereText">The where text.</param>
         /// <param name="whereParams">The where parameters.</param>
-        /// <returns>A Task with a enumerable of type of the entity</returns>
+        /// <returns>A Task with a enumerable of type of the entity.</returns>
         public Task<IEnumerable<TEntity>> SelectAsync<TEntity>(
             ILiteDbSet set,
             string whereText,
@@ -227,7 +203,7 @@
         /// <param name="commandText">The command text.</param>
         /// <param name="whereParams">The where parameters.</param>
         /// <returns>
-        /// An enumerable of the type of the entity
+        /// An enumerable of the type of the entity.
         /// </returns>
         public IEnumerable<TEntity> Query<TEntity>(string commandText, object whereParams = null)
         {
@@ -269,7 +245,7 @@
         /// Inserts the asynchronous without triggering events.
         /// </summary>
         /// <param name="entity">The entity.</param>
-        /// <returns>A Task with the total number of rows inserted</returns>
+        /// <returns>A Task with the total number of rows inserted.</returns>
         public async Task<int> InsertAsync(object entity)
         {
             var set = Set(entity.GetType());
@@ -285,7 +261,7 @@
         /// Deletes the specified entity without triggering events.
         /// </summary>
         /// <param name="entity">The entity.</param>
-        /// <returns>The affected rows count</returns>
+        /// <returns>The affected rows count.</returns>
         public int Delete(object entity)
         {
             var set = Set(entity.GetType());
@@ -336,6 +312,18 @@
 
             return Connection.ExecuteAsync(set.UpdateDefinition, entity);
         }
+        
+        internal T ExecuteScalar<T>(string commandText, object whereParams = null)
+        {
+            LogSqlCommand(commandText);
+            return Connection.ExecuteScalar<T>(commandText, whereParams);
+        }
+
+        internal Task<T> ExecuteScalarAsync<T>(string commandText, object whereParams = null)
+        {
+            LogSqlCommand(commandText);
+            return Connection.ExecuteScalarAsync<T>(commandText, whereParams);
+        }
 
         /// <summary>
         /// Logs the SQL command being executed and its arguments.
@@ -354,7 +342,8 @@
         /// </summary>
         private void LoadEntitySets()
         {
-            var contextDbSetProperties = PropertyInfoCache.Retrieve(GetType(), () => GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance)
+            var contextDbSetProperties = PropertyInfoCache
+                .Retrieve(GetType(), () => GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance)
                 .Where(
                     p =>
                         p.PropertyType.GetTypeInfo().IsGenericType &&
@@ -416,7 +405,7 @@
 
             if (disposing)
             {
-                Intances.TryRemove(UniqueId, out var _);
+                Intances.TryRemove(UniqueId, out _);
                 Connection.Close();
                 Connection.Dispose();
                 Connection = null;
@@ -427,10 +416,7 @@
         }
 
         /// <inheritdoc />
-        public void Dispose()
-        {
-            Dispose(true);
-        }
+        public void Dispose() => Dispose(true);
 
         #endregion IDisposable Support
     }
