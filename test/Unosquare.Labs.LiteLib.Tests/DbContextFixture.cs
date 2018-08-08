@@ -32,6 +32,28 @@ namespace Unosquare.Labs.LiteLib.Tests
                   var context = new TestDbContextWithOutProperties(nameof(TypeDefinition));
               });
             }
+
+            [Test]
+            public void TypeDefinition_CustomAttribute()
+            {
+                using (var context = new TestDbContext(nameof(TypeDefinition_CustomAttribute)))
+                {
+                    var name = context.Warehouses.TableName;
+
+                    Assert.AreEqual("CustomWarehouse", name);
+                }
+            }
+
+            [Test]
+            public void TypeDefinition_NotMappedAttribute()
+            {
+                using (var context = new TestDbContext(nameof(TypeDefinition_NotMappedAttribute)))
+                {
+                    var properties = context.Warehouses.PropertyNames;
+
+                    Assert.AreEqual(3, properties.Length);
+                }
+            }
         }
 
         public class SelectTest : DbContextFixture
