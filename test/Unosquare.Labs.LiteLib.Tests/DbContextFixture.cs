@@ -27,25 +27,10 @@ namespace Unosquare.Labs.LiteLib.Tests
             [Test]
             public void TypeDefinition()
             {
-                Assert.Throws<TargetInvocationException > (() =>
-                {
-                    var context = new TestDbContextWithOutProperties(nameof(TypeDefinition));
-                });
-            }
-
-            [Test]
-            public void TypeDefinition_CustomAttribute()
-            {
-                using (var context = new TestDbContext(nameof(TypeDefinition_CustomAttribute)))
-                {
-                    context.ExtraAttributes.Insert(new ExtraAttribute
-                    {
-                        UniqueId = "1",
-                        ExraName = "Extra name"
-                    });
-                    
-                    Assert.True(context.ExtraAttributes.Any());
-                }
+                Assert.Throws<TargetInvocationException>(() =>
+              {
+                  var context = new TestDbContextWithOutProperties(nameof(TypeDefinition));
+              });
             }
         }
 
@@ -347,7 +332,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                 {
                     var names = context.GetSetNames();
                     Assert.IsNotNull(names);
-                    Assert.AreEqual(names, new[] { nameof(context.Orders), nameof(context.Warehouses), nameof(context.ExtraAttributes) });
+                    Assert.AreEqual(names, new[] { nameof(context.Orders), nameof(context.Warehouses) });
 
                     var orders = context.Set<Order>();
                     var ordersByName = context.Set(typeof(Order));
