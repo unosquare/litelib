@@ -1,21 +1,14 @@
-﻿using System;
-using NUnit.Framework;
-using System.Collections.Generic;
-using System.Linq;
-using Unosquare.Labs.LiteLib.Tests.Database;
-using Unosquare.Labs.LiteLib.Tests.Helpers;
-using System.Reflection;
-
-#if MONO
-using Mono.Data.Sqlite;
-#elif NET46
-using System.Data.SQLite;
-#else
-using Microsoft.Data.Sqlite;
-#endif
-
-namespace Unosquare.Labs.LiteLib.Tests
+﻿namespace Unosquare.Labs.LiteLib.Tests
 {
+    using Database;
+    using Helpers;
+    using Microsoft.Data.Sqlite;
+    using NUnit.Framework;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
+
     /// <summary>
     /// A TestFixture to test the included methods in LiteDbSet
     /// </summary>
@@ -103,11 +96,8 @@ namespace Unosquare.Labs.LiteLib.Tests
                     {
                         context.Orders.Insert(item);
                     }
-#if NET46
-                    Assert.Throws<SQLiteException>(() =>
-#else
+
                     Assert.Throws<SqliteException>(() =>
-#endif
                     {
                         context.Orders.Select("Customer = @CustomerName", new { CustomerName = "John" });
                     });
@@ -176,11 +166,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                         context.Orders.Insert(item);
                     }
 
-#if NET46
-                    Assert.Throws<SQLiteException>(() =>
-#else
                     Assert.Throws<SqliteException>(() =>
-#endif
                     {
                         context.Orders.Delete("Customer = @CustomerName", new { CustomerName = "Peter" });
                     });
@@ -212,11 +198,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                         context.Orders.Insert(item);
                     }
 
-#if NET46
-                    Assert.Throws<SQLiteException>(() =>
-#else
                     Assert.Throws<SqliteException>(() =>
-#endif
                     {
                         var newOrder = new Order
                         {
@@ -235,11 +217,7 @@ namespace Unosquare.Labs.LiteLib.Tests
             {
                 using (var context = new TestDbContext(nameof(InsertingWithOutOfRangeString_ThrowsSqliteException)))
                 {
-#if NET46
-                    Assert.Throws<SQLiteException>(() =>
-#else
                     Assert.Throws<SqliteException>(() =>
-#endif
                     {
                         context.Orders.Insert(new Order
                         {
@@ -444,6 +422,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                         item.ShipperCity = "Atlanta";
                         context.Update(item);
                     }
+
                     var updatedItems =
                         context.Orders.Select("ShipperCity = @ShipperCity", new { ShipperCity = "Atlanta" });
                     Assert.AreEqual(TestHelper.DataSource.Length, updatedItems.Count());
