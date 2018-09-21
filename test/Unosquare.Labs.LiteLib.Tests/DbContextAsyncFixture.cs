@@ -5,7 +5,9 @@
     using System.Threading.Tasks;
     using Database;
     using Helpers;
+#if !NET452
     using Microsoft.Data.Sqlite;
+#endif
 
     /// <summary>
     /// A TestFixture to test the included async methods in LiteDbSet
@@ -164,8 +166,11 @@
                     {
                         await context.Orders.InsertAsync(item);
                     }
-
+#if NET452
+                    Assert.ThrowsAsync<Mono.Data.Sqlite.SqliteException>(async () =>
+#else
                     Assert.ThrowsAsync<SqliteException>(async () =>
+#endif
                     {
                         var newOrder = new Order
                         {
@@ -183,7 +188,11 @@
             [Test]
             public void InsertAsyncWithOutOfRangeString_ThrowsSqliteException()
             {
-                Assert.ThrowsAsync<SqliteException>(async () =>
+#if NET452
+                Assert.ThrowsAsync<Mono.Data.Sqlite.SqliteException>(async () =>
+#else
+                    Assert.ThrowsAsync<SqliteException>(async () =>
+#endif
                 {
                     using (var context =
                         new TestDbContext(nameof(InsertAsyncWithOutOfRangeString_ThrowsSqliteException)))
@@ -236,14 +245,14 @@
             [Test]
             public async Task AsyncSelectSingleData()
             {
-                using (var cotext = new TestDbContext(nameof(AsyncSelectSingleData)))
+                using (var context = new TestDbContext(nameof(AsyncSelectSingleData)))
                 {
                     foreach (var item in TestHelper.DataSource)
                     {
-                        await cotext.Orders.InsertAsync(item);
+                        await context.Orders.InsertAsync(item);
                     }
 
-                    var singleSelect = await cotext.Orders.SingleAsync(3);
+                    var singleSelect = await context.Orders.SingleAsync(3);
                     Assert.AreEqual("Margarita", singleSelect.CustomerName);
                 }
             }
@@ -251,17 +260,17 @@
             [Test]
             public async Task SelectingSingleDataWithIncorrectId_ReturnsNull()
             {
-                using (var cotext = new TestDbContext(nameof(SelectingSingleDataWithIncorrectId_ReturnsNull)))
+                using (var context = new TestDbContext(nameof(SelectingSingleDataWithIncorrectId_ReturnsNull)))
                 {
                     var k = 0;
 
                     foreach (var item in TestHelper.DataSource)
                     {
                         item.UniqueId = (k++).ToString();
-                        await cotext.Orders.InsertAsync(item);
+                        await context.Orders.InsertAsync(item);
                     }
 
-                    var singleSelect = await cotext.Orders.SingleAsync(50);
+                    var singleSelect = await context.Orders.SingleAsync(50);
                     Assert.IsNull(singleSelect);
                 }
             }
@@ -270,9 +279,9 @@
         public class SetTestAsync : DbContextAsyncFixture
         {
             [Test]
-            public async Task AsyncInsertFromSetname()
+            public async Task AsyncInsertFromSetName()
             {
-                using (var context = new TestDbContext(nameof(AsyncInsertFromSetname)))
+                using (var context = new TestDbContext(nameof(AsyncInsertFromSetName)))
                 {
                     foreach (var item in TestHelper.DataSource)
                     {
@@ -284,9 +293,9 @@
             }
 
             [Test]
-            public async Task AsyncDeleteFromSetname()
+            public async Task AsyncDeleteFromSetName()
             {
-                using (var context = new TestDbContext(nameof(AsyncDeleteFromSetname)))
+                using (var context = new TestDbContext(nameof(AsyncDeleteFromSetName)))
                 {
                     foreach (var item in TestHelper.DataSource)
                     {
@@ -305,9 +314,9 @@
             }
 
             [Test]
-            public async Task AsyncUpdateFromSetname()
+            public async Task AsyncUpdateFromSetName()
             {
-                using (var context = new TestDbContext(nameof(AsyncUpdateFromSetname)))
+                using (var context = new TestDbContext(nameof(AsyncUpdateFromSetName)))
                 {
                     foreach (var item in TestHelper.DataSource)
                     {

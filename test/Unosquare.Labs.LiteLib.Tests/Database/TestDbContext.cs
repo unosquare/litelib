@@ -1,7 +1,7 @@
-﻿using Unosquare.Labs.LiteLib.Tests.Helpers;
-
-namespace Unosquare.Labs.LiteLib.Tests.Database
+﻿namespace Unosquare.Labs.LiteLib.Tests.Database
 {
+    using Helpers;
+
     internal class TestDbContext : LiteDbContext
     {
         public TestDbContext(string name) : base(TestHelper.GetTempDb(name ?? "empty"))

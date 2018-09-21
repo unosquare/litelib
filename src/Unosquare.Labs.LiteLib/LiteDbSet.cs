@@ -10,7 +10,7 @@
     /// <summary>
     /// Represents a ILiteDbSet implementation.
     /// </summary>
-    /// <typeparam name="T">The type of entity</typeparam>
+    /// <typeparam name="T">The type of entity.</typeparam>
     /// <seealso cref="LiteLib.ILiteDbSet{T}" />
     public class LiteDbSet<T> : ILiteDbSet<T>
         where T : ILiteModel, new()
