@@ -1,20 +1,14 @@
-﻿using NUnit.Framework;
-using System.Collections.Generic;
-using System.Linq;
-using Unosquare.Labs.LiteLib.Tests.Database;
-using Unosquare.Labs.LiteLib.Tests.Helpers;
-
-namespace Unosquare.Labs.LiteLib.Tests
+﻿namespace Unosquare.Labs.LiteLib.Tests
 {
-    /// <summary>
-    /// A TestFixture to test the included events in LiteDbSet
-    /// </summary>
+    using NUnit.Framework;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Database;
+    using Helpers;
+    
     [TestFixture]
     public class DbContextEventsFixture
     {
-        /// <summary>
-        /// Called when [before insert test].
-        /// </summary>
         [Test]
         public void OnBeforeInsertTest()
         {
@@ -40,10 +34,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                 }
             }
         }
-
-        /// <summary>
-        /// Called when [after insert].
-        /// </summary>
+        
         [Test]
         public void OnAfterInsert()
         {
@@ -71,10 +62,7 @@ namespace Unosquare.Labs.LiteLib.Tests
 
             Assert.AreEqual(4, afterList.Count);
         }
-
-        /// <summary>
-        /// Called when [before update test].
-        /// </summary>
+        
         [Test]
         public void OnBeforeUpdateTest()
         {
@@ -104,10 +92,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                     .ForEach(x => Assert.AreEqual("Atlanta", x.ShipperCity));
             }
         }
-
-        /// <summary>
-        /// Called when [after update test].
-        /// </summary>
+        
         [Test]
         public void OnAfterUpdateTest()
         {
@@ -128,9 +113,6 @@ namespace Unosquare.Labs.LiteLib.Tests
             }
         }
 
-        /// <summary>
-        /// Called when [before delete test].
-        /// </summary>
         [Test]
         public void OnBeforeDeleteTest()
         {
@@ -153,7 +135,6 @@ namespace Unosquare.Labs.LiteLib.Tests
             }
         }
 
-        //Test OnAfterDelete
         [Test]
         public void OnAfterDeleteTest()
         {
@@ -174,8 +155,7 @@ namespace Unosquare.Labs.LiteLib.Tests
                 context.Orders.Delete(item);
             }
 
-            foreach (var item in context.Orders.Select("CustomerName = @CustomerName", new { CustomerName = "Jessy" })
-            )
+            foreach (var item in context.Orders.Select("CustomerName = @CustomerName", new { CustomerName = "Jessy" }))
             {
                 Assert.AreEqual("Jessy", item.CustomerName);
             }

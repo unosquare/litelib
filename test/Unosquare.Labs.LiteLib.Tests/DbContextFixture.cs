@@ -2,12 +2,14 @@
 {
     using Database;
     using Helpers;
-    using Microsoft.Data.Sqlite;
     using NUnit.Framework;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
+#if !NET452
+    using Microsoft.Data.Sqlite;
+#endif
 
     /// <summary>
     /// A TestFixture to test the included methods in LiteDbSet
@@ -97,7 +99,11 @@
                         context.Orders.Insert(item);
                     }
 
+#if NET452
+                    Assert.Throws<Mono.Data.Sqlite.SqliteException>(() =>
+#else
                     Assert.Throws<SqliteException>(() =>
+#endif
                     {
                         context.Orders.Select("Customer = @CustomerName", new {CustomerName = "John"});
                     });
@@ -167,7 +173,11 @@
                         context.Orders.Insert(item);
                     }
 
+#if NET452
+                    Assert.Throws<Mono.Data.Sqlite.SqliteException>(() =>
+#else
                     Assert.Throws<SqliteException>(() =>
+#endif
                     {
                         context.Orders.Delete("Customer = @CustomerName", new {CustomerName = "Peter"});
                     });
@@ -199,7 +209,11 @@
                         context.Orders.Insert(item);
                     }
 
+#if NET452
+                    Assert.Throws<Mono.Data.Sqlite.SqliteException>(() =>
+#else
                     Assert.Throws<SqliteException>(() =>
+#endif
                     {
                         var newOrder = new Order
                         {
@@ -218,7 +232,11 @@
             {
                 using (var context = new TestDbContext(nameof(InsertingWithOutOfRangeString_ThrowsSqliteException)))
                 {
+#if NET452
+                    Assert.Throws<Mono.Data.Sqlite.SqliteException>(() =>
+#else
                     Assert.Throws<SqliteException>(() =>
+#endif
                     {
                         context.Orders.Insert(new Order
                         {
@@ -308,17 +326,17 @@
             [Test]
             public void SelectingSingleDataWithIncorrectId_ReturnsNull()
             {
-                using (var cotext = new TestDbContext(nameof(SelectingSingleDataWithIncorrectId_ReturnsNull)))
+                using (var context = new TestDbContext(nameof(SelectingSingleDataWithIncorrectId_ReturnsNull)))
                 {
                     var k = 0;
 
                     foreach (var item in TestHelper.DataSource)
                     {
                         item.UniqueId = (k++).ToString();
-                        cotext.Orders.Insert(item);
+                        context.Orders.Insert(item);
                     }
 
-                    var singleSelect = cotext.Orders.Single(50);
+                    var singleSelect = context.Orders.Single(50);
                     Assert.IsNull(singleSelect);
                 }
             }
@@ -344,9 +362,9 @@
             }
 
             [Test]
-            public void SelectFromSetname()
+            public void SelectFromSetName()
             {
-                using (var context = new TestDbContext(nameof(SelectFromSetname)))
+                using (var context = new TestDbContext(nameof(SelectFromSetName)))
                 {
                     foreach (var item in TestHelper.DataSource)
                     {
@@ -431,7 +449,7 @@
             }
         }
 
-        public class Qerytest : DbContextFixture
+        public class Query : DbContextFixture
         {
             [Test]
             public void SelectingData()
@@ -474,8 +492,8 @@
                         }
                     }
 
-#if NET46
-                    Assert.Throws<SQLiteException>(() =>
+#if NET452
+                    Assert.Throws<Mono.Data.Sqlite.SqliteException>(() =>
 #else
                     Assert.Throws<SqliteException>(() =>
 #endif

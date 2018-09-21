@@ -5,7 +5,9 @@
     using System.Threading.Tasks;
     using Database;
     using Helpers;
+#if !NET452
     using Microsoft.Data.Sqlite;
+#endif
 
     /// <summary>
     /// A TestFixture to test the included async methods in LiteDbSet
@@ -164,8 +166,11 @@
                     {
                         await context.Orders.InsertAsync(item);
                     }
-
+#if NET452
+                    Assert.ThrowsAsync<Mono.Data.Sqlite.SqliteException>(async () =>
+#else
                     Assert.ThrowsAsync<SqliteException>(async () =>
+#endif
                     {
                         var newOrder = new Order
                         {
@@ -183,7 +188,11 @@
             [Test]
             public void InsertAsyncWithOutOfRangeString_ThrowsSqliteException()
             {
-                Assert.ThrowsAsync<SqliteException>(async () =>
+#if NET452
+                Assert.ThrowsAsync<Mono.Data.Sqlite.SqliteException>(async () =>
+#else
+                    Assert.ThrowsAsync<SqliteException>(async () =>
+#endif
                 {
                     using (var context =
                         new TestDbContext(nameof(InsertAsyncWithOutOfRangeString_ThrowsSqliteException)))
@@ -284,9 +293,9 @@
             }
 
             [Test]
-            public async Task AsyncDeleteFromSetname()
+            public async Task AsyncDeleteFromSetName()
             {
-                using (var context = new TestDbContext(nameof(AsyncDeleteFromSetname)))
+                using (var context = new TestDbContext(nameof(AsyncDeleteFromSetName)))
                 {
                     foreach (var item in TestHelper.DataSource)
                     {
@@ -305,9 +314,9 @@
             }
 
             [Test]
-            public async Task AsyncUpdateFromSetname()
+            public async Task AsyncUpdateFromSetName()
             {
-                using (var context = new TestDbContext(nameof(AsyncUpdateFromSetname)))
+                using (var context = new TestDbContext(nameof(AsyncUpdateFromSetName)))
                 {
                     foreach (var item in TestHelper.DataSource)
                     {
