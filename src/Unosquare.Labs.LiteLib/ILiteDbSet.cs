@@ -133,14 +133,14 @@
         /// Inserts the specified entity.
         /// </summary>
         /// <param name="entity">The entity.</param>
-        /// <returns>The number of rows inserted</returns>
+        /// <returns>The number of rows inserted.</returns>
         int Insert(T entity);
 
         /// <summary>
         /// Deletes the specified entity. RowId must be set.
         /// </summary>
         /// <param name="entity">The entity.</param>
-        /// <returns>The number of rows deleted</returns>
+        /// <returns>The number of rows deleted.</returns>
         int Delete(T entity);
 
         /// <summary>
@@ -148,26 +148,26 @@
         /// RowId must be set.
         /// </summary>
         /// <param name="entity">The entity.</param>
-        /// <returns>The number of rows updated</returns>
+        /// <returns>The number of rows updated.</returns>
         int Update(T entity);
 
         /// <summary>
         /// Selects a set of entities from the database.
-        /// Example whereText = "X = @X" and whereParames = new { X = "hello" }.
+        /// Example whereText = "X = @X" and whereParams = new { X = "hello" }.
         /// </summary>
         /// <param name="whereText">The where text.</param>
         /// <param name="whereParams">The where parameters.</param>
-        /// <returns>A Enumerable with generic type</returns>
+        /// <returns>A Enumerable with generic type.</returns>
         IEnumerable<T> Select(string whereText, object whereParams);
 
         /// <summary>
         /// Selects all entities from the database.
         /// </summary>
-        /// <returns>A Enumerable with generic type</returns>
+        /// <returns>A Enumerable with generic type.</returns>
         IEnumerable<T> SelectAll();
 
         /// <summary>
-        /// Selects a single entity from the databse given its row id.
+        /// Selects a single entity from the database given its row id.
         /// </summary>
         /// <param name="rowId">The row identifier.</param>
         /// <returns>A generic type.</returns>
@@ -191,28 +191,28 @@
         /// Provides and asynchronous counterpart to the Delete method.
         /// </summary>
         /// <param name="entity">The entity.</param>
-        /// <returns>A Task with the number of rows deleted</returns>
+        /// <returns>A Task with the number of rows deleted.</returns>
         Task<int> DeleteAsync(T entity);
 
         /// <summary>
         /// Provides and asynchronous counterpart to the Update method.
         /// </summary>
         /// <param name="entity">The entity.</param>
-        /// <returns>A Task with the number of rows updated</returns>
+        /// <returns>A Task with the number of rows updated.</returns>
         Task<int> UpdateAsync(T entity);
 
         /// <summary>
         /// Deletes the specified where text.
-        /// Example whereText = "X = @X" and whereParames = new { X = "hello" }.
+        /// Example whereText = "X = @X" and whereParams = new { X = "hello" }.
         /// </summary>
         /// <param name="whereText">The where text.</param>
         /// <param name="whereParams">The where parameters.</param>
-        /// <returns>A Enumerable with generic type</returns>
+        /// <returns>A Enumerable with generic type.</returns>
         int Delete(string whereText, object whereParams);
 
         /// <summary>
         /// Deletes the asynchronous.
-        /// Example whereText = "X = @X" and whereParames = new { X = "hello" }.
+        /// Example whereText = "X = @X" and whereParams = new { X = "hello" }.
         /// </summary>
         /// <param name="whereText">The where text.</param>
         /// <param name="whereParams">The where parameters.</param>
@@ -238,7 +238,7 @@
         /// </summary>
         /// <param name="rowId">The row identifier.</param>
         /// <returns>
-        /// A Task with a generyc type.
+        /// A Task with a generic type.
         /// </returns>
         Task<T> SingleAsync(long rowId);
 
@@ -247,7 +247,7 @@
         /// </summary>
         /// <param name="fieldName">Name of the field.</param>
         /// <param name="fieldValue">The field value.</param>
-        /// <returns> A generic type</returns>
+        /// <returns> A generic type.</returns>
         T FirstOrDefault(string fieldName, object fieldValue);
 
         /// <summary>

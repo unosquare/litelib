@@ -40,11 +40,13 @@ LiteLib doesn't contains any SQLite interop or library, so you need to add it to
 PM> Install-Package SQLitePCLRaw.bundle_green
 </pre>
 
-If you are targeting only Linux environments, you can use the sqlite3 bundle.
+If you are targeting only Linux environments (only .NET Core), you can use the sqlite3 bundle.
 
 <pre>
 PM> Install-Package SQLitePCLRaw.bundle_e_sqlite3
 </pre>
+
+**Mono Users** - If you are using Mono please target to NET452.
 
 ## Usage
 

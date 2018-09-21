@@ -14,7 +14,9 @@
     using System.Threading.Tasks;
     using Swan;
     using Swan.Reflection;
+#if !NET452
     using Microsoft.Data.Sqlite;
+#endif
 
     /// <summary>
     /// A base class containing all the functionality to perform data operations on Entity Sets.
@@ -32,7 +34,7 @@
         private readonly Type _contextType;
 
         private bool _isDisposing; // To detect redundant calls
-        
+
         /// <summary>
         /// Initializes a new instance of the <see cref="LiteDbContext" /> class.
         /// </summary>
@@ -46,12 +48,17 @@
 
             databaseFilePath = Path.GetFullPath(databaseFilePath);
             var databaseExists = File.Exists(databaseFilePath);
+
+#if NET452
+            Connection = new Mono.Data.Sqlite.SqliteConnection($"URI=file:{databaseFilePath}");
+#else
             var builder = new SqliteConnectionStringBuilder
             {
                 DataSource = databaseFilePath,
             };
 
             Connection = new SqliteConnection(builder.ToString());
+#endif
             Connection.Open();
 
             if (databaseExists == false)
@@ -64,12 +71,12 @@
             UniqueId = Guid.NewGuid();
             Intances[UniqueId] = this;
         }
-        
+
         /// <summary>
         /// Occurs when [on database created].
         /// </summary>
         public event EventHandler OnDatabaseCreated = (s, e) => { };
-        
+
         #region Properties
 
         /// <summary>
@@ -312,7 +319,7 @@
 
             return Connection.ExecuteAsync(set.UpdateDefinition, entity);
         }
-        
+
         internal T ExecuteScalar<T>(string commandText, object whereParams = null)
         {
             LogSqlCommand(commandText);
