@@ -3,8 +3,6 @@
     using System;
     using System.Collections.Concurrent;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
     using System.Reflection;
     using System.Text;
@@ -134,7 +132,7 @@
 
                 var stringLength = property.GetCustomAttribute<StringLengthAttribute>()?.MaximumLength ?? MaxStringLength;
 
-                isNullable = property.GetCustomAttribute<RequiredAttribute>() == null;
+                isNullable = property.GetCustomAttribute<Swan.Attributes.NotNullAttribute>() == null;
 
                 nullStatement = isNullable ? "NULL" : "NOT NULL";
 
