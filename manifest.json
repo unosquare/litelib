@@ -74,7 +74,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Labs.LiteLib.EntityEventArgs-1.html",
-          "hash": "pm7oiV+liP5qD1eczXlaVQ=="
+          "hash": "gfRwSj20q2f0JUNgWD3qrQ=="
         }
       },
       "is_incremental": false,
@@ -190,11 +190,47 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.Labs.LiteLib.NotMappedAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.Labs.LiteLib.NotMappedAttribute.html",
+          "hash": "LX+JuWDw9k1pfwT0CCED0g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.Labs.LiteLib.StringLengthAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.Labs.LiteLib.StringLengthAttribute.html",
+          "hash": "qxc8t6+lK8fyhE4UiSEIDQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.Labs.LiteLib.TableAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.Labs.LiteLib.TableAttribute.html",
+          "hash": "UjkafYIkVTCY9UfUzsLOqA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "obj/api/Unosquare.Labs.LiteLib.yml",
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Labs.LiteLib.html",
-          "hash": "5IEXAsIARlsNDcJXss+Hsg=="
+          "hash": "UlyS4INEm0EKksmpv9iUSA=="
         }
       },
       "is_incremental": false,
@@ -206,7 +242,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "oKh9CABhJL2T1xUxeHBVug=="
+          "hash": "GPrFCKxf3BO47TFS8mj4ow=="
         }
       },
       "is_incremental": false,
