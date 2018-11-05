@@ -24,7 +24,7 @@
     /// <seealso cref="System.IDisposable" />
     public abstract class LiteDbContext : IDisposable
     {
-        private static readonly ConcurrentDictionary<Guid, LiteDbContext> Intances =
+        private static readonly ConcurrentDictionary<Guid, LiteDbContext> LazyInstances =
             new ConcurrentDictionary<Guid, LiteDbContext>();
 
         private static readonly PropertyTypeCache PropertyInfoCache = new PropertyTypeCache();
@@ -69,7 +69,7 @@
             }
 
             UniqueId = Guid.NewGuid();
-            Intances[UniqueId] = this;
+            LazyInstances[UniqueId] = this;
         }
 
         /// <summary>
@@ -83,7 +83,7 @@
         /// Gets all instances of Lite DB contexts that are instantiated and not disposed.
         /// </summary>
         public static ReadOnlyCollection<LiteDbContext> Instances =>
-            new ReadOnlyCollection<LiteDbContext>(Intances.Values.ToList());
+            new ReadOnlyCollection<LiteDbContext>(LazyInstances.Values.ToList());
 
         /// <summary>
         /// Gets the underlying SQLite connection.
@@ -320,6 +320,29 @@
             return Connection.ExecuteAsync(set.UpdateDefinition, entity);
         }
 
+        /// <summary>
+        /// Releases unmanaged and - optionally - managed resources.
+        /// </summary>
+        /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        public void Dispose(bool disposing)
+        {
+            if (_isDisposing) return;
+
+            if (disposing)
+            {
+                LazyInstances.TryRemove(UniqueId, out _);
+                Connection.Close();
+                Connection.Dispose();
+                Connection = null;
+                $"Disposed {_contextType.Name}. {LazyInstances.Count} context instances.".Debug();
+            }
+
+            _isDisposing = true;
+        }
+
+        /// <inheritdoc />
+        public void Dispose() => Dispose(true);
+
         internal T ExecuteScalar<T>(string commandText, object whereParams = null)
         {
             LogSqlCommand(commandText);
@@ -350,9 +373,8 @@
         private void LoadEntitySets()
         {
             var contextDbSetProperties = PropertyInfoCache
-                .Retrieve(GetType(), () => GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance)
-                .Where(
-                    p =>
+                .Retrieve(GetType(), t => t.GetProperties(BindingFlags.Public | BindingFlags.Instance)
+                .Where(p =>
                         p.PropertyType.GetTypeInfo().IsGenericType &&
                         p.PropertyType.GetGenericTypeDefinition() == GenericLiteDbSetType));
 
@@ -399,32 +421,5 @@
         }
 
         #endregion Methods
-
-        #region IDisposable Support
-
-        /// <summary>
-        /// Releases unmanaged and - optionally - managed resources.
-        /// </summary>
-        /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
-        public void Dispose(bool disposing)
-        {
-            if (_isDisposing) return;
-
-            if (disposing)
-            {
-                Intances.TryRemove(UniqueId, out _);
-                Connection.Close();
-                Connection.Dispose();
-                Connection = null;
-                $"Disposed {_contextType.Name}. {Intances.Count} context instances.".Debug();
-            }
-
-            _isDisposing = true;
-        }
-
-        /// <inheritdoc />
-        public void Dispose() => Dispose(true);
-
-        #endregion IDisposable Support
     }
 }

@@ -1,7 +1,5 @@
 ﻿namespace Unosquare.Labs.LiteLib.Tests.Database
 {
-    using System.ComponentModel.DataAnnotations.Schema;
-
     [Table("CustomWarehouse")]
     internal class Warehouse : LiteModel
     {
@@ -14,6 +12,5 @@
 
         [NotMapped]
         public string Description { get; set; }
-
     }
 }

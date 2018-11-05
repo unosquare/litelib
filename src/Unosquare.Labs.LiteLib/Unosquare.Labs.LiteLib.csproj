@@ -9,7 +9,7 @@
     <PackageId>LiteLib</PackageId>
     <DebugType>Full</DebugType>
     <CodeAnalysisRuleSet>..\..\StyleCop.Analyzers.ruleset</CodeAnalysisRuleSet>
-    <Version>0.17.2</Version>
+    <Version>0.17.3</Version>
     <Authors>Unosquare</Authors>
     <Company>Unosquare</Company>
     <Copyright>Copyright (c) 2016-2018 Unosquare</Copyright>
@@ -29,8 +29,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Dapper" Version="1.50.5" />
-    <PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
-    <PackageReference Include="Unosquare.Swan.Lite" Version="0.34.2" />
+    <PackageReference Include="Unosquare.Swan.Lite" Version="0.35.0" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFramework)' == 'net452' ">
     <PackageReference Include="Mono.Data.Sqlite.Portable" Version="1.0.3.5" />

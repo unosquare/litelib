@@ -14,10 +14,10 @@
         /// Initializes a new instance of the <see cref="EntityEventArgs{T}"/> class.
         /// </summary>
         /// <param name="entity">The entity.</param>
-        /// <param name="dbSet">The database set.</param>
-        public EntityEventArgs(T entity, ILiteDbSet<T> dbSet)
+        /// <param name="liteDbSet">The database set.</param>
+        public EntityEventArgs(T entity, ILiteDbSet<T> liteDbSet)
         {
-            DbSet = dbSet;
+            DbSet = liteDbSet;
             Entity = entity;
             Cancel = false;
         }
