@@ -1,8 +1,7 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-
-namespace Unosquare.Labs.LiteLib.Tests.Database
+﻿namespace Unosquare.Labs.LiteLib.Tests.Database
 {
+    using System;
+
     internal class Order : LiteModel
     {
         [LiteUnique]
