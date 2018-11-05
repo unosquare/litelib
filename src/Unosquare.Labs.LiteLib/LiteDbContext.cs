@@ -350,9 +350,8 @@
         private void LoadEntitySets()
         {
             var contextDbSetProperties = PropertyInfoCache
-                .Retrieve(GetType(), () => GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance)
-                .Where(
-                    p =>
+                .Retrieve(GetType(), t => t.GetProperties(BindingFlags.Public | BindingFlags.Instance)
+                .Where(p =>
                         p.PropertyType.GetTypeInfo().IsGenericType &&
                         p.PropertyType.GetGenericTypeDefinition() == GenericLiteDbSetType));
 
