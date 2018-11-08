@@ -1,4 +1,4 @@
-version: '1.0.{build}'
+version: '1.7.{build}'
 image: 
 - Visual Studio 2017
 - Ubuntu
@@ -29,16 +29,18 @@ before_build:
             cinst docfx -y --no-progress
         }
 - dotnet restore -v Minimal
-- cmd: mkdir tools
-- cmd: nuget install coveralls.net -Version 0.7.0 -OutputDirectory tools
+- dotnet tool install -g coveralls.net
+- ps: Start-FileDownload 'https://github.com/codacy/codacy-coverage-reporter/releases/download/4.0.3/codacy-coverage-reporter-4.0.3-assembly.jar'
 build_script:
 - cmd: msbuild /p:Configuration=Release /verbosity:quiet
 test_script:
-- dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:Exclude=[NUnit3.TestAdapter]* test/Unosquare.Labs.LiteLib.Tests/Unosquare.Labs.LiteLib.Tests.csproj -c Release -f netcoreapp2.1
+- dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:Exclude=[NUnit3.TestAdapter]* test/Unosquare.Labs.LiteLib.Tests/Unosquare.Labs.LiteLib.Tests.csproj -c Release -f netcoreapp2.1
+- cmd: java -jar codacy-coverage-reporter-4.0.3-assembly.jar report -l CSharp -r test\Unosquare.Labs.LiteLib.Tests\coverage.cobertura.xml -t eaa96d2a770c4a66b741f884ca3c2363
 - ps: |
         if(-Not $env:APPVEYOR_PULL_REQUEST_TITLE -And $isWindows)
         {
-            tools\coveralls.net.0.7.0\tools\csmacnz.Coveralls.exe --opencover -i test\Unosquare.Labs.LiteLib.Tests\coverage.opencover.xml --serviceName appveyor --jobId %APPVEYOR_BUILD_NUMBER% --useRelativePaths
+            dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=lcov /p:Exclude=[NUnit3.TestAdapter]* test/Unosquare.Labs.LiteLib.Tests/Unosquare.Labs.LiteLib.Tests.csproj -c Release -f netcoreapp2.1
+            csmacnz.coveralls --lcov -i test\Unosquare.Labs.LiteLib.Tests\coverage.info --serviceName appveyor --jobId %APPVEYOR_BUILD_NUMBER% --useRelativePaths
         }
 after_build:
 - ps: |
