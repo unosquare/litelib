@@ -63,9 +63,9 @@
 
             if (databaseExists == false)
             {
-                "DB file does not exist. Creating.".Debug(nameof(LiteDbContext));
+                "DB file does not exist. Creating.".Debug(typeof(LiteDbContext));
                 CreateDatabase();
-                $"DB file created: '{databaseFilePath}'".Debug(nameof(LiteDbContext));
+                $"DB file created: '{databaseFilePath}'".Debug(typeof(LiteDbContext));
             }
 
             UniqueId = Guid.NewGuid();
@@ -112,9 +112,9 @@
         /// </returns>
         public async Task VaccuumDatabaseAsync()
         {
-            "DB VACUUM command executing.".Debug(nameof(LiteDbContext));
+            "DB VACUUM command executing.".Debug(typeof(LiteDbContext));
             await Connection.ExecuteAsync("VACUUM");
-            "DB VACUUM command finished.".Debug(nameof(LiteDbContext));
+            "DB VACUUM command finished.".Debug(typeof(LiteDbContext));
         }
 
         /// <summary>
@@ -156,10 +156,8 @@
         /// <param name="whereText">The where text.</param>
         /// <param name="whereParams">The where parameters.</param>
         /// <returns>An enumerable of type of the Entity.</returns>
-        public IEnumerable<TEntity> Select<TEntity>(ILiteDbSet set, string whereText, object whereParams = null)
-        {
-            return Query<TEntity>($"{set.SelectDefinition} WHERE {whereText}", whereParams);
-        }
+        public IEnumerable<TEntity> Select<TEntity>(ILiteDbSet set, string whereText, object whereParams = null) 
+            => Query<TEntity>($"{set.SelectDefinition} WHERE {whereText}", whereParams);
 
         /// <summary>
         /// Deletes the specified set.
@@ -334,7 +332,8 @@
                 Connection.Close();
                 Connection.Dispose();
                 Connection = null;
-                $"Disposed {_contextType.Name}. {LazyInstances.Count} context instances.".Debug();
+                $"Disposed {_contextType.Name}. {LazyInstances.Count} context instances."
+                    .Debug(typeof(LiteDbContext));
             }
 
             _isDisposing = true;
@@ -364,7 +363,7 @@
         {
             if (EnabledLog == false || Debugger.IsAttached == false || Terminal.IsConsolePresent == false) return;
 
-            $"> {command}{arguments.Stringify()}".Debug(nameof(LiteDbContext));
+            $"> {command}{arguments.Stringify()}".Debug(typeof(LiteDbContext));
         }
 
         /// <summary>
@@ -397,7 +396,7 @@
             }
 
             $"Context instance {_contextType.Name} - {_entitySets.Count} entity sets. {Instances.Count} context instances."
-                .Debug(nameof(LiteDbContext));
+                .Debug(typeof(LiteDbContext));
         }
 
         /// <summary>
