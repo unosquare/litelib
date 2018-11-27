@@ -63,9 +63,9 @@
 
             if (databaseExists == false)
             {
-                "DB file does not exist. Creating.".Debug(typeof(LiteDbContext));
+                "DB file does not exist. Creating.".Debug(nameof(LiteDbContext));
                 CreateDatabase();
-                $"DB file created: '{databaseFilePath}'".Debug(typeof(LiteDbContext));
+                $"DB file created: '{databaseFilePath}'".Debug(nameof(LiteDbContext));
             }
 
             UniqueId = Guid.NewGuid();
@@ -112,9 +112,9 @@
         /// </returns>
         public async Task VaccuumDatabaseAsync()
         {
-            "DB VACUUM command executing.".Debug(typeof(LiteDbContext));
+            "DB VACUUM command executing.".Debug(nameof(LiteDbContext));
             await Connection.ExecuteAsync("VACUUM");
-            "DB VACUUM command finished.".Debug(typeof(LiteDbContext));
+            "DB VACUUM command finished.".Debug(nameof(LiteDbContext));
         }
 
         /// <summary>
@@ -333,7 +333,7 @@
                 Connection.Dispose();
                 Connection = null;
                 $"Disposed {_contextType.Name}. {LazyInstances.Count} context instances."
-                    .Debug(typeof(LiteDbContext));
+                    .Debug(nameof(LiteDbContext));
             }
 
             _isDisposing = true;
@@ -363,7 +363,7 @@
         {
             if (EnabledLog == false || Debugger.IsAttached == false || Terminal.IsConsolePresent == false) return;
 
-            $"> {command}{arguments.Stringify()}".Debug(typeof(LiteDbContext));
+            $"> {command}{arguments.Stringify()}".Debug(nameof(LiteDbContext));
         }
 
         /// <summary>
@@ -396,7 +396,7 @@
             }
 
             $"Context instance {_contextType.Name} - {_entitySets.Count} entity sets. {Instances.Count} context instances."
-                .Debug(typeof(LiteDbContext));
+                .Debug(nameof(LiteDbContext));
         }
 
         /// <summary>
