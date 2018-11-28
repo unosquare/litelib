@@ -156,10 +156,8 @@
         /// <param name="whereText">The where text.</param>
         /// <param name="whereParams">The where parameters.</param>
         /// <returns>An enumerable of type of the Entity.</returns>
-        public IEnumerable<TEntity> Select<TEntity>(ILiteDbSet set, string whereText, object whereParams = null)
-        {
-            return Query<TEntity>($"{set.SelectDefinition} WHERE {whereText}", whereParams);
-        }
+        public IEnumerable<TEntity> Select<TEntity>(ILiteDbSet set, string whereText, object whereParams = null) 
+            => Query<TEntity>($"{set.SelectDefinition} WHERE {whereText}", whereParams);
 
         /// <summary>
         /// Deletes the specified set.
@@ -334,7 +332,8 @@
                 Connection.Close();
                 Connection.Dispose();
                 Connection = null;
-                $"Disposed {_contextType.Name}. {LazyInstances.Count} context instances.".Debug();
+                $"Disposed {_contextType.Name}. {LazyInstances.Count} context instances."
+                    .Debug(nameof(LiteDbContext));
             }
 
             _isDisposing = true;

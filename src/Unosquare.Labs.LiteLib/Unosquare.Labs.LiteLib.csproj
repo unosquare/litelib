@@ -9,7 +9,7 @@
     <PackageId>LiteLib</PackageId>
     <DebugType>Full</DebugType>
     <CodeAnalysisRuleSet>..\..\StyleCop.Analyzers.ruleset</CodeAnalysisRuleSet>
-    <Version>0.17.3</Version>
+    <Version>0.18.1</Version>
     <Authors>Unosquare</Authors>
     <Company>Unosquare</Company>
     <Copyright>Copyright (c) 2016-2018 Unosquare</Copyright>
