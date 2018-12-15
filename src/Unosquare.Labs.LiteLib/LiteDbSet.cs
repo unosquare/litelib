@@ -1,11 +1,12 @@
 ﻿namespace Unosquare.Labs.LiteLib
 {
-    using Dapper;
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Linq.Expressions;
     using System.Reflection;
     using System.Threading.Tasks;
+    using Dapper;
 
     /// <summary>
     /// Represents a ILiteDbSet implementation.
@@ -230,7 +231,11 @@
         
         /// <inheritdoc />
         public T FirstOrDefault(string fieldName, object fieldValue) => Select($"[{fieldName}] = @FieldValue", new { FieldValue = fieldValue }).FirstOrDefault();
-        
+
+        /// <inheritdoc />
+        public T FirstOrDefault<TProperty>(Expression<Func<T, TProperty>> field, object fieldValue) 
+            => FirstOrDefault(GetFieldName(field), fieldValue);
+
         /// <inheritdoc />
         public async Task<T> FirstOrDefaultAsync(string fieldName, object fieldValue)
         {
@@ -238,7 +243,11 @@
 
             return result.FirstOrDefault();
         }
-        
+
+        /// <inheritdoc />
+        public Task<T> FirstOrDefaultAsync<TProperty>(Expression<Func<T, TProperty>> field, object fieldValue) 
+            => FirstOrDefaultAsync(GetFieldName(field), fieldValue);
+
         /// <inheritdoc />
         public T Single(long rowId) => Select($"[{nameof(ILiteModel.RowId)}] = @{nameof(ILiteModel.RowId)}", new { RowId = rowId })
             .FirstOrDefault();
@@ -284,5 +293,12 @@
             => Context.ExecuteScalarAsync<bool>(AnyDefinition);
 
         #endregion Methods and Data Access
+
+        private string GetFieldName<TProperty>(Expression<Func<T, TProperty>> field)
+        {
+            var fieldInfo = (field.Body as MemberExpression)?.Member as PropertyInfo;
+
+            return fieldInfo == null ? throw new ArgumentException("Invalid field", nameof(fieldInfo)) : fieldInfo.Name;
+        }
     }
 }

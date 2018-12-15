@@ -5,7 +5,7 @@
     using System.Linq;
     using Database;
     using Helpers;
-    
+
     [TestFixture]
     public class DbContextEventsFixture
     {
@@ -27,14 +27,16 @@
                     context.Orders.Insert(item);
                 }
 
-                var updatedList = context.Orders.Select("ShipperCity = @ShipperCity", new { ShipperCity = "Leon" });
+                var updatedList = context.Orders
+                    .Select("ShipperCity = @ShipperCity", new { ShipperCity = "Leon" });
+
                 foreach (var item in updatedList)
                 {
                     Assert.AreNotEqual("Peter", item.CustomerName);
                 }
             }
         }
-        
+
         [Test]
         public void OnAfterInsert()
         {
@@ -62,7 +64,7 @@
 
             Assert.AreEqual(4, afterList.Count);
         }
-        
+
         [Test]
         public void OnBeforeUpdateTest()
         {
@@ -92,7 +94,7 @@
                     .ForEach(x => Assert.AreEqual("Atlanta", x.ShipperCity));
             }
         }
-        
+
         [Test]
         public void OnAfterUpdateTest()
         {

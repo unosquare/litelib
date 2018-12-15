@@ -89,6 +89,23 @@
                     Assert.IsNotNull(order);
                 }
             }
+
+            
+            [Test]
+            public async Task AsyncFirstOrDefaultWithLambda()
+            {
+                using (var context = new TestDbContext(nameof(AsyncFirstOrDefault)))
+                {
+                    foreach (var item in TestHelper.DataSource)
+                    {
+                        context.Orders.Insert(item);
+                    }
+
+                    var order = await context.Orders.FirstOrDefaultAsync(x => x.CustomerName, "Peter");
+
+                    Assert.IsNotNull(order);
+                }
+            }
         }
 
         public class DeleteAsyncTest : DbContextAsyncFixture

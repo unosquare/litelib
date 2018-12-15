@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq.Expressions;
     using System.Threading.Tasks;
 
     /// <summary>
@@ -243,19 +244,41 @@
         Task<T> SingleAsync(long rowId);
 
         /// <summary>
-        /// Firsts the or default.
+        /// Retrieves the first or default record in the <c>DbSet</c>
+        /// filtering by the field and value provided.
         /// </summary>
         /// <param name="fieldName">Name of the field.</param>
         /// <param name="fieldValue">The field value.</param>
-        /// <returns> A generic type.</returns>
+        /// <returns>A generic type.</returns>
         T FirstOrDefault(string fieldName, object fieldValue);
 
         /// <summary>
-        /// Firsts the or default asynchronous.
+        /// Retrieves the first or default record in the <c>DbSet</c>
+        /// filtering by the field and value provided.
         /// </summary>
         /// <param name="fieldName">Name of the field.</param>
         /// <param name="fieldValue">The field value.</param>
         /// <returns>A Task with a generic type.</returns>
         Task<T> FirstOrDefaultAsync(string fieldName, object fieldValue);
+
+        /// <summary>
+        /// Retrieves the first or default record in the <c>DbSet</c>
+        /// filtering by the field and value provided.
+        /// </summary>
+        /// <typeparam name="TProperty">The type of the property.</typeparam>
+        /// <param name="field">The field.</param>
+        /// <param name="fieldValue">The field value.</param>
+        /// <returns>A generic type.</returns>
+        T FirstOrDefault<TProperty>(Expression<Func<T, TProperty>> field, object fieldValue);
+
+        /// <summary>
+        /// Retrieves the first or default record in the <c>DbSet</c>
+        /// filtering by the field and value provided.
+        /// </summary>
+        /// <typeparam name="TProperty">The type of the property.</typeparam>
+        /// <param name="field">The field.</param>
+        /// <param name="fieldValue">The field value.</param>
+        /// <returns>A Task with a generic type.</returns>
+        Task<T> FirstOrDefaultAsync<TProperty>(Expression<Func<T, TProperty>> field, object fieldValue);
     }
 }
