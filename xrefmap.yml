@@ -405,6 +405,15 @@ references:
   fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).FirstOrDefault
   nameWithType: ILiteDbSet<T>.FirstOrDefault
   nameWithType.vb: ILiteDbSet(Of T).FirstOrDefault
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet`1.FirstOrDefault``1(Expression{System.Func{`0,``0}},System.Object)
+  name: FirstOrDefault<TProperty>(Expression<Func<T, TProperty>>, Object)
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_FirstOrDefault__1_Expression_System_Func__0___0___System_Object_
+  commentId: M:Unosquare.Labs.LiteLib.ILiteDbSet`1.FirstOrDefault``1(Expression{System.Func{`0,``0}},System.Object)
+  name.vb: FirstOrDefault(Of TProperty)(Expression(Of Func(Of T, TProperty)), Object)
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.FirstOrDefault<TProperty>(Expression<System.Func<T, TProperty>>, System.Object)
+  fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).FirstOrDefault(Of TProperty)(Expression(Of System.Func(Of T, TProperty)), System.Object)
+  nameWithType: ILiteDbSet<T>.FirstOrDefault<TProperty>(Expression<Func<T, TProperty>>, Object)
+  nameWithType.vb: ILiteDbSet(Of T).FirstOrDefault(Of TProperty)(Expression(Of Func(Of T, TProperty)), Object)
 - uid: Unosquare.Labs.LiteLib.ILiteDbSet`1.FirstOrDefaultAsync(System.String,System.Object)
   name: FirstOrDefaultAsync(String, Object)
   href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_FirstOrDefaultAsync_System_String_System_Object_
@@ -422,6 +431,15 @@ references:
   fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).FirstOrDefaultAsync
   nameWithType: ILiteDbSet<T>.FirstOrDefaultAsync
   nameWithType.vb: ILiteDbSet(Of T).FirstOrDefaultAsync
+- uid: Unosquare.Labs.LiteLib.ILiteDbSet`1.FirstOrDefaultAsync``1(Expression{System.Func{`0,``0}},System.Object)
+  name: FirstOrDefaultAsync<TProperty>(Expression<Func<T, TProperty>>, Object)
+  href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_FirstOrDefaultAsync__1_Expression_System_Func__0___0___System_Object_
+  commentId: M:Unosquare.Labs.LiteLib.ILiteDbSet`1.FirstOrDefaultAsync``1(Expression{System.Func{`0,``0}},System.Object)
+  name.vb: FirstOrDefaultAsync(Of TProperty)(Expression(Of Func(Of T, TProperty)), Object)
+  fullName: Unosquare.Labs.LiteLib.ILiteDbSet<T>.FirstOrDefaultAsync<TProperty>(Expression<System.Func<T, TProperty>>, System.Object)
+  fullName.vb: Unosquare.Labs.LiteLib.ILiteDbSet(Of T).FirstOrDefaultAsync(Of TProperty)(Expression(Of System.Func(Of T, TProperty)), System.Object)
+  nameWithType: ILiteDbSet<T>.FirstOrDefaultAsync<TProperty>(Expression<Func<T, TProperty>>, Object)
+  nameWithType.vb: ILiteDbSet(Of T).FirstOrDefaultAsync(Of TProperty)(Expression(Of Func(Of T, TProperty)), Object)
 - uid: Unosquare.Labs.LiteLib.ILiteDbSet`1.Insert(`0)
   name: Insert(T)
   href: api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html#Unosquare_Labs_LiteLib_ILiteDbSet_1_Insert__0_
@@ -1205,6 +1223,15 @@ references:
   fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).FirstOrDefault
   nameWithType: LiteDbSet<T>.FirstOrDefault
   nameWithType.vb: LiteDbSet(Of T).FirstOrDefault
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.FirstOrDefault``1(Expression{System.Func{`0,``0}},System.Object)
+  name: FirstOrDefault<TProperty>(Expression<Func<T, TProperty>>, Object)
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_FirstOrDefault__1_Expression_System_Func__0___0___System_Object_
+  commentId: M:Unosquare.Labs.LiteLib.LiteDbSet`1.FirstOrDefault``1(Expression{System.Func{`0,``0}},System.Object)
+  name.vb: FirstOrDefault(Of TProperty)(Expression(Of Func(Of T, TProperty)), Object)
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.FirstOrDefault<TProperty>(Expression<System.Func<T, TProperty>>, System.Object)
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).FirstOrDefault(Of TProperty)(Expression(Of System.Func(Of T, TProperty)), System.Object)
+  nameWithType: LiteDbSet<T>.FirstOrDefault<TProperty>(Expression<Func<T, TProperty>>, Object)
+  nameWithType.vb: LiteDbSet(Of T).FirstOrDefault(Of TProperty)(Expression(Of Func(Of T, TProperty)), Object)
 - uid: Unosquare.Labs.LiteLib.LiteDbSet`1.FirstOrDefaultAsync(System.String,System.Object)
   name: FirstOrDefaultAsync(String, Object)
   href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_FirstOrDefaultAsync_System_String_System_Object_
@@ -1222,6 +1249,15 @@ references:
   fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).FirstOrDefaultAsync
   nameWithType: LiteDbSet<T>.FirstOrDefaultAsync
   nameWithType.vb: LiteDbSet(Of T).FirstOrDefaultAsync
+- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.FirstOrDefaultAsync``1(Expression{System.Func{`0,``0}},System.Object)
+  name: FirstOrDefaultAsync<TProperty>(Expression<Func<T, TProperty>>, Object)
+  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_FirstOrDefaultAsync__1_Expression_System_Func__0___0___System_Object_
+  commentId: M:Unosquare.Labs.LiteLib.LiteDbSet`1.FirstOrDefaultAsync``1(Expression{System.Func{`0,``0}},System.Object)
+  name.vb: FirstOrDefaultAsync(Of TProperty)(Expression(Of Func(Of T, TProperty)), Object)
+  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.FirstOrDefaultAsync<TProperty>(Expression<System.Func<T, TProperty>>, System.Object)
+  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).FirstOrDefaultAsync(Of TProperty)(Expression(Of System.Func(Of T, TProperty)), System.Object)
+  nameWithType: LiteDbSet<T>.FirstOrDefaultAsync<TProperty>(Expression<Func<T, TProperty>>, Object)
+  nameWithType.vb: LiteDbSet(Of T).FirstOrDefaultAsync(Of TProperty)(Expression(Of Func(Of T, TProperty)), Object)
 - uid: Unosquare.Labs.LiteLib.LiteDbSet`1.Insert(`0)
   name: Insert(T)
   href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_Insert__0_
