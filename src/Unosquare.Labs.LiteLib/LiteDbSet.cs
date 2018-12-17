@@ -1,12 +1,12 @@
 ﻿namespace Unosquare.Labs.LiteLib
 {
+    using Dapper;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Linq.Expressions;
     using System.Reflection;
     using System.Threading.Tasks;
-    using Dapper;
 
     /// <summary>
     /// Represents a ILiteDbSet implementation.
@@ -102,18 +102,26 @@
         #region Methods and Data Access
 
         /// <inheritdoc />
-        public int Insert(T entity)
+        public int Insert(T entity) => InsertAsync(entity).GetAwaiter().GetResult();
+
+        /// <inheritdoc />
+        public async Task<int> InsertAsync(T entity)
         {
             var args = new EntityEventArgs<T>(entity, this);
             OnBeforeInsert(this, args);
             if (args.Cancel) return 0;
 
             Context.LogSqlCommand(InsertDefinition, entity);
-            entity.RowId = Context.Connection.Query<long>(InsertDefinition, entity).FirstOrDefault();
+            var result = await Context.Connection.QueryAsync<long>(InsertDefinition, entity);
+
+            if (result.Any() == false) return 0;
+
+            entity.RowId = result.First();
             OnAfterInsert(this, args);
+
             return 1;
         }
-
+        
         /// <inheritdoc />
         public void InsertRange(IEnumerable<T> entities)
         {
@@ -132,46 +140,15 @@
 
             Context.Connection.ExecuteScalar(command);
         }
-        
-        /// <inheritdoc />
-        public async Task<int> InsertAsync(T entity)
-        {
-            var args = new EntityEventArgs<T>(entity, this);
-            OnBeforeInsert(this, args);
-            if (args.Cancel) return 0;
-
-            Context.LogSqlCommand(InsertDefinition, entity);
-            var result = await Context.Connection.QueryAsync<long>(InsertDefinition, entity);
-
-            if (result.Any() == false) return 0;
-
-            entity.RowId = result.First();
-            OnAfterInsert(this, args);
-            return 1;
-        }
 
         /// <inheritdoc />
         public int Delete(string whereText, object whereParams = null) => Context.Delete(this, whereText, whereParams);
         
         /// <inheritdoc />
         public Task<int> DeleteAsync(string whereText, object whereParams = null) => Context.DeleteAsync(this, whereText, whereParams);
-        
+
         /// <inheritdoc />
-        public int Delete(T entity)
-        {
-            if (entity.RowId == default)
-                throw new ArgumentException(nameof(entity.RowId));
-
-            var args = new EntityEventArgs<T>(entity, this);
-            OnBeforeDelete(this, args);
-            if (args.Cancel) return 0;
-
-            Context.LogSqlCommand(DeleteDefinition, entity);
-            var affected = Context.Connection.Execute(DeleteDefinition, entity);
-            entity.RowId = default;
-            OnAfterDelete(this, args);
-            return affected;
-        }
+        public int Delete(T entity) => DeleteAsync(entity).GetAwaiter().GetResult();
         
         /// <inheritdoc />
         public async Task<int> DeleteAsync(T entity)
@@ -184,7 +161,7 @@
             if (args.Cancel) return 0;
 
             Context.LogSqlCommand(DeleteDefinition, entity);
-            var affected = await Context.Connection.ExecuteAsync(DeleteDefinition, entity);
+            var affected = await Context.Connection.ExecuteAsync(DeleteDefinition, entity).ConfigureAwait(false);
             entity.RowId = default;
             OnAfterDelete(this, args);
 
@@ -192,17 +169,7 @@
         }
         
         /// <inheritdoc />
-        public int Update(T entity)
-        {
-            var args = new EntityEventArgs<T>(entity, this);
-            OnBeforeUpdate(this, args);
-            if (args.Cancel) return 0;
-
-            Context.LogSqlCommand(UpdateDefinition, entity);
-            var affected = Context.Connection.Execute(UpdateDefinition, entity);
-            OnAfterUpdate(this, args);
-            return affected;
-        }
+        public int Update(T entity) => UpdateAsync(entity).GetAwaiter().GetResult();
         
         /// <inheritdoc />
         public async Task<int> UpdateAsync(T entity)
@@ -212,8 +179,9 @@
             if (args.Cancel) return 0;
 
             Context.LogSqlCommand(UpdateDefinition, entity);
-            var affected = await Context.Connection.ExecuteAsync(UpdateDefinition, entity);
+            var affected = await Context.Connection.ExecuteAsync(UpdateDefinition, entity).ConfigureAwait(false);
             OnAfterUpdate(this, args);
+
             return affected;
         }
         
@@ -239,7 +207,8 @@
         /// <inheritdoc />
         public async Task<T> FirstOrDefaultAsync(string fieldName, object fieldValue)
         {
-            var result = await SelectAsync($"[{fieldName}] = @FieldValue", new { FieldValue = fieldValue });
+            var result = await SelectAsync($"[{fieldName}] = @FieldValue", new { FieldValue = fieldValue })
+                .ConfigureAwait(false);
 
             return result.FirstOrDefault();
         }
@@ -255,9 +224,10 @@
         /// <inheritdoc />
         public async Task<T> SingleAsync(long rowId)
         {
-            var result =
-                await SelectAsync($"[{nameof(ILiteModel.RowId)}] = @{nameof(ILiteModel.RowId)}", new { RowId = rowId });
-            return result.FirstOrDefault();
+            var result = await SelectAsync($"[{nameof(ILiteModel.RowId)}] = @{nameof(ILiteModel.RowId)}", new { RowId = rowId })
+                .ConfigureAwait(false);
+
+            return result.Single();
         }
 
         /// <inheritdoc />

@@ -113,7 +113,7 @@
         public async Task VaccuumDatabaseAsync()
         {
             "DB VACUUM command executing.".Debug(nameof(LiteDbContext));
-            await Connection.ExecuteAsync("VACUUM");
+            await Connection.ExecuteAsync("VACUUM").ConfigureAwait(false);
             "DB VACUUM command finished.".Debug(nameof(LiteDbContext));
         }
 
@@ -156,7 +156,7 @@
         /// <param name="whereText">The where text.</param>
         /// <param name="whereParams">The where parameters.</param>
         /// <returns>An enumerable of type of the Entity.</returns>
-        public IEnumerable<TEntity> Select<TEntity>(ILiteDbSet set, string whereText, object whereParams = null) 
+        public IEnumerable<TEntity> Select<TEntity>(ILiteDbSet set, string whereText, object whereParams = null)
             => Query<TEntity>($"{set.SelectDefinition} WHERE {whereText}", whereParams);
 
         /// <summary>
@@ -167,10 +167,7 @@
         /// <param name="whereParams">The where parameters.</param>
         /// <returns>A count for affected rows.</returns>
         public int Delete(ILiteDbSet set, string whereText, object whereParams = null)
-        {
-            LogSqlCommand($"{set.DeleteDefinitionWhere} WHERE {whereText}", whereParams);
-            return Connection.Execute($"{set.DeleteDefinitionWhere} WHERE {whereText}", whereParams);
-        }
+            => DeleteAsync(set, whereText, whereParams).GetAwaiter().GetResult();
 
         /// <summary>
         /// Deletes the asynchronous.
@@ -237,14 +234,7 @@
         /// <param name="entity">The entity.</param>
         /// <returns>The number of rows inserted.</returns>
         /// <exception cref="System.ArgumentOutOfRangeException">entity - The object type must be registered as ILiteDbSet.</exception>
-        public int Insert(object entity)
-        {
-            var set = Set(entity.GetType());
-
-            LogSqlCommand(set.InsertDefinition, entity);
-
-            return Connection.Query<int>(set.InsertDefinition, entity).FirstOrDefault();
-        }
+        public int Insert(object entity) => InsertAsync(entity).GetAwaiter().GetResult();
 
         /// <summary>
         /// Inserts the asynchronous without triggering events.
@@ -257,7 +247,7 @@
 
             LogSqlCommand(set.InsertDefinition, entity);
 
-            var result = await Connection.QueryAsync<int>(set.InsertDefinition, entity);
+            var result = await Connection.QueryAsync<int>(set.InsertDefinition, entity).ConfigureAwait(false);
 
             return result.Any() ? 1 : 0;
         }
@@ -267,14 +257,7 @@
         /// </summary>
         /// <param name="entity">The entity.</param>
         /// <returns>The affected rows count.</returns>
-        public int Delete(object entity)
-        {
-            var set = Set(entity.GetType());
-
-            LogSqlCommand(set.DeleteDefinition, entity);
-
-            return Connection.Execute(set.DeleteDefinition, entity);
-        }
+        public int Delete(object entity) => DeleteAsync(entity).GetAwaiter().GetResult();
 
         /// <summary>
         /// Deletes the asynchronous without triggering events.
@@ -295,14 +278,7 @@
         /// </summary>
         /// <param name="entity">The entity.</param>
         /// <returns>The affected rows count.</returns>
-        public int Update(object entity)
-        {
-            var set = Set(entity.GetType());
-
-            LogSqlCommand(set.UpdateDefinition, entity);
-
-            return Connection.Execute(set.UpdateDefinition, entity);
-        }
+        public int Update(object entity) => UpdateAsync(entity).GetAwaiter().GetResult();
 
         /// <summary>
         /// Updates the asynchronous without triggering events.
