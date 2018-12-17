@@ -1,5 +1,6 @@
 ﻿namespace Unosquare.Labs.LiteLib.Tests
 {
+    using System;
     using NUnit.Framework;
     using System.Linq;
     using System.Threading.Tasks;
@@ -44,7 +45,7 @@
 
                     // Selecting Data By name
                     var selectingData =
-                        await context.Orders.SelectAsync("CustomerName = @CustomerName", new {CustomerName = "Peter"});
+                        await context.Orders.SelectAsync("CustomerName = @CustomerName", new { CustomerName = "Peter" });
 
                     foreach (var item in selectingData)
                     {
@@ -65,7 +66,7 @@
 
                     // Selecting Data By name
                     var selectingData =
-                        await context.Orders.SelectAsync("CustomerName = @CustomerName", new {CustomerName = "Peter"});
+                        await context.Orders.SelectAsync("CustomerName = @CustomerName", new { CustomerName = "Peter" });
 
                     foreach (var item in selectingData)
                     {
@@ -90,7 +91,7 @@
                 }
             }
 
-            
+
             [Test]
             public async Task AsyncFirstOrDefaultWithLambda()
             {
@@ -142,7 +143,7 @@
                     }
 
                     var deletedData =
-                        await context.Orders.DeleteAsync("CustomerName = @CustomerName", new {CustomerName = "Peter"});
+                        await context.Orders.DeleteAsync("CustomerName = @CustomerName", new { CustomerName = "Peter" });
                     Assert.AreEqual(deletedData, TestHelper.DataSource.Count(x => x.CustomerName == "Peter"));
                 }
             }
@@ -208,7 +209,7 @@
 #if NET452
                 Assert.ThrowsAsync<Mono.Data.Sqlite.SqliteException>(async () =>
 #else
-                    Assert.ThrowsAsync<SqliteException>(async () =>
+                Assert.ThrowsAsync<SqliteException>(async () =>
 #endif
                 {
                     using (var context =
@@ -238,7 +239,7 @@
                     }
 
                     var list = await context.Orders.SelectAsync("CustomerName = @CustomerName",
-                        new {CustomerName = "John"});
+                        new { CustomerName = "John" });
 
                     foreach (var item in list)
                     {
@@ -247,7 +248,7 @@
                     }
 
                     var updatedList =
-                        await context.Orders.SelectAsync("ShipperCity = @ShipperCity", new {ShipperCity = "Atlanta"});
+                        await context.Orders.SelectAsync("ShipperCity = @ShipperCity", new { ShipperCity = "Atlanta" });
 
                     foreach (var item in updatedList)
                     {
@@ -275,9 +276,9 @@
             }
 
             [Test]
-            public async Task SelectingSingleDataWithIncorrectId_ReturnsNull()
+            public async Task SelectingSingleDataWithIncorrectId_ThrowsException()
             {
-                using (var context = new TestDbContext(nameof(SelectingSingleDataWithIncorrectId_ReturnsNull)))
+                using (var context = new TestDbContext(nameof(SelectingSingleDataWithIncorrectId_ThrowsException)))
                 {
                     var k = 0;
 
@@ -287,8 +288,7 @@
                         await context.Orders.InsertAsync(item);
                     }
 
-                    var singleSelect = await context.Orders.SingleAsync(50);
-                    Assert.IsNull(singleSelect);
+                    Assert.ThrowsAsync<InvalidOperationException>(async () => await context.Orders.SingleAsync(50));
                 }
             }
         }
@@ -347,7 +347,7 @@
                     }
 
                     var updatedItems =
-                        await context.Orders.SelectAsync("ShipperCity = @ShipperCity", new {ShipperCity = "Atlanta"});
+                        await context.Orders.SelectAsync("ShipperCity = @ShipperCity", new { ShipperCity = "Atlanta" });
                     Assert.AreEqual(TestHelper.DataSource.Length, updatedItems.Count());
                 }
             }
@@ -369,7 +369,7 @@
                         await
                             context.QueryAsync<Order>(
                                 $"{context.Orders.SelectDefinition} WHERE CustomerName = @CustomerName",
-                                new Order {CustomerName = "John"});
+                                new Order { CustomerName = "John" });
 
                     foreach (var item in selectedData)
                     {
@@ -409,7 +409,7 @@
                     }
 
                     var selectingData =
-                        await context.Orders.CountAsync("CustomerName = @CustomerName", new {CustomerName = "John"});
+                        await context.Orders.CountAsync("CustomerName = @CustomerName", new { CustomerName = "John" });
 
                     Assert.AreEqual(4, selectingData);
                 }
@@ -445,7 +445,7 @@
                     }
 
                     var result =
-                        await context.Orders.AnyAsync("CustomerName = @CustomerName", new {CustomerName = "John"});
+                        await context.Orders.AnyAsync("CustomerName = @CustomerName", new { CustomerName = "John" });
 
                     Assert.IsTrue(result);
                 }

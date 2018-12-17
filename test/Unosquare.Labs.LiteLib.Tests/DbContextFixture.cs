@@ -65,11 +65,11 @@
             }
 
             [Test]
-            public void InsertingEmptyDataList_TrhowsArgumentException()
+            public void InsertingEmptyDataList_ThrowsArgumentException()
             {
                 Assert.Throws<ArgumentNullException>(() =>
                 {
-                    using (var context = new TestDbContext(nameof(InsertingEmptyDataList_TrhowsArgumentException)))
+                    using (var context = new TestDbContext(nameof(InsertingEmptyDataList_ThrowsArgumentException)))
                     {
                         context.Orders.InsertRange(new List<Order>());
                     }
@@ -106,29 +106,29 @@
             }
         }
 
-        public class SinigleTest : DbContextFixture
+        public class SingleTest : DbContextFixture
         {
             [Test]
             public void SelectingSingleDataWithCorrectId()
             {
-                using (var cotext = new TestDbContext(nameof(SelectingSingleDataWithCorrectId)))
+                using (var context = new TestDbContext(nameof(SelectingSingleDataWithCorrectId)))
                 {
                     var k = 0;
                     foreach (var item in TestHelper.DataSource)
                     {
                         item.UniqueId = (k++).ToString();
-                        cotext.Orders.Insert(item);
+                        context.Orders.Insert(item);
                     }
 
-                    var singleSelect = cotext.Orders.Single(3);
+                    var singleSelect = context.Orders.Single(3);
                     Assert.AreEqual("Margarita", singleSelect.CustomerName);
                 }
             }
 
             [Test]
-            public void SelectingSingleDataWithIncorrectId_ReturnsNull()
+            public void SelectingSingleDataWithIncorrectId_ThrowsException()
             {
-                using (var context = new TestDbContext(nameof(SelectingSingleDataWithIncorrectId_ReturnsNull)))
+                using (var context = new TestDbContext(nameof(SelectingSingleDataWithIncorrectId_ThrowsException)))
                 {
                     var k = 0;
 
@@ -138,8 +138,7 @@
                         context.Orders.Insert(item);
                     }
 
-                    var singleSelect = context.Orders.Single(50);
-                    Assert.IsNull(singleSelect);
+                    Assert.Throws<InvalidOperationException>(() => context.Orders.Single(50));
                 }
             }
         }
@@ -182,11 +181,11 @@
             }
 
             [Test]
-            public void InvalidSetname_ThrowsArgumentOutOfRangeException()
+            public void InvalidSetName_ThrowsArgumentOutOfRangeException()
             {
                 Assert.Throws<ArgumentOutOfRangeException>(() =>
                 {
-                    using (var context = new TestDbContext(nameof(InvalidSetname_ThrowsArgumentOutOfRangeException)))
+                    using (var context = new TestDbContext(nameof(InvalidSetName_ThrowsArgumentOutOfRangeException)))
                     {
                         context.Set<DbContextFixture>();
                     }
@@ -194,9 +193,9 @@
             }
 
             [Test]
-            public void InsertFromSetname()
+            public void InsertFromContext()
             {
-                using (var context = new TestDbContext(nameof(InsertFromSetname)))
+                using (var context = new TestDbContext(nameof(InsertFromContext)))
                 {
                     foreach (var item in TestHelper.DataSource)
                     {
@@ -208,9 +207,9 @@
             }
 
             [Test]
-            public void DeleteFromSetname()
+            public void DeleteFromContext()
             {
-                using (var context = new TestDbContext(nameof(DeleteFromSetname)))
+                using (var context = new TestDbContext(nameof(DeleteFromContext)))
                 {
                     foreach (var item in TestHelper.DataSource)
                     {
@@ -229,9 +228,9 @@
             }
 
             [Test]
-            public void UpdateFromSetname()
+            public void UpdateFromContext()
             {
-                using (var context = new TestDbContext(nameof(UpdateFromSetname)))
+                using (var context = new TestDbContext(nameof(UpdateFromContext)))
                 {
                     foreach (var item in TestHelper.DataSource)
                     {

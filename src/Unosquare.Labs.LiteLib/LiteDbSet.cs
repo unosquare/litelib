@@ -219,7 +219,7 @@
 
         /// <inheritdoc />
         public T Single(long rowId) => Select($"[{nameof(ILiteModel.RowId)}] = @{nameof(ILiteModel.RowId)}", new { RowId = rowId })
-            .FirstOrDefault();
+            .Single();
 
         /// <inheritdoc />
         public async Task<T> SingleAsync(long rowId)
