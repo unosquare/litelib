@@ -1,8 +1,6 @@
- [![NuGet](https://img.shields.io/nuget/dt/LiteLib%20.svg)](https://www.nuget.org/packages/LiteLib/)
  [![Analytics](https://ga-beacon.appspot.com/UA-8535255-2/unosquare/litelib/)](https://github.com/igrigorik/ga-beacon)
  [![Build Status](https://travis-ci.org/unosquare/litelib.svg?branch=master)](https://travis-ci.org/unosquare/litelib)
  [![Build status](https://ci.appveyor.com/api/projects/status/iwk94ol34b7y5411?svg=true)](https://ci.appveyor.com/project/geoperez/litelib)
- [![Coverage Status](https://coveralls.io/repos/github/unosquare/litelib/badge.svg?branch=master)](https://coveralls.io/github/unosquare/litelib?branch=master)
 
 <img src="https://raw.githubusercontent.com/unosquare/litelib/master/litelib-logo.png" alt="LiteLib Logo" />
 
@@ -30,9 +28,9 @@ Stuff that LiteLib *does not* cover:
 
 You can install LiteLib via NuGet Package Manager as follows:
 
-<pre>
+```
 PM> Install-Package LiteLib
-</pre>
+```
 
 LiteLib doesn't contains any SQLite interop or library, so you need to add it to your project. You can choose to a general bundle or custom bundle.
 
