@@ -18,7 +18,7 @@
       "output": {
         ".html": {
           "relative_path": "README.html",
-          "hash": "bQ5Z83dpYC/YiljiEB8PKw=="
+          "hash": "7NOPjvTQ9jXef4rLwpEfeA=="
         }
       },
       "is_incremental": false,
@@ -85,7 +85,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Labs.LiteLib.EntityEventArgs-1.html",
-          "hash": "vz62T8XYfpmT2cd/kp6Geg=="
+          "hash": "TZVvFltJ3kMSPro26yc5Ng=="
         }
       },
       "is_incremental": false,
@@ -97,7 +97,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Labs.LiteLib.Extensions.html",
-          "hash": "4+TT2dA6qus/Qn42OWJwwQ=="
+          "hash": "wbnT8GMVC67qv37NFDpPOA=="
         }
       },
       "is_incremental": false,
@@ -109,7 +109,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Labs.LiteLib.ILiteDbSet-1.html",
-          "hash": "Kl7xJRH0jN/D7/Ns310arA=="
+          "hash": "C55kNk6lZsM1hkGg8Ss5zA=="
         }
       },
       "is_incremental": false,
@@ -121,7 +121,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Labs.LiteLib.ILiteDbSet.html",
-          "hash": "+aG+1fHCKmVlNi4u5RS54Q=="
+          "hash": "5Pkr7cUHLzD+ixfjmIHNkA=="
         }
       },
       "is_incremental": false,
@@ -133,7 +133,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Labs.LiteLib.ILiteModel.html",
-          "hash": "oQcHiJ07OPbYH/8PVSkapw=="
+          "hash": "3ORqm61skipCknfOXXyXjQ=="
         }
       },
       "is_incremental": false,
@@ -145,7 +145,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Labs.LiteLib.LiteDbContext.html",
-          "hash": "mcjLVP3OpbeAoayolZSuXw=="
+          "hash": "7yvlwbRwCuPecXt5eTJVmw=="
         }
       },
       "is_incremental": false,
@@ -157,7 +157,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Labs.LiteLib.LiteDbSet-1.html",
-          "hash": "LsTUSlu0G2YK991nJNG7nA=="
+          "hash": "tkzRyn6m5b4ioQUuM2Hbdg=="
         }
       },
       "is_incremental": false,
@@ -169,7 +169,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Labs.LiteLib.LiteIndexAttribute.html",
-          "hash": "t9crqROLEwLEbCE+sb6A4w=="
+          "hash": "ei/SdpSxETlkKFuP3XVB+w=="
         }
       },
       "is_incremental": false,
@@ -181,7 +181,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Labs.LiteLib.LiteModel.html",
-          "hash": "LMHRLfm4O17Wq90UcmNUcQ=="
+          "hash": "RG5LFdYxglj2Emm0cUx6ew=="
         }
       },
       "is_incremental": false,
@@ -193,7 +193,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Labs.LiteLib.LiteUniqueAttribute.html",
-          "hash": "enp332Jb2woTL1kxrRVX3w=="
+          "hash": "M9ku4o2kdaHAS2jJ0vuCxg=="
         }
       },
       "is_incremental": false,
@@ -205,7 +205,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Labs.LiteLib.NotMappedAttribute.html",
-          "hash": "Q42w7KBLt9qQDB4dkKEoQw=="
+          "hash": "NHTU+0/vmyeMTBTEUowvNg=="
         }
       },
       "is_incremental": false,
@@ -217,7 +217,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Labs.LiteLib.StringLengthAttribute.html",
-          "hash": "Q6qW0DnUS+XVo3oOS4jNmg=="
+          "hash": "UBoc1NJdu4kR+58gKlsmiQ=="
         }
       },
       "is_incremental": false,
@@ -229,7 +229,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Labs.LiteLib.TableAttribute.html",
-          "hash": "hLNvWcDz9dz59SVNeaw5Hg=="
+          "hash": "Wa35BR7fOXSxs/E2D7YkUQ=="
         }
       },
       "is_incremental": false,
@@ -241,7 +241,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.Labs.LiteLib.html",
-          "hash": "5aggBRvF589lvowQ2/bYpw=="
+          "hash": "a5tdg0weZKod4d8trX2yJw=="
         }
       },
       "is_incremental": false,
@@ -276,26 +276,36 @@
     {
       "status": {
         "can_incremental": true,
-        "incrementalPhase": "build"
+        "incrementalPhase": "build",
+        "total_file_count": 0,
+        "skipped_file_count": 0
       },
       "processors": {
-        "ConceptualDocumentProcessor": {
-          "can_incremental": true,
-          "incrementalPhase": "build"
-        },
-        "ManagedReferenceDocumentProcessor": {
-          "can_incremental": true,
-          "incrementalPhase": "build"
-        },
         "ResourceDocumentProcessor": {
           "can_incremental": false,
           "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
-          "incrementalPhase": "build"
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        },
+        "ConceptualDocumentProcessor": {
+          "can_incremental": true,
+          "incrementalPhase": "build",
+          "total_file_count": 1,
+          "skipped_file_count": 1
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": true,
+          "incrementalPhase": "build",
+          "total_file_count": 14,
+          "skipped_file_count": 14
         },
         "TocDocumentProcessor": {
           "can_incremental": false,
           "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
-          "incrementalPhase": "build"
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
         }
       }
     },
@@ -303,7 +313,9 @@
       "status": {
         "can_incremental": false,
         "details": "Cannot support incremental post processing, the reason is: should not trace intermediate info.",
-        "incrementalPhase": "postProcessing"
+        "incrementalPhase": "postProcessing",
+        "total_file_count": 0,
+        "skipped_file_count": 0
       },
       "processors": {}
     }
