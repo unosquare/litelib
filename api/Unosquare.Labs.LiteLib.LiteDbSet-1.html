@@ -28,7 +28,7 @@
       <header>
         
         <nav class="navbar navbar-inverse ng-scope" role="navigation">
-          <div class="container">
+          <div class="container-fluid">
             <div class="navbar-header">
               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
                 <span class="sr-only">Toggle navigation</span>
@@ -51,14 +51,14 @@
         </nav>
         
         <div class="subnav navbar">
-          <div class="container hide-when-search" id="breadcrumb">
+          <div class="container-fluid hide-when-search" id="breadcrumb">
             <ul class="breadcrumb">
               <li></li>
             </ul>
           </div>
         </div>
       </header>
-      <div class="container body-content">
+      <div class="container-fluid body-content">
         
         <div id="search-results">
           <div class="search-list"></div>
@@ -66,7 +66,7 @@
           <ul id="pagination"></ul>
         </div>
       </div>
-      <div role="main" class="container body-content hide-when-search">
+      <div role="main" class="container-fluid body-content hide-when-search">
         
         <div class="sidenav hide-when-search">
           <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
@@ -260,32 +260,6 @@
   </table>
   
   
-  <a id="Unosquare_Labs_LiteLib_LiteDbSet_1_EntityType_" data-uid="Unosquare.Labs.LiteLib.LiteDbSet`1.EntityType*"></a>
-  <h4 id="Unosquare_Labs_LiteLib_LiteDbSet_1_EntityType" data-uid="Unosquare.Labs.LiteLib.LiteDbSet`1.EntityType">EntityType</h4>
-  <div class="markdown level1 summary"><p>Gets or sets the type of the entity.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Type EntityType { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.type">Type</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
   <a id="Unosquare_Labs_LiteLib_LiteDbSet_1_InsertDefinition_" data-uid="Unosquare.Labs.LiteLib.LiteDbSet`1.InsertDefinition*"></a>
   <h4 id="Unosquare_Labs_LiteLib_LiteDbSet_1_InsertDefinition" data-uid="Unosquare.Labs.LiteLib.LiteDbSet`1.InsertDefinition">InsertDefinition</h4>
   <div class="markdown level1 summary"><p>Gets the insert command definition.</p>
@@ -319,7 +293,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string[] PropertyNames { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public IReadOnlyCollection&lt;string&gt; PropertyNames { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -331,7 +305,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>[]</td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ireadonlycollection-1">IReadOnlyCollection</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>

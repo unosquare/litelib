@@ -251,19 +251,6 @@ references:
   isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.ILiteDbSet.DeleteDefinitionWhere
   nameWithType: ILiteDbSet.DeleteDefinitionWhere
-- uid: Unosquare.Labs.LiteLib.ILiteDbSet.EntityType
-  name: EntityType
-  href: api/Unosquare.Labs.LiteLib.ILiteDbSet.html#Unosquare_Labs_LiteLib_ILiteDbSet_EntityType
-  commentId: P:Unosquare.Labs.LiteLib.ILiteDbSet.EntityType
-  fullName: Unosquare.Labs.LiteLib.ILiteDbSet.EntityType
-  nameWithType: ILiteDbSet.EntityType
-- uid: Unosquare.Labs.LiteLib.ILiteDbSet.EntityType*
-  name: EntityType
-  href: api/Unosquare.Labs.LiteLib.ILiteDbSet.html#Unosquare_Labs_LiteLib_ILiteDbSet_EntityType_
-  commentId: Overload:Unosquare.Labs.LiteLib.ILiteDbSet.EntityType
-  isSpec: "True"
-  fullName: Unosquare.Labs.LiteLib.ILiteDbSet.EntityType
-  nameWithType: ILiteDbSet.EntityType
 - uid: Unosquare.Labs.LiteLib.ILiteDbSet.InsertDefinition
   name: InsertDefinition
   href: api/Unosquare.Labs.LiteLib.ILiteDbSet.html#Unosquare_Labs_LiteLib_ILiteDbSet_InsertDefinition
@@ -1189,23 +1176,6 @@ references:
   fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).DeleteDefinitionWhere
   nameWithType: LiteDbSet<T>.DeleteDefinitionWhere
   nameWithType.vb: LiteDbSet(Of T).DeleteDefinitionWhere
-- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.EntityType
-  name: EntityType
-  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_EntityType
-  commentId: P:Unosquare.Labs.LiteLib.LiteDbSet`1.EntityType
-  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.EntityType
-  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).EntityType
-  nameWithType: LiteDbSet<T>.EntityType
-  nameWithType.vb: LiteDbSet(Of T).EntityType
-- uid: Unosquare.Labs.LiteLib.LiteDbSet`1.EntityType*
-  name: EntityType
-  href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_EntityType_
-  commentId: Overload:Unosquare.Labs.LiteLib.LiteDbSet`1.EntityType
-  isSpec: "True"
-  fullName: Unosquare.Labs.LiteLib.LiteDbSet<T>.EntityType
-  fullName.vb: Unosquare.Labs.LiteLib.LiteDbSet(Of T).EntityType
-  nameWithType: LiteDbSet<T>.EntityType
-  nameWithType.vb: LiteDbSet(Of T).EntityType
 - uid: Unosquare.Labs.LiteLib.LiteDbSet`1.FirstOrDefault(System.String,System.Object)
   name: FirstOrDefault(String, Object)
   href: api/Unosquare.Labs.LiteLib.LiteDbSet-1.html#Unosquare_Labs_LiteLib_LiteDbSet_1_FirstOrDefault_System_String_System_Object_
