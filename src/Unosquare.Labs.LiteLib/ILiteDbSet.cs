@@ -11,11 +11,6 @@
     public interface ILiteDbSet
     {
         /// <summary>
-        /// Gets or sets the type of the entity.
-        /// </summary>
-        Type EntityType { get; set; }
-
-        /// <summary>
         /// Gets the name of the data-backing table.
         /// </summary>
         string TableName { get; }

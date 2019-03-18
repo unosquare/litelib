@@ -298,7 +298,7 @@
         /// Releases unmanaged and - optionally - managed resources.
         /// </summary>
         /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
-        public void Dispose(bool disposing)
+        protected virtual void Dispose(bool disposing)
         {
             if (_isDisposing) return;
 
@@ -316,7 +316,11 @@
         }
 
         /// <inheritdoc />
-        public void Dispose() => Dispose(true);
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
 
         internal T ExecuteScalar<T>(string commandText, object whereParams = null)
         {
@@ -367,7 +371,6 @@
                 if (currentValue == null) continue;
 
                 currentValue.Context = this;
-                currentValue.EntityType = entitySetType;
                 _entitySets[entitySetProp.Name] = currentValue;
             }
 

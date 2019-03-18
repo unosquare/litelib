@@ -89,13 +89,10 @@
         /// <inheritdoc />
         public LiteDbContext Context { get; set; }
         
-        /// <inheritdoc />
-        public Type EntityType { get; set; }
-
         /// <summary>
         /// Gets or sets the property names.
         /// </summary>
-        public string[] PropertyNames => _tableDefinition.PropertyNames;
+        public IReadOnlyCollection<string> PropertyNames => _tableDefinition.PropertyNames;
 
         #endregion Properties
 
@@ -112,7 +109,7 @@
             if (args.Cancel) return 0;
 
             Context.LogSqlCommand(InsertDefinition, entity);
-            var result = await Context.Connection.QueryAsync<long>(InsertDefinition, entity);
+            var result = await Context.Connection.QueryAsync<long>(InsertDefinition, entity).ConfigureAwait(false);
 
             if (result.Any() == false) return 0;
 
@@ -268,7 +265,7 @@
         {
             var fieldInfo = (field.Body as MemberExpression)?.Member as PropertyInfo;
 
-            return fieldInfo == null ? throw new ArgumentException("Invalid field", nameof(fieldInfo)) : fieldInfo.Name;
+            return fieldInfo == null ? throw new ArgumentNullException(nameof(fieldInfo)) : fieldInfo.Name;
         }
     }
 }

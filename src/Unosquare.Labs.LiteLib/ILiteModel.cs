@@ -18,6 +18,7 @@
     /// Hints the DDL generator that an index needs to be created.
     /// </summary>
     /// <seealso cref="System.Attribute" />
+    [AttributeUsage(AttributeTargets.Property)]
     public class LiteIndexAttribute : Attribute
     {
     }
@@ -26,6 +27,7 @@
     /// Hints the DDL generator that a UNIQUE index needs to be created.
     /// </summary>
     /// <seealso cref="System.Attribute" />
+    [AttributeUsage(AttributeTargets.Property)]
     public class LiteUniqueAttribute : Attribute
     {
     }

@@ -46,7 +46,7 @@
                 {
                     var properties = context.Warehouses.PropertyNames;
 
-                    Assert.AreEqual(3, properties.Length);
+                    Assert.AreEqual(3, properties.Count);
                 }
             }
         }
