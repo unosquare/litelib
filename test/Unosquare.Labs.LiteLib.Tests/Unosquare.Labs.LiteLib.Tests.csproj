@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp2.1;net452</TargetFrameworks>
+    <TargetFrameworks>netcoreapp2.2;net452</TargetFrameworks>
     <AssemblyName>Unosquare.Labs.LiteLib.Tests</AssemblyName>
     <PackageId>Unosquare.Labs.LiteLib.Tests</PackageId>
   </PropertyGroup>
@@ -21,7 +20,7 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.1' ">
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.2' ">
     <PackageReference Include="SQLitePCLRaw.bundle_green" Version="1.1.13" />
   </ItemGroup>
 </Project>
