@@ -1,6 +1,7 @@
 language: csharp
 solution: Unosquare.Labs.LiteLib.sln
-dotnet: 2.1.300
+dotnet: 2.2.101
+dist: xenial
 notifications:
   slack: unolabs:cbusXPH6pBwZ35rVDzi4k4ve
 install:
@@ -9,5 +10,5 @@ install:
   - nuget install NUnit.Runners -Version 3.4.1 -OutputDirectory testrunner
 script:
   - msbuild /p:Configuration=Release Unosquare.Labs.LiteLib.sln
-  - dotnet test ./test/Unosquare.Labs.LiteLib.Tests/Unosquare.Labs.LiteLib.Tests.csproj -f netcoreapp2.1
+  - dotnet test ./test/Unosquare.Labs.LiteLib.Tests/Unosquare.Labs.LiteLib.Tests.csproj -f netcoreapp2.2
   - mono ./testrunner/NUnit.ConsoleRunner.3.4.1/tools/nunit3-console.exe --process=Single ./test/Unosquare.Labs.LiteLib.Tests/bin/Release/net452/Unosquare.Labs.LiteLib.Tests.dll
