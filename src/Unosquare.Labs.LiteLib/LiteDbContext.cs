@@ -14,14 +14,14 @@
     using System.Threading.Tasks;
     using Swan;
     using Swan.Reflection;
-#if !NET452
+#if !NET461
     using Microsoft.Data.Sqlite;
 #endif
 
     /// <summary>
     /// A base class containing all the functionality to perform data operations on Entity Sets.
     /// </summary>
-    /// <seealso cref="System.IDisposable" />
+    /// <seealso cref="IDisposable" />
     public abstract class LiteDbContext : IDisposable
     {
         private static readonly ConcurrentDictionary<Guid, LiteDbContext> LazyInstances =
@@ -49,7 +49,7 @@
             databaseFilePath = Path.GetFullPath(databaseFilePath);
             var databaseExists = File.Exists(databaseFilePath);
 
-#if NET452
+#if NET461
             Connection = new Mono.Data.Sqlite.SqliteConnection($"URI=file:{databaseFilePath}");
 #else
             var builder = new SqliteConnectionStringBuilder

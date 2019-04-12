@@ -3,7 +3,7 @@
     using Database;
     using Helpers;
     using NUnit.Framework;
-#if !NET452
+#if !NET461
     using Microsoft.Data.Sqlite;
 #endif
 
@@ -52,7 +52,7 @@
                         }
                     }
 
-#if NET452
+#if NET461
                     Assert.Throws<Mono.Data.Sqlite.SqliteException>(() =>
 #else
                     Assert.Throws<SqliteException>(() =>

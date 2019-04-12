@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp2.2;net452</TargetFrameworks>
+    <TargetFrameworks>netcoreapp2.2;net461</TargetFrameworks>
     <AssemblyName>Unosquare.Labs.LiteLib.Tests</AssemblyName>
     <PackageId>Unosquare.Labs.LiteLib.Tests</PackageId>
   </PropertyGroup>

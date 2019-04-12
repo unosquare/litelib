@@ -6,7 +6,7 @@
     using System.Threading.Tasks;
     using Database;
     using Helpers;
-#if !NET452
+#if !NET461
     using Microsoft.Data.Sqlite;
 #endif
 
@@ -184,7 +184,7 @@
                     {
                         await context.Orders.InsertAsync(item);
                     }
-#if NET452
+#if NET461
                     Assert.ThrowsAsync<Mono.Data.Sqlite.SqliteException>(async () =>
 #else
                     Assert.ThrowsAsync<SqliteException>(async () =>
@@ -206,7 +206,7 @@
             [Test]
             public void InsertAsyncWithOutOfRangeString_ThrowsSqliteException()
             {
-#if NET452
+#if NET461
                 Assert.ThrowsAsync<Mono.Data.Sqlite.SqliteException>(async () =>
 #else
                 Assert.ThrowsAsync<SqliteException>(async () =>

@@ -3,7 +3,7 @@
     using Database;
     using Helpers;
     using NUnit.Framework;
-#if !NET452
+#if !NET461
 #endif
 
     public partial class DbContextFixture

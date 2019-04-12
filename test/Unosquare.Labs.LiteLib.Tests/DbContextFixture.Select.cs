@@ -4,7 +4,7 @@
     using Helpers;
     using NUnit.Framework;
     using System.Linq;
-#if !NET452
+#if !NET461
     using Microsoft.Data.Sqlite;
 #endif
 
@@ -58,7 +58,7 @@
                         context.Orders.Insert(item);
                     }
 
-#if NET452
+#if NET461
                     Assert.Throws<Mono.Data.Sqlite.SqliteException>(() =>
 #else
                     Assert.Throws<SqliteException>(() =>

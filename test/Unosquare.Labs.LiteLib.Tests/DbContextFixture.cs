@@ -7,7 +7,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
-#if !NET452
+#if !NET461
     using Microsoft.Data.Sqlite;
 #endif
 

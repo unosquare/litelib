@@ -44,7 +44,7 @@ If you are targeting only Linux environments (only .NET Core), you can use the s
 PM> Install-Package SQLitePCLRaw.bundle_e_sqlite3
 </pre>
 
-**Mono Users** - If you are using Mono please target to NET452.
+**Mono Users** - If you are using Mono please target to NET461.
 
 ## Usage
 
