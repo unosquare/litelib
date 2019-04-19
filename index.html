@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>PocoData | Unosquare PocoData </title>
+    <title>LiteLib | Unosquare LiteLib </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="PocoData | Unosquare PocoData ">
+    <meta name="title" content="LiteLib | Unosquare LiteLib ">
     <meta name="generator" content="docfx 2.42.0.0">
     
     <link rel="shortcut icon" href="favicon.ico">
@@ -68,115 +68,117 @@
         <div class="article row grid">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="pocodata">PocoData</h1>
 
-<p>The no-frills micro ORM for SQL Server</p>
-<p><a href="https://badge.fury.io/nu/PocoData.Sql"><img src="https://badge.fury.io/nu/PocoData.Sql.svg" alt="NuGet version"></a>
-<span class="emoji" shortcode="star">⭐</span> <em>Please star this project if you like it</em></p>
-<p>This library provides simplified access to data stores. Initially we only support SQL Server but the library can easily be extended to support other databases. Please not that data relations are not supported. You will need to implement those manually. Properties referencing other objects will not be persisted or mapped by this library. Only strings, enums and value types (along with their nullable counterparts) are supported.</p>
-<p>The usage is straightforward. There are 2 separate NuGet packages: PocoData and PocoData.Sql. The packages have been spearated as sometimes you need a share data model class library across your applications. In that case you don&#39;t need to install the PocoData.Sql NuGet package in your shared class library. Only install the PocoData.Sql package in the project where you actually perform the data access.</p>
-<p>You can create data models easily enough by adding attributes to your data model classes and their properties. For example.</p>
-<pre><code class="lang-csharp">using System;
-using Unosquare.PocoData.Annotations; // Make sure you import the namespace containing the data annotations.
+<p> <a href="https://github.com/igrigorik/ga-beacon"><img src="https://ga-beacon.appspot.com/UA-8535255-2/unosquare/litelib/" alt="Analytics"></a>
+ <a href="https://travis-ci.org/unosquare/litelib"><img src="https://travis-ci.org/unosquare/litelib.svg?branch=master" alt="Build Status"></a>
+ <a href="https://ci.appveyor.com/project/geoperez/litelib"><img src="https://ci.appveyor.com/api/projects/status/iwk94ol34b7y5411?svg=true" alt="Build status"></a></p>
+<p><img src="https://raw.githubusercontent.com/unosquare/litelib/master/litelib-logo.png" alt="LiteLib Logo"></p>
+<h1 id="litelib">LiteLib</h1>
+<p><em>A cool little wrapper for <a href="https://www.sqlite.org/">SQLite</a> based on <a href="https://github.com/StackExchange/Dapper">Dapper</a> from Unosquare Labs -- It&#39;s also free and MIT-licensed</em></p>
+<p><span class="emoji" shortcode="star">⭐</span> <em>Please star this project if you find it useful!</em> </p>
+<p>LiteLib is a library that helps you get the job done quickly and easily by defining POCO classes and turns those classes into SQLite-mapped tables. You define a database context and LiteLib will automatically create the necessary SQLite tables for your context. You will then be able to easily query, insert, update or delete records from the database tables via the database context you just defined. LiteLib is not intended to be a replacement for Entity Framework, but rather a lighter alternative that saves you the work of creating tables, managing connection instances, logging SQL commands, and still allows you to use Dapper-style querying. So, if you like Entity Framework, but you prefer the speed of Dapper, and you are using SQLite for your project, then we hope you&#39;ll love LiteLib!</p>
+<p>Stuff that LiteLib <em>does very well</em>:</p>
+<ul>
+<li>Creates your database files and tables that map to classes and properties of your objects.</li>
+<li>Automatically gives you access to predefined <code>SELECT</code>, <code>UPDATE</code>, <code>INSERT</code> and <code>DELETE</code> commands for each of your classes.</li>
+<li>Automatically provides you with a simple and extensible data access layer.</li>
+<li>Automatically manages connection instances.</li>
+<li>Provides you with a log of SQL commands executed against your database file.</li>
+</ul>
+<p>Stuff that LiteLib <em>does not</em> cover:</p>
+<ul>
+<li>Migrations of any kind. You&#39;ll have to drop and recreate the DB file if your schema changes or migrate it manually.</li>
+<li>Navigation properties or relationships. You&#39;ll have to implement and ensure consistency of data relations manually -- which BTW, it&#39;s not hard at all and lets you write faster, lighter code.</li>
+<li>Automatic transactions or changesets. You&#39;ll have to <code>BeginTransaction</code> and <code>Commit</code> manually. The Data context class you define simply exposes the underlying Dapper connection.</li>
+</ul>
+<h2 id="installation-nuget-versionhttpsbadgefuryionulitelibsvghttpsbadgefuryionulitelib">Installation <a href="https://badge.fury.io/nu/litelib"><img src="https://badge.fury.io/nu/litelib.svg" alt="NuGet version"></a></h2>
+<p>You can install LiteLib via NuGet Package Manager as follows:</p>
+<pre><code>PM&gt; Install-Package LiteLib
+</code></pre><p>LiteLib doesn&#39;t contains any SQLite interop or library, so you need to add it to your project. You can choose to a general bundle or custom bundle.</p>
+<pre>
+PM> Install-Package SQLitePCLRaw.bundle_green
+</pre>
 
-[Table(&quot;Employees&quot;)]
-public class Employee
+<p>If you are targeting only Linux environments (only .NET Core), you can use the sqlite3 bundle.</p>
+<pre>
+PM> Install-Package SQLitePCLRaw.bundle_e_sqlite3
+</pre>
+
+<p><strong>Mono Users</strong> - If you are using Mono please target to NET461.</p>
+<h2 id="usage">Usage</h2>
+<p>We designed LiteLib to be extremely easy to use. There are 3 steps you need to follow.</p>
+<ol>
+<li>Create your model classes. All model classes must extend from <code>LiteModel</code>. There are a few class and property attributes that LiteLib understands. See the examples below.</li>
+<li>Create your context class. It must extend <code>LiteDbContext</code>, and it must expose your <code>LiteDbSet</code> classes</li>
+<li>Use your context class. An example provided in the following section.</li>
+</ol>
+<h2 id="example">Example</h2>
+<p>Create your model class. Use the <code>Table</code> attribute to specify the name of the table you want to map your model to. Also, note we inherit from <code>LiteModel</code>. If you wish to create a unique index on a column, use the <code>LiteUnique</code> attribute on a property. If you wish to index a column, then simply use the <code>LiteIndex</code> attribute. Please note properties with complex datatypes will not be mapped to the database.</p>
+<pre><code class="lang-cs">namespace Models
 {
-    public Employee()
+    using System;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using Unosquare.Labs.LiteLib;
+
+    [Table(&quot;ClientAccounts&quot;)]
+    public class ClientAccount : LiteModel
     {
-        // a default constructor is not required but highly recommended.
-    }
+        [LiteUnique]
+        public string Username { get; set; }
 
-    [Key(true)] // Tells the mapper this property is part of a primary key and that its value is generated by the DB.
-    public int EmployeeId { get; set; }
+        public string Password { get; set; }
 
-    [Required] // This string will be set as NOT NULL
-    [StringLength(300)] // You can specify the string length. By default it is 255 characters.
-    public string FullName { get; set; }
+        [LiteIndex]
+        public bool IsUsernameIP { get; set; }
 
-    public string EmailAddress { get; set; }
+        [LiteIndex]
+        public long RelayServerId { get; set; }
 
-    public DateTime DateOfBirth { get; set; }
-
-    public int? Children { get; set; }
-
-    public MaritalStatus MaritalStatus { get; set; } // example of an enum (values will be stored as integers)
-
-    public object Reserved { get; set; } // this will be ignored by the mapper.
-
-    [NotMapped] // You can mark fields as not mapped.
-    public int HashCode { get; set; }
-
-    public override string ToString()
-    {
-        return $&quot;{EmployeeId} {FullName} {EmailAddress} {MaritalStatus} {DateOfBirth} {Children}&quot;;
+        public DateTime DateCreatedUtc { get; set; }
+        public DateTime LastAccessDateUtc { get; set; }
+        public DateTime? LockedOutDateUtc { get; set; }
+        public int FailedLoginAttempts { get; set; }
     }
 }
-</code></pre><p>If you can&#39;t add attributes to existing classes, you could also use the fluent API</p>
-<pre><code class="lang-csharp">typeof(Employee).Table().ToTable(&quot;Employees&quot;);
-typeof(Employee).Column(nameof(Employee.EmployeeId)).IsGeneratedKeyColumn();
-</code></pre><p>Create your database container class</p>
-<pre><code class="lang-csharp">using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Threading.Tasks;
-using Unosquare.PocoData.Sql;
-
-public class SampleDb : SqlPocoDb
+</code></pre><p>Next, create your database context class. Extend <code>LiteDbContext</code> and expose any number of tables via properties of the generic type <code>LiteDbSet&lt;&gt;</code>. A context should always be disposable so the recommendation is to query your database inside a <code>using</code> block of statements.</p>
+<pre><code class="lang-cs">namespace Models
 {
-    public SampleDb()
-        : base($&quot;Data Source=.; Integrated Security=True; Initial Catalog=pocodata; MultipleActiveResultSets=True;&quot;)
-    {
-        Employees = new EmployeesTable(this);
-    }
+    using Labs.LiteLib;
 
-    public EmployeesTable Employees { get; }
-
-    // you could get a default table proxy for the type but this shows you
-    // how to create your own table proxy with extended functionality.
-    public class EmployeesTable : PocoTableProxy&lt;Employee&gt;
+    public class AppDbContext : LiteDbContext
     {
-        public EmployeesTable(IPocoDb db)
-            : base(db, true)
+        public AppDbContext()
+            : base(&quot;mydbfile.db&quot;)
         {
-            // placeholder
+            // map this context to the database file mydbfile.db
         }
 
-        public async Task&lt;IEnumerable&lt;Employee&gt;&gt; GetYoungEmployeesAsync()
-        {
-            var command = PocoDb.Connection.CreateCommand() as SqlCommand;
-            command.CommandText = PocoDb.Commands.SelectAllCommandText(typeof(Employee)) + $&quot; WHERE YEAR(DateOfBirth) &gt;= @Year&quot;;
-            command.AddParameter(&quot;@Year&quot;, 1990);
-
-            return await SelectManyAsync(command);
-        }
+        public virtual LiteDbSet&lt;ClientAccount&gt; ClientAccounts { get; set; }
     }
 }
-</code></pre><p>Finally, use your database container class.</p>
-<pre><code class="lang-csharp">using (var db = new SampleDb())
+</code></pre><p>Finally, use your database context class. For example, to query your database by username asynchronously you can just do the following:</p>
+<pre><code class="lang-cs">using (var db = new AppDbContext())
 {
-    var employees = new List&lt;Employee&gt;();
-    employees.AddRange(await db.Employees.SelectAllAsync());
-
-    var youngEmployees = await db.Employees.GetYoungEmployeesAsync();
-    foreach (var e in youngEmployees)
-        e.Children = null;
-
-    var updates = await db.Employees.UpdateManyAsync(youngEmployees);
+  var accounts = await db.ClientAccounts.SelectAsync(
+      $&quot;{nameof(ClientAccount.Username)} = @{nameof(ClientAccount.Username)}&quot;, 
+      new { Username = &quot;someuser&quot; });
 }
-</code></pre></article>
+</code></pre><p>At this point, it should be easy for you to see that you can easily extend your data access logic via extension methods or by extending the <code>LiteDbSet&lt;&gt;</code> class and exposing it as a property in your database context class.</p>
+<p>That&#39;s it! Happy coding!</p>
+</article>
           </div>
           
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="doc" align="center">
               <span class="small mobile-hide">
-                <img id="logo" class="doc-logo" src="pocodata.png" alt="">
+                <img id="logo" class="doc-logo" src="litelib-logo.png" alt="">
               </span>
             </div>
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
                   <li class="top-sep">
-                    <a href="https://github.com/unosquare/pocodata/blob/master/README.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/unosquare/litelib/blob/master/README.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>
