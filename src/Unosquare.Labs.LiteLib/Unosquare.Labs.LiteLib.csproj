@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Description>A cool little wrapper for SQLite based on Dapper.</Description>
     <AssemblyTitle>LiteLib</AssemblyTitle>
-    <TargetFrameworks>netstandard2.0;net461;net462</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;net461;net472</TargetFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <AssemblyName>Unosquare.Labs.LiteLib</AssemblyName>
     <PackageId>LiteLib</PackageId>
@@ -37,7 +37,7 @@
   <ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">
     <PackageReference Include="Mono.Data.Sqlite.Portable" Version="1.0.3.5" />
   </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' Or '$(TargetFramework)' == 'net462'">
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' Or '$(TargetFramework)' == 'net472'">
     <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="2.2.4" />
   </ItemGroup>
 </Project>
