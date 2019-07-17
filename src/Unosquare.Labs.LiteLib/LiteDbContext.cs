@@ -24,8 +24,8 @@
     /// <seealso cref="IDisposable" />
     public abstract class LiteDbContext : IDisposable
     {
-        private static readonly ConcurrentDictionary<Guid, LiteDbContext> LazyInstances =
-            new ConcurrentDictionary<Guid, LiteDbContext>();
+        private static readonly ConcurrentDictionary<Guid, WeakReference<LiteDbContext>> LazyInstances =
+            new ConcurrentDictionary<Guid, WeakReference<LiteDbContext>>();
 
         private static readonly PropertyTypeCache PropertyInfoCache = new PropertyTypeCache();
         private static readonly Type GenericLiteDbSetType = typeof(LiteDbSet<>);
@@ -69,7 +69,7 @@
             }
 
             UniqueId = Guid.NewGuid();
-            LazyInstances[UniqueId] = this;
+            LazyInstances[UniqueId] = new WeakReference<LiteDbContext>(this);
         }
 
         /// <summary>
@@ -83,7 +83,10 @@
         /// Gets all instances of Lite DB contexts that are instantiated and not disposed.
         /// </summary>
         public static ReadOnlyCollection<LiteDbContext> Instances =>
-            new ReadOnlyCollection<LiteDbContext>(LazyInstances.Values.ToList());
+            new ReadOnlyCollection<LiteDbContext>(LazyInstances.Values
+                .Select(x => x.TryGetTarget(out var context) ? context : null)
+                .Where(x => x != null)
+                .ToList());
 
         /// <summary>
         /// Gets the underlying SQLite connection.
