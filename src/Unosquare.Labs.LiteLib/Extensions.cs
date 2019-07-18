@@ -10,6 +10,7 @@
     {
         private const string IntegerAffinity = "INTEGER";
         private const string NumericAffinity = "NUMERIC";
+        private const string RealAffinity = "REAL";
         private const string TextAffinity = "TEXT";
         private const string DateTimeAffinity = "DATETIME";
 
@@ -23,7 +24,7 @@
             {typeof(ulong), IntegerAffinity},
             {typeof(byte), IntegerAffinity},
             {typeof(char), IntegerAffinity},
-            {typeof(decimal), NumericAffinity},
+            {typeof(decimal), RealAffinity},
             {typeof(bool), NumericAffinity},
             {typeof(DateTime), DateTimeAffinity},
         };

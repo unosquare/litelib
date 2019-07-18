@@ -8,7 +8,7 @@
     <AssemblyName>Unosquare.Labs.LiteLib</AssemblyName>
     <PackageId>LiteLib</PackageId>
     <CodeAnalysisRuleSet>..\..\StyleCop.Analyzers.ruleset</CodeAnalysisRuleSet>
-    <Version>0.22.0</Version>
+    <Version>0.23.0</Version>
     <Authors>Unosquare</Authors>
     <Company>Unosquare</Company>
     <Copyright>Copyright (c) 2016-2019 Unosquare</Copyright>

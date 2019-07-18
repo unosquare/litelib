@@ -296,28 +296,7 @@
 
             return Connection.ExecuteAsync(set.UpdateDefinition, entity);
         }
-
-        /// <summary>
-        /// Releases unmanaged and - optionally - managed resources.
-        /// </summary>
-        /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
-        protected virtual void Dispose(bool disposing)
-        {
-            if (_isDisposing) return;
-
-            if (disposing)
-            {
-                LazyInstances.TryRemove(UniqueId, out _);
-                Connection.Close();
-                Connection.Dispose();
-                Connection = null;
-                $"Disposed {_contextType.Name}. {LazyInstances.Count} context instances."
-                    .Debug(nameof(LiteDbContext));
-            }
-
-            _isDisposing = true;
-        }
-
+        
         /// <inheritdoc />
         public void Dispose()
         {
@@ -399,6 +378,27 @@
                 tran.Commit();
                 OnDatabaseCreated(this, EventArgs.Empty);
             }
+        }
+        
+        /// <summary>
+        /// Releases unmanaged and - optionally - managed resources.
+        /// </summary>
+        /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (_isDisposing) return;
+
+            if (disposing)
+            {
+                LazyInstances.TryRemove(UniqueId, out _);
+                Connection.Close();
+                Connection.Dispose();
+                Connection = null;
+                $"Disposed {_contextType.Name}. {LazyInstances.Count} context instances."
+                    .Debug(nameof(LiteDbContext));
+            }
+
+            _isDisposing = true;
         }
 
         #endregion Methods
