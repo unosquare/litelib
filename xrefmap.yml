@@ -775,19 +775,6 @@ references:
   isSpec: "True"
   fullName: Unosquare.Labs.LiteLib.LiteDbContext.InsertAsync
   nameWithType: LiteDbContext.InsertAsync
-- uid: Unosquare.Labs.LiteLib.LiteDbContext.Instances
-  name: Instances
-  href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_Instances
-  commentId: P:Unosquare.Labs.LiteLib.LiteDbContext.Instances
-  fullName: Unosquare.Labs.LiteLib.LiteDbContext.Instances
-  nameWithType: LiteDbContext.Instances
-- uid: Unosquare.Labs.LiteLib.LiteDbContext.Instances*
-  name: Instances
-  href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_Instances_
-  commentId: Overload:Unosquare.Labs.LiteLib.LiteDbContext.Instances
-  isSpec: "True"
-  fullName: Unosquare.Labs.LiteLib.LiteDbContext.Instances
-  nameWithType: LiteDbContext.Instances
 - uid: Unosquare.Labs.LiteLib.LiteDbContext.OnDatabaseCreated
   name: OnDatabaseCreated
   href: api/Unosquare.Labs.LiteLib.LiteDbContext.html#Unosquare_Labs_LiteLib_LiteDbContext_OnDatabaseCreated
