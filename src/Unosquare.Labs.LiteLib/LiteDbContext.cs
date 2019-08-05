@@ -4,9 +4,7 @@
     using System.Diagnostics;
     using System.Data;
     using System;
-    using System.Collections.Concurrent;
     using System.Collections.Generic;
-    using System.Collections.ObjectModel;
     using System.IO;
     using System.Linq;
     using System.Reflection;
@@ -24,9 +22,6 @@
     /// <seealso cref="IDisposable" />
     public abstract class LiteDbContext : IDisposable
     {
-        private static readonly ConcurrentDictionary<Guid, WeakReference<LiteDbContext>> LazyInstances =
-            new ConcurrentDictionary<Guid, WeakReference<LiteDbContext>>();
-
         private static readonly PropertyTypeCache PropertyInfoCache = new PropertyTypeCache();
         private static readonly Type GenericLiteDbSetType = typeof(LiteDbSet<>);
 
@@ -69,7 +64,6 @@
             }
 
             UniqueId = Guid.NewGuid();
-            LazyInstances[UniqueId] = new WeakReference<LiteDbContext>(this);
         }
 
         /// <summary>
@@ -78,16 +72,7 @@
         public event EventHandler OnDatabaseCreated = (s, e) => { };
 
         #region Properties
-
-        /// <summary>
-        /// Gets all instances of Lite DB contexts that are instantiated and not disposed.
-        /// </summary>
-        public static ReadOnlyCollection<LiteDbContext> Instances =>
-            new ReadOnlyCollection<LiteDbContext>(LazyInstances.Values
-                .Select(x => x.TryGetTarget(out var context) ? context : null)
-                .Where(x => x != null)
-                .ToList());
-
+        
         /// <summary>
         /// Gets the underlying SQLite connection.
         /// </summary>
@@ -356,7 +341,7 @@
                 _entitySets[entitySetProp.Name] = currentValue;
             }
 
-            $"Context instance {_contextType.Name} - {_entitySets.Count} entity sets. {Instances.Count} context instances."
+            $"Context instance {_contextType.Name} - {_entitySets.Count} entity sets."
                 .Debug(nameof(LiteDbContext));
         }
 
@@ -390,12 +375,9 @@
 
             if (disposing)
             {
-                LazyInstances.TryRemove(UniqueId, out _);
                 Connection.Close();
                 Connection.Dispose();
                 Connection = null;
-                $"Disposed {_contextType.Name}. {LazyInstances.Count} context instances."
-                    .Debug(nameof(LiteDbContext));
             }
 
             _isDisposing = true;
