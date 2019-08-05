@@ -12,6 +12,7 @@
     using System.Threading.Tasks;
     using Swan;
     using Swan.Reflection;
+    using Swan.Logging;
 #if !NET461
     using Microsoft.Data.Sqlite;
 #endif

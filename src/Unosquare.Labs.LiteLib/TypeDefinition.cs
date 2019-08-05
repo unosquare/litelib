@@ -6,6 +6,7 @@
     using System.Linq;
     using System.Reflection;
     using System.Text;
+    using Swan.Validators;
 
     internal class TypeDefinition
     {
@@ -132,7 +133,7 @@
 
                 var stringLength = property.GetCustomAttribute<StringLengthAttribute>()?.MaximumLength ?? MaxStringLength;
 
-                isNullable = property.GetCustomAttribute<Swan.Attributes.NotNullAttribute>() == null;
+                isNullable = property.GetCustomAttribute<NotNullAttribute>() == null;
 
                 nullStatement = isNullable ? "NULL" : "NOT NULL";
 
