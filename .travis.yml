@@ -9,6 +9,4 @@ install:
   - sudo apt-get install sqlite
   - nuget install NUnit.Runners -Version 3.4.1 -OutputDirectory testrunner
 script:
-  - msbuild /p:Configuration=Release Unosquare.Labs.LiteLib.sln
   - dotnet test ./test/Unosquare.Labs.LiteLib.Tests/Unosquare.Labs.LiteLib.Tests.csproj -f netcoreapp2.2
-  - mono ./testrunner/NUnit.ConsoleRunner.3.4.1/tools/nunit3-console.exe --process=Single /home/travis/build/unosquare/litelib/test/Unosquare.Labs.LiteLib.Tests/bin/Release/net461/Unosquare.Labs.LiteLib.Tests.dll
