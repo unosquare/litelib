@@ -38,6 +38,6 @@
     <PackageReference Include="Mono.Data.Sqlite.Portable" Version="1.0.3.5" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' Or '$(TargetFramework)' == 'net472'">
-    <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="2.2.6" />
+    <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="3.0.0" />
   </ItemGroup>
 </Project>
