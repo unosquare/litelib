@@ -7,6 +7,5 @@ notifications:
 install:
   - dotnet restore
   - sudo apt-get install sqlite
-  - nuget install NUnit.Runners -Version 3.4.1 -OutputDirectory testrunner
 script:
   - dotnet test ./test/Unosquare.Labs.LiteLib.Tests/Unosquare.Labs.LiteLib.Tests.csproj -f netcoreapp2.2
