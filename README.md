@@ -6,6 +6,8 @@
 
 # LiteLib
 
+**NOTE**: We are not longer supporting this library.
+
 _A cool little wrapper for [SQLite](https://www.sqlite.org/) based on [Dapper](https://github.com/StackExchange/Dapper) from Unosquare Labs -- It's also free and MIT-licensed_
 
 :star: *Please star this project if you find it useful!* 
